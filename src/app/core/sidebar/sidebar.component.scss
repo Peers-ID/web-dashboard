@@ -1,0 +1,21 @@
+.navbar .nav {
+    > li {
+        &.dropdown {
+            /* Keep dropdown menu of active menu item always visible */
+            &.open,
+            &.active,
+            &.open.active {
+                > .dropdown-menu {
+                    display: block;
+                }
+            }
+            /* Place dropdown menu of hovered menu item above all other menu items in case they overlap each other */
+            &.hover {
+                > .dropdown-menu {
+                    display: block;
+                    z-index: 9999;
+                }
+            }
+        }
+    }
+}
