@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApprovalconfigComponent implements OnInit {
 
+  titlepage:string;
   constructor() { }
 
   ngOnInit() {
+    this.titlepage = window.location.pathname.split('/')[1];
   }
 
 }

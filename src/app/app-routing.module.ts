@@ -10,13 +10,45 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'Loan-Aplication',
+        redirectTo: 'loanapplication',
         pathMatch: 'full'
       },
       {
-        path: 'Loan-Aplication',
+        path: 'loanapplication',
         loadChildren: './modules/home/home.module#HomeModule',
       },
+      {
+        path: 'collectiondata',
+        loadChildren: './modules/collection/collection.module#CollectionModule'
+      },
+      {
+        path: 'accountmanagement',
+        loadChildren: './modules/account/account.module#AccountModule'
+      },    
+      {
+        path: 'koperasiregistration',
+        loadChildren: './modules/koperasi/koperasi.module#KoperasiModule'
+      },    
+      {
+        path: 'changepassword',
+        loadChildren: './modules/changepassword/changepassword.module#ChangepasswordModule'
+      },    
+      {
+        path: 'memberdata',
+        loadChildren: './modules/memberdata/memberdata.module#MemberdataModule'
+      },    
+      {
+        path: 'loanformula',
+        loadChildren: './modules/loadformula/loadformula.module#LoadformulaModule'
+      },    
+      {
+        path: 'approvalconfig',
+        loadChildren: './modules/approvalconfig/approvalconfig.module#ApprovalconfigModule'
+      },    
+      {
+        path: 'cutofftime',
+        loadChildren: './modules/cutofftime/cutofftime.module#CutofftimeModule'
+      },    
     ]
   },
   {

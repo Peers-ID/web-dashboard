@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AccountComponent } from "./pages/account.component";
 
-
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: AccountComponent,
+    pathMatch: 'full',
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

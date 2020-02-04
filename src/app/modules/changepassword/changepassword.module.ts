@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ChangepasswordRoutingModule } from './changepassword-routing.module';
-
+import { ChangepasswordComponent } from "./pages/changepassword.component";
 
 @NgModule({
-  declarations: [],
+  declarations: [ChangepasswordComponent],
   imports: [
     CommonModule,
     ChangepasswordRoutingModule
