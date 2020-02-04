@@ -1,15 +1,94 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from "@angular/router";
+import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  trigeralerts: boolean = false;
+  constructor(
+    private router: Router,
+    private state: StatemanagementService
+  ) { }
 
   ngOnInit() {
+  }
+  login(userinput, password) {
+    if (userinput !== '' && password !== '') {
+      if (this.allnumeric(userinput) === true) {
+        if (this.phonenumber(userinput) === false) {
+          this.trigeralerts = true;
+          this.state.valuestatealerts = {
+            'type': 'danger',
+            'content': 'Invalid phone format'
+          }
+          setTimeout(() => {
+            this.trigeralerts = false;
+          }, 3000);
+        }
+      } else {
+        if (this.validateEmail(userinput) === false) {
+          this.trigeralerts = true;
+          this.state.valuestatealerts = {
+            'type': 'danger',
+            'content': 'Invalid email format'
+          }
+          setTimeout(() => {
+            this.trigeralerts = false;
+          }, 3000);
+        }
+      }
+      if (this.phonenumber(userinput) === true || this.validateEmail(userinput) === true){
+        localStorage.setItem('currentUser', JSON.stringify({
+          userId: '1',
+          username: 'test',
+          role: 'admin',
+          status: 'active',
+          email: 'email'
+        }));
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate(['/']);
+      });
+      }
+    } else {
+      this.trigeralerts = true;
+      this.state.valuestatealerts = {
+        'type': 'danger',
+        'content': 'Form cannot null'
+      }
+      setTimeout(() => {
+        this.trigeralerts = false;
+      }, 3000);
+    }
+  }
+  validateEmail(input) {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (input.match(mailformat)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  phonenumber(input) {
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if (input.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  allnumeric(input) {
+    var numbers = /^[0-9]+$/;
+    if (input.match(numbers)) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 }

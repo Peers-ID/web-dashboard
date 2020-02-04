@@ -10,15 +10,16 @@
                 </div>
                 <form>
                     <div class="form-group has-icon"><i class="icon-envelope-o"></i>
-                        <input type="text" class="form-control form-control-lg"
-                               placeholder="Email Address">
+                        <input type="text" class="form-control form-control-lg f-12"
+                               placeholder="Username" #userinput>
                     </div>
                     <div class="form-group has-icon"><i class="icon-user-secret"></i>
-                        <input type="text" class="form-control form-control-lg"
-                               placeholder="Password">
+                        <input type="text" class="form-control form-control-lg f-12"
+                               placeholder="Password" #password>
                     </div>
-                    <input type="submit" class="btn btn-success btn-lg btn-block" value="Log In">
+                    <button type="button" class="btn btn-success btn-lg btn-block" (click)="login(userinput.value , password.value)">Sign In</button>
                     <p class="forget-pass">Have you forgot your username or password ?</p>
+                        <app-alerts *ngIf="trigeralerts"></app-alerts>
                 </form>
             </div>
         </div>

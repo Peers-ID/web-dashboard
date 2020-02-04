@@ -9,6 +9,7 @@ import { ForgotpasswordComponent } from "./modules/forgotpassword/pages/forgotpa
 import { FooterComponent } from "./core/footer/footer.component";
 import { HeaderComponent } from "./core/header/header.component";
 import { SidebarComponent } from "./core/sidebar/sidebar.component";
+import { AuthGuard } from "./core/guard/auth.guard";
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { SidebarComponent } from "./core/sidebar/sidebar.component";
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

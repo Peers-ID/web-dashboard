@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DashboardComponent} from './modules/dashboard/dashboard.component';
 import {PagenotfoundComponent} from './modules/pagenotfound/pages/pagenotfound.component';
+import { AuthGuard } from './core/guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
