@@ -33,11 +33,10 @@ export class LoaderService {
   loadScript(name: string) {
     return new Promise((resolve, reject) => {
       if (!this.scripts[name].loaded) {
-        //load script
         let script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = this.scripts[name].src;
-        if (script.readyState) {  //IE
+        if (script.readyState) {
             script.onreadystatechange = () => {
                 if (script.readyState === "loaded" || script.readyState === "complete") {
                     script.onreadystatechange = null;
@@ -45,7 +44,7 @@ export class LoaderService {
                     resolve({script: name, loaded: true, status: 'Loaded'});
                 }
             };
-        } else {  //Others
+        } else {
             script.onload = () => {
                 this.scripts[name].loaded = true;
                 resolve({script: name, loaded: true, status: 'Loaded'});
