@@ -57,6 +57,10 @@ const routes: Routes = [
     loadChildren: './modules/login/login.module#LoginModule'
   },
   {
+    path: 'forgotpassword',
+    loadChildren: './modules/forgotpassword/forgotpassword.module#ForgotpasswordModule'
+  },
+  {
     path: '**',
     redirectTo: '/404'
   },

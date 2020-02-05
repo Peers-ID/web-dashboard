@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ForgotpasswordComponent implements OnInit {
 
   titlepage:string;
+  trigeralerts: boolean = false;
   constructor() { }
 
   ngOnInit() {

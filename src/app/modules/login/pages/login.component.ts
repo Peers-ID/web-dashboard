@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           }, 3000);
         }
       }
-      if (this.phonenumber(userinput) === true || this.validateEmail(userinput) === true){
+      if (this.phonenumber(userinput) === true || this.validateEmail(userinput) === true) {
         localStorage.setItem('currentUser', JSON.stringify({
           userId: '1',
           username: 'test',
@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
           status: 'active',
           email: 'email'
         }));
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/']);
-      });
+        });
       }
     } else {
       this.trigeralerts = true;
@@ -62,6 +62,57 @@ export class LoginComponent implements OnInit {
         this.trigeralerts = false;
       }, 3000);
     }
+  }
+  keyuplogin(event, userinput, password) {
+    if (event.key === 'Enter') {
+      if (userinput !== '' && password !== '') {
+        if (this.allnumeric(userinput) === true) {
+          if (this.phonenumber(userinput) === false) {
+            this.trigeralerts = true;
+            this.state.valuestatealerts = {
+              'type': 'danger',
+              'content': 'Invalid phone format'
+            }
+            setTimeout(() => {
+              this.trigeralerts = false;
+            }, 3000);
+          }
+        } else {
+          if (this.validateEmail(userinput) === false) {
+            this.trigeralerts = true;
+            this.state.valuestatealerts = {
+              'type': 'danger',
+              'content': 'Invalid email format'
+            }
+            setTimeout(() => {
+              this.trigeralerts = false;
+            }, 3000);
+          }
+        }
+        if (this.phonenumber(userinput) === true || this.validateEmail(userinput) === true) {
+          localStorage.setItem('currentUser', JSON.stringify({
+            userId: '1',
+            username: 'test',
+            role: 'admin',
+            status: 'active',
+            email: 'email'
+          }));
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/']);
+          });
+        }
+      } else {
+        this.trigeralerts = true;
+        this.state.valuestatealerts = {
+          'type': 'danger',
+          'content': 'Form cannot null'
+        }
+        setTimeout(() => {
+          this.trigeralerts = false;
+        }, 3000);
+      }
+    }
+
   }
   validateEmail(input) {
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
