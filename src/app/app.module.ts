@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PagenotfoundComponent } from './modules/pagenotfound/pages/pagenotfound.component';
-// import { ForgotpasswordComponent } from "./modules/forgotpassword/pages/forgotpassword.component";
 import { FooterComponent } from "./core/footer/footer.component";
 import { HeaderComponent } from "./core/header/header.component";
 import { SidebarComponent } from "./core/sidebar/sidebar.component";
@@ -16,7 +15,6 @@ import { AuthGuard } from "./core/guard/auth.guard";
     DashboardComponent,
     PagenotfoundComponent,
     HeaderComponent,
-    // ForgotpasswordComponent,
     SidebarComponent,
     FooterComponent
   ],
