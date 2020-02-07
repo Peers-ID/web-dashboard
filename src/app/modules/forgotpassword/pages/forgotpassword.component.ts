@@ -14,5 +14,7 @@ export class ForgotpasswordComponent implements OnInit {
   ngOnInit() {
     this.titlepage = window.location.pathname.split('/')[1];
   }
-
+  forgotpassword(userinput, date){
+    
+  }
 }

@@ -13,5 +13,7 @@ export class ChangepasswordComponent implements OnInit {
   ngOnInit() {
     this.titlepage = window.location.pathname.split('/')[1];
   }
-
+  submit(oldpassword, newpassword, repassword){
+    
+  }
 }
