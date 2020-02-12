@@ -1,53 +1,50 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card r-0 b-0">
-                <app-modalpopup *ngIf="showmodalcreate">
-                    <div class="row justify-content-center">
-                        <div class="col-12 text-center mt-5">
-                            <h5>Create User Account</h5>
+<div class="col-md-12">
+    <div class="card r-0 b-0">
+        <app-modalpopup *ngIf="showmodalcreate">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center mt-5">
+                    <h5>Create User Account</h5>
+                </div>
+                <div class="col-10 mt-5">
+                    <form>
+                        <div class="form-group has-icon"><i class="icon-envelope-o"></i>
+                            <input type="text" class="form-control form-control-lg f-12" placeholder="Username"
+                                #userinput>
                         </div>
-                        <div class="col-10 mt-5">
-                            <form>
-                                <div class="form-group has-icon"><i class="icon-envelope-o"></i>
-                                    <input type="text" class="form-control form-control-lg f-12" placeholder="Username"
-                                        #userinput>
-                                </div>
-                                <div class="form-group has-icon"><i class="icon-lock"></i>
-                                    <input type="password" class="form-control form-control-lg f-12"
-                                        placeholder="Password"
-                                    #password>
-                                </div>
-                            </form>
+                        <div class="form-group has-icon"><i class="icon-lock"></i>
+                            <input type="password" class="form-control form-control-lg f-12" placeholder="Password"
+                                #password>
                         </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-success btn-block f-12" (click)="submitmodal()">Submit</button>
-                                </div>
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-danger btn-block f-12" (click)="closemodal()">Close</button>
-                                </div>
-                            </div>
+                    </form>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-success btn-block f-12"
+                                (click)="submitmodal()">Submit</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-danger btn-block f-12"
+                                (click)="closemodal()">Close</button>
                         </div>
                     </div>
-                </app-modalpopup>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="card r-0 b-0">
-                <div class="card-body">
-                    <h6>{{titlepage}}</h6>
                 </div>
             </div>
+        </app-modalpopup>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card r-0 b-0">
+        <div class="card-body">
+            <h6>{{titlepage}}</h6>
         </div>
-        <div class="col-md-12 mt-2">
-            <div class="card r-0 b-0">
-                <div class="card-body">
-                    <button type="button" class="btn btn-primary" (click)="createaccountmodal()">Create new
-                        account</button>
-                </div>
-            </div>
+    </div>
+</div>
+<div class="col-md-12 mt-2">
+    <div class="card r-0 b-0">
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" (click)="createaccountmodal()">Create new
+                account</button>
         </div>
     </div>
 </div>

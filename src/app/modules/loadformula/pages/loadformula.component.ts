@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-loadformula',
   templateUrl: './loadformula.component.html',

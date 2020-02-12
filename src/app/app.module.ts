@@ -9,6 +9,7 @@ import { FooterComponent } from "./core/footer/footer.component";
 import { HeaderComponent } from "./core/header/header.component";
 import { SidebarComponent } from "./core/sidebar/sidebar.component";
 import { AuthGuard } from "./core/guard/auth.guard";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { AuthGuard } from "./core/guard/auth.guard";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
