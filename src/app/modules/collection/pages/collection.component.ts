@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
@@ -10,7 +12,7 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit() {
     this.titlepage = window.location.pathname.split('/')[1];
-    console.log(this.titlepage)
+    $("body").addClass("sidebar-collapse");
   }
 
 }

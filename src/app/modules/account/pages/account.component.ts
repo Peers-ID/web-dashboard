@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -14,6 +14,8 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.showmodalcreate = false;
     this.titlepage = window.location.pathname.split('/')[1];
+    $("body").addClass("sidebar-collapse");
+
   }
   createaccountmodal(){
     this.showmodalcreate = true;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-approvalconfig',
@@ -12,6 +13,8 @@ export class ApprovalconfigComponent implements OnInit {
 
   ngOnInit() {
     this.titlepage = window.location.pathname.split('/')[1];
+    $("body").addClass("sidebar-collapse");
+
   }
 
 }

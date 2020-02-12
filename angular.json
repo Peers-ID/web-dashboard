@@ -134,5 +134,8 @@
       }
     }
   },
-  "defaultProject": "e-koperasi"
+  "defaultProject": "e-koperasi",
+  "cli": {
+    "analytics": "49206946-b5ea-4019-8069-58d6ea81248f"
+  }
 }

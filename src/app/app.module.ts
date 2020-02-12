@@ -10,6 +10,7 @@ import { HeaderComponent } from "./core/header/header.component";
 import { SidebarComponent } from "./core/sidebar/sidebar.component";
 import { AuthGuard } from "./core/guard/auth.guard";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
