@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from "./pages/home.component";
-import { MatButtonModule } from "@angular/material/button";
 import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
@@ -11,7 +10,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MatButtonModule,
     NgxPaginationModule
   ]
 })
