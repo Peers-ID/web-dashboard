@@ -19,7 +19,15 @@ export class AccountComponent implements OnInit {
       'id': 'data dummy',
       'name': 'data dummy',
     }
-    this.titlepage = window.location.pathname.split('/')[1];
+    if (window.location.pathname.split('/')[1] !== 'peers'){
+      if (window.location.pathname.split('/')[1] !== 'peers'){
+      this.titlepage = window.location.pathname.split('/')[1];
+    }else{
+      this.titlepage = window.location.pathname.split('/')[2];
+    }    
+    }else{
+      this.titlepage = window.location.pathname.split('/')[2];
+    }
     for (let i = 0; i < 10; i++) {
       this.dataloopdummy.push(dataobjloop)
     }

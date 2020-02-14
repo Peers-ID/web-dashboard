@@ -12,7 +12,11 @@ export class CutofftimeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.titlepage = window.location.pathname.split('/')[1];
+    if (window.location.pathname.split('/')[1] !== 'peers'){
+      this.titlepage = window.location.pathname.split('/')[1];
+    }else{
+      this.titlepage = window.location.pathname.split('/')[2];
+    }    
     $("body").addClass("sidebar-collapse");
 
   }

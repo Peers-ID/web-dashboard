@@ -20,7 +20,11 @@ export class HomeComponent implements OnInit {
       'jumlah': 'data dummy',
       'tenor': 'data dummy'
     }
-    this.titlepage = window.location.pathname.split('/')[1];
+    if (window.location.pathname.split('/')[1] !== 'peers'){
+      this.titlepage = window.location.pathname.split('/')[1];
+    }else{
+      this.titlepage = window.location.pathname.split('/')[2];
+    }    
     for (let i = 0; i < 10; i++) {
       this.dataloopdummy.push(dataobjloop)
     }
