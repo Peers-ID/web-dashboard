@@ -1,31 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
 import { AuthenticationService } from "../../../core/authentication/authentication.service";
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
   trigeralerts: boolean = false;
   constructor(
     private router: Router,
     private state: StatemanagementService,
-    private authentication : AuthenticationService
-  ) { }
+    private authentication: AuthenticationService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   login(userinput, password) {
-    if (userinput !== '' && password !== '') {
+    if (userinput !== "" && password !== "") {
       if (this.allnumeric(userinput) === true) {
         if (this.phonenumber(userinput) === false) {
           this.trigeralerts = true;
           this.state.valuestatealerts = {
-            'type': 'danger',
-            'content': 'Invalid phone format'
-          }
+            type: "danger",
+            content: "Invalid phone format"
+          };
           setTimeout(() => {
             this.trigeralerts = false;
           }, 3000);
@@ -34,60 +33,66 @@ export class LoginComponent implements OnInit {
         if (this.validateEmail(userinput) === false) {
           this.trigeralerts = true;
           this.state.valuestatealerts = {
-            'type': 'danger',
-            'content': 'Invalid email format'
-          }
+            type: "danger",
+            content: "Invalid email format"
+          };
           setTimeout(() => {
             this.trigeralerts = false;
           }, 3000);
         }
       }
-      if (this.phonenumber(userinput) === true || this.validateEmail(userinput) === true) {
-        this.authentication.login(userinput , password).subscribe(data => {
-          console.log(data)
-          if (data["msg"] !== undefined){
-            console.log('masuk===')
+      if (
+        this.phonenumber(userinput) === true ||
+        this.validateEmail(userinput) === true
+      ) {
+        this.authentication.login(userinput, password).subscribe(data => {
+          if (data["msg"] !== undefined) {
             this.trigeralerts = true;
             this.state.valuestatealerts = {
-              'type': 'danger',
-              'content': 'Invalid email or password'
-            }
+              type: "danger",
+              content: "Invalid email or password"
+            };
             setTimeout(() => {
               this.trigeralerts = false;
             }, 3000);
-          }else{
-          localStorage.setItem('currentUser', JSON.stringify({
-          userId: data.user.id,
-          email: data.user.email,
-          token:data.user.token
-        }));
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/']);
-        });
+          } else {
+            localStorage.setItem(
+              "currentUser",
+              JSON.stringify({
+                userId: data.user.id,
+                email: data.user.email,
+                token: data.user.token
+              })
+            );
+            this.router
+              .navigateByUrl("/", { skipLocationChange: true })
+              .then(() => {
+                this.router.navigate(["/"]);
+              });
           }
-        })
+        });
       }
     } else {
       this.trigeralerts = true;
       this.state.valuestatealerts = {
-        'type': 'danger',
-        'content': 'Form cannot null'
-      }
+        type: "danger",
+        content: "Form cannot null"
+      };
       setTimeout(() => {
         this.trigeralerts = false;
       }, 3000);
     }
   }
   keyuplogin(event, userinput, password) {
-    if (event.key === 'Enter') {
-      if (userinput !== '' && password !== '') {
+    if (event.key === "Enter") {
+      if (userinput !== "" && password !== "") {
         if (this.allnumeric(userinput) === true) {
           if (this.phonenumber(userinput) === false) {
             this.trigeralerts = true;
             this.state.valuestatealerts = {
-              'type': 'danger',
-              'content': 'Invalid phone format'
-            }
+              type: "danger",
+              content: "Invalid phone format"
+            };
             setTimeout(() => {
               this.trigeralerts = false;
             }, 3000);
@@ -96,45 +101,62 @@ export class LoginComponent implements OnInit {
           if (this.validateEmail(userinput) === false) {
             this.trigeralerts = true;
             this.state.valuestatealerts = {
-              'type': 'danger',
-              'content': 'Invalid email format'
-            }
+              type: "danger",
+              content: "Invalid email format"
+            };
             setTimeout(() => {
               this.trigeralerts = false;
             }, 3000);
           }
         }
-        if (this.phonenumber(userinput) === true || this.validateEmail(userinput) === true) {
-          localStorage.setItem('currentUser', JSON.stringify({
-            userId: '1',
-            username: 'test',
-            role: 'admin',
-            status: 'active',
-            email: 'email'
-          }));
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate(['/']);
+        if (
+          this.phonenumber(userinput) === true ||
+          this.validateEmail(userinput) === true
+        ) {
+          this.authentication.login(userinput, password).subscribe(data => {
+            if (data["msg"] !== undefined) {
+              this.trigeralerts = true;
+              this.state.valuestatealerts = {
+                type: "danger",
+                content: "Invalid email or password"
+              };
+              setTimeout(() => {
+                this.trigeralerts = false;
+              }, 3000);
+            } else {
+              localStorage.setItem(
+                "currentUser",
+                JSON.stringify({
+                  userId: data.user.id,
+                  email: data.user.email,
+                  token: data.user.token
+                })
+              );
+              this.router
+                .navigateByUrl("/", { skipLocationChange: true })
+                .then(() => {
+                  this.router.navigate(["/"]);
+                });
+            }
           });
         }
       } else {
         this.trigeralerts = true;
         this.state.valuestatealerts = {
-          'type': 'danger',
-          'content': 'Form cannot null'
-        }
+          type: "danger",
+          content: "Form cannot null"
+        };
         setTimeout(() => {
           this.trigeralerts = false;
         }, 3000);
       }
     }
-
   }
   validateEmail(input) {
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (input.match(mailformat)) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -142,8 +164,7 @@ export class LoginComponent implements OnInit {
     var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     if (input.match(phoneno)) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -151,10 +172,8 @@ export class LoginComponent implements OnInit {
     var numbers = /^[0-9]+$/;
     if (input.match(numbers)) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
-
 }

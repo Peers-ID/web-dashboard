@@ -2,6 +2,8 @@
 
 # compiled output
 /dist
+/peers
+/peers.zip
 /tmp
 /out-tsc
 # Only exists if Bazel was run

@@ -36,4 +36,7 @@ export class AccountComponent implements OnInit {
   submitmodal(){
 
   }
+  pageclick(event){
+
+  }
 }
