@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { SharedModule } from "../.././shared/shared.module";
 import { LoginComponent } from "./pages/login.component";
+
+
 @NgModule({
   declarations: [
     LoginComponent

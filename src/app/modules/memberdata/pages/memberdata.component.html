@@ -1,7 +1,176 @@
-<div class="col-md-12 container-fluid">
+<div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">
-            <h3>{{titlepage}}</h3>
+            <h5>{{titlepage}}</h5>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 mt-2">
+    <div class="card r-0 b-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="container">
+                            <h2>Toggleable Tabs</h2>
+                            <br>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#address">Address</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#occupation">Occupation</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#emergency">Emergency</a>
+                              </li>
+                            </ul>
+                            <div class="tab-content">
+                              <div id="personal" class="container tab-pane active"><br>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Jenis Identitas</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <select style="width: 100%;">
+                                                    <option value="ktp">KTP</option>
+                                                    <option value="sim">SIM</option>
+                                                    <option value="paspor">Paspor</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>No Indentitas</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Nama Lengkap Sesuai KTP</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Tanggal Lahir</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Jenis Kelamin</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <select style="width: 100%;">
+                                                    <option value="pria">Pria</option>
+                                                    <option value="wanite">Wanita</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Nama Kadis Ibu Kandung</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Status Perkawinan</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <select style="width: 100%;">
+                                                    <option value="kawin">Kawin</option>
+                                                    <option value="belumkawin">Belum Kawin</option>
+                                                    <option value="cerai">Cerai</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Pendidikan Terakhir</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <select style="width: 100%;">
+                                                    <option value="sd">SD</option>
+                                                    <option value="smp">SMP</option>
+                                                    <option value="sma">SMA</option>
+                                                    <option value="d3">D3</option>
+                                                    <option value="s1">S1</option>
+                                                    <option value="lainnya">Lainnya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                              </div>
+                              <div id="address" class="container tab-pane fade"><br>
+                                <h5>Address</h5>
+                              </div>
+                              <div id="occupation" class="container tab-pane fade"><br>
+                                <h5>Occupation</h5>
+                              </div>
+                              <div id="emergency" class="container tab-pane fade"><br>
+                                <h5>Emergency</h5>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

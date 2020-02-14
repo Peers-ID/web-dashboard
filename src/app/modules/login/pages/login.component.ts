@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
+import { AuthenticationService } from "../../../core/authentication/authentication.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
   trigeralerts: boolean = false;
   constructor(
     private router: Router,
-    private state: StatemanagementService
+    private state: StatemanagementService,
+    private authentication : AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -41,16 +43,29 @@ export class LoginComponent implements OnInit {
         }
       }
       if (this.phonenumber(userinput) === true || this.validateEmail(userinput) === true) {
-        localStorage.setItem('currentUser', JSON.stringify({
-          userId: '1',
-          username: 'test',
-          role: 'admin',
-          status: 'active',
-          email: 'email'
+        this.authentication.login(userinput , password).subscribe(data => {
+          console.log(data)
+          if (data["msg"] !== undefined){
+            console.log('masuk===')
+            this.trigeralerts = true;
+            this.state.valuestatealerts = {
+              'type': 'danger',
+              'content': 'Invalid email or password'
+            }
+            setTimeout(() => {
+              this.trigeralerts = false;
+            }, 3000);
+          }else{
+          localStorage.setItem('currentUser', JSON.stringify({
+          userId: data.user.id,
+          email: data.user.email,
+          token:data.user.token
         }));
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/']);
         });
+          }
+        })
       }
     } else {
       this.trigeralerts = true;

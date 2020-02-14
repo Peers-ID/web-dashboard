@@ -43,8 +43,90 @@
 <div class="col-md-12 mt-2">
     <div class="card r-0 b-0">
         <div class="card-body">
-            <button type="button" class="btn btn-primary" (click)="createaccountmodal()">Create new
-                account</button>
+            <div class="row justify-content-between">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary" (click)="createaccountmodal()">Create new
+                        account</button>
+                </div>
+                <div class="col-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="search..." />
+                        <span class="input-group-append">
+                            <span class="input-group-text add-on white">
+                                <i class="icon-search"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 mt-5">
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="row">
+                                        <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
+                                            <div class="row">
+                                                <div class="col-7">ID</div>
+                                                <div class="col-5">
+                                                    <span class="icon-arrow_drop_up"></span>
+                                                    <span class="icon-arrow_drop_down"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 p-1" style="border: 1px solid grey;">
+                                            <input type="text" class="form-control" placeholder="search..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
+                                            <div class="row">
+                                                <div class="col-7">Name</div>
+                                                <div class="col-5">
+                                                    <span class="icon-arrow_drop_up"></span>
+                                                    <span class="icon-arrow_drop_down"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 p-1" style="border: 1px solid grey;">
+                                            <input type="text" class="form-control" placeholder="search..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-12 p-1" style="border: 1px solid grey;height: 108px;">
+                                            <div class="row">
+                                                <div class="col-12">Action</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" *ngFor="let data of dataloopdummy | paginate: { itemsPerPage: 5, currentPage: p }; let index = index">
+                                    <div class="row">
+                                        <div class="col-2 p-4" style="border: 1px solid grey;">{{data.id}}</div>
+                                        <div class="col-4 p-4" style="border: 1px solid grey;">{{data.name}}</div>
+                                        <div class="col-6 p-4" style="border: 1px solid grey;">
+                                            <div class="row">
+                                                <button class="col-6 icon-rate_review"
+                                                    style="border: none; background: none;" type="button"></button>
+                                                <button class="col-6 icon-check-circle"
+                                                    style="border: none; background: none;" type="button"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <pagination-controls (pageChange)="p = $event ; pageclick($event)"></pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
