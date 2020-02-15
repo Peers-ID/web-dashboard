@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
               JSON.stringify({
                 userId: data.data.user.id,
                 email: data.data.user.email,
-                token: data.token,
+                token: data.data.token,
                 role: data.data.user.role
               })
             );
@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
                 JSON.stringify({
                   userId: data.data.user.id,
                   email: data.data.user.email,
-                  token: data.token,
+                  token: data.data.token,
                   role: data.data.user.role
                 })
               );
