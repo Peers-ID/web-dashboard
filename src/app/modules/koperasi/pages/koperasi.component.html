@@ -152,8 +152,8 @@
                                                     <input type="text">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
+                                            <div class="col-12">
+                                            </div>
                                             <div class="row">
                                                 <div class="col-2">
                                                     <h5>Jenis Koperasi</h5>
@@ -230,12 +230,13 @@
                                                     <h5>Foto KTP Ketua</h5>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="text">
+                                                    <input #imageInput type="file" accept=".jpeg,.png,.jpg"
+                                                        (change)="processFile($event)">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                            
+
                                 </div>
                                 <div id="datakelembagaan" class="container tab-pane fade"><br>
                                     <div class="row">

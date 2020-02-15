@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-koperasi',
@@ -9,7 +9,7 @@ export class KoperasiComponent implements OnInit {
 
   titlepage:string;
   constructor() { }
-
+  @ViewChild('imageInput' , {static:false}) imageInput : ElementRef
   ngOnInit() {
     if (window.location.pathname.split('/')[1] !== 'peers'){
       this.titlepage = window.location.pathname.split('/')[1];
@@ -18,5 +18,8 @@ export class KoperasiComponent implements OnInit {
     }    
     $("body").addClass("sidebar-collapse");
   }
-
+  processFile(){
+    let data = new FormData();
+    data.append('file', this.imageInput.nativeElement.files[0] , `${this.imageInput.nativeElement.files[0].name}`);
+  }
 }
