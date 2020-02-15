@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
 
 @Component({
@@ -10,9 +10,12 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
   titlepage: string;
   dataloopdummy = [];
+  showmodaltriger:boolean;
   p: number = 1;
-  constructor() { }
+  constructor(
+  ) { }
   ngOnInit() {
+    this.showmodaltriger = false;
     let dataobjloop = {
       'ao': 'ao1',
       'customer': 'data dummy',
@@ -34,8 +37,8 @@ export class HomeComponent implements OnInit {
   pageclick(page) {
     console.log(page)
   }
-  viewclick() {
-    console.log('run')
+  viewclick(id , data) {
+    console.log(id , data);
   }
   approveclick() {
     console.log('run')

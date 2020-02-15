@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
         this.validateEmail(userinput) === true
       ) {
         this.authentication.login(userinput, password).subscribe(data => {
-          if (data["msg"] !== undefined) {
+          if (data["message"] == "User not found") {
             this.trigeralerts = true;
             this.state.valuestatealerts = {
               type: "danger",
-              content: "Invalid email or password"
+              content: "User Not Found"
             };
             setTimeout(() => {
               this.trigeralerts = false;
@@ -59,9 +59,10 @@ export class LoginComponent implements OnInit {
             localStorage.setItem(
               "currentUser",
               JSON.stringify({
-                userId: data.user.id,
-                email: data.user.email,
-                token: data.user.token
+                userId: data.data.user.id,
+                email: data.data.user.email,
+                token: data.token,
+                role: data.data.user.role
               })
             );
             this.router
@@ -114,11 +115,11 @@ export class LoginComponent implements OnInit {
           this.validateEmail(userinput) === true
         ) {
           this.authentication.login(userinput, password).subscribe(data => {
-            if (data["msg"] !== undefined) {
+            if (data["message"] == "User not found") {
               this.trigeralerts = true;
               this.state.valuestatealerts = {
                 type: "danger",
-                content: "Invalid email or password"
+                content: "User Not Found"
               };
               setTimeout(() => {
                 this.trigeralerts = false;
@@ -127,9 +128,10 @@ export class LoginComponent implements OnInit {
               localStorage.setItem(
                 "currentUser",
                 JSON.stringify({
-                  userId: data.user.id,
-                  email: data.user.email,
-                  token: data.user.token
+                  userId: data.data.user.id,
+                  email: data.data.user.email,
+                  token: data.token,
+                  role: data.data.user.role
                 })
               );
               this.router

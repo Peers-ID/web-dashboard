@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import * as $ from 'jquery';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,6 +8,7 @@ import { Router } from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
   nameuser:string;
+  trigerclicknavbar:boolean = false;
   constructor(
     private router : Router
   ) { }
@@ -20,5 +22,12 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/login']);
     }, 500);
+  }
+  navbarclick(){
+    if ($( "body" ).hasClass( "sidebar-collapse" )){
+      $("body").removeClass("sidebar-collapse");
+    }else{
+      $("body").addClass("sidebar-collapse");
+    }
   }
 }

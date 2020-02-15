@@ -3,12 +3,12 @@
         <app-modalpopup *ngIf="showmodalcreate">
             <div class="row justify-content-center">
                 <div class="col-12 text-center mt-5">
-                    <h5>Create User Account</h5>
+                    <h3>Create User Account</h3>
                 </div>
                 <div class="col-10 mt-5">
                     <form>
                         <div class="form-group has-icon"><i class="icon-envelope-o"></i>
-                            <input type="text" class="form-control form-control-lg f-12" placeholder="Username"
+                            <input type="text" class="form-control form-control-lg" placeholder="Username"
                                 #userinput>
                         </div>
                         <div class="form-group has-icon"><i class="icon-lock"></i>
@@ -45,7 +45,7 @@
         <div class="card-body">
             <div class="row justify-content-between">
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" (click)="createaccountmodal()">Create new
+                    <button type="button" class="btn btn-primary" (click)="createaccountmodal()" style="font-size: 10pt;">Create new
                         account</button>
                 </div>
                 <div class="col-3">
@@ -112,9 +112,9 @@
                                         <div class="col-4 p-4" style="border: 1px solid grey;">
                                             <div class="row">
                                                 <button class="col-6 icon-rate_review"
-                                                    style="border: none; background: none; font-size: 20px;" type="button"></button>
+                                                    style="border: none; background: none; font-size: 20px;" type="button" id="id{{index}}" (click)="viewclick()"></button>
                                                 <button class="col-6 icon-check-circle"
-                                                    style="border: none; background: none; font-size: 20px;" type="button"></button>
+                                                    style="border: none; background: none; font-size: 20px;" type="button" id="id{{index}}" (click)="reactiveclick()"></button>
                                             </div>
                                         </div>
                                     </div>

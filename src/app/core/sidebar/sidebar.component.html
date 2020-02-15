@@ -1,31 +1,63 @@
-
 <aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
     <section class="sidebar">
         <ul class="sidebar-menu">
             <li class="mt-4 mb-4 text-center" style="border-bottom: none;"><strong>PEERS</strong></li>
             <li class="header light mt-3"><strong>FINANCE</strong></li>
             <li class="treeview ">
-                <a routerLink="/loanapplication" routerLinkActive="active" [class.nav-select]="active === 'loanapplication'" [class.!nav-select]="active !== 'loanapplication'" (click)="goTo('loanapplication')"><i [class.text-white]="active === 'loanapplication'" [class.text-blue]="active !== 'loanapplication'" class="icon icon-airplay s-18"></i> <span>Loan Application</span></a>
-                <a routerLink="/collectiondata" routerLinkActive="active" [class.nav-select]="active === 'collectiondata'" [class.!nav-select]="active !== 'collectiondata'" (click)="goTo('collectiondata')"><i [class.text-white]="active === 'collectiondata'" [class.text-blue]="active !== 'collectiondata'" class="icon icon-notebook  s-18"></i> <span>Collection Data</span></a>
+                <a routerLink="/loanapplication" routerLinkActive="active"
+                    [class.nav-select]="active === 'loanapplication'" [class.!nav-select]="active !== 'loanapplication'"
+                    (click)="goTo('loanapplication')"><i [class.text-white]="active === 'loanapplication'"
+                        [class.text-blue]="active !== 'loanapplication'" class="icon icon-airplay s-18"></i> <span>Loan
+                        Application</span></a>
+                <a routerLink="/collectiondata" routerLinkActive="active"
+                    [class.nav-select]="active === 'collectiondata'" [class.!nav-select]="active !== 'collectiondata'"
+                    (click)="goTo('collectiondata')"><i [class.text-white]="active === 'collectiondata'"
+                        [class.text-blue]="active !== 'collectiondata'" class="icon icon-notebook  s-18"></i>
+                    <span>Collection Data</span></a>
             </li>
-            <li class="header light mt-3"><strong>ADMINISTRATOR </strong></li>
-            <li class="treeview ">
-                <a routerLink="/accountmanagement" routerLinkActive="active" [class.nav-select]="active === 'accountmanagement'" [class.!nav-select]="active !== 'accountmanagement'" (click)="goTo('accountmanagement')"><i [class.text-white]="active === 'accountmanagement'" [class.text-blue]="active !== 'accountmanagement'" class="icon icon-airplay s-18"></i> <span>Account Management</span></a>
+            <li class="header light mt-3" *ngIf="trigeraccount === 'Admin Koperasi'"><strong>ADMINISTRATOR </strong></li>
+            <li class="treeview " *ngIf="trigeraccount === 'Admin Koperasi'">
+                <a routerLink="/accountmanagement" routerLinkActive="active"
+                    [class.nav-select]="active === 'accountmanagement'"
+                    [class.!nav-select]="active !== 'accountmanagement'" (click)="goTo('accountmanagement')"><i
+                        [class.text-white]="active === 'accountmanagement'"
+                        [class.text-blue]="active !== 'accountmanagement'" class="icon icon-airplay s-18"></i>
+                    <span>Account Management</span></a>
             </li>
-            <li class="header light mt-3"><strong>CONSOLE </strong></li>
-            <li class="treeview ">
-                <a routerLink="/koperasiregistration" routerLinkActive="active" [class.nav-select]="active === 'koperasiregistration'" [class.!nav-select]="active !== 'koperasiregistration'" (click)="goTo('koperasiregistration')"><i [class.text-white]="active === 'koperasiregistration'" [class.text-blue]="active !== 'koperasiregistration'" class="icon icon-wpforms s-18"></i> <span>Koperasi Registration</span></a>
+            <li class="header light mt-3" *ngIf="trigeraccount === 'Admin Peers'"><strong>CONSOLE </strong></li>
+            <li class="treeview " *ngIf="trigeraccount === 'Admin Peers'">
+                <a routerLink="/koperasiregistration" routerLinkActive="active"
+                    [class.nav-select]="active === 'koperasiregistration'"
+                    [class.!nav-select]="active !== 'koperasiregistration'" (click)="goTo('koperasiregistration')"><i
+                        [class.text-white]="active === 'koperasiregistration'"
+                        [class.text-blue]="active !== 'koperasiregistration'" class="icon icon-wpforms s-18"></i>
+                    <span>Koperasi Registration</span></a>
             </li>
             <li class="header light mt-3"><strong>SETTING & CONFIGURATION </strong></li>
             <li class="treeview ">
-                <a routerLink="/changepassword" routerLinkActive="active" [class.nav-select]="active === 'changepassword'" [class.!nav-select]="active !== 'changepassword'" (click)="goTo('changepassword')"><i [class.text-white]="active === 'changepassword'" [class.text-blue]="active !== 'changepassword'" class="icon icon-wpforms s-18"></i> <span>Change Password</span></a>
-                <a routerLink="/memberdata" routerLinkActive="active" [class.nav-select]="active === 'memberdata'" [class.!nav-select]="active !== 'memberdata'" (click)="goTo('memberdata')"><i [class.text-white]="active === 'memberdata'" [class.text-blue]="active !== 'memberdata'" class="icon icon-documents3 s-18"></i> <span>Member Data Capture</span></a>
-                <a routerLink="/loanformula" routerLinkActive="active" [class.nav-select]="active === 'loanformula'" [class.!nav-select]="active !== 'loanformula'" (click)="goTo('loanformula')"><i [class.text-white]="active === 'loanformula'" [class.text-blue]="active !== 'loanformula'" class="icon icon-goals-1 s-18"></i> <span>Loan Formula</span></a>
-                <a routerLink="/approvalconfig" routerLinkActive="active" [class.nav-select]="active === 'approvalconfig'" [class.!nav-select]="active !== 'approvalconfig'" (click)="goTo('approvalconfig')"><i [class.text-white]="active === 'approvalconfig'" [class.text-blue]="active !== 'approvalconfig'" class="icon icon-playlist_add_check  s-18"></i> <span>Approval Config</span></a>
-                <a routerLink="/cutofftime" routerLinkActive="active" [class.nav-select]="active === 'cutofftime'" [class.!nav-select]="active !== 'cutofftime'" (click)="goTo('cutofftime')"><i [class.text-white]="active === 'cutofftime'" [class.text-blue]="active !== 'cutofftime'" class="icon icon-calendar  s-18"></i> <span>Cut Of Time</span></a>
+                <a routerLink="/changepassword" routerLinkActive="active"
+                    [class.nav-select]="active === 'changepassword'" [class.!nav-select]="active !== 'changepassword'"
+                    (click)="goTo('changepassword')"><i [class.text-white]="active === 'changepassword'"
+                        [class.text-blue]="active !== 'changepassword'" class="icon icon-wpforms s-18"></i> <span>Change
+                        Password</span></a>
+                <a routerLink="/memberdata" routerLinkActive="active" [class.nav-select]="active === 'memberdata'"
+                    [class.!nav-select]="active !== 'memberdata'" (click)="goTo('memberdata')"><i
+                        [class.text-white]="active === 'memberdata'" [class.text-blue]="active !== 'memberdata'"
+                        class="icon icon-documents3 s-18"></i> <span>Member Data Capture</span></a>
+                <a routerLink="/loanformula" routerLinkActive="active" [class.nav-select]="active === 'loanformula'"
+                    [class.!nav-select]="active !== 'loanformula'" (click)="goTo('loanformula')"><i
+                        [class.text-white]="active === 'loanformula'" [class.text-blue]="active !== 'loanformula'"
+                        class="icon icon-goals-1 s-18"></i> <span>Loan Formula</span></a>
+                <a routerLink="/approvalconfig" routerLinkActive="active"
+                    [class.nav-select]="active === 'approvalconfig'" [class.!nav-select]="active !== 'approvalconfig'"
+                    (click)="goTo('approvalconfig')"><i [class.text-white]="active === 'approvalconfig'"
+                        [class.text-blue]="active !== 'approvalconfig'" class="icon icon-playlist_add_check  s-18"></i>
+                    <span>Approval Config</span></a>
+                <a routerLink="/cutofftime" routerLinkActive="active" [class.nav-select]="active === 'cutofftime'"
+                    [class.!nav-select]="active !== 'cutofftime'" (click)="goTo('cutofftime')"><i
+                        [class.text-white]="active === 'cutofftime'" [class.text-blue]="active !== 'cutofftime'"
+                        class="icon icon-calendar  s-18"></i> <span>Cut Of Time</span></a>
             </li>
         </ul>
     </section>
 </aside>
-
-

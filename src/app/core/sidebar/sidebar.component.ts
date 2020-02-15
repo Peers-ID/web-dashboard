@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
 
   active:string;
+  trigeraccount:string;
   constructor(
     private router: Router
   ) { }
 
   ngOnInit() {
     this.active = window.location.pathname.split('/')[1];
-    // console.log(this.active)
+    this.trigeraccount = JSON.parse(localStorage.getItem("currentUser")).role 
+    console.log(this.trigeraccount)
   }
 
   goTo(url){

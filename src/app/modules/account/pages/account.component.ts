@@ -47,4 +47,12 @@ export class AccountComponent implements OnInit {
   pageclick(event){
 
   }
+  viewclick(){
+    console.log('run');
+    
+  }
+  reactiveclick(){
+    console.log('run');
+    
+  }
 }
