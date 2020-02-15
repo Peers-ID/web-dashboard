@@ -65,11 +65,11 @@ export class LoginComponent implements OnInit {
                 role: data.data.user.role
               })
             );
-            this.router
-              .navigateByUrl("/", { skipLocationChange: true })
-              .then(() => {
-                this.router.navigate(["/"]);
-              });
+            if (JSON.parse(localStorage.getItem('currentUser')).role == 'Admin Koperasi'){
+                this.router.navigate(["/loanapplication"]);
+            }else{
+              this.router.navigate(["/koperasiregistration"]);
+            }
           }
         });
       }
@@ -134,11 +134,11 @@ export class LoginComponent implements OnInit {
                   role: data.data.user.role
                 })
               );
-              this.router
-                .navigateByUrl("/", { skipLocationChange: true })
-                .then(() => {
-                  this.router.navigate(["/"]);
-                });
+              if (JSON.parse(localStorage.getItem('currentUser')).role == 'Admin Koperasi'){
+                this.router.navigate(["/loanapplication"]);
+            }else{
+              this.router.navigate(["/koperasiregistration"]);
+            }
             }
           });
         }

@@ -10,11 +10,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
-        redirectTo: 'loanapplication',
-        pathMatch: 'full'
-      },
-      {
         path: 'loanapplication',
         loadChildren: './modules/home/home.module#HomeModule',
       },
