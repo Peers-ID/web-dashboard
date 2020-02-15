@@ -14,9 +14,12 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.active = window.location.pathname.split('/')[1];
+    if (window.location.pathname.split('/')[1] !== 'peers'){
+      this.active = window.location.pathname.split('/')[1];
+    }else{
+      this.active = window.location.pathname.split('/')[2];
+    }    
     this.trigeraccount = JSON.parse(localStorage.getItem("currentUser")).role 
-    console.log(this.trigeraccount)
   }
 
   goTo(url){
