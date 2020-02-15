@@ -18,7 +18,7 @@ export class KoperasiComponent implements OnInit {
     }    
     $("body").addClass("sidebar-collapse");
   }
-  processFile(){
+  processFile(event){
     let data = new FormData();
     data.append('file', this.imageInput.nativeElement.files[0] , `${this.imageInput.nativeElement.files[0].name}`);
   }

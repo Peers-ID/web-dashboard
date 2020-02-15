@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
         this.validateEmail(userinput) === true
       ) {
         this.authentication.login(userinput, password).subscribe(data => {
-          if (data["message"] == "User not found") {
+          if (data.data == "") {
             this.trigeralerts = true;
             this.state.valuestatealerts = {
               type: "danger",
-              content: "User Not Found"
+              content: data.message
             };
             setTimeout(() => {
               this.trigeralerts = false;
@@ -115,11 +115,11 @@ export class LoginComponent implements OnInit {
           this.validateEmail(userinput) === true
         ) {
           this.authentication.login(userinput, password).subscribe(data => {
-            if (data["message"] == "User not found") {
+            if (data.data == "") {
               this.trigeralerts = true;
               this.state.valuestatealerts = {
                 type: "danger",
-                content: "User Not Found"
+                content: data.message
               };
               setTimeout(() => {
                 this.trigeralerts = false;
