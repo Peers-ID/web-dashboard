@@ -6,12 +6,13 @@ import { Router } from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  nameuser:string;
   constructor(
     private router : Router
   ) { }
 
   ngOnInit() {
+    this.nameuser = JSON.parse(localStorage.getItem('currentUser')).email;
   }
   signout(){
     localStorage.removeItem('currentUser');
