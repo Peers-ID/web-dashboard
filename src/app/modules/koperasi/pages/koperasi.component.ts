@@ -11,6 +11,8 @@ export class KoperasiComponent implements OnInit {
   data: any;
   titlepage: string;
   trigeralerts: boolean = false;
+  showmodalerror:boolean = false;
+  showmodalsuccess:boolean = false;
   constructor(private apiservice: ApiService,
     private state: StatemanagementService,
     ) {}
@@ -68,6 +70,7 @@ export class KoperasiComponent implements OnInit {
             this.trigeralerts = false;
           }, 5000)
     }else{
+      this.showmodalsuccess = true
   this.apiservice
       .postdatakoperasi(
         nama_koperasi,
@@ -102,26 +105,19 @@ export class KoperasiComponent implements OnInit {
       )
       .subscribe(data => {
         if (data['message'] == 'Success. Koperasi created!'){
-          this.trigeralerts = true;
-          this.state.valuestatealerts = {
-            type: "success",
-            content: data['message']
-          };
-          setTimeout(() => {
-            this.trigeralerts = false;
-          }, 5000)
+          this.showmodalsuccess = true;
         }else{
-          this.trigeralerts = true;
-          this.state.valuestatealerts = {
-            type: "danger",
-            content: data['message']
-          };
-          setTimeout(() => {
-            this.trigeralerts = false;
-          }, 5000)
+          this.showmodalerror = true;
+          // this.trigeralerts = true;
+          // this.state.valuestatealerts = {
+          //   type: "danger",
+          //   content: data['message']
+          // };
+          // setTimeout(() => {
+          //   this.trigeralerts = false;
+          // }, 5000)
         }
       });
     }
-  
   }
 }

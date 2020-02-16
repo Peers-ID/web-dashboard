@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlertsModule } from "./components/alerts/alerts.module";
 import { ModalpopupModule } from './components/modalpopup/modalpopup.module';
-import { ModalstatusModule } from "./components/modalstatus/modalstatus.module";
+import { ModalerrorModule } from "./components/modalerror/modalerror.module";
+import { ModalsuccessModule } from "./components/modalsuccess/modalsuccess.module";
 @NgModule({
   declarations: [],
-  exports:[AlertsModule,ModalpopupModule , ModalstatusModule],
+  exports:[AlertsModule,ModalpopupModule,ModalsuccessModule,ModalerrorModule],
   imports: [
     CommonModule,
   ]

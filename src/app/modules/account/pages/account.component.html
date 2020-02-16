@@ -1,47 +1,41 @@
-<div class="col-md-12">
-    <div class="card r-0 b-0">
-        <app-modalpopup *ngIf="showmodalcreate">
+<app-modalpopup *ngIf="showmodalcreate">
+    <div class="modal-content" style="margin-top: 20%;">
+        <div class="modal-header" style="border: none;">
+          <h3 class="modal-title" style="border: none;">Create Account AO</h3>
+          <button type="button" class="close" (click)="closemodal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="border:none">
             <div class="row justify-content-center">
-                <div class="col-12 text-center mt-5">
-                    <h3>Create User Account</h3>
-                </div>
-                <div class="col-10 mt-2">
-                        <div class="form-group has-icon"><i class="icon-envelope-o"></i>
-                            <input type="text" class="form-control form-control-md" placeholder="Fullname"
-                                #fullname>
-                        </div>
-                        <div class="form-group has-icon"><i class="icon-phone2"></i>
-                            <input type="text" class="form-control form-control-md f-12" placeholder="HP"
-                                #hp>
-                        </div>
-                        <div class="form-group has-icon"><i class="icon-message"></i>
-                            <input type="text" class="form-control form-control-md f-12" placeholder="Email"
-                                #email>
-                        </div>
-                        <div class="form-group has-icon"><i class="icon-calendar"></i>
-                            <input type="date" class="form-control form-control-md f-12" placeholder="Birthday"
-                                #birthday>
-                        </div>
-                </div>
                 <div class="col-10">
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-success btn-block f-12"
-                                (click)="submitmodal(fullname.value,hp.value,email.value,birthday.value)">Submit</button>
-                        </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-danger btn-block f-12"
-                                (click)="closemodal()">Close</button>
-                        </div>
+                    <div class="form-group has-icon"><i class="icon-envelope-o"></i>
+                        <input type="text" class="form-control form-control-md" placeholder="Fullname" #fullname>
+                    </div>
+                    <div class="form-group has-icon"><i class="icon-phone2"></i>
+                        <input type="text" class="form-control form-control-md f-12" placeholder="HP" #hp>
+                    </div>
+                    <div class="form-group has-icon"><i class="icon-message"></i>
+                        <input type="text" class="form-control form-control-md f-12" placeholder="Email" #email>
+                    </div>
+                    <div class="form-group has-icon"><i class="icon-calendar"></i>
+                        <input type="date" class="form-control form-control-md f-12" placeholder="Birthday" #birthday>
                     </div>
                 </div>
-                <div class="col-10">
-                    <app-alerts *ngIf="trigeralerts"></app-alerts>
+            </div>
+        </div>
+        <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary btn-block w-100"
+                    (click)="submitmodal(fullname.value,hp.value,email.value,birthday.value)">Submit</button>
                 </div>
             </div>
-        </app-modalpopup>
-    </div>
-</div>
+        </div>
+      </div>
+</app-modalpopup>
+<app-modalsuccess *ngIf="showsuccessmodal"></app-modalsuccess>
+<app-modalerror *ngIf="showerrormodal"></app-modalerror>
 <div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">
@@ -54,7 +48,8 @@
         <div class="card-body">
             <div class="row justify-content-between">
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" (click)="createaccountmodal()" style="font-size: 10pt;">Create new
+                    <button type="button" class="btn btn-primary" (click)="createaccountmodal()"
+                        style="font-size: 10pt;">Create new
                         account</button>
                 </div>
                 <div class="col-3">
@@ -114,22 +109,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12" *ngFor="let data of dataloopdummy | paginate: { itemsPerPage: 5, currentPage: p }; let index = index">
+                                <div class="col-12"
+                                    *ngFor="let data of dataloopdummy | paginate: { itemsPerPage: 5, currentPage: p }; let index = index">
                                     <div class="row">
                                         <div class="col-4 p-4" style="border: 1px solid grey;">{{data.id}}</div>
                                         <div class="col-4 p-4" style="border: 1px solid grey;">{{data.name}}</div>
                                         <div class="col-4 p-4" style="border: 1px solid grey;">
                                             <div class="row">
                                                 <button title="Reactive" class="col-6 icon-rate_review"
-                                                    style="border: none; background: none; font-size: 20px;" type="button" id="id{{index}}" (click)="viewclick()"></button>
+                                                    style="border: none; background: none; font-size: 20px;"
+                                                    type="button" id="id{{index}}" (click)="viewclick()"></button>
                                                 <button title="Reactive" class="col-6 icon-phonelink_off "
-                                                    style="border: none; background: none; font-size: 20px;" type="button" id="id{{index}}" (click)="reactiveclick()"></button>
+                                                    style="border: none; background: none; font-size: 20px;"
+                                                    type="button" id="id{{index}}" (click)="reactiveclick()"></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
-                                    <pagination-controls (pageChange)="p = $event ; pageclick($event)"></pagination-controls>
+                                    <pagination-controls (pageChange)="p = $event ; pageclick($event)">
+                                    </pagination-controls>
                                 </div>
                             </div>
                         </div>

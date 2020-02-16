@@ -14,6 +14,8 @@ export class AccountComponent implements OnInit {
   dataloopdummy = [];
   p: number = 1;
   trigeralerts: boolean = false;
+  showsuccessmodal:boolean = false;
+  showerrormodal:boolean = false;
   constructor(
     private state: StatemanagementService
   ) {}
@@ -45,6 +47,7 @@ export class AccountComponent implements OnInit {
     this.showmodalcreate = false;
   }
   submitmodal(fullname, hp, email, birthday) {
+    this.showmodalcreate = false;
   }
   pageclick(event) {}
   viewclick() {
