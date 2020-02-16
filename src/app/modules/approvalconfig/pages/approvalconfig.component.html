@@ -10,13 +10,15 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-3">
-                    <h3>AO dapat mengapproved load</h3>
+                    <h3>AO dapat mengapproved loan</h3>
                 </div>
                 <div class="col-3">
                     <label class="switch">
-                        <input type="checkbox">
+                        <input [checked]="getapprovalconfig"
+                        (change)="FieldsChange($event)"
+                        type="checkbox" />
                         <span class="slider round"></span>
-                      </label>
+                    </label>
                 </div>
             </div>
         </div>

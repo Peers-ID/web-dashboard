@@ -10,6 +10,7 @@ export class ApprovalconfigComponent implements OnInit {
 
   titlepage:string;
   constructor() { }
+  getapprovalconfig: boolean = false;
 
   ngOnInit() {
     if (window.location.pathname.split('/')[1] !== 'peers'){
@@ -22,7 +23,10 @@ export class ApprovalconfigComponent implements OnInit {
       this.titlepage = window.location.pathname.split('/')[2];
     }    
     $("body").addClass("sidebar-collapse");
+  }
 
+  FieldsChange(values){
+    this.getapprovalconfig = values.currentTarget.checked;
   }
 
 }

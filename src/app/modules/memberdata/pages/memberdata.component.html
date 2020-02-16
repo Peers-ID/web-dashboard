@@ -10,7 +10,7 @@
     <div class="card r-0 b-0">
         <div class="card-body">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mt-1">
                     <div class="row justify-content-center">
                         <div class="container">
                             <!-- Nav tabs -->
@@ -31,7 +31,7 @@
                             <div class="tab-content">
                                 <div id="personal" class="container tab-pane active"><br>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getjenisidentitas"
@@ -39,10 +39,10 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Jenis Identitas</h5>
+                                                    Jenis Identitas
                                                 </div>
                                                 <div class="col-2">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="ktp">KTP</option>
                                                         <option value="sim">SIM</option>
                                                         <option value="paspor">Paspor</option>
@@ -50,18 +50,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getnoidentitas"
                                                         (change)="FieldsChange($event,'noidentitas')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>No Indentitas</h5>
+                                                    No Indentitas
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getnamalengkapsesuaiktp"
@@ -69,12 +69,12 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Nama Lengkap Sesuai KTP</h5>
+                                                    Nama Lengkap Sesuai KTP
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="gettanggallahir"
@@ -82,12 +82,12 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Tanggal Lahir</h5>
+                                                    Tanggal Lahir
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getjeniskelamin"
@@ -95,17 +95,17 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Jenis Kelamin</h5>
+                                                    Jenis Kelamin
                                                 </div>
                                                 <div class="col-2">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="pria">Pria</option>
                                                         <option value="wanite">Wanita</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getnamagadisibukandung"
@@ -113,12 +113,12 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Nama Gadis Ibu Kandung</h5>
+                                                    Nama Gadis Ibu Kandung
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getstatusperkawinan"
@@ -126,10 +126,10 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Status Perkawinan</h5>
+                                                    Status Perkawinan
                                                 </div>
                                                 <div class="col-2">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="kawin">Kawin</option>
                                                         <option value="belumkawin">Belum Kawin</option>
                                                         <option value="cerai">Cerai</option>
@@ -137,18 +137,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
-                                                    <input [checked]="getpendidikanterakhir"
-                                                        (change)="FieldsChange($event,'pendidikanterakhir')"
+                                                    <input [checked]="getpcenteridikanterakhir"
+                                                        (change)="FieldsChange($event,'pcenteridikanterakhir')"
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Pendidikan Terakhir</h5>
+                                                    Pcenteridikan Terakhir
                                                 </div>
                                                 <div class="col-2">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="sd">SD</option>
                                                         <option value="smp">SMP</option>
                                                         <option value="sma">SMA</option>
@@ -159,9 +159,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 mt-5">
-                                            <div class="row justify-content-end">
-                                                <div class="col-4">
+                                        <div class="col-12 mt-1 mt-5">
+                                            <div class="row justify-content-center">
+                                                <div class="col-3">
                                                     <button class="btn btn-primary w-100" type="button"
                                                         (click)="savepersonal()">Save</button>
                                                 </div>
@@ -171,79 +171,79 @@
                                 </div>
                                 <div id="address" class="container tab-pane fade"><br>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getjalan" (change)="FieldsChange($event,'jalan')"
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : Jalan</h5>
+                                                    Alamat sesuai KTP : Jalan
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getnomer" (change)="FieldsChange($event,'nomer')"
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : Nomor</h5>
+                                                    Alamat sesuai KTP : Nomor
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getrt" (change)="FieldsChange($event,'rt')"
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : RT</h5>
+                                                    Alamat sesuai KTP : RT
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getrw" (change)="FieldsChange($event,'rw')"
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : RW</h5>
+                                                    Alamat sesuai KTP : RW
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getkelurahan"
                                                         (change)="FieldsChange($event,'kelurahan')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : Kelurahan</h5>
+                                                    Alamat sesuai KTP : Kelurahan
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getkecamatan"
                                                         (change)="FieldsChange($event,'kecamatan')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : Kecamatan</h5>
+                                                    Alamat sesuai KTP : Kecamatan
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getstatustempattinggalktp"
@@ -251,11 +251,11 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : Status Tempat Tinggal</h5>
+                                                    Alamat sesuai KTP : Status Tempat Tinggal
                                                 </div>
                                                 <div class="col-4">
-                                                    <select style="width: 100%;">
-                                                        <option value="miliksendiri">Milik Sendiri</option>
+                                                    <select style="width: 100%;" class="form-control-use">
+                                                        <option value="milikscenteriri">Milik Scenteriri</option>
                                                         <option value="milikkeluarga">Milik Keluarga</option>
                                                         <option value="rumahdinas">Rumah Dinas</option>
                                                         <option value="sewakotrak">Sewa / Kontrak</option>
@@ -264,7 +264,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getlamatinggalktp"
@@ -272,16 +272,16 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat sesuai KTP : Lama Tinggal</h5>
+                                                    Alamat sesuai KTP : Lama Tinggal
                                                 </div>
                                                 <div class="col-4">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="bulan/tahun">xxx bulan / tahun</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getapakahalamatsesuaidomisili"
@@ -289,17 +289,17 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Apakah alamat domisili sama dengan KTP ?</h5>
+                                                    Apakah alamat domisili sama dengan KTP ?
                                                 </div>
                                                 <div class="col-4">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="bulan/tahun">Ya / Tidak, jika ya langsung copy
                                                         </option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getdomisilijalan"
@@ -307,12 +307,12 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : Jalan</h5>
+                                                    Alamat domisili : Jalan
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getdomisilinomer"
@@ -320,36 +320,36 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : Nomor</h5>
+                                                    Alamat domisili : Nomor
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getdomisilirt"
                                                         (change)="FieldsChange($event,'domisilirt')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : RT</h5>
+                                                    Alamat domisili : RT
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getdomisilirw"
                                                         (change)="FieldsChange($event,'domisilirw')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : RW</h5>
+                                                    Alamat domisili : RW
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getdomisilikelurahan"
@@ -357,12 +357,12 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : Kelurahan</h5>
+                                                    Alamat domisili : Kelurahan
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getdomisilikecamatan"
@@ -370,12 +370,12 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : Kecamatan</h5>
+                                                    Alamat domisili : Kecamatan
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getkotaprovinsi"
@@ -383,12 +383,12 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : Kota / Provinsi</h5>
+                                                    Alamat domisili : Kota / Provinsi
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getstatustempattinggal"
@@ -396,11 +396,11 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : Status Tempat Tinggal</h5>
+                                                    Alamat domisili : Status Tempat Tinggal
                                                 </div>
                                                 <div class="col-4">
-                                                    <select style="width: 100%;">
-                                                        <option value="miliksendiri">Milik Sendiri</option>
+                                                    <select style="width: 100%;" class="form-control-use">
+                                                        <option value="milikscenteriri">Milik Scenteriri</option>
                                                         <option value="milikkeluarga">Milik Keluarga</option>
                                                         <option value="rumahdinas">Rumah Dinas</option>
                                                         <option value="sewakontrak">Sewa / Kontrak</option>
@@ -409,25 +409,25 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getlamatinggal"
                                                         (change)="FieldsChange($event,'lamatinggal')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Alamat domisili : Lama Tinggal</h5>
+                                                    Alamat domisili : Lama Tinggal
                                                 </div>
                                                 <div class="col-4">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="bulan/tahun">xxx bulan / tahun</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 mt-5">
-                                            <div class="row justify-content-end">
-                                                <div class="col-4">
+                                        <div class="col-12 mt-1 mt-5">
+                                            <div class="row justify-content-center">
+                                                <div class="col-3">
                                                     <button class="btn btn-primary w-100" type="button" (click)="saveaddress()">Save</button>
                                                 </div>
                                             </div>
@@ -436,7 +436,7 @@
                                 </div>
                                 <div id="occupation" class="container tab-pane fade"><br>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getmemilikinpwp"
@@ -444,31 +444,31 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Memiliki NPWP
-                                                    </h5>
+                                                    Memiliki NPWP
+                                                    
                                                 </div>
                                                 <div class="col-2">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="ada">Ada</option>
                                                         <option value="tidakada">Tidak Ada</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getnomernpwp"
                                                         (change)="FieldsChange($event,'nomernpwp')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Nomor NPWP
-                                                    </h5>
+                                                    Nomor NPWP
+                                                    
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getpekerjausaha"
@@ -476,10 +476,10 @@
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Pekerjaan / Usaha</h5>
+                                                    Pekerjaan / Usaha
                                                 </div>
                                                 <div class="col-3">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="pelajarmahasiswa">Pelajar / Mahasiswa</option>
                                                         <option value="pegawaiswasta">Pegawai Swasta</option>
                                                         <option value="pegawainegeri">Pegawai Negeri</option>
@@ -491,7 +491,7 @@
                                                         <option value="iburumahtangga">Ibu Rumah Tangga</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-12 mt-1">
                                                     <div class="row">
                                                         <div class="col-1">
                                                             <input [checked]="getbidangpekerjaanusaha"
@@ -499,14 +499,14 @@
                                                                 type="checkbox" />
                                                         </div>
                                                         <div class="col-4">
-                                                            <h5>Bidang Pekerjaan / Usaha</h5>
+                                                            Bidang Pekerjaan / Usaha
                                                         </div>
                                                         <div class="col-4">
                                                             <input type="text">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-12 mt-1">
                                                     <div class="row">
                                                         <div class="col-1">
                                                             <input [checked]="getposisijabatan"
@@ -514,14 +514,14 @@
                                                                 type="checkbox" />
                                                         </div>
                                                         <div class="col-4">
-                                                            <h5>Posisi / Jabatan</h5>
+                                                            Posisi / Jabatan
                                                         </div>
                                                         <div class="col-4">
                                                             <input type="text">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-12 mt-1">
                                                     <div class="row">
                                                         <div class="col-1">
                                                             <input [checked]="getnamaperusahaanusaha"
@@ -529,12 +529,12 @@
                                                                 type="checkbox" />
                                                         </div>
                                                         <div class="col-4">
-                                                            <h5>Nama Perusahaan / Usaha</h5>
+                                                            Nama Perusahaan / Usaha
                                                         </div>
                                                         <div class="col-4">
                                                             <input type="text">
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getlamabekerjausaha"
@@ -542,17 +542,17 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Lama Bekerja / Usaha</h5>
+                                                                    Lama Bekerja / Usaha
                                                                 </div>
                                                                 <div class="col-3">
-                                                                    <select style="width: 100%;">
+                                                                    <select style="width: 100%;" class="form-control-use">
                                                                         <option value="bulantahun">xxx bulan / tahun
                                                                         </option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getpenghasilanomsetusaha"
@@ -560,14 +560,14 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Penghasilan / Omset usaha</h5>
+                                                                    Penghasilan / Omset usaha
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getalamatkantorjalan"
@@ -575,14 +575,14 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Alamat Kantor : Jalan</h5>
+                                                                    Alamat Kantor : Jalan
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getalamatkantornomer"
@@ -590,14 +590,14 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Alamat Kantor : Nomor</h5>
+                                                                    Alamat Kantor : Nomor
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getalamatkantorrt"
@@ -605,14 +605,14 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Alamat Kantor : RT</h5>
+                                                                    Alamat Kantor : RT
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getalamatkantorrw"
@@ -620,14 +620,14 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Alamat Kantor : RW</h5>
+                                                                    Alamat Kantor : RW
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getalamatkantorkelurahan"
@@ -635,14 +635,14 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Alamat Kantor : Kelurahan</h5>
+                                                                    Alamat Kantor : Kelurahan
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getalamatkantorkecamatan"
@@ -650,14 +650,14 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Alamat Kantor : Kecamatan</h5>
+                                                                    Alamat Kantor : Kecamatan
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
                                                                     <input [checked]="getalamatkantorkotaprovinsi"
@@ -665,7 +665,7 @@
                                                                         type="checkbox" />
                                                                 </div>
                                                                 <div class="col-4">
-                                                                    <h5>Alamat Kantor : Kota / Provinsi</h5>
+                                                                    Alamat Kantor : Kota / Provinsi
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <input type="text">
@@ -676,9 +676,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 mt-5">
-                                            <div class="row justify-content-end">
-                                                <div class="col-4">
+                                        <div class="col-12 mt-1 mt-5">
+                                            <div class="row justify-content-center">
+                                                <div class="col-3">
                                                     <button class="btn btn-primary w-100" type="button" (click)="saveoccupation()">Save</button>
                                                 </div>
                                             </div>
@@ -687,42 +687,42 @@
                                 </div>
                                 <div id="emergency" class="container tab-pane fade"><br>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getnama" (change)="FieldsChange($event,'nama')"
                                                         type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Nama</h5>
+                                                    Nama
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="getnohandphone"
                                                         (change)="FieldsChange($event,'nohandphone')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>No Handphone</h5>
+                                                    No Handphone
                                                 </div>
 
 
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <input [checked]="gethubungan"
                                                         (change)="FieldsChange($event,'hubungan')" type="checkbox" />
                                                 </div>
                                                 <div class="col-4">
-                                                    <h5>Hubungan</h5>
+                                                    Hubungan
                                                 </div>
                                                 <div class="col-2">
-                                                    <select style="width: 100%;">
+                                                    <select style="width: 100%;" class="form-control-use">
                                                         <option value="suamiistri">Suami / Istri</option>
                                                         <option value="Saudara Kandung">Saudara Kandung</option>
                                                         <option value="anak">Anak</option>
@@ -730,9 +730,9 @@
                                                         <option value="lainnya">Lainnya</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-12 mt-5">
-                                                    <div class="row justify-content-end">
-                                                        <div class="col-4">
+                                                <div class="col-12 mt-1 mt-5">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-3">
                                                             <button class="btn btn-primary w-100"
                                                                 type="button" (click)="saveemergency()">Save</button>
                                                         </div>
