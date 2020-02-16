@@ -8,50 +8,50 @@ import * as $ from "jquery";
 export class MemberdataComponent implements OnInit {
   titlepage: string;
   checkBoxValue: any = false;
-  getjenisidentitas: boolean;
-  getnoidentitas: boolean;
-  getnamalengkapsesuaiktp: boolean;
-  gettanggallahir: boolean;
-  getjeniskelamin: boolean;
-  getnamagadisibukandung: boolean;
-  getstatusperkawinan: boolean;
-  getpendidikanterakhir: boolean;
-  getjalan: boolean;
-  getnomer: boolean;
-  getrt: boolean;
-  getrw: boolean;
-  getkelurahan: boolean;
-  getkecamatan: boolean;
-  getstatustempattinggalktp: boolean;
-  getlamatinggalktp: boolean;
-  getapakahalamatsesuaidomisili: boolean;
-  getdomisilijalan: boolean;
-  getdomisilinomer: boolean;
-  getdomisilirt: boolean;
-  getdomisilirw: boolean;
-  getdomisilikelurahan: boolean;
-  getdomisilikecamatan: boolean;
-  getkotaprovinsi: boolean;
-  getstatustempattinggal: boolean;
-  getlamatinggal: boolean;
-  getmemilikinpwp: boolean;
-  getnomernpwp: boolean;
-  getpekerjausaha: boolean;
-  getbidangpekerjaanusaha: boolean;
-  getposisijabatan: boolean;
-  getnamaperusahaanusaha: boolean;
-  getlamabekerjausaha: boolean;
-  getpenghasilanomsetusaha: boolean;
-  getalamatkantorjalan: boolean;
-  getalamatkantornomer: boolean;
-  getalamatkantorrt: boolean;
-  getalamatkantorrw: boolean;
-  getalamatkantorkelurahan: boolean;
-  getalamatkantorkecamatan: boolean;
-  getalamatkantorkotaprovinsi: boolean;
-  getnama: boolean;
-  getnohandphone: boolean;
-  gethubungan: boolean;
+  getjenisidentitas: boolean = false;
+  getnoidentitas: boolean = false;
+  getnamalengkapsesuaiktp: boolean = false;
+  gettanggallahir: boolean = false;
+  getjeniskelamin: boolean = false;
+  getnamagadisibukandung: boolean = false;
+  getstatusperkawinan: boolean = false;
+  getpendidikanterakhir: boolean = false;
+  getjalan: boolean = false;
+  getnomer: boolean = false;
+  getrt: boolean = false;
+  getrw: boolean = false;
+  getkelurahan: boolean = false;
+  getkecamatan: boolean = false;
+  getstatustempattinggalktp: boolean = false;
+  getlamatinggalktp: boolean = false;
+  getapakahalamatsesuaidomisili: boolean = false;
+  getdomisilijalan: boolean = false;
+  getdomisilinomer: boolean = false;
+  getdomisilirt: boolean = false;
+  getdomisilirw: boolean = false;
+  getdomisilikelurahan: boolean = false;
+  getdomisilikecamatan: boolean = false;
+  getkotaprovinsi: boolean = false;
+  getstatustempattinggal: boolean = false;
+  getlamatinggal: boolean = false;
+  getmemilikinpwp: boolean = false;
+  getnomernpwp: boolean = false;
+  getpekerjausaha: boolean = false;
+  getbidangpekerjaanusaha: boolean = false;
+  getposisijabatan: boolean = false;
+  getnamaperusahaanusaha: boolean = false;
+  getlamabekerjausaha: boolean = false;
+  getpenghasilanomsetusaha: boolean = false;
+  getalamatkantorjalan: boolean = false;
+  getalamatkantornomer: boolean = false;
+  getalamatkantorrt: boolean = false;
+  getalamatkantorrw: boolean = false;
+  getalamatkantorkelurahan: boolean = false;
+  getalamatkantorkecamatan: boolean = false;
+  getalamatkantorkotaprovinsi: boolean = false;
+  getnama: boolean = false;
+  getnohandphone: boolean = false;
+  gethubungan: boolean = false;
   constructor() {}
 
   ngOnInit() {
@@ -64,6 +64,8 @@ export class MemberdataComponent implements OnInit {
   }
 
   FieldsChange(values, name) {
+    console.log(name);
+    
     switch (name) {
       case "jenisidentitas":
         this.getjenisidentitas = values.currentTarget.checked;
@@ -196,11 +198,15 @@ export class MemberdataComponent implements OnInit {
         break;
       case "hubungan":
         this.gethubungan = values.currentTarget.checked;
-
         break;
     }
   }
   savepersonal() {
-    console.log(this.getjenisidentitas);
+  }
+  saveaddress() {
+  }
+  saveoccupation() {
+  }
+  saveemergency() {
   }
 }
