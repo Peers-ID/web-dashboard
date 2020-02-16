@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
                 userId: data.data.user.id,
                 email: data.data.user.email,
                 token: data.data.token,
-                role: data.data.user.role
+                role: "Admin Koperasi"
               })
             );
             if (JSON.parse(localStorage.getItem('currentUser')).role == 'Admin Koperasi'){
@@ -131,7 +131,7 @@ export class LoginComponent implements OnInit {
                   userId: data.data.user.id,
                   email: data.data.user.email,
                   token: data.data.token,
-                  role: data.data.user.role
+                  role: "Admin Koperasi"
                 })
               );
               if (JSON.parse(localStorage.getItem('currentUser')).role == 'Admin Koperasi'){

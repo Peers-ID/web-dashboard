@@ -86,4 +86,9 @@ export class ApiService {
    }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
+  postdatachangepassword(fullname , hp , email , birthday): Observable<any> {
+    const url = '';
+    let body = { "fullname": fullname, "hp": hp , "email" : email , "birthday":birthday }
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
 }

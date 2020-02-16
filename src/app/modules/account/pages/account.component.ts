@@ -1,58 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import { Component, OnInit } from "@angular/core";
+import * as $ from "jquery";
+import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
+
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  selector: "app-account",
+  templateUrl: "./account.component.html",
+  styleUrls: ["./account.component.scss"]
 })
 export class AccountComponent implements OnInit {
-  titlepage:string;
-  showmodalcreate:boolean;
-  statusmodal:any;
+  titlepage: string;
+  showmodalcreate: boolean;
+  statusmodal: any;
   dataloopdummy = [];
   p: number = 1;
-  constructor() { }
+  trigeralerts: boolean = false;
+  constructor(
+    private state: StatemanagementService
+  ) {}
 
   ngOnInit() {
     this.showmodalcreate = false;
     let dataobjloop = {
-      'id': 'data dummy',
-      'name': 'data dummy',
-    }
-    if (window.location.pathname.split('/')[1] !== 'peers'){
-      if (window.location.pathname.split('/')[1] !== 'peers'){
-      this.titlepage = window.location.pathname.split('/')[1];
-    }else{
-      this.titlepage = window.location.pathname.split('/')[2];
-    }    
-    }else{
-      this.titlepage = window.location.pathname.split('/')[2];
+      id: "data dummy",
+      name: "data dummy"
+    };
+    if (window.location.pathname.split("/")[1] !== "peers") {
+      if (window.location.pathname.split("/")[1] !== "peers") {
+        this.titlepage = window.location.pathname.split("/")[1];
+      } else {
+        this.titlepage = window.location.pathname.split("/")[2];
+      }
+    } else {
+      this.titlepage = window.location.pathname.split("/")[2];
     }
     for (let i = 0; i < 10; i++) {
-      this.dataloopdummy.push(dataobjloop)
+      this.dataloopdummy.push(dataobjloop);
     }
     $("body").addClass("sidebar-collapse");
-
   }
-  createaccountmodal(){
+  createaccountmodal() {
     this.showmodalcreate = true;
-    console.log(this.showmodalcreate)
   }
-  closemodal(){
+  closemodal() {
     this.showmodalcreate = false;
   }
-  submitmodal(){
-
+  submitmodal(fullname, hp, email, birthday) {
   }
-  pageclick(event){
-
+  pageclick(event) {}
+  viewclick() {
   }
-  viewclick(){
-    console.log('run');
-    
-  }
-  reactiveclick(){
-    console.log('run');
-    
+  reactiveclick() {
   }
 }
