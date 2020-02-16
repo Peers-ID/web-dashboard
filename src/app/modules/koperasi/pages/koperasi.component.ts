@@ -56,10 +56,19 @@ export class KoperasiComponent implements OnInit {
     status_grade,
     hp_pengurus,
     email_pengurus
-  )
-   
-  {    
-    this.apiservice
+  ) {    
+    if ( nama_koperasi === '' || alamat === '' || kelurahan_desa === '' || kecamatan === '' || kabupaten === '' || provinsi === ''||
+    jenis_koperasi === '' || nama_ketua === '' || total_karyawan === '' || no_induk_koperasi === '' || hp_pengurus === '' || email_pengurus === ''){
+          this.trigeralerts = true;
+          this.state.valuestatealerts = {
+            type: "danger",
+            content: 'Form cannot null'
+          };
+          setTimeout(() => {
+            this.trigeralerts = false;
+          }, 5000)
+    }else{
+  this.apiservice
       .postdatakoperasi(
         nama_koperasi,
         no_badan_hukum,
@@ -112,5 +121,7 @@ export class KoperasiComponent implements OnInit {
           }, 5000)
         }
       });
+    }
+  
   }
 }

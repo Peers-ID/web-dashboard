@@ -91,4 +91,39 @@ export class ApiService {
     let body = { "fullname": fullname, "hp": hp , "email" : email , "birthday":birthday }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
+  postsavepersonal(jenisidentitas,noidentitas,namalengkapsesuaiktp,tanggallahir,jeniskelamin,
+    namagadisibukandung,statusperkawinan,pendidikanterakhir): Observable<any> {
+    const url = '';
+    let body = { "jenisidentitas": jenisidentitas, "noidentitas": noidentitas , "namalengkapsesuaiktp" : namalengkapsesuaiktp , "tanggallahir":tanggallahir,
+    "jeniskelamin": jeniskelamin, "namagadisibukandung": namagadisibukandung ,"statusperkawinan": statusperkawinan, "pendidikanterakhir": pendidikanterakhir }
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
+  postsaveaddress(jalan,nomer,rt,rw,kelurahan,
+    kecamatan,statustempattinggalktp,lamatinggalktp,apakahalamatsesuaidomisili,domisilijalan,
+    domisilinomer,domisilirt,domisilirw,domisilikelurahan,domisilikecamatan,kotaprovinsi,statustempattinggal,lamatinggal): Observable<any> {
+    const url = '';
+    let body = { "jalan": jalan, "nomer": nomer , "rt" : rt , "rw":rw,
+    "kelurahan": kelurahan, "kecamatan": kecamatan ,"statustempattinggalktp": statustempattinggalktp, "lamatinggalktp": lamatinggalktp,
+    "apakahalamatsesuaidomisili": apakahalamatsesuaidomisili, "domisilijalan": domisilijalan ,"domisilinomer": domisilinomer, "domisilirt": domisilirt,
+    "domisilirw": domisilirw, "domisilikelurahan": domisilikelurahan ,"domisilikecamatan": domisilikecamatan, "kotaprovinsi": kotaprovinsi,
+    "statustempattinggal": statustempattinggal, "lamatinggal": lamatinggal
+   }
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
+  postsaveoccupation(memilikinpwp,nomernpwp,pekerjausaha,bidangpekerjaanusaha,posisijabatan,
+    namaperusahaanusaha,lamabekerjausaha,penghasilanomsetusaha,alamatkantorjalan,alamatkantornomer,alamatkantorrt,
+    alamatkantorrw,alamatkantorkelurahan,alamatkantorkecamatan,alamatkantorkotaprovinsi): Observable<any> {
+    const url = '';
+    let body = { "memilikinpwp": memilikinpwp, "nomernpwp": nomernpwp , "pekerjausaha" : pekerjausaha , "bidangpekerjaanusaha":bidangpekerjaanusaha,
+    "posisijabatan": posisijabatan, "namaperusahaanusaha": namaperusahaanusaha ,"lamabekerjausaha": lamabekerjausaha, "penghasilanomsetusaha": penghasilanomsetusaha,
+    "alamatkantorjalan": alamatkantorjalan, "alamatkantornomer": alamatkantornomer ,"alamatkantorrt": alamatkantorrt, "alamatkantorrw": alamatkantorrw,
+    "alamatkantorkelurahan": alamatkantorkelurahan, "alamatkantorkecamatan": alamatkantorkecamatan ,"alamatkantorkotaprovinsi": alamatkantorkotaprovinsi}
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
+  postsaveemergency(nama , nohandphone , hubungan): Observable<any> {
+    const url = '';
+    let body = { "nama": nama, "nohandphone": nohandphone , "hubungan" : hubungan }
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
+
 }
