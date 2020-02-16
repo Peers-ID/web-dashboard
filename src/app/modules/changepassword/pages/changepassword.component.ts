@@ -20,7 +20,7 @@ export class ChangepasswordComponent implements OnInit {
     $("body").addClass("sidebar-collapse");
 
   }
-  submit(oldpassword, newpassword, repassword){
+  submit(passwordlama, passwordbaru, ulangipassword){
     
   }
 }

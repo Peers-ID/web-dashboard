@@ -86,7 +86,7 @@ export class ApiService {
    }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
-  postdatachangepassword(fullname , hp , email , birthday): Observable<any> {
+  postcreateaccountmanagement(fullname , hp , email , birthday): Observable<any> {
     const url = '';
     let body = { "fullname": fullname, "hp": hp , "email" : email , "birthday":birthday }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
@@ -125,5 +125,9 @@ export class ApiService {
     let body = { "nama": nama, "nohandphone": nohandphone , "hubungan" : hubungan }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
-
+  postchangepassword(paaswordlama , passwordbaru , ulangipassword): Observable<any> {
+    const url = '';
+    let body = { "paaswordlama": paaswordlama, "passwordbaru": passwordbaru , "ulangipassword" : ulangipassword}
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
 }
