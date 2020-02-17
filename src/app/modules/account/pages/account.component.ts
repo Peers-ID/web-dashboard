@@ -16,6 +16,8 @@ export class AccountComponent implements OnInit {
   trigeralerts: boolean = false;
   showsuccessmodal:boolean = false;
   showerrormodal:boolean = false;
+  showmodalview:boolean = false;
+  trigeredit:boolean = false;
   constructor(
     private state: StatemanagementService
   ) {}
@@ -44,15 +46,38 @@ export class AccountComponent implements OnInit {
     this.showmodalcreate = true;
   }
   closemodal() {
-    this.showmodalcreate = false;
+    // this.showmodalcreate = false;
+    window.location.reload();
   }
   submitmodal(fullname, hp, email, birthday) {
     this.showmodalcreate = false;
     this.showsuccessmodal = true
   }
   pageclick(event) {}
-  viewclick() {
+  viewclick(index) {
+    console.log(index);
+    this.showmodalview = true;
   }
   reactiveclick() {
+  }
+  editmodal(){
+    if (this.trigeredit === false){
+      $('#inputid').prop("disabled", false);
+      $('#inputfullname').prop("disabled", false);
+      $('#inputhp').prop("disabled", false);
+      $('#inputemail').prop("disabled", false); 
+      $('#inputbirthday').prop("disabled", false);
+      this.trigeredit = true;
+    }else{
+      $('#inputid').prop("disabled", true);
+      $('#inputfullname').prop("disabled", true);
+      $('#inputhp').prop("disabled", true);
+      $('#inputemail').prop("disabled", true); 
+      $('#inputbirthday').prop("disabled", true);
+      this.trigeredit = false;
+    }
+  }
+  savemodalview(){
+    console.log('save====');  
   }
 }

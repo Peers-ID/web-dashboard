@@ -34,6 +34,45 @@
         </div>
       </div>
 </app-modalpopup>
+<app-modalpopup *ngIf="showmodalview">
+    <div class="modal-content" style="margin-top: 10%;">
+        <div class="modal-header" style="border: none;">
+          <button class="btn btn-primary" type="button" (click)="editmodal()">Edit</button>
+          <button type="button" class="close" (click)="closemodal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="border:none">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="form-group has-icon"><i class=" icon-people"></i>
+                        <input type="text" class="form-control form-control-md"  #id disabled id="inputid" placeholder="id">
+                    </div>
+                    <div class="form-group has-icon"><i class="icon-book"></i>
+                        <input type="text" class="form-control form-control-md f-12" #fullname disabled id="inputfullname" placeholder="fullname">
+                    </div>
+                    <div class="form-group has-icon"><i class="icon-phone2"></i>
+                        <input type="text" class="form-control form-control-md f-12" #hp disabled id="inputhp" placeholder="hp">
+                    </div>
+                    <div class="form-group has-icon"><i class="icon-message "></i>
+                        <input type="text" class="form-control form-control-md f-12" #email disabled id="inputemail" placeholder="email">
+                    </div>
+                    <div class="form-group has-icon"><i class="icon-calendar"></i>
+                        <input type="date" class="form-control form-control-md f-12" #birthday disabled id="inputbirthday">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary btn-block w-100"
+                    (click)="savemodalview()">Save</button>
+                </div>
+            </div>
+        </div>
+      </div>
+</app-modalpopup>
 <app-modalsuccess *ngIf="showsuccessmodal"></app-modalsuccess>
 <app-modalerror *ngIf="showerrormodal"></app-modalerror>
 <div class="col-md-12">
@@ -118,7 +157,7 @@
                                             <div class="row">
                                                 <button title="Reactive" class="col-6 icon-rate_review"
                                                     style="border: none; background: none; font-size: 20px;"
-                                                    type="button" id="id{{index}}" (click)="viewclick()"></button>
+                                                    type="button" id="id{{index}}" (click)="viewclick(index)"></button>
                                                 <button title="Reactive" class="col-6 icon-phonelink_off "
                                                     style="border: none; background: none; font-size: 20px;"
                                                     type="button" id="id{{index}}" (click)="reactiveclick()"></button>
