@@ -1,3 +1,44 @@
+<app-modalpopup *ngIf="showmodalviewloan">
+    <div class="modal-content" style="margin-top: 10%;">
+        <div class="modal-header" style="border: none;">
+          <button type="button" class="close" (click)="closemodal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="border:none">
+            <div class="row justify-content-center">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab"  style="cursor: pointer;">Loan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab"  style="cursor: pointer;">Personal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab"  style="cursor: pointer;">Address</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab"  style="cursor: pointer;">Occupation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" style="cursor: pointer;">Emergency</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" style="cursor: pointer;">History</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary btn-block w-100"
+                    (click)="savemodalviewloan()">Save</button>
+                </div>
+            </div>
+        </div>
+      </div>
+</app-modalpopup>
 <div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">

@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   titlepage: string;
   dataloopdummy = [];
   showmodaltriger:boolean;
+  showmodalviewloan:boolean = false;
   p: number = 1;
   constructor(
   ) { }
@@ -35,15 +36,15 @@ export class HomeComponent implements OnInit {
 
   }
   pageclick(page) {
-    console.log(page)
   }
   viewclick(id , data) {
-    console.log(id , data);
+    this.showmodalviewloan = true
   }
   approveclick() {
-    console.log('run')
   }
   rejectclick() {
-    console.log('run')
+  }
+  closemodal(){
+    window.location.reload();
   }
 }
