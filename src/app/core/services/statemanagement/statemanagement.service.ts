@@ -1,16 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class StatemanagementService {
-  private _statealerts:any;
-  constructor() { }
+  private _statealerts: any;
+  private _statevaluemodal: any;
+  constructor() {}
 
-  set valuestatealerts(val:any){
+  set valuestatealerts(val: any) {
     this._statealerts = val;
   }
-  get valuestatealerts(): any{
-      return this._statealerts;
+  get valuestatealerts(): any {
+    return this._statealerts;
+  }
+  set valuestatusmodal(val: any) {
+    this._statevaluemodal = val;
+  }
+  get valuestatusmodal(): any {
+    return this._statevaluemodal;
   }
 }

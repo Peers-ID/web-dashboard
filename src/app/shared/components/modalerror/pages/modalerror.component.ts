@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatemanagementService } from "../../../../core/services/statemanagement/statemanagement.service";
 
 @Component({
   selector: 'app-modalerror',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modalerror.component.scss']
 })
 export class ModalerrorComponent implements OnInit {
+  contentstatusmodal:any;
+  constructor(
+    private state : StatemanagementService
 
-  constructor() { }
+  ) { }
 
   ngOnInit(): void {
+    this.contentstatusmodal = this.state.valuestatusmodal.content;
   }
   closemodalerror(){
     window.location.reload()
