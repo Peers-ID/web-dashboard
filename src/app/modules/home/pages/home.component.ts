@@ -57,4 +57,7 @@ export class HomeComponent implements OnInit {
   rejectmodalviewloan(){
 
   }
+  savemodalviewloan(){
+    
+  }
 }

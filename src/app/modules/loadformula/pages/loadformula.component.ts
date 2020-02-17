@@ -12,7 +12,7 @@ export class LoadformulaComponent implements OnInit {
   showerrormodal: boolean = false;
   indexincrement: number = 0;
   getminloanammount: boolean = false;
-  getaxloanammount: boolean = false;
+  getmaxloanammount: boolean = false;
   getkelipatan: boolean = false;
   getmintenure: boolean = false;
   getmaxtenure: boolean = false;
@@ -147,7 +147,7 @@ export class LoadformulaComponent implements OnInit {
         this.getminloanammount = values.currentTarget.checked
         break;
       case "maxloanammount":
-        this.getaxloanammount = values.currentTarget.checked
+        this.getmaxloanammount = values.currentTarget.checked
         break;
       case "kelipatan":
         this.getkelipatan = values.currentTarget.checked
