@@ -7,6 +7,8 @@ import * as $ from "jquery";
 })
 export class MemberdataComponent implements OnInit {
   titlepage: string;
+  showsuccessmodal:boolean = false;
+  showerrormodal:boolean = false;
   checkBoxValue: any = false;
   getjenisidentitas: boolean = false;
   getnoidentitas: boolean = false;
@@ -64,8 +66,6 @@ export class MemberdataComponent implements OnInit {
   }
 
   FieldsChange(values, name) {
-    console.log(name);
-    
     switch (name) {
       case "jenisidentitas":
         this.getjenisidentitas = values.currentTarget.checked;
@@ -201,12 +201,20 @@ export class MemberdataComponent implements OnInit {
         break;
     }
   }
-  savepersonal() {
+  savenavtab(data) {
+    if (data === 'personal'){      
+    }
   }
-  saveaddress() {
-  }
-  saveoccupation() {
-  }
-  saveemergency() {
+
+  clicknavtab(data){
+    if (data === 'personal'){
+      $("#navtabpersonal").attr("href", "#personal")
+    }else if (data === 'address'){
+      $("#navtabaddress").attr("href", "#address")
+    }else if (data === 'occupation'){
+      $("#navtaboccupation").attr("href", "#occupation")
+    }else{
+      $("#navtabemergency").attr("href", "#emergency")
+    }
   }
 }

@@ -3,12 +3,23 @@ import { Routes, RouterModule } from '@angular/router';
 import {DashboardComponent} from './modules/dashboard/dashboard.component';
 import {PagenotfoundComponent} from './modules/pagenotfound/pages/pagenotfound.component';
 import { AuthGuard } from './core/guard/auth.guard';
+let directurl;
+if(JSON.parse(localStorage.getItem('currentUser')).role == 'Admin Peers'){
+  directurl = 'koperasiregistration'
+}else{
+  directurl = 'loanapplication'
+}
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        redirectTo: directurl,
+        pathMatch: 'full'
+      },
       {
         path: 'loanapplication',
         loadChildren: './modules/home/home.module#HomeModule',

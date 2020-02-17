@@ -1,3 +1,5 @@
+<app-modalsuccess *ngIf="showsuccessmodal"></app-modalsuccess>
+<app-modalerror *ngIf="showerrormodal"></app-modalerror>
 <div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">
@@ -58,6 +60,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 mt-4 mb-4" style="border: 0.8px solid grey;"></div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
@@ -98,10 +101,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 mt-4 mb-4" style="border: 0.8px solid grey;"></div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio">
+                            <input type="radio" name="serviceradio">
                         </div>
                         <div class="col-3">
                             Service Fee (%)
@@ -122,7 +126,7 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio">
+                            <input type="radio" name="serviceradio">
                         </div>
                         <div class="col-3">
                             Service Fix
@@ -140,10 +144,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 mt-4 mb-4" style="border: 0.8px solid grey;"></div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-3">
-                            <button class="btn btn-primary" type="button">Add Other Fee</button>
+                            <button class="btn btn-primary" type="button" (click)="addotherfee()">Add Other Fee</button>
                         </div>
                     </div>
                 </div>
@@ -160,7 +165,7 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio">
+                            <input type="radio" name="otherservice">
                         </div>
                         <div class="col-3">
                             (%)
@@ -181,7 +186,7 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio">
+                            <input type="radio" name="otherservice">
                         </div>
                         <div class="col-3">
                             (fix)
@@ -199,10 +204,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="row" id="appendfee">
+                        
+                    </div>
+                </div>
                 <div class="col-12 mt-1 mt-5">
                     <div class="row justify-content-center">
                         <div class="col-3">
-                            <button class="btn btn-primary w-100" type="button">Save</button>
+                            <button class="btn btn-primary w-100" type="button" (click)="saveloanformula()">Save</button>
                         </div>
                     </div>
                 </div>

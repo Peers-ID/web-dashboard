@@ -48,6 +48,7 @@ export class AccountComponent implements OnInit {
   }
   submitmodal(fullname, hp, email, birthday) {
     this.showmodalcreate = false;
+    this.showsuccessmodal = true
   }
   pageclick(event) {}
   viewclick() {

@@ -1,3 +1,5 @@
+<app-modalsuccess *ngIf="showsuccessmodal"></app-modalsuccess>
+<app-modalerror *ngIf="showerrormodal"></app-modalerror>
 <div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">
@@ -16,16 +18,16 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
+                                    <a class="nav-link active" data-toggle="tab" (click)="clicknavtab('personal')" id="navtabpersonal" style="cursor: pointer;">Personal</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#address">Address</a>
+                                    <a class="nav-link" data-toggle="tab" (click)="clicknavtab('address')" id="navtabaddress" style="cursor: pointer;">Address</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#occupation">Occupation</a>
+                                    <a class="nav-link" data-toggle="tab" (click)="clicknavtab('occupation')" id="navtaboccupation" style="cursor: pointer;">Occupation</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#emergency">Emergency</a>
+                                    <a class="nav-link" data-toggle="tab" (click)="clicknavtab('emergency')" id="navtabemergency" style="cursor: pointer;">Emergency</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -163,7 +165,7 @@
                                             <div class="row justify-content-center">
                                                 <div class="col-3">
                                                     <button class="btn btn-primary w-100" type="button"
-                                                        (click)="savepersonal()">Save</button>
+                                                        (click)="savenavtab('personal')">Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -428,7 +430,7 @@
                                         <div class="col-12 mt-1 mt-5">
                                             <div class="row justify-content-center">
                                                 <div class="col-3">
-                                                    <button class="btn btn-primary w-100" type="button" (click)="saveaddress()">Save</button>
+                                                    <button class="btn btn-primary w-100" type="button" (click)="savenavtab('address')">Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -679,7 +681,7 @@
                                         <div class="col-12 mt-1 mt-5">
                                             <div class="row justify-content-center">
                                                 <div class="col-3">
-                                                    <button class="btn btn-primary w-100" type="button" (click)="saveoccupation()">Save</button>
+                                                    <button class="btn btn-primary w-100" type="button" (click)="savenavtab('occupation')">Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -734,7 +736,7 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-3">
                                                             <button class="btn btn-primary w-100"
-                                                                type="button" (click)="saveemergency()">Save</button>
+                                                                type="button" (click)="savenavtab('emergency')">Save</button>
                                                         </div>
                                                     </div>
                                                 </div>

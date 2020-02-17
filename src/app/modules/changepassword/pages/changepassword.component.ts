@@ -9,6 +9,8 @@ import * as $ from 'jquery';
 export class ChangepasswordComponent implements OnInit {
 
   titlepage:string;
+  showsuccessmodal:boolean = false;
+  showerrormodal:boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -21,6 +23,5 @@ export class ChangepasswordComponent implements OnInit {
 
   }
   submit(passwordlama, passwordbaru, ulangipassword){
-    
   }
 }
