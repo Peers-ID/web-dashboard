@@ -73,6 +73,28 @@
         </div>
       </div>
 </app-modalpopup>
+<app-modalpopup *ngIf="showmodalreactive">
+    <div class="modal-content" style="margin-top: 10%;">
+        <div class="modal-header" style="border: none;">
+          <button type="button" class="close" (click)="closemodal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="border:none">
+            <div class="row justify-content-center">
+                <h3>Reactive</h3>
+            </div>
+        </div>
+        <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary btn-block w-100"
+                    (click)="savemodalreactive()">Save</button>
+                </div>
+            </div>
+        </div>
+      </div>
+</app-modalpopup>
 <app-modalsuccess *ngIf="showsuccessmodal"></app-modalsuccess>
 <app-modalerror *ngIf="showerrormodal"></app-modalerror>
 <div class="col-md-12">

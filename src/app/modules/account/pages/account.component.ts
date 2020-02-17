@@ -18,6 +18,7 @@ export class AccountComponent implements OnInit {
   showerrormodal:boolean = false;
   showmodalview:boolean = false;
   trigeredit:boolean = false;
+  showmodalreactive:boolean = false;
   constructor(
     private state: StatemanagementService
   ) {}
@@ -59,6 +60,7 @@ export class AccountComponent implements OnInit {
     this.showmodalview = true;
   }
   reactiveclick() {
+    this.showmodalreactive = true
   }
   editmodal(){
     if (this.trigeredit === false){
@@ -78,6 +80,8 @@ export class AccountComponent implements OnInit {
     }
   }
   savemodalview(){
-    console.log('save====');  
+  }
+  savemodalreactive(){
+
   }
 }

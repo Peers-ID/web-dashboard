@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   dataloopdummy = [];
   showmodaltriger:boolean;
   showmodalviewloan:boolean = false;
+  showmodalapproveloan:boolean = false;
+  showmodalrejectloan:boolean = false;
   p: number = 1;
   constructor(
   ) { }
@@ -41,10 +43,18 @@ export class HomeComponent implements OnInit {
     this.showmodalviewloan = true
   }
   approveclick() {
+    this.showmodalapproveloan = true
   }
   rejectclick() {
+    this.showmodalrejectloan = true;
   }
   closemodal(){
     window.location.reload();
+  }
+  approvemodalviewloan(){
+    
+  }
+  rejectmodalviewloan(){
+
   }
 }
