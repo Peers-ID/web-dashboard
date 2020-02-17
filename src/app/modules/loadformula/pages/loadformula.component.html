@@ -24,7 +24,8 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="checkbox">
+                            <input [checked]="getminloanammount" (change)="FieldsChange($event,'minloanammount')"
+                                type="checkbox" />
                         </div>
                         <div class="col-3">
                             Min Loan Ammount
@@ -37,7 +38,8 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="checkbox">
+                            <input [checked]="getmaxloanammount" (change)="FieldsChange($event,'maxloanammount')"
+                                type="checkbox" />
                         </div>
                         <div class="col-3">
                             Max Loan Ammount
@@ -50,7 +52,8 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="checkbox">
+                                <input [checked]="getkelipatan" (change)="FieldsChange($event,'kelipatan')"
+                                    type="checkbox" />
                         </div>
                         <div class="col-3">
                             Kelipatan
@@ -64,7 +67,8 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="checkbox">
+                            <input [checked]="getmintenure" (change)="FieldsChange($event,'mintenure')"
+                                type="checkbox" />
                         </div>
                         <div class="col-3">
                             Min Tenure
@@ -84,7 +88,8 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="checkbox">
+                            <input [checked]="getmaxtenure" (change)="FieldsChange($event,'maxtenure')"
+                                type="checkbox" />
                         </div>
                         <div class="col-3">
                             Max Tenure
@@ -105,7 +110,7 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio" name="serviceradio">
+                            <input type="radio" name="serviceradio" >
                         </div>
                         <div class="col-3">
                             Service Fee (%)
@@ -206,13 +211,14 @@
                 </div>
                 <div class="col-12">
                     <div class="row" id="appendfee">
-                        
+
                     </div>
                 </div>
                 <div class="col-12 mt-1 mt-5">
                     <div class="row justify-content-center">
                         <div class="col-3">
-                            <button class="btn btn-primary w-100" type="button" (click)="saveloanformula()">Save</button>
+                            <button class="btn btn-primary w-100" type="button"
+                                (click)="saveloanformula()">Save</button>
                         </div>
                     </div>
                 </div>

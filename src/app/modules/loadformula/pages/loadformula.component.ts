@@ -11,6 +11,11 @@ export class LoadformulaComponent implements OnInit {
   showsuccessmodal: boolean = false;
   showerrormodal: boolean = false;
   indexincrement: number = 0;
+  getminloanammount: boolean = false;
+  getaxloanammount: boolean = false;
+  getkelipatan: boolean = false;
+  getmintenure: boolean = false;
+  getmaxtenure: boolean = false;
   constructor() {}
 
   ngOnInit() {
@@ -23,7 +28,8 @@ export class LoadformulaComponent implements OnInit {
   }
   addotherfee() {
     this.indexincrement++;
-    $("#appendfee").append(`
+    $("#appendfee").append(
+      `
     <div class="col-12 mt-1">
     <div class="row">
         <div class="col-4">
@@ -50,7 +56,9 @@ export class LoadformulaComponent implements OnInit {
 <div class="col-12 mt-1">
     <div class="row">
         <div class="col-1">
-            <input type="radio" name="serviceadd`+this.indexincrement+`">
+            <input type="radio" name="serviceadd` +
+        this.indexincrement +
+        `">
         </div>
         <div class="col-3">
             (%)
@@ -97,7 +105,9 @@ export class LoadformulaComponent implements OnInit {
 <div class="col-12 mt-1">
     <div class="row">
         <div class="col-1">
-            <input type="radio" name="serviceadd`+this.indexincrement+`">
+            <input type="radio" name="serviceadd` +
+        this.indexincrement +
+        `">
         </div>
         <div class="col-3">
             (fix)
@@ -128,9 +138,28 @@ export class LoadformulaComponent implements OnInit {
         </div>
     </div>
 </div>
-    `);
+    `
+    );
+  }
+  FieldsChange(values, data) {
+    switch (data) {
+      case "minloanammount":
+        this.getminloanammount = values.currentTarget.checked
+        break;
+      case "maxloanammount":
+        this.getaxloanammount = values.currentTarget.checked
+        break;
+      case "kelipatan":
+        this.getkelipatan = values.currentTarget.checked
+        break;
+      case "mintenure":
+        this.getmintenure = values.currentTarget.checked
+        break;
+      case "maxtenure":
+        this.getmaxtenure = values.currentTarget.checked
+        break;
+    }
   }
   saveloanformula() {
-    
   }
 }
