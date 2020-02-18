@@ -19,6 +19,7 @@ export class KoperasiComponent implements OnInit {
     ) {}
   @ViewChild("imageInput", { static: false }) imageInput: ElementRef;
   ngOnInit() {
+  
         if (window.location.pathname.split("/")[1] !== "peers") {
       this.titlepage = window.location.pathname.split("/")[1];
     } else {
@@ -105,7 +106,7 @@ export class KoperasiComponent implements OnInit {
         email_pengurus
       )
       .subscribe(data => {
-        if (data['message'] == 'Success. Koperasi created!'){
+        if (data['data'] !== ''){
           this.state.valuestatusmodal = {
             content: data['message']
           };
