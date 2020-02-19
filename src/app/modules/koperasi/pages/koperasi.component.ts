@@ -93,7 +93,7 @@ export class KoperasiComponent implements OnInit {
         }, 3000);
       }
       if (
-        this.phonenumber(hp_pengurus) === true ||
+        this.phonenumber(hp_pengurus) === true &&
         this.validateEmail(email_pengurus) === true
       ){
   this.apiservice
