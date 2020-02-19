@@ -67,13 +67,35 @@ export class KoperasiComponent implements OnInit {
           this.trigeralerts = true;
           this.state.valuestatealerts = {
             type: "danger",
-            content: 'Form cannot null'
+            content: 'Form dengan label merah tidak boleh kosong'
           };
           setTimeout(() => {
             this.trigeralerts = false;
           }, 5000)
     }else{
-      
+      if (this.phonenumber(hp_pengurus) === false) {
+        this.trigeralerts = true;
+        this.state.valuestatealerts = {
+          type: "danger",
+          content: "Invalid phone format"
+        };
+        setTimeout(() => {
+          this.trigeralerts = false;
+        }, 3000);
+      }else  if (this.validateEmail(email_pengurus) === false) {
+        this.trigeralerts = true;
+        this.state.valuestatealerts = {
+          type: "danger",
+          content: "Invalid email format"
+        };
+        setTimeout(() => {
+          this.trigeralerts = false;
+        }, 3000);
+      }
+      if (
+        this.phonenumber(hp_pengurus) === true ||
+        this.validateEmail(email_pengurus) === true
+      ){
   this.apiservice
       .postdatakoperasi(
         nama_koperasi,
@@ -119,6 +141,24 @@ export class KoperasiComponent implements OnInit {
           this.showmodalerror = true;
         }
       });
+        
+      }  
+    }
+  }
+  validateEmail(input) {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (input.match(mailformat)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  phonenumber(input) {
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if (input.match(phoneno)) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
