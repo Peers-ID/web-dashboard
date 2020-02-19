@@ -48,6 +48,9 @@
         <div class="modal-body" style="border:none">
             <div class="row justify-content-center">
                 <div class="col-10">
+                    <app-alerts *ngIf="trigeralerts"></app-alerts>
+                </div>
+                <div class="col-10">
                     <div class="form-group has-icon"><i class=" icon-people"></i>
                         <input type="text" class="form-control form-control-md"  #id disabled id="inputid" placeholder="id">
                     </div>
@@ -66,11 +69,11 @@
                 </div>
             </div>
         </div>
-        <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
+        <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;" *ngIf="showbuttonsava">
             <div class="row justify-content-center">
                 <div class="col-3">
                     <button type="button" class="btn btn-primary btn-block w-100"
-                    (click)="savemodalview()">Save</button>
+                    (click)="savemodalview(fullname.value , hp.value , email.value,birthday.value)">Save</button>
                 </div>
             </div>
         </div>

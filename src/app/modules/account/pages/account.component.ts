@@ -19,6 +19,7 @@ export class AccountComponent implements OnInit {
   showmodalview:boolean = false;
   trigeredit:boolean = false;
   showmodalreactive:boolean = false;
+  showbuttonsava:boolean = false;
   constructor(
     private state: StatemanagementService
   ) {}
@@ -98,11 +99,11 @@ export class AccountComponent implements OnInit {
   }
   editmodal(){
     if (this.trigeredit === false){
-      $('#inputid').prop("disabled", false);
       $('#inputfullname').prop("disabled", false);
       $('#inputhp').prop("disabled", false);
       $('#inputemail').prop("disabled", false); 
       $('#inputbirthday').prop("disabled", false);
+      this.showbuttonsava = true;
       this.trigeredit = true;
     }else{
       $('#inputid').prop("disabled", true);
@@ -110,10 +111,37 @@ export class AccountComponent implements OnInit {
       $('#inputhp').prop("disabled", true);
       $('#inputemail').prop("disabled", true); 
       $('#inputbirthday').prop("disabled", true);
+      this.showbuttonsava = false;
       this.trigeredit = false;
     }
   }
-  savemodalview(){
+  savemodalview(fullname,hp,email,birthday){
+    if (this.phonenumber(hp) === false) {
+      this.trigeralerts = true;
+      this.state.valuestatealerts = {
+        type: "danger",
+        content: "Invalid phone format"
+      };
+      setTimeout(() => {
+        this.trigeralerts = false;
+      }, 3000);
+    }else if (this.validateEmail(email) === false) {
+      this.trigeralerts = true;
+      this.state.valuestatealerts = {
+        type: "danger",
+        content: "Invalid email format"
+      };
+      setTimeout(() => {
+        this.trigeralerts = false;
+      }, 3000);
+    }
+    if (
+      this.phonenumber(hp) === true &&
+      this.validateEmail(email) === true
+    ){
+      console.log('success ====');
+      
+    }
   }
   savemodalreactive(){
 
