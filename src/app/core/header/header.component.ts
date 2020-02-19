@@ -9,12 +9,14 @@ import * as $ from 'jquery';
 export class HeaderComponent implements OnInit {
   nameuser:string;
   trigerclicknavbar:boolean = false;
+  getfullname:string;
   constructor(
     private router : Router
   ) { }
 
   ngOnInit() {
     this.nameuser = JSON.parse(localStorage.getItem('currentUser')).email;
+    this.getfullname = JSON.parse(localStorage.getItem('currentUser')).fullname;
   }
   signout(){
     localStorage.removeItem('currentUser');

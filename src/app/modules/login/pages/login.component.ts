@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
               "currentUser",
               JSON.stringify({
                 userId: data.data.user.id,
+                fullname: data.data.user.fullname,
                 email: data.data.user.email,
                 token: data.data.token,
                 role: data.data.user.role
@@ -136,6 +137,7 @@ export class LoginComponent implements OnInit {
                 "currentUser",
                 JSON.stringify({
                   userId: data.data.user.id,
+                  fullname: data.data.user.fullname,
                   email: data.data.user.email,
                   token: data.data.token,
                   role: data.data.user.role
