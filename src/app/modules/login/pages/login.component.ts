@@ -9,6 +9,7 @@ import { AuthenticationService } from "../../../core/authentication/authenticati
 })
 export class LoginComponent implements OnInit {
   trigeralerts: boolean = false;
+  loadingshow:boolean = false;
   constructor(
     private router: Router,
     private state: StatemanagementService,
@@ -45,8 +46,10 @@ export class LoginComponent implements OnInit {
         this.phonenumber(userinput) === true ||
         this.validateEmail(userinput) === true
       ) {
+        this.loadingshow = true;
         this.authentication.login(userinput, password).subscribe(data => {
           if (data.data == "") {
+            this.loadingshow = false;
             this.trigeralerts = true;
             this.state.valuestatealerts = {
               type: "danger",
@@ -75,6 +78,7 @@ export class LoginComponent implements OnInit {
         });
       }
     } else {
+      this.loadingshow = false;
       this.trigeralerts = true;
       this.state.valuestatealerts = {
         type: "danger",
@@ -115,8 +119,10 @@ export class LoginComponent implements OnInit {
           this.phonenumber(userinput) === true ||
           this.validateEmail(userinput) === true
         ) {
+          this.loadingshow = true;
           this.authentication.login(userinput, password).subscribe(data => {
             if (data.data == "") {
+              this.loadingshow = false;
               this.trigeralerts = true;
               this.state.valuestatealerts = {
                 type: "danger",
@@ -145,6 +151,7 @@ export class LoginComponent implements OnInit {
           });
         }
       } else {
+        this.loadingshow = false;
         this.trigeralerts = true;
         this.state.valuestatealerts = {
           type: "danger",
