@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
 import * as $ from 'jquery';
 
 @Component({
@@ -11,7 +12,10 @@ export class ChangepasswordComponent implements OnInit {
   titlepage:string;
   showsuccessmodal:boolean = false;
   showerrormodal:boolean = false;
-  constructor() { }
+  trigeralerts:boolean = false;
+  constructor(
+    private state: StatemanagementService
+  ) { }
 
   ngOnInit() {
     if (window.location.pathname.split('/')[1] !== 'peers'){
@@ -23,5 +27,29 @@ export class ChangepasswordComponent implements OnInit {
 
   }
   submit(passwordlama, passwordbaru, ulangipassword){
+    if (passwordlama === '' || passwordbaru === '' || ulangipassword === ''){
+      this.trigeralerts = true;
+      this.state.valuestatealerts = {
+        type: "danger",
+        content: "Form tidak boleh kosong"
+      };
+      setTimeout(() => {
+        this.trigeralerts = false;
+      }, 3000);
+    }else{
+      if (passwordbaru !== ulangipassword){
+        this.trigeralerts = true;
+        this.state.valuestatealerts = {
+          type: "danger",
+          content: "Password tidak sama"
+        };
+        setTimeout(() => {
+          this.trigeralerts = false;
+        }, 3000);
+      }else{
+        console.log('sama==');
+        
+      }
+    }
   }
 }
