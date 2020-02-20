@@ -70,7 +70,6 @@ export class HomeComponent implements OnInit {
   }
   loadData(pagepagination,pagenavbar,order){
     this.dataloopdummy = [];
-    console.log(pagepagination ,pagenavbar , order);
     let dataobjloop = {
       'ao': 'ao1',
       'customer': 'data dummy',
@@ -84,11 +83,9 @@ export class HomeComponent implements OnInit {
   }
   searchnavbar(event,page , data){
     if (event.key === "Enter") {
-      console.log(page , data);
     }
   }
   searchclickdefault(data){
-    console.log(data);
     
   }
 }
