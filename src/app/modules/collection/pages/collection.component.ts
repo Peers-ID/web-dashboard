@@ -44,4 +44,8 @@ export class CollectionComponent implements OnInit {
   rejectclick() {
     
   }
+  sortinghandle(page){
+    console.log(page);
+    
+  }
 }

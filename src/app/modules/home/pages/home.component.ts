@@ -60,4 +60,9 @@ export class HomeComponent implements OnInit {
   savemodalviewloan(){
     
   }
+
+  sortinghandle(page){
+    console.log(page);
+    
+  }
 }
