@@ -1,10 +1,10 @@
 <app-modalpopup *ngIf="showmodalcreate">
     <div class="modal-content" style="margin-top: 10%;">
         <div class="modal-header" style="border: none;">
-          <h3 class="modal-title" style="border: none;">Create Account AO</h3>
-          <button type="button" class="close" (click)="closemodal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+            <h3 class="modal-title" style="border: none;">Create Account AO</h3>
+            <button type="button" class="close" (click)="closemodal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body" style="border:none">
             <div class="row justify-content-center">
@@ -31,19 +31,19 @@
             <div class="row justify-content-center">
                 <div class="col-3">
                     <button type="button" class="btn btn-primary btn-block w-100"
-                    (click)="submitmodal(fullname.value,hp.value,email.value,birthday.value)">Submit</button>
+                        (click)="submitmodal(fullname.value,hp.value,email.value,birthday.value)">Submit</button>
                 </div>
             </div>
         </div>
-      </div>
+    </div>
 </app-modalpopup>
 <app-modalpopup *ngIf="showmodalview">
     <div class="modal-content" style="margin-top: 10%;">
         <div class="modal-header" style="border: none;">
-          <button class="btn btn-primary" type="button" (click)="editmodal()">Edit</button>
-          <button type="button" class="close" (click)="closemodal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+            <button class="btn btn-primary" type="button" (click)="editmodal()">Edit</button>
+            <button type="button" class="close" (click)="closemodal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body" style="border:none">
             <div class="row justify-content-center">
@@ -52,19 +52,24 @@
                 </div>
                 <div class="col-10">
                     <div class="form-group has-icon"><i class=" icon-people"></i>
-                        <input type="text" class="form-control form-control-md"  #id disabled id="inputid" placeholder="id">
+                        <input type="text" class="form-control form-control-md" #id disabled id="inputid"
+                            placeholder="id">
                     </div>
                     <div class="form-group has-icon"><i class="icon-book"></i>
-                        <input type="text" class="form-control form-control-md f-12" #fullname disabled id="inputfullname" placeholder="fullname">
+                        <input type="text" class="form-control form-control-md f-12" #fullname disabled
+                            id="inputfullname" placeholder="fullname">
                     </div>
                     <div class="form-group has-icon"><i class="icon-phone2"></i>
-                        <input type="number" class="form-control form-control-md f-12" #hp disabled id="inputhp" placeholder="hp">
+                        <input type="number" class="form-control form-control-md f-12" #hp disabled id="inputhp"
+                            placeholder="hp">
                     </div>
                     <div class="form-group has-icon"><i class="icon-message "></i>
-                        <input type="email" class="form-control form-control-md f-12" #email disabled id="inputemail" placeholder="email">
+                        <input type="email" class="form-control form-control-md f-12" #email disabled id="inputemail"
+                            placeholder="email">
                     </div>
                     <div class="form-group has-icon"><i class="icon-calendar"></i>
-                        <input type="date" class="form-control form-control-md f-12" #birthday disabled id="inputbirthday">
+                        <input type="date" class="form-control form-control-md f-12" #birthday disabled
+                            id="inputbirthday">
                     </div>
                 </div>
             </div>
@@ -73,18 +78,18 @@
             <div class="row justify-content-center">
                 <div class="col-3">
                     <button type="button" class="btn btn-primary btn-block w-100"
-                    (click)="savemodalview(fullname.value , hp.value , email.value,birthday.value)">Save</button>
+                        (click)="savemodalview(fullname.value , hp.value , email.value,birthday.value)">Save</button>
                 </div>
             </div>
         </div>
-      </div>
+    </div>
 </app-modalpopup>
 <app-modalpopup *ngIf="showmodalreactive">
     <div class="modal-content" style="margin-top: 10%;">
         <div class="modal-header" style="border: none;">
-          <button type="button" class="close" (click)="closemodal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+            <button type="button" class="close" (click)="closemodal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body" style="border:none">
             <div class="row justify-content-center">
@@ -95,11 +100,11 @@
             <div class="row justify-content-center">
                 <div class="col-3">
                     <button type="button" class="btn btn-primary btn-block w-100"
-                    (click)="savemodalreactive()">Save</button>
+                        (click)="savemodalreactive()">Save</button>
                 </div>
             </div>
         </div>
-      </div>
+    </div>
 </app-modalpopup>
 <app-modalsuccess *ngIf="showsuccessmodal"></app-modalsuccess>
 <app-modalerror *ngIf="showerrormodal"></app-modalerror>
@@ -137,10 +142,10 @@
                                     <div class="row">
                                         <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
                                             <div class="row">
-                                                <div class="col-7">ID</div>
-                                                <div class="col-5">
-                                                    <span class="icon-arrow_drop_up"></span>
-                                                    <span class="icon-arrow_drop_down"></span>
+                                                <div class="col-7 pt-3 text-right">ID</div>
+                                                <div class="col-5 pt-3 pl-0">
+                                                    <span class="icon-sort"></span>
+
                                                 </div>
                                             </div>
 
@@ -154,10 +159,10 @@
                                     <div class="row">
                                         <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
                                             <div class="row">
-                                                <div class="col-7">Name</div>
-                                                <div class="col-5">
-                                                    <span class="icon-arrow_drop_up"></span>
-                                                    <span class="icon-arrow_drop_down"></span>
+                                                <div class="col-7 text-right pt-3">Name</div>
+                                                <div class="col-5 pt-3 pl-0">
+                                                    <span class="icon-sort"></span>
+
                                                 </div>
                                             </div>
 
@@ -171,7 +176,7 @@
                                     <div class="row">
                                         <div class="col-12 p-1" style="border: 1px solid grey;height: 108px;">
                                             <div class="row">
-                                                <div class="col-12">Action</div>
+                                                <div class="col-12 pt-3 text-center">Action</div>
                                             </div>
                                         </div>
                                     </div>
