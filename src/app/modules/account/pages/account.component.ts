@@ -187,4 +187,8 @@ export class AccountComponent implements OnInit {
       console.log(page , data);
     }
   }
+  searchclickdefault(data){
+    console.log(data);
+    
+  }
 }

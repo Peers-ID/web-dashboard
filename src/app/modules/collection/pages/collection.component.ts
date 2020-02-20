@@ -69,4 +69,8 @@ export class CollectionComponent implements OnInit {
       console.log(page , data);
     }
   }
+  searchclickdefault(data){
+    console.log(data);
+    
+  }
 }

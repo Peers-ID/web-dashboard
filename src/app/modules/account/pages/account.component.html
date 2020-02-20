@@ -126,8 +126,8 @@
                 </div>
                 <div class="col-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="search..." />
-                        <span class="input-group-append">
+                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault/>
+                        <span class="input-group-append"  (click)="searchclickdefault(searchdefault.value)">
                             <span class="input-group-text add-on white">
                                 <i class="icon-search"></i>
                             </span>

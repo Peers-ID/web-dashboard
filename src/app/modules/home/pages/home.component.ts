@@ -87,4 +87,8 @@ export class HomeComponent implements OnInit {
       console.log(page , data);
     }
   }
+  searchclickdefault(data){
+    console.log(data);
+    
+  }
 }
