@@ -9,7 +9,7 @@ import { StatemanagementService } from "../../../core/services/statemanagement/s
 })
 export class AccountComponent implements OnInit {
   titlepage: string;
-  showmodalcreate: boolean;
+  showmodalcreate: boolean = false;
   statusmodal: any;
   dataloopdummy = [];
   p: number = 1;
@@ -21,16 +21,12 @@ export class AccountComponent implements OnInit {
   showmodalreactive:boolean = false;
   showbuttonsava:boolean = false;
   isASC:boolean = false;
+  pagecurrentvalue:number = 1;
   constructor(
     private state: StatemanagementService
   ) {}
 
   ngOnInit() {
-    this.showmodalcreate = false;
-    let dataobjloop = {
-      id: "data dummy",
-      name: "data dummy"
-    };
     if (window.location.pathname.split("/")[1] !== "peers") {
       if (window.location.pathname.split("/")[1] !== "peers") {
         this.titlepage = window.location.pathname.split("/")[1];
@@ -40,10 +36,8 @@ export class AccountComponent implements OnInit {
     } else {
       this.titlepage = window.location.pathname.split("/")[2];
     }
-    for (let i = 0; i < 10; i++) {
-      this.dataloopdummy.push(dataobjloop);
-    }
     $("body").addClass("sidebar-collapse");
+    this.loadData(this.pagecurrentvalue , 'all' , 'desc')
   }
   createaccountmodal() {
     this.showmodalcreate = true;
@@ -90,9 +84,10 @@ export class AccountComponent implements OnInit {
     }
   }
   }
-  pageclick(event) {}
+  pageclick(event) {
+    this.pagecurrentvalue = event;
+  }
   viewclick(index) {
-    
     this.showmodalview = true;
   }
   reactiveclick() {
@@ -173,6 +168,23 @@ export class AccountComponent implements OnInit {
       this.isASC = false;
       sort = 'desc'
     }
-    console.log(sort);
+    this.loadData(this.pagecurrentvalue,page,sort)
+  }
+
+  loadData(pagepagination,pagenavbar,order){
+    this.dataloopdummy = [];
+    console.log(pagepagination ,pagenavbar , order);
+    let dataobjloop = {
+      id: "data dummy",
+      name: "data dummy"
+    };
+    for (let i = 0; i < 10; i++) {
+      this.dataloopdummy.push(dataobjloop);
+    }
+  }
+  searchnavbar(event,page , data){
+    if (event.key === "Enter") {
+      console.log(page , data);
+    }
   }
 }

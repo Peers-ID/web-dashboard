@@ -16,29 +16,24 @@ export class HomeComponent implements OnInit {
   showmodalrejectloan:boolean = false;
   p: number = 1;
   isASC:boolean = false;
+  pagecurrentvalue:number = 1;
   constructor(
   ) { }
   ngOnInit() {
     this.showmodaltriger = false;
-    let dataobjloop = {
-      'ao': 'ao1',
-      'customer': 'data dummy',
-      'tanggal': 'data dummy',
-      'jumlah': 'data dummy',
-      'tenor': 'data dummy'
-    }
+   
     if (window.location.pathname.split('/')[1] !== 'peers'){
       this.titlepage = window.location.pathname.split('/')[1];
     }else{
       this.titlepage = window.location.pathname.split('/')[2];
     }    
-    for (let i = 0; i < 10; i++) {
-      this.dataloopdummy.push(dataobjloop)
-    }
+
       $("body").addClass("sidebar-collapse");
+      this.loadData(this.pagecurrentvalue , 'all' , 'desc')
 
   }
-  pageclick(page) {
+  pageclick(event) {
+    this.pagecurrentvalue = event;
   }
   viewclick(id , data) {
     this.showmodalviewloan = true
@@ -71,7 +66,25 @@ export class HomeComponent implements OnInit {
       this.isASC = false;
       sort = 'desc'
     }
-    console.log(sort);
-    
+    this.loadData(this.pagecurrentvalue,page,sort)
+  }
+  loadData(pagepagination,pagenavbar,order){
+    this.dataloopdummy = [];
+    console.log(pagepagination ,pagenavbar , order);
+    let dataobjloop = {
+      'ao': 'ao1',
+      'customer': 'data dummy',
+      'tanggal': 'data dummy',
+      'jumlah': 'data dummy',
+      'tenor': 'data dummy'
+    }
+    for (let i = 0; i < 10; i++) {
+      this.dataloopdummy.push(dataobjloop)
+    }
+  }
+  searchnavbar(event,page , data){
+    if (event.key === "Enter") {
+      console.log(page , data);
+    }
   }
 }

@@ -11,30 +11,22 @@ export class CollectionComponent implements OnInit {
   dataloopdummy = [];
   p: number = 1;
   isASC:boolean = false;
+  pagecurrentvalue:number = 1;
   constructor() { }
   ngOnInit() {
-    let dataobjloop = {
-      'ao': 'ao1',
-      'cost': 'data dummy',
-      'waktu': 'data dummy',
-      'jumlah': 'data dummy',
-      'cicilanke': 'data dummy',
-      'pokok': 'data dummy',
-      'sukarela': 'data dummy'
-    }
+  
     if (window.location.pathname.split('/')[1] !== 'peers'){
       this.titlepage = window.location.pathname.split('/')[1];
     }else{
       this.titlepage = window.location.pathname.split('/')[2];
     }    
-    for (let i = 0; i < 10; i++) {
-      this.dataloopdummy.push(dataobjloop)
-    }
+  
       $("body").addClass("sidebar-collapse");
+      this.loadData(this.pagecurrentvalue , 'all' , 'desc')
 
   }
-  pageclick(page) {
-    
+  pageclick(event) {
+    this.pagecurrentvalue = event;
   }
   viewclick() {
     
@@ -53,8 +45,28 @@ export class CollectionComponent implements OnInit {
     }else{
       this.isASC = false;
       sort = 'desc'
+    }    
+    this.loadData(this.pagecurrentvalue,page,sort)
+  }
+  loadData(pagepagination,pagenavbar,order){
+    this.dataloopdummy = [];
+    console.log(pagepagination ,pagenavbar , order);
+    let dataobjloop = {
+      'ao': 'ao1',
+      'cost': 'data dummy',
+      'waktu': 'data dummy',
+      'jumlah': 'data dummy',
+      'cicilanke': 'data dummy',
+      'pokok': 'data dummy',
+      'sukarela': 'data dummy'
     }
-    console.log(sort);
-    
+    for (let i = 0; i < 10; i++) {
+      this.dataloopdummy.push(dataobjloop)
+    }
+  }
+  searchnavbar(event,page , data){
+    if (event.key === "Enter") {
+      console.log(page , data);
+    }
   }
 }

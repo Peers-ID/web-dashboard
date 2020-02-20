@@ -145,13 +145,12 @@
                                                 <div class="col-7 pt-3 text-right">ID</div>
                                                 <div class="col-5 pt-3 pl-0">
                                                     <span class="icon-sort" (click)="sortinghandle('id')"></span>
-
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="col-12 p-1" style="border: 1px solid grey;">
-                                            <input type="text" class="form-control" placeholder="search..." />
+                                            <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'id' , searchid.value)" #searchid/>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +167,7 @@
 
                                         </div>
                                         <div class="col-12 p-1" style="border: 1px solid grey;">
-                                            <input type="text" class="form-control" placeholder="search..." />
+                                            <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'name' , searchname.value)" #searchname/>
                                         </div>
                                     </div>
                                 </div>
