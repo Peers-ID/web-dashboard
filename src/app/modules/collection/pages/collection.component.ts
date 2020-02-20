@@ -10,6 +10,7 @@ export class CollectionComponent implements OnInit {
   titlepage: string;
   dataloopdummy = [];
   p: number = 1;
+  isASC:boolean = false;
   constructor() { }
   ngOnInit() {
     let dataobjloop = {
@@ -45,7 +46,15 @@ export class CollectionComponent implements OnInit {
     
   }
   sortinghandle(page){
-    console.log(page);
+    let sort;
+    if (this.isASC == false){
+      this.isASC = true;
+      sort = 'asc';
+    }else{
+      this.isASC = false;
+      sort = 'desc'
+    }
+    console.log(sort);
     
   }
 }

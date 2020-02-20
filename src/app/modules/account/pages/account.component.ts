@@ -20,6 +20,7 @@ export class AccountComponent implements OnInit {
   trigeredit:boolean = false;
   showmodalreactive:boolean = false;
   showbuttonsava:boolean = false;
+  isASC:boolean = false;
   constructor(
     private state: StatemanagementService
   ) {}
@@ -164,6 +165,14 @@ export class AccountComponent implements OnInit {
     }
   }
   sortinghandle(page){
-    console.log(page);
+    let sort;
+    if (this.isASC == false){
+      this.isASC = true;
+      sort = 'asc';
+    }else{
+      this.isASC = false;
+      sort = 'desc'
+    }
+    console.log(sort);
   }
 }

@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   showmodalapproveloan:boolean = false;
   showmodalrejectloan:boolean = false;
   p: number = 1;
+  isASC:boolean = false;
   constructor(
   ) { }
   ngOnInit() {
@@ -62,7 +63,15 @@ export class HomeComponent implements OnInit {
   }
 
   sortinghandle(page){
-    console.log(page);
+    let sort;
+    if (this.isASC == false){
+      this.isASC = true;
+      sort = 'asc';
+    }else{
+      this.isASC = false;
+      sort = 'desc'
+    }
+    console.log(sort);
     
   }
 }
