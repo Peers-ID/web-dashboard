@@ -33,15 +33,15 @@ export class CollectionComponent implements OnInit {
 
   }
   pageclick(page) {
-    console.log(page)
+    
   }
   viewclick() {
-    console.log('run')
+    
   }
   approveclick() {
-    console.log('run')
+    
   }
   rejectclick() {
-    console.log('run')
+    
   }
 }

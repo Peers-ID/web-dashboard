@@ -19,7 +19,7 @@ export class KoperasiComponent implements OnInit {
     ) {}
   @ViewChild("imageInput", { static: false }) imageInput: ElementRef;
   ngOnInit() {
-  console.log('koperasi');
+  
   
         if (window.location.pathname.split("/")[1] !== "peers") {
       this.titlepage = window.location.pathname.split("/")[1];

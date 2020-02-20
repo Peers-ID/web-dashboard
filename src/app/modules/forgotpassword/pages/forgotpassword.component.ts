@@ -55,7 +55,7 @@ export class ForgotpasswordComponent implements OnInit {
         this.phonenumber(userinput) === true ||
         this.validateEmail(userinput) === true
       ) {
-        console.log('benar semua ');
+        
 
       }
     }

@@ -47,7 +47,7 @@ export class ChangepasswordComponent implements OnInit {
           this.trigeralerts = false;
         }, 3000);
       }else{
-        console.log('sama==');
+        
         
       }
     }

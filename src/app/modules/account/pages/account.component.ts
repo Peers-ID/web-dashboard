@@ -84,14 +84,14 @@ export class AccountComponent implements OnInit {
       this.phonenumber(hp) === true &&
       this.validateEmail(email) === true
     ){
-      console.log('success ====');
+      
       
     }
   }
   }
   pageclick(event) {}
   viewclick(index) {
-    console.log(index);
+    
     this.showmodalview = true;
   }
   reactiveclick() {
@@ -139,7 +139,7 @@ export class AccountComponent implements OnInit {
       this.phonenumber(hp) === true &&
       this.validateEmail(email) === true
     ){
-      console.log('success ====');
+      
       
     }
   }
