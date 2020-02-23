@@ -174,11 +174,16 @@ export class LoginComponent implements OnInit {
     }
   }
   phonenumber(input) {
-    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    if (input.match(phoneno)) {
-      return true;
-    } else {
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/;    
+    if (input.toString().length < 10 || input.toString().length > 12){
       return false;
+    }else{
+        return true;
+      // if (input.match(phoneno)) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
     }
   }
   allnumeric(input) {

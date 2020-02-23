@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group has-icon"><i class="icon-calendar"></i>
                         <input type="date" class="form-control form-control-md f-12" #birthday disabled
-                            id="inputbirthday">
+                            id="inputbirthday" name="Date">
                     </div>
                 </div>
             </div>
@@ -209,17 +209,17 @@
                                     *ngFor="let data of dataloopdummy | paginate: { itemsPerPage: 5, currentPage: p }; let index = index">
                                     <div class="row">
                                         <div class="col-4 p-4" style="border: 1px solid grey;">{{data.id}}</div>
-                                        <div class="col-4 p-4" style="border: 1px solid grey;">{{data.name}}</div>
+                                        <div class="col-4 p-4" style="border: 1px solid grey;">{{data.fullname}}</div>
                                         <div class="col-4 p-4" style="border: 1px solid grey;">
                                             <div class="row">
                                                 <button class="col-5 icon-rate_review"
                                                     style="border: none; background: none; font-size: 25px;"
-                                                    type="button" id="id{{index}}" (click)="viewclick(index)"></button>
+                                                    type="button" id="id{{index}}" (click)="viewclick(data['id'])"></button>
                                                 <button class="col-6 btn btn-primary text-center p-2" type="button"
-                                                    id="id{{index}}" (click)="reactiveclick()"
-                                                    style="font-size:8pt;" *ngIf="buttonreactive">Reactive</button>
-                                                <button class="col-6 btn btn-primary text-center p-2" type="button" *ngIf="buttondeactive"
-                                                    id="id{{index}}" (click)="deactiveclick()"
+                                                    id="id{{index}}" (click)="reactiveclick(data['id'])"
+                                                    style="font-size:8pt;" *ngIf="data.status === 'inactive'">Reactive</button>
+                                                <button class="col-6 btn btn-primary text-center p-2" type="button" *ngIf="data.status === 'active'"
+                                                    id="id{{index}}" (click)="deactiveclick(data['id'])"
                                                     style="font-size: 8pt;">Deactive</button>
                                             </div>
                                         </div>

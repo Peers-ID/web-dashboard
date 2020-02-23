@@ -136,4 +136,32 @@ export class ApiService {
     let body = { "paaswordlama": paaswordlama, "passwordbaru": passwordbaru , "ulangipassword" : ulangipassword}
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
+  getaccountao(): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/ao/admin_koperasi/' + JSON.parse(localStorage.getItem('currentUser')).userId;
+    return this.http.get(url,this.options)
+  }
+  poststatusinactive(idao): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/ao/'+idao+'/status';
+    let body = {"status":"inactive"}
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
+  poststatusactive(idao): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/ao/'+idao+'/status';
+    let body = {"status":"active"}
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
+  getdetailaccountao(idao): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/ao/' + idao;
+    return this.http.get(url,this.options)
+  }
+  updatedetailao(idao , fullname , hp ,email, birthdate): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/ao/'+idao;
+    let body = {
+      "fullname": fullname,
+      "phone_mobile": hp,
+      "email":email,
+      "birthdate": birthdate,
+    }
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
 }
