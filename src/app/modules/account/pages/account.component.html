@@ -93,7 +93,7 @@
         </div>
         <div class="modal-body" style="border:none">
             <div class="row justify-content-center">
-                <h3>Reactive</h3>
+                <h3>Apakah anda yakin reactive account ini</h3>
             </div>
         </div>
         <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
@@ -106,8 +106,30 @@
         </div>
     </div>
 </app-modalpopup>
-<app-modalsuccess *ngIf="showsuccessmodal"></app-modalsuccess>
-<app-modalerror *ngIf="showerrormodal"></app-modalerror>
+<app-modalpopup *ngIf="showmodaldeactive">
+    <div class="modal-content" style="margin-top: 10%;">
+        <div class="modal-header" style="border: none;">
+            <button type="button" class="close" (click)="closemodal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" style="border:none">
+            <div class="row justify-content-center">
+                <h3>Apakah anda yakin deactive account ini</h3>
+            </div>
+        </div>
+        <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary btn-block w-100"
+                        (click)="savemodaldeactive()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modalpopup>
+<app-modalsuccess *ngIf="showmodalsuccess"></app-modalsuccess>
+<app-modalerror *ngIf="showmodalerror"></app-modalerror>
 <div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">
@@ -126,8 +148,9 @@
                 </div>
                 <div class="col-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault/>
-                        <span class="input-group-append"  (click)="searchclickdefault(searchdefault.value)">
+                        <input type="text" class="form-control" placeholder="search..."
+                            (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault />
+                        <span class="input-group-append" (click)="searchclickdefault(searchdefault.value)">
                             <span class="input-group-text add-on white">
                                 <i class="icon-search"></i>
                             </span>
@@ -150,7 +173,8 @@
 
                                         </div>
                                         <div class="col-12 p-1" style="border: 1px solid grey;">
-                                            <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'id' , searchid.value)" #searchid/>
+                                            <input type="text" class="form-control" placeholder="search..."
+                                                (keyup)="searchnavbar($event,'id' , searchid.value)" #searchid />
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +191,8 @@
 
                                         </div>
                                         <div class="col-12 p-1" style="border: 1px solid grey;">
-                                            <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'name' , searchname.value)" #searchname/>
+                                            <input type="text" class="form-control" placeholder="search..."
+                                                (keyup)="searchnavbar($event,'name' , searchname.value)" #searchname />
                                         </div>
                                     </div>
                                 </div>
@@ -187,12 +212,15 @@
                                         <div class="col-4 p-4" style="border: 1px solid grey;">{{data.name}}</div>
                                         <div class="col-4 p-4" style="border: 1px solid grey;">
                                             <div class="row">
-                                                <button title="Reactive" class="col-6 icon-rate_review"
-                                                    style="border: none; background: none; font-size: 20px;"
+                                                <button class="col-5 icon-rate_review"
+                                                    style="border: none; background: none; font-size: 30px;"
                                                     type="button" id="id{{index}}" (click)="viewclick(index)"></button>
-                                                <button title="Reactive" class="col-6 icon-phonelink_off "
-                                                    style="border: none; background: none; font-size: 20px;"
-                                                    type="button" id="id{{index}}" (click)="reactiveclick()"></button>
+                                                <button class="col-6 btn btn-primary text-center p-2" type="button"
+                                                    id="id{{index}}" (click)="reactiveclick()"
+                                                    style="font-size: 10pt;" *ngIf="buttonreactive">Reactive</button>
+                                                <button class="col-6 btn btn-primary text-center p-2" type="button" *ngIf="buttondeactive"
+                                                    id="id{{index}}" (click)="deactiveclick()"
+                                                    style="font-size: 10pt;">Deactive</button>
                                             </div>
                                         </div>
                                     </div>

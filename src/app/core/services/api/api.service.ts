@@ -52,7 +52,7 @@ export class ApiService {
     hp_pengurus,
     email_pengurus
      ): Observable<any> {
-    const url = 'http://dev-api.peers.id/private/koperasi';
+    const url = 'http://dev-api.peers.id/api/v1/koperasi';
     let body = { 
       "nama_koperasi": nama_koperasi, 
       "no_badan_hukum": no_badan_hukum , 
@@ -87,9 +87,15 @@ export class ApiService {
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
   postcreateaccountmanagement(fullname , hp , email , birthday): Observable<any> {
-    const url = '';
-    let body = { "fullname": fullname, "hp": hp , "email" : email , "birthday":birthday }
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    const headers = new HttpHeaders({ 
+      'content-type': 'application/json', 
+      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token,
+      'uid':JSON.parse(localStorage.getItem('currentUser')).userId
+    });
+    const options = { headers: headers };
+    const url = 'http://dev-api.peers.id/api/v1/ao';
+    let body = { "fullname": fullname, "phone_mobile": hp , "email" : email , "birthdate":birthday }
+    return this.http.post(url, JSON.stringify(body), options).pipe(map(res => res))
   }
   postsavepersonal(jenisidentitas,noidentitas,namalengkapsesuaiktp,tanggallahir,jeniskelamin,
     namagadisibukandung,statusperkawinan,pendidikanterakhir): Observable<any> {

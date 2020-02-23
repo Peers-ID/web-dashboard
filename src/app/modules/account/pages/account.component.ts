@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as $ from "jquery";
 import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
+import { ApiService } from "../../../core/services/api/api.service";
 
 @Component({
   selector: "app-account",
@@ -14,19 +15,24 @@ export class AccountComponent implements OnInit {
   dataloopdummy = [];
   p: number = 1;
   trigeralerts: boolean = false;
-  showsuccessmodal:boolean = false;
-  showerrormodal:boolean = false;
   showmodalview:boolean = false;
   trigeredit:boolean = false;
   showmodalreactive:boolean = false;
   showbuttonsava:boolean = false;
+  showmodalerror:boolean = false;
+  showmodalsuccess:boolean = false;
   isASC:boolean = false;
   pagecurrentvalue:number = 1;
+  showmodaldeactive:boolean = false;
+  buttonreactive:boolean = false;
+  buttondeactive:boolean = false;
   constructor(
-    private state: StatemanagementService
+    private state: StatemanagementService,
+    private apiservice:ApiService
   ) {}
 
   ngOnInit() {
+    this.buttonreactive = true
     if (window.location.pathname.split("/")[1] !== "peers") {
       if (window.location.pathname.split("/")[1] !== "peers") {
         this.titlepage = window.location.pathname.split("/")[1];
@@ -79,7 +85,21 @@ export class AccountComponent implements OnInit {
       this.phonenumber(hp) === true &&
       this.validateEmail(email) === true
     ){
-      
+      this.apiservice.postcreateaccountmanagement(fullname, hp, email, birthday).subscribe(data => {
+        if (data['data'] !== ''){
+          this.state.valuestatusmodal = {
+            content: data['message']
+          };
+          this.showmodalcreate = false;
+          this.showmodalsuccess = true;
+        }else{
+          this.state.valuestatusmodal = {
+            content: data['message']
+          };
+          this.showmodalcreate = false;
+          this.showmodalerror = true;
+        }
+      })
       
     }
   }
@@ -92,6 +112,11 @@ export class AccountComponent implements OnInit {
   }
   reactiveclick() {
     this.showmodalreactive = true
+    this.showmodaldeactive = false
+  }
+  deactiveclick() {
+    this.showmodalreactive = false
+    this.showmodaldeactive = true
   }
   editmodal(){
     if (this.trigeredit === false){

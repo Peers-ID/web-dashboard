@@ -23,7 +23,7 @@ export class AuthenticationService {
   }
 
   login(username, password): Observable<any> {
-    const url = 'http://dev-api.peers.id/public/login';
+    const url = 'http://dev-api.peers.id/api/v1/login';
     let body = { "email": username, "password": password }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
