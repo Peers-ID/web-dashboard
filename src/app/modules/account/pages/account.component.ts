@@ -167,6 +167,9 @@ export class AccountComponent implements OnInit {
   savemodalreactive(){
 
   }
+  savemodaldeactive(){
+
+  }
 
   validateEmail(input) {
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
