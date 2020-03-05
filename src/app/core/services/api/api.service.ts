@@ -131,9 +131,9 @@ export class ApiService {
     let body = { "nama": nama, "nohandphone": nohandphone , "hubungan" : hubungan }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
-  postchangepassword(paaswordlama , passwordbaru , ulangipassword): Observable<any> {
-    const url = '';
-    let body = { "paaswordlama": paaswordlama, "passwordbaru": passwordbaru , "ulangipassword" : ulangipassword}
+  postchangepassword(paaswordlama , passwordbaru): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/users/change_password';
+    let body = { "email":JSON.parse(localStorage.getItem('currentUser')).email, "password": paaswordlama, "password_new": passwordbaru}
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
   getaccountao(): Observable<any> {

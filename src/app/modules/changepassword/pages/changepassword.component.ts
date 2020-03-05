@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
 import * as $ from 'jquery';
-
+import { ApiService } from "../../../core/services/api/api.service";
 @Component({
   selector: 'app-changepassword',
   templateUrl: './changepassword.component.html',
@@ -14,7 +14,8 @@ export class ChangepasswordComponent implements OnInit {
   showerrormodal:boolean = false;
   trigeralerts:boolean = false;
   constructor(
-    private state: StatemanagementService
+    private state: StatemanagementService,
+    private api : ApiService
   ) { }
 
   ngOnInit() {
@@ -47,8 +48,19 @@ export class ChangepasswordComponent implements OnInit {
           this.trigeralerts = false;
         }, 3000);
       }else{
-        
-        
+        this.api.postchangepassword(passwordlama , passwordbaru).subscribe(data => {
+          if (data['status'] === 201){
+            this.state.valuestatusmodal = {
+              content: data["message"]
+            };
+            this.showsuccessmodal = true;
+          }else{
+            this.state.valuestatusmodal = {
+              content: data["message"]
+            };
+            this.showerrormodal = true;
+          }
+        })
       }
     }
   }
