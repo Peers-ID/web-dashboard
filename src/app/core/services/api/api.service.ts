@@ -228,4 +228,15 @@ export class ApiService {
     }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
+  postapprovalconfig(statusapproval): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).userId;
+    let body = {
+      "ao_can_approved": statusapproval
+    }
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
+  getapprovalconfig(): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).userId;
+    return this.http.get(url,this.options)
+  }
 }
