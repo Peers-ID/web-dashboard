@@ -29,8 +29,6 @@ export class ApprovalconfigComponent implements OnInit {
     }    
     $("body").addClass("sidebar-collapse");
     this.apiservice.getapprovalconfig().subscribe(data => {
-      console.log(data['data'].length);
-      console.log(data);
       if (data['data'].length > 0){
         this.getapprovalconfig = data['data'][0].ao_can_approved ? true : false;
       }
