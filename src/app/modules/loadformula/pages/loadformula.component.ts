@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import * as $ from "jquery";
-
+import { FormControl } from '@angular/forms';
 @Component({
   selector: "app-loadformula",
   templateUrl: "./loadformula.component.html",
@@ -11,12 +11,38 @@ export class LoadformulaComponent implements OnInit {
   showsuccessmodal: boolean = false;
   showerrormodal: boolean = false;
   indexincrement: number = 0;
-  getminloanammount: boolean = false;
-  getmaxloanammount: boolean = false;
+  getminloanamount: boolean = false;
+  getmaxloanamount: boolean = false;
   getkelipatan: boolean = false;
   getmintenure: boolean = false;
   getmaxtenure: boolean = false;
-  constructor() {}
+  getservicefee: boolean = false;
+  getservicefix: boolean = false;
+  fcminamount : FormControl;
+  fcmaxamount : FormControl;
+  fckelipatan : FormControl;
+  fcmintenure : FormControl;
+  fcmaxtenure : FormControl;
+  fcdatetenure : FormControl;
+  dateselected:boolean = true;
+  fcdateservicefee : FormControl;
+  loopotherfee = [];
+  servicefee: FormControl;
+  servicefix: FormControl;
+  fcservicefee: FormControl;
+  fcservicefix : FormControl;
+  constructor() {
+    this.fcminamount = new FormControl();
+    this.fcmaxamount = new FormControl();
+    this.fckelipatan = new FormControl();
+    this.fcmintenure = new FormControl();
+    this.fcmaxtenure = new FormControl();
+    this.fcdatetenure = new FormControl();
+    this.fcdateservicefee = new FormControl();
+    this.servicefee = new FormControl();
+    this.fcservicefee = new FormControl();
+    this.fcservicefix = new FormControl();
+  }
 
   ngOnInit() {
     if (window.location.pathname.split("/")[1] !== "peers") {
@@ -25,141 +51,146 @@ export class LoadformulaComponent implements OnInit {
       this.titlepage = window.location.pathname.split("/")[2];
     }
     $("body").addClass("sidebar-collapse");
+    this.FieldsChange(null, 'renderinit');
   }
   addotherfee() {
     this.indexincrement++;
-    $("#appendfee").append(
-      `
-    <div class="col-12 mt-1">
-    <div class="row">
-        <div class="col-4">
-            Fee Name
-        </div>
-        <div class="col-3">
-            <input type="text" style=" display: block;
-            width: 100%;
-            height: calc(1.5em + .75rem + 2px);
-            padding: .375rem .75rem;
-            font-size: 0.8rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: .25rem;
-            -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;">
-        </div>
-    </div>
-</div>
-<div class="col-12 mt-1">
-    <div class="row">
-        <div class="col-1">
-            <input type="radio" name="serviceadd` +
-        this.indexincrement +
-        `">
-        </div>
-        <div class="col-3">
-            (%)
-        </div>
-        <div class="col-3">
-            <div class="row">
-                <div class="col-3">Per</div>
-                <div class="col-8"> <input type="text" style=" display: block;
-                width: 100%;
-                height: calc(1.5em + .75rem + 2px);
-                padding: .375rem .75rem;
-                font-size: 0.8rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: .25rem;
-                -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;"></div>
-            </div>
-        </div>
-        <div class="col-2">
-            <select style="width: 100%;" style=" display: block;
-            width: 100%;
-            height: calc(1.5em + .75rem + 2px);
-            padding: .375rem .75rem;
-            font-size: 0.8rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: .25rem;
-            -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;">
-                <option value="dummy">dummy</option>
-            </select>
-        </div>
-    </div>
-</div>
-<div class="col-12 mt-1">
-    <div class="row">
-        <div class="col-1">
-            <input type="radio" name="serviceadd` +
-        this.indexincrement +
-        `">
-        </div>
-        <div class="col-3">
-            (fix)
-        </div>
-        <div class="col-3">
-            <div class="row">
-                <div class="col-3">Per</div>
-                <div class="col-8"> <input type="text" style=" display: block;
-                width: 100%;
-                height: calc(1.5em + .75rem + 2px);
-                padding: .375rem .75rem;
-                font-size: 0.8rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: .25rem;
-                -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;"></div>
-            </div>
-        </div>
-        <div class="col-2">
-            <select style="width: 100%;" >
-                <option value="dummy">dummy</option>
-            </select>
-        </div>
-    </div>
-</div>
-    `
-    );
+    this.loopotherfee.push(this.indexincrement)
   }
   FieldsChange(values, data) {
     switch (data) {
-      case "minloanammount":
-        this.getminloanammount = values.currentTarget.checked
+      case "minloanamount":
+        this.getminloanamount = values.currentTarget.checked
+        if (this.getminloanamount){
+          this.fcminamount.enable();
+        }else{
+          this.fcminamount.disable();
+        }
         break;
-      case "maxloanammount":
-        this.getmaxloanammount = values.currentTarget.checked
+      case "maxloanamount":
+        this.getmaxloanamount = values.currentTarget.checked
+        if (this.getmaxloanamount){
+          this.fcmaxamount.enable();
+        }else{
+          this.fcmaxamount.disable();
+        }
         break;
       case "kelipatan":
         this.getkelipatan = values.currentTarget.checked
+        if (this.getkelipatan){
+          this.fckelipatan.enable();
+        }else{
+          this.fckelipatan.disable();
+        }
         break;
       case "mintenure":
         this.getmintenure = values.currentTarget.checked
+        if (this.getmintenure){
+          this.fcmintenure.enable();
+            if (this.getmintenure || this.getmaxtenure){
+              this.fcdatetenure.enable();
+            }else{
+              this.fcdatetenure.disable();
+            }
+        }else{
+          this.fcmintenure.disable();
+          if (this.getmintenure || this.getmaxtenure){
+            this.fcdatetenure.enable();
+          }else{
+            this.fcdatetenure.disable();
+          }
+        }
         break;
       case "maxtenure":
         this.getmaxtenure = values.currentTarget.checked
+        if (this.getmaxtenure){
+          this.fcmaxtenure.enable();
+          if (this.getmintenure || this.getmaxtenure){
+            this.fcdatetenure.enable();
+          }else{
+            this.fcdatetenure.disable();
+          }
+        }else{
+          this.fcmaxtenure.disable();
+          if (this.getmintenure || this.getmaxtenure){
+            this.fcdatetenure.enable();
+          }else{
+            this.fcdatetenure.disable();
+          }
+        }
         break;
+        case "servicefee":
+          this.getservicefee = values.currentTarget.checked;
+          this.getservicefix = false;
+          this.fcdateservicefee.enable();
+          if (this.getservicefee){
+            this.fcservicefee.enable();
+            this.fcservicefix.disable();
+          }else{
+            this.fcservicefee.disable();
+            this.fcservicefix.enable();
+          }
+        break;
+        case "servicefix":
+          this.getservicefee = false;
+          this.getservicefix = values.currentTarget.checked;
+          this.fcdateservicefee.enable();
+          if (this.getservicefix){
+            this.fcservicefix.enable();
+            this.fcservicefee.disable();
+          }else{
+            this.fcservicefix.disable();
+            this.fcservicefee.enable();
+          }
+        break;
+      case "renderinit":
+        if (!this.getminloanamount){
+          this.fcminamount.disable();
+        }else{
+          this.fcminamount.enable();
+        }
+        if (!this.getmaxloanamount){
+          this.fcmaxamount.disable();
+        }else{
+          this.fcmaxamount.enable();
+        }
+        if (!this.getkelipatan){
+          this.fckelipatan.disable();
+        }else{
+          this.fckelipatan.enable();
+        }
+        if (!this.getmintenure){
+          this.fcmintenure.disable();
+        }else{
+          this.fcmintenure.enable();
+        }
+        if (!this.getmaxtenure){
+          this.fcmaxtenure.disable();
+        }else{
+          this.fcmaxtenure.enable();
+        }
+        if (!this.getmaxtenure || !this.getmintenure){
+          this.fcdatetenure.disable();
+        }else{
+          this.fcdatetenure.enable();
+        }
+        if (!this.getservicefee || !this.getservicefix){
+          this.fcdateservicefee.disable();
+        }else{
+          this.fcdateservicefee.enable();
+        }
+        if (!this.getservicefee){
+          this.fcservicefee.disable();
+        }else{
+          this.fcservicefee.enable();
+        }
+        if (!this.getservicefix){
+          this.fcservicefix.disable();
+        }else{
+          this.fcservicefix.enable();
+        }
     }
   }
-  saveloanformula() {
-  }
+  saveloanformula(formulaname,minloanamount,maxloanamount,kelipatan,mintenure,maxtenure) {    
+  } 
 }

@@ -3,7 +3,7 @@
 <div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">
-            <h3>{{titlepage}}</h3>
+            <h2><strong>Loan Formula</strong></h2>
         </div>
     </div>
 </div>
@@ -17,35 +17,35 @@
                             <h3>Formula Name</h3>
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control-use">
+                            <input type="text" class="form-control" #formulaname>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input [checked]="getminloanammount" (change)="FieldsChange($event,'minloanammount')"
+                            <input [checked]="getminloanamount" (change)="FieldsChange($event,'minloanamount')"
                                 type="checkbox" />
                         </div>
                         <div class="col-3">
-                            Min Loan Ammount
+                            Min Loan amount
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control-use">
+                            <input type="text" class="form-control" #minloanamount [formControl]="fcminamount">
                         </div>
                     </div>
                 </div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input [checked]="getmaxloanammount" (change)="FieldsChange($event,'maxloanammount')"
+                            <input [checked]="getmaxloanamount" (change)="FieldsChange($event,'maxloanamount')"
                                 type="checkbox" />
                         </div>
                         <div class="col-3">
-                            Max Loan Ammount
+                            Max Loan amount
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control-use">
+                            <input type="text" class="form-control" #maxloanamount [formControl]="fcmaxamount">
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                             Kelipatan
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control-use">
+                            <input type="text" class="form-control" #kelipatan [formControl]="fckelipatan">
                         </div>
                     </div>
                 </div>
@@ -74,15 +74,8 @@
                             Min Tenure
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control-use">
+                            <input type="text" class="form-control" #mintenure [formControl]="fcmintenure">
                         </div>
-                        <!-- <div class="col-2">
-                            <select style="width: 100%;" class="form-control-use">
-                                <option value="hari">Hari</option>
-                                <option value="minggu">Minggu</option>
-                                <option value="bulan">Bulan</option>
-                            </select>
-                        </div> -->
                     </div>
                 </div>
                 <div class="col-12 mt-1">
@@ -95,11 +88,11 @@
                             Max Tenure
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control-use">
+                            <input type="text" class="form-control" #maxtenure [formControl]="fcmaxtenure">
                         </div>
                         <div class="col-2">
-                            <select style="width: 100%;" class="form-control-use">
-                                <option value="hari">Hari</option>
+                            <select style="width: 100%;" class="form-control" [formControl]="fcdatetenure">
+                                <option value="hari" [selected]="dateselected">Hari</option>
                                 <option value="minggu">Minggu</option>
                                 <option value="bulan">Bulan</option>
                             </select>
@@ -110,41 +103,45 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio" name="serviceradio" >
+                            <input type="radio" name="serviceradio" (change)="FieldsChange($event,'servicefee')">
                         </div>
                         <div class="col-3">
                             Service Fee (%)
                         </div>
                         <div class="col-3">
                             <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control-use"></div>
-                                <div class="col-3">Per</div>
+                                <div class="col-8"> <input type="text" class="form-control" [formControl]="fcservicefee"></div>
+                                <!-- <div class="col-3">Per</div> -->
                             </div>
                         </div>
-                        <div class="col-2">
-                            <select style="width: 100%;" class="form-control-use">
-                                <option value="dummy">dummy</option>
-                            </select>
-                        </div>
+                        <!-- <div class="col-2">
+                                <select style="width: 100%;" class="form-control" [formControl]="fcdatefee">
+                                    <option value="hari" [selected]="dateselected">Hari</option>
+                                    <option value="minggu">Minggu</option>
+                                    <option value="bulan">Bulan</option>
+                                </select>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio" name="serviceradio">
+                            <input type="radio" name="serviceradio" (change)="FieldsChange($event,'servicefix')">
                         </div>
                         <div class="col-3">
                             Service Fix
                         </div>
                         <div class="col-3">
                             <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control-use"></div>
+                                <div class="col-8"> <input type="text" class="form-control" [formControl]="fcservicefix"></div>
                                 <div class="col-3">Per</div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <select style="width: 100%;" class="form-control-use">
-                                <option value="dummy">dummy</option>
+                            <select style="width: 100%;" class="form-control" [formControl]="fcdateservicefee">
+                                <option value="hari" [selected]="dateselected">Hari</option>
+                                <option value="minggu">Minggu</option>
+                                <option value="bulan">Bulan</option>
                             </select>
                         </div>
                     </div>
@@ -163,7 +160,7 @@
                             Fee Name
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control-use">
+                            <input type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -177,14 +174,14 @@
                         </div>
                         <div class="col-3">
                             <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control-use"></div>
-                                <div class="col-3">Per</div>
+                                <div class="col-8"> <input type="text" class="form-control"></div>
+                                <!-- <div class="col-3">Per</div> -->
                             </div>
                         </div>
                         <div class="col-2">
-                            <select style="width: 100%;" class="form-control-use">
+                            <!-- <select style="width: 100%;" class="form-control">
                                 <option value="dummy">dummy</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                 </div>
@@ -198,27 +195,82 @@
                         </div>
                         <div class="col-3">
                             <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control-use"></div>
+                                <div class="col-8"> <input type="text" class="form-control"></div>
                                 <div class="col-3">Per</div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <select style="width: 100%;" class="form-control-use">
-                                <option value="dummy">dummy</option>
+                            <select style="width: 100%;" class="form-control" >
+                                <option value="hari" [selected]="dateselected">Hari</option>
+                                <option value="minggu">Minggu</option>
+                                <option value="bulan">Bulan</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="row" id="appendfee">
-
+                    <div class="row" id="appendfee" *ngFor="let data of loopotherfee">
+                        <div class="col-12 mt-1">
+                            <div class="row">
+                                <div class="col-4">
+                                    Fee Name
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <div class="row">
+                                <div class="col-1">
+                                    <input type="radio" name="otherservice">
+                                </div>
+                                <div class="col-3">
+                                    (%)
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <div class="col-8"> <input type="text" class="form-control"></div>
+                                        <!-- <div class="col-3">Per</div> -->
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <!-- <select style="width: 100%;" class="form-control">
+                                        <option value="dummy">dummy</option>
+                                    </select> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <div class="row">
+                                <div class="col-1">
+                                    <input type="radio" name="otherservice">
+                                </div>
+                                <div class="col-3">
+                                    (fix)
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <div class="col-8"> <input type="text" class="form-control"></div>
+                                        <div class="col-3">Per</div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <select style="width: 100%;" class="form-control" >
+                                        <option value="hari" [selected]="dateselected">Hari</option>
+                                        <option value="minggu">Minggu</option>
+                                        <option value="bulan">Bulan</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 mt-1 mt-5">
                     <div class="row justify-content-center">
                         <div class="col-3">
                             <button class="btn btn-primary w-100" type="button"
-                                (click)="saveloanformula()">Save</button>
+                                (click)="saveloanformula(formulaname.value , minloanamount.value , maxloanamount.value , kelipatan.value , mintenure.value , maxtenure.value)">Save</button>
                         </div>
                     </div>
                 </div>
