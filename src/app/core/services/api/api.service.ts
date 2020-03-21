@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable , throwError } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { map} from "rxjs/operators";
+import { catchError } from 'rxjs/operators'
+import { Router } from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
@@ -12,18 +14,15 @@ export class ApiService {
   });
   options = { headers: this.headers };
   constructor(private http: HttpClient,
+    private router : Router
     ) { }
-
-  handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  handleError(error: HttpErrorResponse){
+    if (error.statusText === 'Unauthorized'){
+      localStorage.removeItem('currentUser');
+      this.router.navigateByUrl('/login')
     }
-    return throwError(errorMessage);
-  }
-
+    return throwError(error);
+    }
   postdatakoperasi(nama_koperasi,no_badan_hukum,tgl_badan_hukum,
     no_perubahan_anggaran_dasar,
     tgl_perubahan_anggaran_dasar,
@@ -84,7 +83,9 @@ export class ApiService {
       "hp_pengurus":hp_pengurus,
       "email_pengurus":email_pengurus
    }
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   postcreateaccountmanagement(fullname , hp , email , birthday): Observable<any> {
     const headers = new HttpHeaders({ 
@@ -95,14 +96,18 @@ export class ApiService {
     const options = { headers: headers };
     const url = 'http://dev-api.peers.id/api/v1/ao';
     let body = { "fullname": fullname, "phone_mobile": hp , "email" : email , "birthdate":birthday }
-    return this.http.post(url, JSON.stringify(body), options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), options).pipe(
+      catchError(this.handleError)
+      );
   }
   postsavepersonal(jenisidentitas,noidentitas,namalengkapsesuaiktp,tanggallahir,jeniskelamin,
     namagadisibukandung,statusperkawinan,pendidikanterakhir): Observable<any> {
     const url = '';
     let body = { "jenisidentitas": jenisidentitas, "noidentitas": noidentitas , "namalengkapsesuaiktp" : namalengkapsesuaiktp , "tanggallahir":tanggallahir,
     "jeniskelamin": jeniskelamin, "namagadisibukandung": namagadisibukandung ,"statusperkawinan": statusperkawinan, "pendidikanterakhir": pendidikanterakhir }
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   postsaveaddress(jalan,nomer,rt,rw,kelurahan,
     kecamatan,statustempattinggalktp,lamatinggalktp,apakahalamatsesuaidomisili,domisilijalan,
@@ -114,7 +119,9 @@ export class ApiService {
     "domisilirw": domisilirw, "domisilikelurahan": domisilikelurahan ,"domisilikecamatan": domisilikecamatan, "kotaprovinsi": kotaprovinsi,
     "statustempattinggal": statustempattinggal, "lamatinggal": lamatinggal
    }
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   postsaveoccupation(memilikinpwp,nomernpwp,pekerjausaha,bidangpekerjaanusaha,posisijabatan,
     namaperusahaanusaha,lamabekerjausaha,penghasilanomsetusaha,alamatkantorjalan,alamatkantornomer,alamatkantorrt,
@@ -124,35 +131,49 @@ export class ApiService {
     "posisijabatan": posisijabatan, "namaperusahaanusaha": namaperusahaanusaha ,"lamabekerjausaha": lamabekerjausaha, "penghasilanomsetusaha": penghasilanomsetusaha,
     "alamatkantorjalan": alamatkantorjalan, "alamatkantornomer": alamatkantornomer ,"alamatkantorrt": alamatkantorrt, "alamatkantorrw": alamatkantorrw,
     "alamatkantorkelurahan": alamatkantorkelurahan, "alamatkantorkecamatan": alamatkantorkecamatan ,"alamatkantorkotaprovinsi": alamatkantorkotaprovinsi}
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   postsaveemergency(nama , nohandphone , hubungan): Observable<any> {
     const url = '';
     let body = { "nama": nama, "nohandphone": nohandphone , "hubungan" : hubungan }
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   postchangepassword(paaswordlama , passwordbaru): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/users/change_password';
     let body = { "email":JSON.parse(localStorage.getItem('currentUser')).email, "password": paaswordlama, "password_new": passwordbaru}
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   getaccountao(): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/ao/admin_koperasi/' + JSON.parse(localStorage.getItem('currentUser')).userId;
-    return this.http.get(url,this.options)
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   poststatusinactive(idao): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/ao/'+idao+'/status';
     let body = {"status":"inactive"}
-    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   poststatusactive(idao): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/ao/'+idao+'/status';
     let body = {"status":"active"}
-    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   getdetailaccountao(idao): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/ao/' + idao;
-    return this.http.get(url,this.options)
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   updatedetailao(idao , fullname , hp ,email, birthdate): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/ao/'+idao;
@@ -162,13 +183,17 @@ export class ApiService {
       "email":email,
       "birthdate": birthdate,
     }
-    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
 
   getalldatamember(){
     const url = 'http://dev-api.peers.id/api/v1/member/config/' + JSON.parse(localStorage.getItem('currentUser')).userId;
     // const url = 'http://dev-api.peers.id/api/v1/member/config/3';
-    return this.http.get(url,this.options)
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   postalldatamember(koperasi_id , jenis_identitas ,no_identitas, nama_lengkap , tanggal_lahir , jenis_kelamin , nama_gadis_ibu,
     status_perkawinan ,pendidikan_terakhir , alamat_ktp_jalan ,alamat_ktp_nomer,alamat_ktp_rt,alamat_ktp_rw,
@@ -226,17 +251,39 @@ export class ApiService {
       "no_hp":no_hp,
       "hubungan":hubungan,
     }
-    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   postapprovalconfig(statusapproval): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).userId;
+    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     let body = {
       "ao_can_approved": statusapproval
     }
-    return this.http.put(url, JSON.stringify(body), this.options).pipe(map(res => res))
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
   }
   getapprovalconfig(): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).userId;
-    return this.http.get(url,this.options)
+    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  postcutofftime(hours , minutes): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    let body = {
+      "hours": hours,
+      "minutes":minutes
+    }
+    return this.http.put(url, JSON.stringify(body), this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getcutofftime(): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
   }
 }

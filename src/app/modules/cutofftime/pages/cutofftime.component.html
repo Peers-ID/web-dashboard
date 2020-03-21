@@ -1,3 +1,5 @@
+<app-modalsuccess *ngIf="showmodalsuccess"></app-modalsuccess>
+<app-modalerror *ngIf="showmodalerror"></app-modalerror>
 <div class="col-md-12 ">
     <div class="card r-0 b-0">
         <div class="card-body">
@@ -12,8 +14,9 @@
                 <div class="col-3">
                     <h3>Cutt off time untuk collection</h3>
                 </div>
-                <div class="col-1">
-                    <select style="width: 100%;" class="form-control"  onfocus='this.size=10;' onblur='this.size=1;'  onchange='this.size=1; this.blur();'>
+                <div class="col-2">
+                    <select style="width: 100%;" class="form-control"  onfocus='this.size=10;' onblur='this.size=1;'  onchange='this.size=1; this.blur();' [formControl]="fchours">
+                        <option value="" [selected]="dateselected">Select</option>
                         <option value="00">00</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -40,8 +43,9 @@
                         <option value="23">23</option>
                     </select>
                 </div>
-                <div class="col-1">
-                    <select style="width: 100%;" class="form-control" onfocus='this.size=10;' onblur='this.size=1;'  onchange='this.size=1; this.blur();'>
+                <div class="col-2">
+                    <select style="width: 100%;" class="form-control" onfocus='this.size=10;' onblur='this.size=1;'  onchange='this.size=1; this.blur();' [formControl]="fcminutes">
+                        <option value="" [selected]="dateselected">Select</option>
                         <option value="00">00</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -107,7 +111,7 @@
                 <div class="col-12" style="position: absolute; bottom: 30px;">
                     <div class="row">
                         <div class="col-1">
-                            <button class="btn btn-primary" type="button">Save</button>
+                            <button class="btn btn-primary" type="button" (click)="savecutofftime()">Save</button>
                         </div>
                     </div>
                 </div>

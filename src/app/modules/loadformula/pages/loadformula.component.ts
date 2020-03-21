@@ -31,17 +31,19 @@ export class LoadformulaComponent implements OnInit {
   servicefix: FormControl;
   fcservicefee: FormControl;
   fcservicefix : FormControl;
+  fcformulaname: FormControl;
   constructor() {
-    this.fcminamount = new FormControl();
-    this.fcmaxamount = new FormControl();
-    this.fckelipatan = new FormControl();
-    this.fcmintenure = new FormControl();
-    this.fcmaxtenure = new FormControl();
-    this.fcdatetenure = new FormControl();
-    this.fcdateservicefee = new FormControl();
-    this.servicefee = new FormControl();
-    this.fcservicefee = new FormControl();
-    this.fcservicefix = new FormControl();
+    this.fcminamount = new FormControl('');
+    this.fcmaxamount = new FormControl('');
+    this.fckelipatan = new FormControl('');
+    this.fcmintenure = new FormControl('');
+    this.fcmaxtenure = new FormControl('');
+    this.fcdatetenure = new FormControl('');
+    this.fcdateservicefee = new FormControl('');
+    this.servicefee = new FormControl('');
+    this.fcservicefee = new FormControl('');
+    this.fcservicefix = new FormControl('');
+    this.fcformulaname = new FormControl('');
   }
 
   ngOnInit() {
@@ -191,6 +193,33 @@ export class LoadformulaComponent implements OnInit {
         }
     }
   }
-  saveloanformula(formulaname,minloanamount,maxloanamount,kelipatan,mintenure,maxtenure) {    
+  saveloanformula() {    
+    let dataobj = {
+      "id_koperasi": "1",
+      "formula_name": this.fcformulaname.value,
+      "min_loan_amount": {
+        "status": this.getminloanamount,
+        "value": this.fcminamount.value,
+      },
+      "max_loan_amount": {
+        "status": this.getmaxloanamount,
+        "value": this.fcmaxamount.value,
+      },
+      "kelipatan": {
+        "status": this.getkelipatan,
+        "value": this.fckelipatan.value,
+      },
+      "min_tenure": {
+        "status": this.getmintenure,
+        "value": this.fcminamount.value,
+        "date_range": this.fcdatetenure.value,
+      },
+      "max_tenure": {
+        "status": this.getmaxtenure,
+        "value": this.fcmaxtenure.value,
+        "date_range": this.fcdatetenure.value,
+      }
+    }
+    
   } 
 }

@@ -17,7 +17,7 @@
                             <h3>Formula Name</h3>
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" #formulaname>
+                            <input type="text" class="form-control" #formulaname [formControl]="fcformulaname">
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,8 @@
                         </div>
                         <div class="col-2">
                             <select style="width: 100%;" class="form-control" [formControl]="fcdatetenure">
-                                <option value="hari" [selected]="dateselected">Hari</option>
+                                <option value="" [selected]="dateselected">Select</option>
+                                <option value="hari">Hari</option>
                                 <option value="minggu">Minggu</option>
                                 <option value="bulan">Bulan</option>
                             </select>
@@ -139,7 +140,8 @@
                         </div>
                         <div class="col-2">
                             <select style="width: 100%;" class="form-control" [formControl]="fcdateservicefee">
-                                <option value="hari" [selected]="dateselected">Hari</option>
+                                <option value="" [selected]="dateselected">Select</option>
+                                <option value="hari">Hari</option>
                                 <option value="minggu">Minggu</option>
                                 <option value="bulan">Bulan</option>
                             </select>
@@ -201,7 +203,8 @@
                         </div>
                         <div class="col-2">
                             <select style="width: 100%;" class="form-control" >
-                                <option value="hari" [selected]="dateselected">Hari</option>
+                                <option value="" [selected]="dateselected">Select</option>
+                                <option value="hari">Hari</option>
                                 <option value="minggu">Minggu</option>
                                 <option value="bulan">Bulan</option>
                             </select>
@@ -257,7 +260,8 @@
                                 </div>
                                 <div class="col-2">
                                     <select style="width: 100%;" class="form-control" >
-                                        <option value="hari" [selected]="dateselected">Hari</option>
+                                        <option value="" [selected]="dateselected">Select</option>
+                                        <option value="hari">Hari</option>
                                         <option value="minggu">Minggu</option>
                                         <option value="bulan">Bulan</option>
                                     </select>
@@ -270,7 +274,7 @@
                     <div class="row justify-content-center">
                         <div class="col-3">
                             <button class="btn btn-primary w-100" type="button"
-                                (click)="saveloanformula(formulaname.value , minloanamount.value , maxloanamount.value , kelipatan.value , mintenure.value , maxtenure.value)">Save</button>
+                                (click)="saveloanformula()">Save</button>
                         </div>
                     </div>
                 </div>

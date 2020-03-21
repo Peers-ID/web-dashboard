@@ -66,7 +66,8 @@ export class LoginComponent implements OnInit {
                 fullname: data.data.user.fullname,
                 email: data.data.user.email,
                 token: data.data.token,
-                role: data.data.user.role
+                role: data.data.user.role,
+                koperasi_id: data.data.user.koperasi_id
                 // role: "Admin Koperasi"
               })
             );
@@ -140,7 +141,8 @@ export class LoginComponent implements OnInit {
                   fullname: data.data.user.fullname,
                   email: data.data.user.email,
                   token: data.data.token,
-                  role: data.data.user.role
+                  role: data.data.user.role,
+                  koperasi_id: data.data.user.koperasi_id
                   // role: "Admin Koperasi"
                 })
               );
