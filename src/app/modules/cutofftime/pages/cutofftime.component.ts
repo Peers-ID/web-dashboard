@@ -32,12 +32,13 @@ export class CutofftimeComponent implements OnInit {
     this.renderinitdata();
   }
   savecutofftime(){
-    this.apiservice.postcutofftime(this.fchours.value, this.fcminutes).subscribe(data=>{
+    this.apiservice.postcutofftime(this.fchours.value, this.fcminutes.value).subscribe(data=>{
       if (data["status"] === 201) {
+        this.showmodalsuccess = true;
         this.state.valuestatusmodal = {
           content: data["message"]
         };
-        this.showmodalsuccess = true;
+        
       } else {
         this.state.valuestatusmodal = {
           content: data["message"]
@@ -49,8 +50,11 @@ export class CutofftimeComponent implements OnInit {
 
   renderinitdata(){
     this.apiservice.getcutofftime().subscribe(data=>{
-      this.fchours.setValue(data.data[0].hours)
-      this.fcminutes.setValue(data.data[0].minutes)
+      this.fchours.setValue(this.pad(data.data[0].hours))
+      this.fcminutes.setValue(this.pad(data.data[0].minutes))      
     })
   }
+  pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
 }
