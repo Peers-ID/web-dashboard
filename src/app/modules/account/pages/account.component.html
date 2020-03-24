@@ -183,12 +183,16 @@
                                 <td style="font-size: 10pt;max-width: 200px;">{{data.fullname}}</td>
                                 <td style="font-size: 10pt;max-width: 350px;">
                                     <div class="col-10">
-                                        <div class="row justify-content-between">
-                                            <button id="id{{index}}" (click)="viewclick(data['id'])" class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">View Detail</button>
-                                    <button  *ngIf="data.status === 'inactive'" id="id{{index}}" (click)="reactiveclick(data['id'])"  class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">Reactive</button>
-                                    <button  *ngIf="data.status === 'active'" id="id{{index}}" (click)="deactiveclick(data['id'])"  class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">Deactive</button>
+                                        <div class="row justify-content-center">
+                                            <div class="col-8">
+                                                <div class="row justify-content-between">
+                                                    <button id="id{{index}}" (click)="viewclick(data['id'])" class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">View Detail</button>
+                                            <button  *ngIf="data.status === 'inactive'" id="id{{index}}" (click)="reactiveclick(data['id'])"  class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">Reactive</button>
+                                            <button  *ngIf="data.status === 'active'" id="id{{index}}" (click)="deactiveclick(data['id'])"  class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">Deactive</button>
+                                                </div>
+                                            </div> 
                                         </div>
-                                    </div>                                    
+                                    </div>                                   
                                 </td>
                             </tr>
                         </table>
