@@ -62,9 +62,11 @@ export class LoadformulaComponent implements OnInit {
     this.FieldsChange(null, 'renderinit');
     this.loopotherfee.push(this.indexincrement)
   }
-  addotherfee() {
-    this.indexincrement++;
-    this.loopotherfee.push(this.indexincrement)
+  addotherfee() {    
+      if ($("input[id=feevalueother"+[this.indexincrement]+"]").val() !== ''){
+        this.indexincrement++;
+        this.loopotherfee.push(this.indexincrement)
+      }
   }
   FieldsChange(values, data) {
     switch (data) {
