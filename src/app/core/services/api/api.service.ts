@@ -15,10 +15,10 @@ export class ApiService {
   constructor(private http: HttpClient,
     private router : Router
     ) { }
-  handleError(error: HttpErrorResponse){
-    if (error.statusText === 'Unauthorized'){
+  handleError(error: HttpErrorResponse){    
+    if (error.error.message['name'] === 'TokenExpiredError'){
       localStorage.removeItem('currentUser');
-      this.router.navigateByUrl('/login')
+      window.location.href = '/login'
     }
     return throwError(error);
     }
@@ -282,6 +282,12 @@ export class ApiService {
   getcutofftime(): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  postloanformula(formula): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan/formula';
+    return this.http.post(url, JSON.stringify(formula), this.options).pipe(
       catchError(this.handleError)
       );
   }

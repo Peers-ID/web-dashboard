@@ -17,7 +17,7 @@
                             <h3>Formula Name</h3>
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" #formulaname [formControl]="fcformulaname">
+                            <input type="text" class="form-control" #formulaname [formControl]="fcformulaname" >
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             Min Loan amount
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" #minloanamount [formControl]="fcminamount">
+                            <input type="number" class="form-control" #minloanamount [formControl]="fcminamount">
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                             Max Loan amount
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" #maxloanamount [formControl]="fcmaxamount">
+                            <input type="number" class="form-control" #maxloanamount [formControl]="fcmaxamount">
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                             Kelipatan
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" #kelipatan [formControl]="fckelipatan">
+                            <input type="number" class="form-control" #kelipatan [formControl]="fckelipatan">
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                             Min Tenure
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" #mintenure [formControl]="fcmintenure">
+                            <input type="number" class="form-control" #mintenure [formControl]="fcmintenure">
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                             Max Tenure
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" #maxtenure [formControl]="fcmaxtenure">
+                            <input type="number" class="form-control" #maxtenure [formControl]="fcmaxtenure">
                         </div>
                         <div class="col-2">
                             <select style="width: 100%;" class="form-control" [formControl]="fcdatetenure">
@@ -109,19 +109,6 @@
                         <div class="col-3">
                             Service Fee (%)
                         </div>
-                        <div class="col-3">
-                            <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control" [formControl]="fcservicefee"></div>
-                                <!-- <div class="col-3">Per</div> -->
-                            </div>
-                        </div>
-                        <!-- <div class="col-2">
-                                <select style="width: 100%;" class="form-control" [formControl]="fcdatefee">
-                                    <option value="hari" [selected]="dateselected">Hari</option>
-                                    <option value="minggu">Minggu</option>
-                                    <option value="bulan">Bulan</option>
-                                </select>
-                        </div> -->
                     </div>
                 </div>
                 <div class="col-12 mt-1">
@@ -134,7 +121,7 @@
                         </div>
                         <div class="col-3">
                             <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control" [formControl]="fcservicefix"></div>
+                                <div class="col-8"> <input type="number" class="form-control" [formControl]="fcservicevalue"></div>
                                 <div class="col-3">Per</div>
                             </div>
                         </div>
@@ -152,114 +139,56 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-3">
-                            <button class="btn btn-primary" type="button" (click)="addotherfee()">Add Other Fee</button>
+                            <button class="btn" type="button" (click)="addotherfee()" style="background-color: darkcyan; color: white;">Add Other Fee</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-1">
-                    <div class="row">
-                        <div class="col-4">
-                            Fee Name
-                        </div>
-                        <div class="col-3">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-1">
-                    <div class="row">
-                        <div class="col-1">
-                            <input type="radio" name="otherservice">
-                        </div>
-                        <div class="col-3">
-                            (%)
-                        </div>
-                        <div class="col-3">
-                            <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control"></div>
-                                <!-- <div class="col-3">Per</div> -->
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <!-- <select style="width: 100%;" class="form-control">
-                                <option value="dummy">dummy</option>
-                            </select> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-1">
-                    <div class="row">
-                        <div class="col-1">
-                            <input type="radio" name="otherservice">
-                        </div>
-                        <div class="col-3">
-                            (fix)
-                        </div>
-                        <div class="col-3">
-                            <div class="row">
-                                <div class="col-8"> <input type="text" class="form-control"></div>
-                                <div class="col-3">Per</div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <select style="width: 100%;" class="form-control" >
-                                <option value="" [selected]="dateselected">Select</option>
-                                <option value="hari">Hari</option>
-                                <option value="minggu">Minggu</option>
-                                <option value="bulan">Bulan</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-12">
-                    <div class="row" id="appendfee" *ngFor="let data of loopotherfee">
-                        <div class="col-12 mt-1">
+                    <div class="row" id="appendfee" *ngFor="let data of loopotherfee; let i = index">
+                        <div class="col-12 mt-1"                                                                                                                                                                                                                                                  >
                             <div class="row">
                                 <div class="col-4">
                                     Fee Name
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="feenameother{{i}}" value="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 mt-1">
                             <div class="row">
                                 <div class="col-1">
-                                    <input type="radio" name="otherservice">
+                                    <input type="radio" name="{{i}}" value="fee" (change)="changeradio()">
                                 </div>
                                 <div class="col-3">
                                     (%)
                                 </div>
-                                <div class="col-3">
+                                <!-- <div class="col-3">
                                     <div class="row">
-                                        <div class="col-8"> <input type="text" class="form-control"></div>
-                                        <!-- <div class="col-3">Per</div> -->
+                                        <div class="col-8"> <input type="number" class="form-control" id="fcfee{{i}}"></div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <!-- <select style="width: 100%;" class="form-control">
-                                        <option value="dummy">dummy</option>
-                                    </select> -->
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="col-12 mt-1">
                             <div class="row">
                                 <div class="col-1">
-                                    <input type="radio" name="otherservice">
+                                    <input type="radio" name="{{i}}" value="fix" (change)="changeradio()">
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3" >
                                     (fix)
                                 </div>
                                 <div class="col-3">
                                     <div class="row">
-                                        <div class="col-8"> <input type="text" class="form-control"></div>
+                                        <div class="col-8"><input type="number" class="form-control" id="feevalueother{{i}}" value="" disabled></div>
                                         <div class="col-3">Per</div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <select style="width: 100%;" class="form-control" >
+                                    <select style="width: 100%;" class="form-control" id="selectfeeother{{i}}" disabled>
                                         <option value="" [selected]="dateselected">Select</option>
                                         <option value="hari">Hari</option>
                                         <option value="minggu">Minggu</option>
@@ -270,11 +199,19 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-12 mt-1 mt-5">
                     <div class="row justify-content-center">
                         <div class="col-3">
-                            <button class="btn btn-primary w-100" type="button"
+                            <button class="btn w-100" type="button" style="background-color: darkcyan; color: white;"
                                 (click)="saveloanformula()">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-1 mt-2">
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                            <app-alerts *ngIf="trigeralerts" class="mt-5"></app-alerts>
                         </div>
                     </div>
                 </div>

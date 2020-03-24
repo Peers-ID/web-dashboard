@@ -30,7 +30,7 @@
         <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
             <div class="row justify-content-center">
                 <div class="col-3">
-                    <button type="button" class="btn btn-primary btn-block w-100"
+                    <button type="button" class="btn btn-block w-100" style="background-color: darkcyan; color: white;"
                         (click)="submitmodal(fullname.value,hp.value,email.value,birthday.value)">Submit</button>
                 </div>
             </div>
@@ -77,7 +77,7 @@
         <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;" *ngIf="showbuttonsava">
             <div class="row justify-content-center">
                 <div class="col-3">
-                    <button type="button" class="btn btn-primary btn-block w-100"
+                    <button type="button" class="btn btn-block w-100" style="background-color: darkcyan;color: white;"
                         (click)="savemodalview(fullname.value , hp.value , email.value,birthday.value)">Save</button>
                 </div>
             </div>
@@ -99,7 +99,7 @@
         <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
             <div class="row justify-content-center">
                 <div class="col-3">
-                    <button type="button" class="btn btn-primary btn-block w-100"
+                    <button type="button" class="btn btn-block w-100" style="background:darkcyan;color: white;"
                         (click)="savemodalreactive()">Save</button>
                 </div>
             </div>
@@ -121,7 +121,7 @@
         <div style="border:none;" class="col-12" style="background-color: grey; padding: 10px;">
             <div class="row justify-content-center">
                 <div class="col-3">
-                    <button type="button" class="btn btn-primary btn-block w-100"
+                    <button type="button" class="btn btn-block w-100" style="background: darkcyan; color: white;"
                         (click)="savemodaldeactive()">Save</button>
                 </div>
             </div>
@@ -140,96 +140,66 @@
 <div class="col-md-12 mt-2">
     <div class="card r-0 b-0">
         <div class="card-body" style="min-height: 59vh;">
-            <div class="row justify-content-between">
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-primary" (click)="createaccountmodal()"
-                        style="font-size: 10pt;">Create new
-                        account</button>
-                </div>
-                <div class="col-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="search..."
-                            (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault />
-                        <span class="input-group-append" (click)="searchclickdefault(searchdefault.value)">
-                            <span class="input-group-text add-on white">
-                                <i class="icon-search"></i>
+            <div class="col-12">
+                <div class="row justify-content-between">
+                    <div class="col-md-3">
+                        <button type="button" class="btn" (click)="createaccountmodal()"
+                            style="font-size: 10pt;background-color: darkcyan;color: white;">Create new
+                            account</button>
+                    </div>
+                    <div class="col-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="search..."
+                                (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault />
+                            <span class="input-group-append" (click)="searchclickdefault(searchdefault.value)">
+                                <span class="input-group-text add-on white">
+                                    <i class="icon-search"></i>
+                                </span>
                             </span>
-                        </span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-12 mt-5">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="row">
-                                        <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
-                                            <div class="row">
-                                                <div class="col-7 pt-3 text-right">NO</div>
-                                                <div class="col-5 pt-3 pl-0">
-                                                    <span class="icon-sort" (click)="sortinghandle('id')"></span>
-                                                </div>
-                                            </div>
+            </div>
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-10 mt-4">
+                        <table id="t01">
+                            <tr>
+                                <th style="font-size: 11pt;">No</th>
+                                <th style="font-size: 11pt;">Name <span class="icon-sort pl-2"
+                                        (click)="sortinghandle('name')"></span></th>
+                                <th style="font-size: 11pt;">
+                                    <div class="col-10">
+                                        <div class="row justify-content-center">
+                                            Action <span class="icon-sort pl-2"
+                                        (click)="sortinghandle('action')"></span>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr *ngFor="let data of dataloopdummy | paginate: {itemsPerPage: 10, currentPage: p}; let index = index"
+                                style="border-bottom: 2px solid #008fcc;">
+                                <td style="font-size: 10pt;">{{data.number}}</td>
+                                <td style="font-size: 10pt;max-width: 200px;">{{data.fullname}}</td>
+                                <td style="font-size: 10pt;max-width: 350px;">
+                                    <div class="col-10">
+                                        <div class="row justify-content-between">
+                                            <button id="id{{index}}" (click)="viewclick(data['id'])" class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">View Detail</button>
+                                    <button  *ngIf="data.status === 'inactive'" id="id{{index}}" (click)="reactiveclick(data['id'])"  class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">Reactive</button>
+                                    <button  *ngIf="data.status === 'active'" id="id{{index}}" (click)="deactiveclick(data['id'])"  class="btn" style="background-color: darkcyan; color: white;font-size: 10pt;">Deactive</button>
+                                        </div>
+                                    </div>                                    
+                                </td>
+                            </tr>
+                        </table>
 
-                                        </div>
-                                        <!-- <div class="col-12 p-1" style="border: 1px solid grey;">
-                                            <input type="text" class="form-control" placeholder="search..."
-                                                (keyup)="searchnavbar($event,'id' , searchid.value)" #searchid />
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="row">
-                                        <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
-                                            <div class="row">
-                                                <div class="col-7 text-right pt-3">Name</div>
-                                                <div class="col-5 pt-3 pl-0">
-                                                    <span class="icon-sort" (click)="sortinghandle('name')"></span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <!-- <div class="col-12 p-1" style="border: 1px solid grey;">
-                                            <input type="text" class="form-control" placeholder="search..."
-                                                (keyup)="searchnavbar($event,'name' , searchname.value)" #searchname />
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="row">
-                                        <div class="col-12 p-1" style="border: 1px solid grey;height: 60px;">
-                                            <div class="row">
-                                                <div class="col-12 pt-3 text-center">Action</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12"
-                                    *ngFor="let data of dataloopdummy | paginate: { itemsPerPage: 5, currentPage: p }; let index = index">
-                                    <div class="row">
-                                        <div class="col-4 p-4" style="border: 1px solid grey;">{{index +1}}</div>
-                                        <div class="col-4 p-4" style="border: 1px solid grey;">{{data.fullname}}</div>
-                                        <div class="col-4 p-4" style="border: 1px solid grey;">
-                                            <div class="row">
-                                                <button class="col-5 icon-rate_review"
-                                                    style="border: none; background: none; font-size: 25px;"
-                                                    type="button" id="id{{index}}" (click)="viewclick(data['id'])"></button>
-                                                <button class="col-6 btn btn-primary text-center p-2" type="button"
-                                                    id="id{{index}}" (click)="reactiveclick(data['id'])"
-                                                    style="font-size:8pt;" *ngIf="data.status === 'inactive'">Reactive</button>
-                                                <button class="col-6 btn btn-primary text-center p-2" type="button" *ngIf="data.status === 'active'"
-                                                    id="id{{index}}" (click)="deactiveclick(data['id'])"
-                                                    style="font-size: 8pt;">Deactive</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <pagination-controls (pageChange)="p = $event ; pageclick($event)">
-                                    </pagination-controls>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="col-3 text-center mt-5" *ngIf="dataloopdummy.length === 0">
+                        <h3>No data...</h3>
+                    </div>
+                    <div class="col-10 mt-2">
+                        <pagination-controls (pageChange)="p = $event ; pageclick($event)">
+                        </pagination-controls>
                     </div>
                 </div>
             </div>

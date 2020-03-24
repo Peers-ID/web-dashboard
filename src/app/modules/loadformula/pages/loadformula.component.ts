@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import * as $ from "jquery";
-import { FormControl } from '@angular/forms';
+import { FormControl} from '@angular/forms';
+import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
+import { ApiService } from "../../../core/services/api/api.service";
 @Component({
   selector: "app-loadformula",
   templateUrl: "./loadformula.component.html",
@@ -18,6 +20,7 @@ export class LoadformulaComponent implements OnInit {
   getmaxtenure: boolean = false;
   getservicefee: boolean = false;
   getservicefix: boolean = false;
+  getservicefeeother : boolean = false;
   fcminamount : FormControl;
   fcmaxamount : FormControl;
   fckelipatan : FormControl;
@@ -27,12 +30,17 @@ export class LoadformulaComponent implements OnInit {
   dateselected:boolean = true;
   fcdateservicefee : FormControl;
   loopotherfee = [];
-  servicefee: FormControl;
-  servicefix: FormControl;
-  fcservicefee: FormControl;
-  fcservicefix : FormControl;
   fcformulaname: FormControl;
-  constructor() {
+  objfeename:any;
+  objotherfee:any;
+  objotherfix:any;
+  dataobjformcontrol:object;
+  fcservicevalue:FormControl;
+  trigeralerts:boolean = false;
+  constructor(
+    private state: StatemanagementService,
+    private api : ApiService
+  ) {
     this.fcminamount = new FormControl('');
     this.fcmaxamount = new FormControl('');
     this.fckelipatan = new FormControl('');
@@ -40,10 +48,8 @@ export class LoadformulaComponent implements OnInit {
     this.fcmaxtenure = new FormControl('');
     this.fcdatetenure = new FormControl('');
     this.fcdateservicefee = new FormControl('');
-    this.servicefee = new FormControl('');
-    this.fcservicefee = new FormControl('');
-    this.fcservicefix = new FormControl('');
     this.fcformulaname = new FormControl('');
+    this.fcservicevalue = new FormControl('')
   }
 
   ngOnInit() {
@@ -54,6 +60,7 @@ export class LoadformulaComponent implements OnInit {
     }
     $("body").addClass("sidebar-collapse");
     this.FieldsChange(null, 'renderinit');
+    this.loopotherfee.push(this.indexincrement)
   }
   addotherfee() {
     this.indexincrement++;
@@ -123,27 +130,16 @@ export class LoadformulaComponent implements OnInit {
         break;
         case "servicefee":
           this.getservicefee = values.currentTarget.checked;
-          this.getservicefix = false;
           this.fcdateservicefee.enable();
-          if (this.getservicefee){
-            this.fcservicefee.enable();
-            this.fcservicefix.disable();
-          }else{
-            this.fcservicefee.disable();
-            this.fcservicefix.enable();
-          }
+          this.fcservicevalue.enable();
         break;
         case "servicefix":
-          this.getservicefee = false;
-          this.getservicefix = values.currentTarget.checked;
           this.fcdateservicefee.enable();
-          if (this.getservicefix){
-            this.fcservicefix.enable();
-            this.fcservicefee.disable();
-          }else{
-            this.fcservicefix.disable();
-            this.fcservicefee.enable();
-          }
+          this.fcservicevalue.enable();
+          this.getservicefix = values.currentTarget.checked;
+        break;
+        case "servicefeeother":
+          this.getservicefeeother = values.currentTarget.checked;
         break;
       case "renderinit":
         if (!this.getminloanamount){
@@ -177,49 +173,95 @@ export class LoadformulaComponent implements OnInit {
           this.fcdatetenure.enable();
         }
         if (!this.getservicefee || !this.getservicefix){
-          this.fcdateservicefee.disable();
+            this.fcdateservicefee.disable();
+            this.fcservicevalue.disable();
         }else{
+          this.fcservicevalue.enable()
           this.fcdateservicefee.enable();
         }
-        if (!this.getservicefee){
-          this.fcservicefee.disable();
-        }else{
-          this.fcservicefee.enable();
-        }
-        if (!this.getservicefix){
-          this.fcservicefix.disable();
-        }else{
-          this.fcservicefix.enable();
-        }
+        
     }
   }
-  saveloanformula() {    
-    let dataobj = {
-      "id_koperasi": "1",
-      "formula_name": this.fcformulaname.value,
-      "min_loan_amount": {
-        "status": this.getminloanamount,
-        "value": this.fcminamount.value,
-      },
-      "max_loan_amount": {
-        "status": this.getmaxloanamount,
-        "value": this.fcmaxamount.value,
-      },
-      "kelipatan": {
-        "status": this.getkelipatan,
-        "value": this.fckelipatan.value,
-      },
-      "min_tenure": {
-        "status": this.getmintenure,
-        "value": this.fcminamount.value,
-        "date_range": this.fcdatetenure.value,
-      },
-      "max_tenure": {
-        "status": this.getmaxtenure,
-        "value": this.fcmaxtenure.value,
-        "date_range": this.fcdatetenure.value,
+  saveloanformula() { 
+    if (!this.fcformulaname.value){
+      this.trigeralerts = true;
+      this.state.valuestatealerts = {
+        type: "danger",
+        content: 'Formula Name Cannot Null'
+      };
+      setTimeout(() => {
+        this.trigeralerts = false;
+      }, 3000);
+    }else{
+      let arrotherfee = [];
+      for(let i = 0; i<this.loopotherfee.length; i++ ){
+        let dataaddotherfee = {
+          "service_name" : $("input[id=feenameother"+[i]+"]").val(),
+          "service_type" : $("input[name="+[i]+"]:checked").val(),
+          "service_amount" : $("input[id=feevalueother"+[i]+"]").val(),
+          "service_cycle" : $( "#selectfeeother"+[i] ).val()        ,
+        }
+        arrotherfee.push(dataaddotherfee)
+      }  
+      let trigerpushother;
+        if (arrotherfee[0].service_name === ''){
+            trigerpushother = ''
+        }else{
+              trigerpushother = arrotherfee        
+        }
+        let valueservice;
+      if (!this.getminloanamount)    
+        this.fcminamount.setValue('')
+      if (!this.getmaxloanamount)
+        this.fcmaxamount.setValue('')
+      if (!this.getkelipatan)
+          this.fckelipatan.setValue('')
+      if (!this.getmintenure)
+          this.fcmintenure.setValue('')
+      if (!this.getmaxtenure)
+          this.fcmaxtenure.setValue('')
+      if (this.getservicefee && !this.getservicefix){
+        valueservice = 'fee'
+      }else if (!this.getservicefee && this.getservicefix){
+        valueservice = 'fix'
+      }else{
+        valueservice = ''
+      }    
+      let dataobj = {
+        "koperasi_id": JSON.parse(localStorage.getItem('currentUser')).koperasi_id,
+          "formula_name":this.fcformulaname.value,
+          "min_loan_amount": this.fcminamount.value,
+          "max_loan_amount": this.fcmaxamount.value,
+          "kelipatan": this.fckelipatan.value,
+          "min_tenure": this.fcmintenure.value,
+          "max_tenure": this.fcmaxtenure.value,
+          "tenure_cycle": this.fcdatetenure.value,
+          "service_type": valueservice,
+          "service_amount": this.fcservicevalue.value,
+          "service_cycle": this.fcdateservicefee.value,
+          "other_fee": trigerpushother
       }
+      this.api.postloanformula(dataobj).subscribe(data => {
+        if (data["status"] === 201) {
+          this.showsuccessmodal = true;
+          this.state.valuestatusmodal = {
+            content: data["message"]
+          };
+          
+        } else {
+          this.state.valuestatusmodal = {
+            content: data["message"]
+          };
+          this.showerrormodal = true;
+        }
+      })
     }
-    
+  }
+  changeradio(){
+    for(let i = 0; i<this.loopotherfee.length; i++ ){
+      if ($("input[name="+[i]+"]:checked").val() !== undefined || $("input[name="+[i]+"]:checked").val() !== '')
+        $('#selectfeeother'+[i]).removeAttr("disabled");
+        $('#feevalueother'+[i]).removeAttr("disabled");
+    }
   } 
 }

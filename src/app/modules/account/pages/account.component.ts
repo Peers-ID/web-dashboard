@@ -253,10 +253,14 @@ export class AccountComponent implements OnInit {
   loadData(pagepagination, pagenavbar, order) {
     this.dataloopdummy = [];
     this.apiservice.getaccountao().subscribe(data => {
-      data["data"].forEach(element => {
+      data["data"].forEach((element,index) => {
+        element['number'] = index + 1
         this.dataloopdummy.push(element);
       });
+      console.log(this.dataloopdummy);
     });
+
+    
   }
   searchnavbar(event, page, data) {
     if (event.key === "Enter") {
