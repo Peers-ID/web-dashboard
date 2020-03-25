@@ -63,7 +63,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-4 mb-4" style="border: 0.8px solid grey;"></div>
+                <div class="col-12 mt-2 mb-2">
+                    <hr style="height: 0.1px ; background: grey;">
+                </div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
@@ -100,11 +102,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-4 mb-4" style="border: 0.8px solid grey;"></div>
+                <div class="col-12 mt-2 mb-2">
+                    <hr style="height: 0.3px;background: grey;">
+                </div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio" name="serviceradio" (change)="FieldsChange($event,'servicefee')">
+                            <input type="radio" name="serviceradio" [checked]="getservicefee" (change)="FieldsChange($event,'servicefee')">
                         </div>
                         <div class="col-3">
                             Service Fee (%)
@@ -114,7 +118,7 @@
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-1">
-                            <input type="radio" name="serviceradio" (change)="FieldsChange($event,'servicefix')">
+                            <input type="radio" name="serviceradio" (change)="FieldsChange($event,'servicefix')" [checked]="getservicefix">
                         </div>
                         <div class="col-3">
                             Service Fix
@@ -135,7 +139,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-4 mb-4" style="border: 0.8px solid grey;"></div>
+                <div class="col-12 mt-2 mb-2">
+                    <hr style="height: 0.3px;background: grey;">
+                </div>
                 <div class="col-12 mt-1">
                     <div class="row">
                         <div class="col-3">
@@ -146,54 +152,61 @@
                 
                 <div class="col-12">
                     <div class="row" id="appendfee" *ngFor="let data of loopotherfee; let i = index">
-                        <div class="col-12 mt-1"                                                                                                                                                                                                                                                  >
+                        <div class="col-12" id="otherappend{{i}}">
                             <div class="row">
-                                <div class="col-4">
-                                    Fee Name
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" id="feenameother{{i}}" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-1">
-                            <div class="row">
-                                <div class="col-1">
-                                    <input type="radio" name="{{i}}" value="fee" (change)="changeradio()">
-                                </div>
-                                <div class="col-3">
-                                    (%)
-                                </div>
-                                <!-- <div class="col-3">
+                                <div class="col-12 mt-1"                                                                                                                                                                                                                                                  >
                                     <div class="row">
-                                        <div class="col-8"> <input type="number" class="form-control" id="fcfee{{i}}"></div>
+                                        <div class="col-4">
+                                            Fee Name
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" id="feenameother{{i}}" value="">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-2">
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="col-12 mt-1">
-                            <div class="row">
-                                <div class="col-1">
-                                    <input type="radio" name="{{i}}" value="fix" (change)="changeradio()">
-                                </div>
-                                <div class="col-3" >
-                                    (fix)
-                                </div>
-                                <div class="col-3">
+                                <div class="col-12 mt-1">
                                     <div class="row">
-                                        <div class="col-8"><input type="number" class="form-control" id="feevalueother{{i}}" value="" disabled></div>
-                                        <div class="col-3">Per</div>
+                                        <div class="col-1">
+                                            <input type="radio" name="{{i}}" value="fee" (change)="changeradio()"  id="othercheckfee{{i}}">
+                                        </div>
+                                        <div class="col-3">
+                                            (%)
+                                        </div>
+                                        <!-- <div class="col-3">
+                                            <div class="row">
+                                                <div class="col-8"> <input type="number" class="form-control" id="fcfee{{i}}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                        </div> -->
                                     </div>
                                 </div>
-                                <div class="col-2">
-                                    <select style="width: 100%;" class="form-control" id="selectfeeother{{i}}" disabled>
-                                        <option value="" [selected]="dateselected">Select</option>
-                                        <option value="hari">Hari</option>
-                                        <option value="minggu">Minggu</option>
-                                        <option value="bulan">Bulan</option>
-                                    </select>
+                                <div class="col-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <input type="radio" name="{{i}}" value="fix" (change)="changeradio()" id="othercheckfix{{i}}">
+                                        </div>
+                                        <div class="col-3" >
+                                            (fix)
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="row">
+                                                <div class="col-8"><input type="number" class="form-control" id="feevalueother{{i}}" value="" disabled></div>
+                                                <div class="col-3">Per</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <select style="width: 100%;" class="form-control" id="selectfeeother{{i}}" disabled>
+                                                <option value="" [selected]="dateselected">Select</option>
+                                                <option value="hari">Hari</option>
+                                                <option value="minggu">Minggu</option>
+                                                <option value="bulan">Bulan</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-2">
+                                            <!-- <button id="btn{{i}}" class="btn btn-danger" (click)="removeotherfee($event)">Remove</button> -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

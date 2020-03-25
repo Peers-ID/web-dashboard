@@ -16,8 +16,9 @@ export class ApiService {
     private router : Router
     ) { }
   handleError(error: HttpErrorResponse){    
-    if (error.error.message['name'] === 'TokenExpiredError'){
+    if (error.error.message['name'] === 'TokenExpiredError' || error.error.message['name'] === 'JsonWebTokenError'){
       localStorage.removeItem('currentUser');
+      localStorage.removeItem('koperasiData');
       window.location.href = '/login'
     }
     return throwError(error);
@@ -288,6 +289,18 @@ export class ApiService {
   postloanformula(formula): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/loan/formula';
     return this.http.post(url, JSON.stringify(formula), this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getloanformula(): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan/formula/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getotherfee(): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan/other_fee/'+JSON.parse(localStorage.getItem('koperasiData')).formula_id;
+    return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }

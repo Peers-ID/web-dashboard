@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   }
   signout(){
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('koperasiData');
     localStorage.clear();
     setTimeout(() => {
       this.router.navigate(['/login']);
