@@ -16,10 +16,11 @@ export class ApiService {
     private router : Router
     ) { }
   handleError(error: HttpErrorResponse){    
+
     if (error.error.message['name'] === 'TokenExpiredError' || error.error.message['name'] === 'JsonWebTokenError'){
       localStorage.removeItem('currentUser');
       localStorage.removeItem('koperasiData');
-      window.location.href = '/login'
+      window.location.href = window.location.origin
     }
     return throwError(error);
     }

@@ -32,5 +32,5 @@ export class HeaderComponent implements OnInit {
     }else{
       $("body").addClass("sidebar-collapse");
     }
-  }
+    }
 }

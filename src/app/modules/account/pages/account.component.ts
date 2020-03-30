@@ -143,8 +143,6 @@ export class AccountComponent implements OnInit {
     }
   }
   savemodalview(fullname, hp, email, birthday) {    
-    console.log(hp);
-    
     if (this.phonenumber(hp) === false) {
       this.trigeralerts = true;
       this.state.valuestatealerts = {
@@ -257,7 +255,6 @@ export class AccountComponent implements OnInit {
         element['number'] = index + 1
         this.dataloopdummy.push(element);
       });
-      console.log(this.dataloopdummy);
     });
 
     
