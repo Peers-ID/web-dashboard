@@ -36,11 +36,21 @@
                                         <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
+                                                    <input type="checkbox" disabled checked/>
+                                                </div>
+                                                <div class="col-5">
+                                                    No Handphone
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <div class="row">
+                                                <div class="col-1">
                                                     <input [checked]="getjenisidentitas"
                                                         (change)="FieldsChange($event,'jenisidentitas' , 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Jenis Identitas
                                                 </div>
                                                 <div class="col-2">
@@ -58,7 +68,7 @@
                                                     <input [checked]="getnoidentitas"
                                                         (change)="FieldsChange($event,'noidentitas' , 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     No Indentitas
                                                 </div>
                                             </div>
@@ -70,7 +80,7 @@
                                                         (change)="FieldsChange($event,'namalengkapsesuaiktp', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Nama Lengkap Sesuai KTP
                                                 </div>
 
@@ -83,7 +93,7 @@
                                                         (change)="FieldsChange($event,'tanggallahir', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Tanggal Lahir
                                                 </div>
 
@@ -96,7 +106,7 @@
                                                         (change)="FieldsChange($event,'jeniskelamin', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Jenis Kelamin
                                                 </div>
                                                 <div class="col-2">
@@ -114,7 +124,7 @@
                                                         (change)="FieldsChange($event,'namagadisibukandung', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Nama Gadis Ibu Kandung
                                                 </div>
 
@@ -127,7 +137,7 @@
                                                         (change)="FieldsChange($event,'statusperkawinan', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Status Perkawinan
                                                 </div>
                                                 <div class="col-2">
@@ -146,7 +156,7 @@
                                                         (change)="FieldsChange($event,'pendidikanterakhir', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Pendidikan Terakhir
                                                 </div>
                                                 <div class="col-2">
@@ -179,10 +189,9 @@
                                                     <input [checked]="getjalan" (change)="FieldsChange($event,'jalan', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat sesuai KTP : Jalan
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="col-12 mt-1">
@@ -191,7 +200,7 @@
                                                     <input [checked]="getnomer" (change)="FieldsChange($event,'nomer', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat sesuai KTP : Nomor
                                                 </div>
 
@@ -203,7 +212,7 @@
                                                     <input [checked]="getrt" (change)="FieldsChange($event,'rt', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat sesuai KTP : RT
                                                 </div>
 
@@ -215,8 +224,42 @@
                                                     <input [checked]="getrw" (change)="FieldsChange($event,'rw', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat sesuai KTP : RW
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <input [checked]="getprovinsi"
+                                                        (change)="FieldsChange($event,'provinsi', 'click' )" type="checkbox" />
+                                                </div>
+                                                <div class="col-5">
+                                                    Alamat sesuai KTP : Provinsi
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <input [checked]="getkota"
+                                                        (change)="FieldsChange($event,'kota', 'click' )" type="checkbox" />
+                                                </div>
+                                                <div class="col-5">
+                                                    Alamat sesuai KTP : Kota
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <input [checked]="getkecamatan"
+                                                        (change)="FieldsChange($event,'kecamatan', 'click' )" type="checkbox" />
+                                                </div>
+                                                <div class="col-5">
+                                                    Alamat sesuai KTP : Kecamatan
                                                 </div>
 
                                             </div>
@@ -227,20 +270,8 @@
                                                     <input [checked]="getkelurahan"
                                                         (change)="FieldsChange($event,'kelurahan', 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat sesuai KTP : Kelurahan
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <div class="row">
-                                                <div class="col-1">
-                                                    <input [checked]="getkecamatan"
-                                                        (change)="FieldsChange($event,'kecamatan', 'click' )" type="checkbox" />
-                                                </div>
-                                                <div class="col-4">
-                                                    Alamat sesuai KTP : Kecamatan
                                                 </div>
 
                                             </div>
@@ -252,12 +283,12 @@
                                                         (change)="FieldsChange($event,'statustempattinggalktp', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat sesuai KTP : Status Tempat Tinggal
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     <select style="width: 100%;" class="form-control-use">
-                                                        <option value="milikscenteriri">Milik Scenteriri</option>
+                                                        <option value="milikSendiri">Milik Sendiri</option>
                                                         <option value="milikkeluarga">Milik Keluarga</option>
                                                         <option value="rumahdinas">Rumah Dinas</option>
                                                         <option value="sewakotrak">Sewa / Kontrak</option>
@@ -273,10 +304,10 @@
                                                         (change)="FieldsChange($event,'lamatinggalktp', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat sesuai KTP : Lama Tinggal
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     <select style="width: 100%;" class="form-control-use">
                                                         <option value="bulan/tahun">xxx bulan / tahun</option>
                                                     </select>
@@ -290,10 +321,10 @@
                                                         (change)="FieldsChange($event,'apakahalamatsesuaidomisili', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Apakah alamat domisili sama dengan KTP ?
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     <select style="width: 100%;" class="form-control-use">
                                                         <option value="bulan/tahun">Ya / Tidak, jika ya langsung copy
                                                         </option>
@@ -308,7 +339,7 @@
                                                         (change)="FieldsChange($event,'domisilijalan', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat domisili : Jalan
                                                 </div>
 
@@ -321,7 +352,7 @@
                                                         (change)="FieldsChange($event,'domisilinomer', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat domisili : Nomor
                                                 </div>
 
@@ -333,7 +364,7 @@
                                                     <input [checked]="getdomisilirt"
                                                         (change)="FieldsChange($event,'domisilirt', 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat domisili : RT
                                                 </div>
 
@@ -345,7 +376,7 @@
                                                     <input [checked]="getdomisilirw"
                                                         (change)="FieldsChange($event,'domisilirw', 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat domisili : RW
                                                 </div>
 
@@ -354,12 +385,25 @@
                                         <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
-                                                    <input [checked]="getdomisilikelurahan"
-                                                        (change)="FieldsChange($event,'domisilikelurahan', 'click' )"
+                                                    <input [checked]="getdomisiliprovinsi"
+                                                        (change)="FieldsChange($event,'domisiliprovinsi', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
-                                                    Alamat domisili : Kelurahan
+                                                <div class="col-5">
+                                                    Alamat domisili : Provinsi
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <input [checked]="getdomisilikota"
+                                                        (change)="FieldsChange($event,'domisilikota', 'click' )"
+                                                        type="checkbox" />
+                                                </div>
+                                                <div class="col-5">
+                                                    Alamat domisili : Kota
                                                 </div>
 
                                             </div>
@@ -371,7 +415,7 @@
                                                         (change)="FieldsChange($event,'domisilikecamatan', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat domisili : Kecamatan
                                                 </div>
 
@@ -380,12 +424,12 @@
                                         <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
-                                                    <input [checked]="getkotaprovinsi"
-                                                        (change)="FieldsChange($event,'kotaprovinsi', 'click' )"
+                                                    <input [checked]="getdomisilikelurahan"
+                                                        (change)="FieldsChange($event,'domisilikelurahan', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
-                                                    Alamat domisili : Kota / Provinsi
+                                                <div class="col-5">
+                                                    Alamat domisili : Kelurahan
                                                 </div>
 
                                             </div>
@@ -397,12 +441,12 @@
                                                         (change)="FieldsChange($event,'statustempattinggal', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat domisili : Status Tempat Tinggal
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     <select style="width: 100%;" class="form-control-use">
-                                                        <option value="milikscenteriri">Milik Scenteriri</option>
+                                                        <option value="milikSendiri">Milik Sendiri</option>
                                                         <option value="milikkeluarga">Milik Keluarga</option>
                                                         <option value="rumahdinas">Rumah Dinas</option>
                                                         <option value="sewakontrak">Sewa / Kontrak</option>
@@ -417,10 +461,10 @@
                                                     <input [checked]="getlamatinggal"
                                                         (change)="FieldsChange($event,'lamatinggal', 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Alamat domisili : Lama Tinggal
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     <select style="width: 100%;" class="form-control-use">
                                                         <option value="bulan/tahun">xxx bulan / tahun</option>
                                                     </select>
@@ -445,7 +489,7 @@
                                                         (change)="FieldsChange($event,'memilikinpwp', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Memiliki NPWP
                                                     
                                                 </div>
@@ -463,7 +507,7 @@
                                                     <input [checked]="getnomernpwp"
                                                         (change)="FieldsChange($event,'nomernpwp', 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Nomor NPWP
                                                     
                                                 </div>
@@ -477,7 +521,7 @@
                                                         (change)="FieldsChange($event,'pekerjausaha', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Pekerjaan / Usaha
                                                 </div>
                                                 <div class="col-3">
@@ -500,11 +544,8 @@
                                                                 (change)="FieldsChange($event,'bidangpekerjaanusaha', 'click' )"
                                                                 type="checkbox" />
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-5">
                                                             Bidang Pekerjaan / Usaha
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <input type="text">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -515,11 +556,8 @@
                                                                 (change)="FieldsChange($event,'posisijabatan', 'click' )"
                                                                 type="checkbox" />
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-5">
                                                             Posisi / Jabatan
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <input type="text">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -530,11 +568,8 @@
                                                                 (change)="FieldsChange($event,'namaperusahaanusaha', 'click' )"
                                                                 type="checkbox" />
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-5">
                                                             Nama Perusahaan / Usaha
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <input type="text">
                                                         </div>
                                                         <div class="col-12 mt-1">
                                                             <div class="row">
@@ -543,7 +578,7 @@
                                                                         (change)="FieldsChange($event,'lamabekerjausaha', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-5">
                                                                     Lama Bekerja / Usaha
                                                                 </div>
                                                                 <div class="col-3">
@@ -561,11 +596,8 @@
                                                                         (change)="FieldsChange($event,'penghasilanomsetusaha', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-5">
                                                                     Penghasilan / Omset usaha
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -576,11 +608,8 @@
                                                                         (change)="FieldsChange($event,'alamatkantorjalan', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-5">
                                                                     Alamat Kantor : Jalan
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -591,11 +620,8 @@
                                                                         (change)="FieldsChange($event,'alamatkantornomer', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-5">
                                                                     Alamat Kantor : Nomor
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -606,11 +632,8 @@
                                                                         (change)="FieldsChange($event,'alamatkantorrt', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-5">
                                                                     Alamat Kantor : RT
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -621,26 +644,32 @@
                                                                         (change)="FieldsChange($event,'alamatkantorrw', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-5">
                                                                     Alamat Kantor : RW
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
-                                                                    <input [checked]="getalamatkantorkelurahan"
-                                                                        (change)="FieldsChange($event,'alamatkantorkelurahan', 'click' )"
+                                                                    <input [checked]="getalamatkantorprovinsi"
+                                                                        (change)="FieldsChange($event,'alamatkantorprovinsi', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
-                                                                    Alamat Kantor : Kelurahan
+                                                                <div class="col-5">
+                                                                    Alamat Kantor : Provinsi
                                                                 </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mt-1">
+                                                            <div class="row">
+                                                                <div class="col-1">
+                                                                    <input [checked]="getalamatkantorkota"
+                                                                        (change)="FieldsChange($event,'alamatkantorkota', 'click' )"
+                                                                        type="checkbox" />
+                                                                </div>
+                                                                <div class="col-5">
+                                                                    Alamat Kantor : Kota
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -651,26 +680,20 @@
                                                                         (change)="FieldsChange($event,'alamatkantorkecamatan', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-5">
                                                                     Alamat Kantor : Kecamatan
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 mt-1">
                                                             <div class="row">
                                                                 <div class="col-1">
-                                                                    <input [checked]="getalamatkantorkotaprovinsi"
-                                                                        (change)="FieldsChange($event,'alamatkantorkotaprovinsi', 'click' )"
+                                                                    <input [checked]="getalamatkantorkelurahan"
+                                                                        (change)="FieldsChange($event,'alamatkantorkelurahan', 'click' )"
                                                                         type="checkbox" />
                                                                 </div>
-                                                                <div class="col-4">
-                                                                    Alamat Kantor : Kota / Provinsi
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <input type="text">
+                                                                <div class="col-5">
+                                                                    Alamat Kantor : Kelurahan
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -695,10 +718,9 @@
                                                     <input [checked]="getnama" (change)="FieldsChange($event,'nama', 'click' )"
                                                         type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Nama
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="col-12 mt-1">
@@ -707,11 +729,9 @@
                                                     <input [checked]="getnohandphone"
                                                         (change)="FieldsChange($event,'nohandphone', 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     No Handphone
                                                 </div>
-
-
                                             </div>
                                         </div>
                                         <div class="col-12 mt-1">
@@ -720,7 +740,7 @@
                                                     <input [checked]="gethubungan"
                                                         (change)="FieldsChange($event,'hubungan', 'click' )" type="checkbox" />
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-5">
                                                     Hubungan
                                                 </div>
                                                 <div class="col-2">
