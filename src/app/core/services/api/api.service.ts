@@ -200,7 +200,7 @@ export class ApiService {
     status_perkawinan ,pendidikan_terakhir , alamat_ktp_jalan ,alamat_ktp_nomer,alamat_ktp_rt,alamat_ktp_rw,
     alamat_ktp_kelurahan,alamat_ktp_kecamatan,alamat_ktp_kota,alamat_ktp_provinsi,alamat_ktp_status_tempat_tinggal,alamat_ktp_lama_tinggal,domisili_sesuai_ktp,
     alamat_domisili_jalan,alamat_domisili_nomer,alamat_domisili_rt,alamat_domisili_rw,alamat_domisili_kelurahan,
-    alamat_domisili_kecamatan,alamat_domisili_kota,alamat_domisili_provinsi,alamat_domisili_status_tempat_tinggal,alamat_domisili_lama_tinggal,memiliki_npwp,
+    alamat_domisili_kecamatan,alamat_domisili_kota,alamat_domisili_provinsi,alamat_domisili_status_tempat_tinggal,alamat_domisili_lama_tempat_tinggal,memiliki_npwp,
     nomer_npwp , pekerja_usaha,bidang_pekerja,posisi_jabatan,nama_perusahaan,lama_bekerja,penghasilan_omset,alamat_kantor_jalan,
     alamat_kantor_nomer,alamat_kantor_rt,alamat_kantor_rw,alamat_kantor_kelurahan,alamat_kantor_kecamatan,alamat_kantor_kota,alamat_kantor_provinsi,
     nama,no_hp,hubungan){
@@ -236,7 +236,7 @@ export class ApiService {
     "alamat_domisili_kota": alamat_domisili_kota,
     "alamat_domisili_provinsi": alamat_domisili_provinsi,
     "alamat_domisili_status_tempat_tinggal": alamat_domisili_status_tempat_tinggal,
-    "alamat_domisili_lama_tinggal":alamat_domisili_lama_tinggal ,
+    "alamat_domisili_lama_tempat_tinggal":alamat_domisili_lama_tempat_tinggal ,
     "memiliki_npwp": memiliki_npwp,
     "nomer_npwp": nomer_npwp,
     "pekerja_usaha": pekerja_usaha, 
