@@ -17,9 +17,11 @@
                         </div>
                         <div class="col-3">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault/>
+                                <input type="text" class="form-control" placeholder="search..."
+                                    (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault />
                                 <span class="input-group-append">
-                                    <span class="input-group-text add-on white"  (click)="searchclickdefault(searchdefault.value)">
+                                    <span class="input-group-text add-on white"
+                                        (click)="searchclickdefault(searchdefault.value)">
                                         <i class="icon-search"></i>
                                     </span>
                                 </span>
@@ -27,151 +29,51 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-4 p-4 mb-0" >
+                <div class="col-12 mt-4 p-4 mb-0">
                     <div class="row">
-                        <div class="col-1">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
-                                    <div class="row">
-                                        <div class="col-7 text-right pt-3">NO</div>
-                                        <div class="col-5 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('no')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'no' , searchno.value)" #searchno/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey; height: 60px;">
-                                    <div class="row">
-                                        <div class="col-7  text-right pt-3">AO</div>
-                                        <div class="col-5 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('ao')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'ao' , searchao.value)" #searchao/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey;height: 60px;">
-                                    <div class="row">
-                                        <div class="col-8  text-right pt-3">Cost</div>
-                                        <div class="col-4 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('cost')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'cost' , searchcost.value)" #searchcost/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey;height: 60px;">
-                                    <div class="row">
-                                        <div class="col-8  text-right pt-3">Waktu</div>
-                                        <div class="col-4 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('waktu')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'waktu' , searchwaktu.value)" #searchwaktu/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey;height: 60px;">
-                                    <div class="row">
-                                        <div class="col-8  text-right pt-3">Jumlah</div>
-                                        <div class="col-4 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('jumlah')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'jumlah' , searchjumlah.value)" #searchjumlah/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey;height: 60px;">
-                                    <div class="row">
-                                        <div class="col-8  text-right pt-3">Cicilan Ke</div>
-                                        <div class="col-4 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('cicilanke')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'cicilanke' , searchcicilanke.value)" #searchcicilanke/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey;height: 60px;">
-                                    <div class="row">
-                                        <div class="col-8  text-right pt-3">Pokok</div>
-                                        <div class="col-4 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('pokok')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'pokok' , searchpokok.value)" #searchpokok/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-12 p-1" style="border: 1px solid grey;height: 60px;">
-                                    <div class="row">
-                                        <div class="col-8  text-right pt-3">Sukarela</div>
-                                        <div class="col-4 pl-0 pt-3">
-                                            <span class="icon-sort" (click)="sortinghandle('sukarela')"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-12 p-1" style="border: 1px solid grey;">
-                                        <input type="text" class="form-control" placeholder="search..." (keyup)="searchnavbar($event,'sukarela' , searchsukarela.value)" #searchsukarela/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" *ngFor="let dataloan of dataloopdummy | paginate: { itemsPerPage: 5, currentPage: p }; let index = index">
-                            <div class="row">
-                                <div class="col-1 p-4" style="border: 1px solid grey;">{{index + 1}}</div>
-                                <div class="col-1 p-4" style="border: 1px solid grey;">{{dataloan.ao}}</div>
-                                <div class="col-1 p-4" style="border: 1px solid grey;">{{dataloan.cost}}</div>
-                                <div class="col-1 p-4" style="border: 1px solid grey;">{{dataloan.waktu}}</div>
-                                <div class="col-2 p-4" style="border: 1px solid grey;">{{dataloan.jumlah}}</div>
-                                <div class="col-2 p-4" style="border: 1px solid grey;">{{dataloan.cicilanke}}</div>
-                                <div class="col-2 p-4" style="border: 1px solid grey;">{{dataloan.pokok}}</div>
-                                <div class="col-2 p-4" style="border: 1px solid grey;">{{dataloan.sukarela}}</div>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-2">
-                            <pagination-controls (pageChange)="p = $event ; pageclick($event)"></pagination-controls>
-                        </div>
+                        <table id="t01">
+                            <tr style="padding-right:0;">
+                                <th style="font-size: 11pt;">No</th>
+                                <th style="font-size: 11pt;width: 14%;">AO <span class="icon-sort pl-2"
+                                        (click)="sortinghandle('ao')"></span>
+                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                        style="font-size: 10pt;"></th>
+                                <th style="font-size: 11pt;width: 13%;">Cost<span class="icon-sort pl-2"
+                                        (click)="sortinghandle('cost')"></span>
+                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                        style="font-size: 10pt;"></th>
+                                <th style="font-size: 11pt;width: 13%;">Waktu<span class="icon-sort pl-2"
+                                        (click)="sortinghandle('waktu')"></span>
+                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                        style="font-size: 10pt;"></th>
+                                <th style="font-size: 11pt;width: 13%;">Jumlah<span class="icon-sort pl-2"
+                                        (click)="sortinghandle('jumlah')"></span>
+                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                        style="font-size: 10pt;"></th>
+                                <th style="font-size: 11pt;width: 13%;">Cicilan Ke<span class="icon-sort pl-2"
+                                        (click)="sortinghandle('cicilan')"></span>
+                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                        style="font-size: 10pt;"></th>
+                                <th style="font-size: 11pt;width: 13%;">Pokok<span class="icon-sort pl-2"
+                                        (click)="sortinghandle('pokok')"></span>
+                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                        style="font-size: 10pt;"></th>
+                                <th style="font-size: 11pt;width: 13%;">Sukarela<span class="icon-sort pl-2"
+                                        (click)="sortinghandle('sukarela')"></span>
+                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                        style="font-size: 10pt;"></th>
+                            </tr>
+                            <tr style="padding-right: 0;">
+                                <td>1.</td>
+                                <td>dummy</td>
+                                <td>dummy</td>
+                                <td>dummy</td>
+                                <td>dummy</td>
+                                <td>dummy</td>
+                                <td>dummy</td>
+                                <td>dummy</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

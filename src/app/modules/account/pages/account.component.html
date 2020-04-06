@@ -178,8 +178,8 @@
                                 </th>
                             </tr>
                             <tr *ngFor="let data of dataloopdummy | paginate: {itemsPerPage: 10, currentPage: p}; let index = index"
-                                style="border-bottom: 2px solid #008fcc;">
-                                <td style="font-size: 10pt;">{{data.number}}</td>
+                                style="border-bottom: 2px solid darkcyan;">
+                                <td style="font-size: 10pt;">{{data.number}}.</td>
                                 <td style="font-size: 10pt;max-width: 200px;">{{data.fullname}}</td>
                                 <td style="font-size: 10pt;max-width: 350px;">
                                     <div class="col-10">
@@ -196,7 +196,6 @@
                                 </td>
                             </tr>
                         </table>
-
                     </div>
                     <div class="col-3 text-center mt-5" *ngIf="dataloopdummy.length === 0">
                         <h3>No data...</h3>
