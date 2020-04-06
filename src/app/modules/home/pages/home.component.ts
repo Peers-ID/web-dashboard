@@ -17,11 +17,12 @@ export class HomeComponent implements OnInit {
   p: number = 1;
   isASC:boolean = false;
   pagecurrentvalue:number = 1;
+  loadingshow:boolean = false;
   constructor(
   ) { }
   ngOnInit() {
+    this.loadingshow = true
     this.showmodaltriger = false;
-   
     if (window.location.pathname.split('/')[1] !== 'peers'){
       this.titlepage = window.location.pathname.split('/')[1];
     }else{
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
 
       $("body").addClass("sidebar-collapse");
       this.loadData(this.pagecurrentvalue , 'all' , 'desc')
-
+      this.loadingshow = false
   }
   pageclick(event) {
     this.pagecurrentvalue = event;

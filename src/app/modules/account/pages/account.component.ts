@@ -24,6 +24,7 @@ export class AccountComponent implements OnInit {
   isASC: boolean = false;
   pagecurrentvalue: number = 1;
   showmodaldeactive: boolean = false;
+  loadingshow:boolean = false;
   constructor(
     private state: StatemanagementService,
     private apiservice: ApiService

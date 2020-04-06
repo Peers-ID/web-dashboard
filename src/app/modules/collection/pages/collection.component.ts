@@ -12,6 +12,7 @@ export class CollectionComponent implements OnInit {
   p: number = 1;
   isASC:boolean = false;
   pagecurrentvalue:number = 1;
+  loadingshow : boolean = false;
   constructor() { }
   ngOnInit() {
   
