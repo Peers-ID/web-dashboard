@@ -190,7 +190,7 @@ export class ApiService {
   }
 
   getalldatamember(){
-    const url = 'http://dev-api.peers.id/api/v1/member/config/' + JSON.parse(localStorage.getItem('currentUser')).userId;
+    const url = 'http://dev-api.peers.id/api/v1/member_config/' + JSON.parse(localStorage.getItem('currentUser')).userId;
     // const url = 'http://dev-api.peers.id/api/v1/member/config/3';
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
@@ -204,7 +204,7 @@ export class ApiService {
     nomer_npwp , pekerja_usaha,bidang_pekerja,posisi_jabatan,nama_perusahaan,lama_bekerja,penghasilan_omset,alamat_kantor_jalan,
     alamat_kantor_nomer,alamat_kantor_rt,alamat_kantor_rw,alamat_kantor_kelurahan,alamat_kantor_kecamatan,alamat_kantor_kota,alamat_kantor_provinsi,
     nama,no_hp,hubungan){
-    const url = 'http://dev-api.peers.id/api/v1/member/config'
+    const url = 'http://dev-api.peers.id/api/v1/member_config'
     let body = {
     "koperasi_id": koperasi_id,
 	  "member_handphone": 1,

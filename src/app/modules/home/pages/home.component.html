@@ -118,23 +118,23 @@
                                 <th style="font-size: 11pt;">No</th>
                                 <th style="font-size: 11pt;width: 14%;">AO <span class="icon-sort pl-2"
                                         (click)="sortinghandle('ao')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                    <input type="text"  placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
                                 <th style="font-size: 11pt;width: 13%;">Customer<span class="icon-sort pl-2"
                                         (click)="sortinghandle('custmomer')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                    <input type="text"  placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
                                 <th style="font-size: 11pt;width: 13%;">Tanggal<span class="icon-sort pl-2"
                                         (click)="sortinghandle('tanggal')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                    <input type="text"  placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
                                 <th style="font-size: 11pt;width: 13%;">Jumlah<span class="icon-sort pl-2"
                                         (click)="sortinghandle('jumlah')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                    <input type="text"  placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
                                 <th style="font-size: 11pt;width: 13%;">Tenor<span class="icon-sort pl-2"
                                         (click)="sortinghandle('tenor')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
+                                    <input type="text"  placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
                                 <th style="font-size: 11pt;" class="text-center">Action
                                 </th>
@@ -150,7 +150,7 @@
                                     <div class="col-12">
                                         <div class="row justify-content-center">
                                             <button class="btn mr-1" type="button"
-                                                style="background-color: darkcyan;color: white;font-size: 10pt;">View</button>
+                                                style="background-color: darkcyan;color: white;font-size: 10pt;" (click)="viewclick('1' , 'data')">View</button>
                                             <button class="btn mr-1" type="button"
                                                 style="background-color: darkcyan;color: white;font-size: 10pt;">Approve</button>
                                             <button class="btn mr-1" type="button"
