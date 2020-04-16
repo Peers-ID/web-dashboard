@@ -847,8 +847,8 @@
                                 </th>
                             </tr>
                             <tr style="border-bottom: 2px solid darkcyan; padding-right: 0;"
-                                *ngFor="let data of dataloanaplication; let i = index">
-                                <td>{{i+1}}.</td>
+                                *ngFor="let data of dataloanaplication| paginate: {itemsPerPage: 10, currentPage: p , totalItems: totalpage,maxSize:9}">
+                                <td>{{data.number}}.</td>
                                 <td>{{data.ao_name}}</td>
                                 <td>{{data.member_name}}</td>
                                 <td>{{data.createdAt | slice : 0 : 10}}</td>
@@ -869,6 +869,10 @@
                                 </td>
                             </tr>
                         </table>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <pagination-controls (pageChange)="p = $event ; pageclick($event)">
+                        </pagination-controls>
                     </div>
                 </div>
             </div>

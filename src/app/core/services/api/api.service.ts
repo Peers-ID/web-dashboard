@@ -312,7 +312,7 @@ export class ApiService {
       );
   }
   getloanapilcation(pagepagination,pagenavbar,order): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan_koperasi/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'?page='+pagepagination+'&row=10&column='+pagenavbar+'&sort='+order+'&status=0';
+    const url = 'http://dev-api.peers.id/api/v1/loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&sort='+order+'&status=0';
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -338,6 +338,21 @@ export class ApiService {
   getstatusloanapplication(idmember , statusapprove): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/loan_approval/'+idmember+'/'+statusapprove;
     return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getcollection(idmember , statusapprove): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan_approval/'+idmember+'/'+statusapprove;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  postkoperasiwithimage(formDataall): Observable<any> {
+    const HttpUploadOptions = {
+      headers: new HttpHeaders({'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token}), 
+    }
+    const url = 'http://dev-api.peers.id/api/v1/koperasi';
+    return this.http.post(url, formDataall, HttpUploadOptions).pipe(
       catchError(this.handleError)
       );
   }

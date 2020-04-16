@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit {
   statusmemberloan : number;
   showmodalerror: boolean = false;
   showmodalsuccess: boolean = false;
-  constructor(private api: ApiService, private state: StatemanagementService) {}
+  totalpage:number;
+  constructor(private api: ApiService, private state: StatemanagementService) {
+  }
   ngOnInit() {
     this.showmodaltriger = false;
     if (window.location.pathname.split("/")[1] !== "peers") {
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit {
   }
   pageclick(event) {
     this.pagecurrentvalue = event;
+    this.loadData(this.pagecurrentvalue, "createdAt", "desc");
   }
   viewclick(idloan, idmember) {
     this.api.getviewloanapilcation(idloan).subscribe((data) => {
@@ -143,11 +146,15 @@ export class HomeComponent implements OnInit {
     this.api
       .getloanapilcation(pagepagination, pagenavbar, order)
       .subscribe((data) => {
-        this.dataloanaplication = [];
+      this.totalpage = data.message.total
+      let datanumber = ((pagepagination - 1) * data.data.length) + 1
+      this.dataloanaplication = [];
         data["data"].forEach((element, index) => {
+          element['number'] = datanumber++;
           this.dataloanaplication.push(element);
         });
       });
+      
   }
   searchnavbar(event, page, data) {
     if (event.key === "Enter") {
