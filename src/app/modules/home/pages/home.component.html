@@ -847,7 +847,7 @@
                                 </th>
                             </tr>
                             <tr style="border-bottom: 2px solid darkcyan; padding-right: 0;"
-                                *ngFor="let data of dataloanaplication| paginate: {itemsPerPage: 10, currentPage: p , totalItems: totalpage,maxSize:9}">
+                                *ngFor="let data of dataloanaplication| paginate: {itemsPerPage: 10, currentPage: p , totalItems: totalpage}">
                                 <td>{{data.number}}.</td>
                                 <td>{{data.ao_name}}</td>
                                 <td>{{data.member_name}}</td>
