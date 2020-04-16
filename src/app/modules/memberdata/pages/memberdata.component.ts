@@ -16,6 +16,7 @@ export class MemberdataComponent implements OnInit {
   getnoidentitas: boolean = false;
   getnamalengkapsesuaiktp: boolean = false;
   gettanggallahir: boolean = false;
+  gettempatlahir:boolean = false;
   getjeniskelamin: boolean = false;
   getnamagadisibukandung: boolean = false;
   getstatusperkawinan: boolean = false;
@@ -85,6 +86,9 @@ export class MemberdataComponent implements OnInit {
         break;
       case "tanggallahir":
         this.gettanggallahir = values.currentTarget.checked;
+        break;
+        case "tempatlahir":
+        this.gettempatlahir = values.currentTarget.checked;
         break;
       case "jeniskelamin":
         this.getjeniskelamin = values.currentTarget.checked;
@@ -223,6 +227,7 @@ export class MemberdataComponent implements OnInit {
         this.getnoidentitas = false;
         this.getnamalengkapsesuaiktp = false;
         this.gettanggallahir = false;
+        this.gettempatlahir = false;
         this.getjeniskelamin = false;
         this.getnamagadisibukandung = false;
         this.getstatusperkawinan = false;
@@ -275,6 +280,7 @@ export class MemberdataComponent implements OnInit {
           ? true
           : false;
         this.gettanggallahir = datagetres[0].tanggal_lahir ? true : false;
+        this.gettempatlahir = datagetres[0].tanggal_lahir ? true : false;
         this.getjeniskelamin = datagetres[0].jenis_kelamin ? true : false;
         this.getnamagadisibukandung = datagetres[0].nama_gadis_ibu
           ? true
@@ -378,6 +384,7 @@ export class MemberdataComponent implements OnInit {
         this.getnoidentitas ? 1 : 0,
         this.getnamalengkapsesuaiktp ? 1 : 0,
         this.gettanggallahir ? 1 : 0,
+        this.gettempatlahir ? 1 : 0,
         this.getjeniskelamin ? 1 : 0,
         this.getnamagadisibukandung ? 1 : 0,
         this.getstatusperkawinan ? 1 : 0,

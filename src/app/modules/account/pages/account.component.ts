@@ -46,8 +46,21 @@ export class AccountComponent implements OnInit {
   createaccountmodal() {
     this.showmodalcreate = true;
   }
-  closemodal() {
-    window.location.reload();
+  closemodaldialog(modal){
+    switch(modal) {
+      case 'ao':
+        this.showmodalcreate = false
+        break;
+      case 'view': 
+        this.showmodalview = false
+        break;
+        case 'reactive': 
+        this.showmodalreactive = false;
+        break;
+        case 'deactive': 
+        this.showmodaldeactive = false;
+        break;
+    }  
   }
   submitmodal(fullname, hp, email, birthday) {
     if (fullname === "" || hp === "" || email === "" || birthday === "") {

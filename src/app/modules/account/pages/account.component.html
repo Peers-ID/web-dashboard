@@ -3,7 +3,7 @@
     <div class="modal-content" style="margin-top: 10%;">
         <div class="modal-header" style="border: none;">
             <h3 class="modal-title" style="border: none;">Create Account AO</h3>
-            <button type="button" class="close" (click)="closemodal()">
+            <button type="button" class="close" (click)="closemodaldialog('ao')">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -41,8 +41,8 @@
 <app-modalpopup *ngIf="showmodalview">
     <div class="modal-content" style="margin-top: 10%;">
         <div class="modal-header" style="border: none;">
-            <button class="btn btn-primary" type="button" (click)="editmodal()">Edit</button>
-            <button type="button" class="close" (click)="closemodal()">
+            <button class="btn" type="button" (click)="editmodal()" style="background: darkcyan;color: white;">Edit</button>
+            <button type="button" class="close" (click)="closemodaldialog('view')">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -88,7 +88,7 @@
 <app-modalpopup *ngIf="showmodalreactive">
     <div class="modal-content" style="margin-top: 10%;">
         <div class="modal-header" style="border: none;">
-            <button type="button" class="close" (click)="closemodal()">
+            <button type="button" class="close" (click)="closemodaldialog('reactive')">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -110,7 +110,7 @@
 <app-modalpopup *ngIf="showmodaldeactive">
     <div class="modal-content" style="margin-top: 10%;">
         <div class="modal-header" style="border: none;">
-            <button type="button" class="close" (click)="closemodal()">
+            <button type="button" class="close" (click)="closemodaldialog('deactive')">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>

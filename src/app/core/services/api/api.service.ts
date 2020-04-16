@@ -196,7 +196,7 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
-  postalldatamember(koperasi_id , jenis_identitas ,no_identitas, nama_lengkap , tanggal_lahir , jenis_kelamin , nama_gadis_ibu,
+  postalldatamember(koperasi_id , jenis_identitas ,no_identitas, nama_lengkap , tanggal_lahir , tempat_lahir, jenis_kelamin , nama_gadis_ibu,
     status_perkawinan ,pendidikan_terakhir , alamat_ktp_jalan ,alamat_ktp_nomer,alamat_ktp_rt,alamat_ktp_rw,
     alamat_ktp_kelurahan,alamat_ktp_kecamatan,alamat_ktp_kota,alamat_ktp_provinsi,alamat_ktp_status_tempat_tinggal,alamat_ktp_lama_tinggal,domisili_sesuai_ktp,
     alamat_domisili_jalan,alamat_domisili_nomer,alamat_domisili_rt,alamat_domisili_rw,alamat_domisili_kelurahan,
@@ -212,6 +212,7 @@ export class ApiService {
     "no_identitas": no_identitas,
     "nama_lengkap": nama_lengkap,
     "tanggal_lahir": tanggal_lahir,
+    "tempat_lahir":tempat_lahir,
     "jenis_kelamin": jenis_kelamin,
     "nama_gadis_ibu": nama_gadis_ibu,
     "status_perkawinan": status_perkawinan,
@@ -306,6 +307,36 @@ export class ApiService {
   }
   getotherfee(): Observable<any> {
     const url = 'http://dev-api.peers.id/api/v1/loan/other_fee/'+JSON.parse(localStorage.getItem('koperasiData')).formula_id;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getloanapilcation(pagepagination,pagenavbar,order): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan_koperasi/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'?page='+pagepagination+'&row=10&column='+pagenavbar+'&sort='+order+'&status=0';
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getviewloanapilcation(idloan): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan/'+idloan;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getviewmemberloanapilcation(idmember): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/member/'+idmember;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  gethistoryloanapilcation(status,idmember): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan?status='+status+'&member_id='+idmember;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getstatusloanapplication(idmember , statusapprove): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/loan_approval/'+idmember+'/'+statusapprove;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );

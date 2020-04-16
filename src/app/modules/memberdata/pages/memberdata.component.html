@@ -102,6 +102,19 @@
                                         <div class="col-12 mt-1">
                                             <div class="row">
                                                 <div class="col-1">
+                                                    <input [checked]="gettempatlahir"
+                                                        (change)="FieldsChange($event,'tempatlahir', 'click' )"
+                                                        type="checkbox" />
+                                                </div>
+                                                <div class="col-5">
+                                                    Tempat Lahir
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <div class="row">
+                                                <div class="col-1">
                                                     <input [checked]="getjeniskelamin"
                                                         (change)="FieldsChange($event,'jeniskelamin', 'click' )"
                                                         type="checkbox" />
