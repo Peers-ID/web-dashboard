@@ -869,8 +869,11 @@
                                 </td>
                             </tr>
                         </table>
+                        <div class="col-12 mt-5 text-center" *ngIf="dataloanaplication.length === 0">
+                            <h3>Tidak ada data...</h3>
+                        </div>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-2" *ngIf="dataloanaplication.length > 0">
                         <pagination-controls (pageChange)="p = $event ; pageclick($event)">
                         </pagination-controls>
                     </div>

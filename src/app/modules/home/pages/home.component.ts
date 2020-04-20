@@ -154,7 +154,7 @@ export class HomeComponent implements OnInit {
           this.dataloanaplication.push(element);
         });
       });
-      
+
   }
   searchnavbar(event, page, data) {
     if (event.key === "Enter") {

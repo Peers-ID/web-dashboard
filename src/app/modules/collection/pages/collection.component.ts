@@ -15,6 +15,7 @@ export class CollectionComponent implements OnInit {
   pagecurrentvalue:number = 1;
   loadingshow : boolean = false;
   totalpage:number;
+  datatoday:any;
   constructor(
     private state: StatemanagementService,
     private apiservice: ApiService
@@ -54,8 +55,9 @@ export class CollectionComponent implements OnInit {
     this.loadData(this.pagecurrentvalue,page,sort)
   }
   loadData(pagepagination,pagenavbar,order){
+    let gettoday = new Date().toDateString()
+    this.datatoday = gettoday;
     this.apiservice.gettablecollection(pagepagination,pagenavbar,order).subscribe(data => {
-      if (data['data'].length > 0){
         // this.totalpage = data.message.total
         let datanumber = ((pagepagination - 1) * data.data.length) + 1
         this.datacollection = [];
@@ -63,9 +65,6 @@ export class CollectionComponent implements OnInit {
           element['number'] = datanumber++;
           this.datacollection.push(element)   
         });
-      }else{
-        console.log('tidak ada data===');
-      }
     })
   }
   searchnavbar(event,page , data){
