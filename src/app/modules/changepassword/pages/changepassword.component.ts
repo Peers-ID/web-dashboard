@@ -24,7 +24,7 @@ export class ChangepasswordComponent implements OnInit {
     }else{
       this.titlepage = window.location.pathname.split('/')[2];
     }    
-    $("body").addClass("sidebar-collapse");
+    // $("body").addClass("sidebar-collapse");
 
   }
   submit(passwordlama, passwordbaru, ulangipassword){

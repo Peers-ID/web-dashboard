@@ -69,7 +69,7 @@ export class MemberdataComponent implements OnInit {
     } else {
       this.titlepage = window.location.pathname.split("/")[2];
     }
-    $("body").addClass("sidebar-collapse");
+    // $("body").addClass("sidebar-collapse");
     this.getdatamemberinit();
   }
 

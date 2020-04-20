@@ -27,7 +27,7 @@ export class ApprovalconfigComponent implements OnInit {
     }else{
       this.titlepage = window.location.pathname.split('/')[2];
     }    
-    $("body").addClass("sidebar-collapse");
+    // $("body").addClass("sidebar-collapse");
     this.apiservice.getapprovalconfig().subscribe(data => {
       if (data['data'].length > 0){
         this.getapprovalconfig = data['data'][0].ao_can_approved ? true : false;

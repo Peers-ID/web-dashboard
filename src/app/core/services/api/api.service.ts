@@ -356,4 +356,10 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
+  gettablecollection(page,column,sort): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/collection?page='+page+'&row=10&column='+column+'&sort='+sort;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
 }

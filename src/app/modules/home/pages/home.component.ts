@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
   trigernodatamember: boolean = false;
   trigernodataloan: boolean = false;
   p: number = 1;
-  isASC: boolean = false;
   pagecurrentvalue: number = 1;
+  isASC: boolean = false;
   loadingshow: boolean = false;
   loandataget: any;
   loandatamemberget: any;
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.titlepage = window.location.pathname.split("/")[2];
     }
-    $("body").addClass("sidebar-collapse");
+    // $("body").addClass("sidebar-collapse");
     this.loadData(this.pagecurrentvalue, "createdAt", "desc");
   }
   pageclick(event) {

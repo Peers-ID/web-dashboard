@@ -62,7 +62,7 @@ export class KoperasiComponent implements OnInit {
     } else {
       this.titlepage = window.location.pathname.split("/")[2];
     }
-    $("body").addClass("sidebar-collapse");
+    // $("body").addClass("sidebar-collapse");
   }
   processFile(event) {
     // this.form.patchValue({

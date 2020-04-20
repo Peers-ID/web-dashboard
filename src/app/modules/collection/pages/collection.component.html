@@ -63,18 +63,23 @@
                                     <input type="text" name="" id="" placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
                             </tr>
-                            <tr style="padding-right: 0;">
-                                <td>1.</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
+                            <tr style="border-bottom: 2px solid darkcyan; padding-right: 0;"
+                                *ngFor="let data of datacollection| paginate: {itemsPerPage: 10, currentPage: p , totalItems: 10}">
+                                <td>{{data.number}}.</td>
+                                <td>{{data.ao_name}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{data.cicilan_jumlah}}</td>
+                                <td>{{data.cicilan_ke}}</td>
+                                <td>{{data.pokok}}</td>
+                                <td>{{data.sukarela}}</td>
                             </tr>
                         </table>
                     </div>
+                </div>
+                <div class="col-12 mt-2">
+                    <pagination-controls (pageChange)="p = $event ; pageclick($event)">
+                    </pagination-controls>
                 </div>
             </div>
         </div>

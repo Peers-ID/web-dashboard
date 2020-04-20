@@ -56,7 +56,7 @@ export class LoadformulaComponent implements OnInit {
     } else {
       this.titlepage = window.location.pathname.split("/")[2];
     }
-    $("body").addClass("sidebar-collapse");
+    // $("body").addClass("sidebar-collapse");
     this.FieldsChange(null, "renderinit");
     this.loopotherfee.push(this.indexincrement);
     this.renderinitdata();

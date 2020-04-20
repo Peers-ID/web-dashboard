@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-
+import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
+import { ApiService } from "../../../core/services/api/api.service";
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
@@ -8,12 +9,16 @@ import * as $ from 'jquery';
 })
 export class CollectionComponent implements OnInit {
   titlepage: string;
-  dataloopdummy = [];
+  datacollection = [];
   p: number = 1;
   isASC:boolean = false;
   pagecurrentvalue:number = 1;
   loadingshow : boolean = false;
-  constructor() { }
+  totalpage:number;
+  constructor(
+    private state: StatemanagementService,
+    private apiservice: ApiService
+  ) { }
   ngOnInit() {
   
     if (window.location.pathname.split('/')[1] !== 'peers'){
@@ -21,9 +26,7 @@ export class CollectionComponent implements OnInit {
     }else{
       this.titlepage = window.location.pathname.split('/')[2];
     }    
-  
-      $("body").addClass("sidebar-collapse");
-      this.loadData(this.pagecurrentvalue , 'all' , 'desc')
+      this.loadData(this.pagecurrentvalue , 'createdAt' , 'desc')
 
   }
   pageclick(event) {
@@ -50,19 +53,19 @@ export class CollectionComponent implements OnInit {
     this.loadData(this.pagecurrentvalue,page,sort)
   }
   loadData(pagepagination,pagenavbar,order){
-    this.dataloopdummy = [];
-    let dataobjloop = {
-      'ao': 'ao1',
-      'cost': 'data dummy',
-      'waktu': 'data dummy',
-      'jumlah': 'data dummy',
-      'cicilanke': 'data dummy',
-      'pokok': 'data dummy',
-      'sukarela': 'data dummy'
-    }
-    for (let i = 0; i < 10; i++) {
-      this.dataloopdummy.push(dataobjloop)
-    }
+    this.datacollection = [];
+    this.apiservice.gettablecollection(pagepagination,pagenavbar,order).subscribe(data => {
+      if (data['data'].length > 0){
+        // this.totalpage = data.message.total
+        let datanumber = ((pagepagination - 1) * data.data.length) + 1
+        data['data'].forEach(element => {
+          element['number'] = datanumber++;
+          this.datacollection.push(element)   
+        });
+      }else{
+        console.log('tidak ada data===');
+      }
+    })
   }
   searchnavbar(event,page , data){
     if (event.key === "Enter") {
