@@ -269,10 +269,10 @@ export class AccountComponent implements OnInit {
       this.totalpage = data.message.total
       let datanumber = ((pagepagination - 1) * data.data.length) + 1
       this.dataloopdummy = [];
-      // data["data"].forEach((element,index) => {
-      //   element['number'] = datanumber++;
-      //   this.dataloopdummy.push(element);
-      // });
+      data["data"].forEach((element,index) => {
+        element['number'] = datanumber++;
+        this.dataloopdummy.push(element);
+      });
     });
 
     
