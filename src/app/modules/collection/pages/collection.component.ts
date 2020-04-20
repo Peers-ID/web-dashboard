@@ -31,6 +31,7 @@ export class CollectionComponent implements OnInit {
   }
   pageclick(event) {
     this.pagecurrentvalue = event;
+    this.loadData(this.pagecurrentvalue, "createdAt", "desc");
   }
   viewclick() {
     
@@ -53,11 +54,11 @@ export class CollectionComponent implements OnInit {
     this.loadData(this.pagecurrentvalue,page,sort)
   }
   loadData(pagepagination,pagenavbar,order){
-    this.datacollection = [];
     this.apiservice.gettablecollection(pagepagination,pagenavbar,order).subscribe(data => {
       if (data['data'].length > 0){
         // this.totalpage = data.message.total
         let datanumber = ((pagepagination - 1) * data.data.length) + 1
+        this.datacollection = [];
         data['data'].forEach(element => {
           element['number'] = datanumber++;
           this.datacollection.push(element)   

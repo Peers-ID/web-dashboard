@@ -38,7 +38,7 @@
                                         (click)="sortinghandle('ao')"></span>
                                     <input type="text" name="" id="" placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
-                                <th style="font-size: 11pt;width: 13%;">Cost<span class="icon-sort pl-2"
+                                <th style="font-size: 11pt;width: 13%;">Member Name<span class="icon-sort pl-2"
                                         (click)="sortinghandle('cost')"></span>
                                     <input type="text" name="" id="" placeholder="search" class="form-control w-100"
                                         style="font-size: 10pt;"></th>
@@ -67,8 +67,8 @@
                                 *ngFor="let data of datacollection| paginate: {itemsPerPage: 10, currentPage: p , totalItems: 10}">
                                 <td>{{data.number}}.</td>
                                 <td>{{data.ao_name}}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{data.member_name}}</td>
+                                <td>{{data.createdAt | slice : 0 : 10}}</td>
                                 <td>{{data.cicilan_jumlah}}</td>
                                 <td>{{data.cicilan_ke}}</td>
                                 <td>{{data.pokok}}</td>

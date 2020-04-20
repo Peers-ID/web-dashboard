@@ -25,6 +25,7 @@ export class AccountComponent implements OnInit {
   pagecurrentvalue: number = 1;
   showmodaldeactive: boolean = false;
   loadingshow:boolean = false;
+  totalpage:number;
   constructor(
     private state: StatemanagementService,
     private apiservice: ApiService
@@ -41,7 +42,7 @@ export class AccountComponent implements OnInit {
       this.titlepage = window.location.pathname.split("/")[2];
     }
     // $("body").addClass("sidebar-collapse");
-    this.loadData(this.pagecurrentvalue, "all", "desc");
+    this.loadData(this.pagecurrentvalue, "createdAt", "desc");
   }
   createaccountmodal() {
     this.showmodalcreate = true;
@@ -115,6 +116,7 @@ export class AccountComponent implements OnInit {
   }
   pageclick(event) {
     this.pagecurrentvalue = event;
+    this.loadData(this.pagecurrentvalue, "createdAt", "desc");
   }
   viewclick(idao) {
     this.showmodalview = true;
@@ -264,9 +266,11 @@ export class AccountComponent implements OnInit {
 
   loadData(pagepagination, pagenavbar, order) {
     this.dataloopdummy = [];
-    this.apiservice.getaccountao().subscribe(data => {
+    this.apiservice.getaccountao(pagepagination, pagenavbar, order).subscribe(data => {
+      this.totalpage = data.message.total
+      let datanumber = ((pagepagination - 1) * data.data.length) + 1
       data["data"].forEach((element,index) => {
-        element['number'] = index + 1
+        element['number'] = datanumber++;
         this.dataloopdummy.push(element);
       });
     });

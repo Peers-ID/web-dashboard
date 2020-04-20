@@ -178,7 +178,7 @@
                                     </div>
                                 </th>
                             </tr>
-                            <tr *ngFor="let data of dataloopdummy | paginate: {itemsPerPage: 10, currentPage: p}; let index = index"
+                            <tr *ngFor="let data of dataloopdummy | paginate: {itemsPerPage: 10, currentPage: p,totalItems: totalpage}; let index = index"
                                 style="border-bottom: 2px solid darkcyan;">
                                 <td style="font-size: 10pt;">{{data.number}}.</td>
                                 <td style="font-size: 10pt;max-width: 200px;">{{data.fullname}}</td>

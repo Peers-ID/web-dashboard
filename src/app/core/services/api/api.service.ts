@@ -150,8 +150,9 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
-  getaccountao(): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/ao/admin_koperasi/' + JSON.parse(localStorage.getItem('currentUser')).userId;
+  getaccountao(page , column , sort): Observable<any> {
+    const url = 'http://dev-api.peers.id/api/v1/ao/admin_koperasi/' + JSON.parse(localStorage.getItem('currentUser')).userId +'?page='+page+'&row=10&column='+column
+    +'&sort='+sort;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -312,7 +313,8 @@ export class ApiService {
       );
   }
   getloanapilcation(pagepagination,pagenavbar,order): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&sort='+order+'&status=0';
+    const url = 'http://dev-api.peers.id/api/v1/loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'
+    +'&sort='+order;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -357,7 +359,8 @@ export class ApiService {
       );
   }
   gettablecollection(page,column,sort): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/collection?page='+page+'&row=10&column='+column+'&sort='+sort;
+    const url = 'http://dev-api.peers.id/api/v1/collection?page='+page+'&row=10&column='+column
+    +'&sort='+sort;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
