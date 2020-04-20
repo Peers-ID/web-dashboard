@@ -55,7 +55,7 @@ export class CollectionComponent implements OnInit {
     this.loadData(this.pagecurrentvalue,page,sort)
   }
   loadData(pagepagination,pagenavbar,order){
-    let gettoday = new Date().toDateString()
+    let gettoday = new Date().toLocaleDateString();
     this.datatoday = gettoday;
     this.apiservice.gettablecollection(pagepagination,pagenavbar,order).subscribe(data => {
         // this.totalpage = data.message.total
