@@ -5,12 +5,15 @@ import { KoperasiRoutingModule } from './koperasi-routing.module';
 import { KoperasiComponent } from "./pages/koperasi.component";
 import { SharedModule } from "../.././shared/shared.module";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [KoperasiComponent],
   imports: [
     CommonModule,
     KoperasiRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[FormBuilder]
 })

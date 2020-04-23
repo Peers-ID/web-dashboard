@@ -92,20 +92,13 @@
                                 <div class="col-12 mt-1">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h5 style="color: red;">*Kelurahan / Desa</h5>
+                                            <h5 style="color: red;"> *Provinsi</h5>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control" #kelurahan_desa>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-1">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <h5 style="color: red;">*Kecamatan</h5>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" #kecamatan>
+                                            <select [formControl]="fcselectprovinsi" class="form-control" style="font-size: 10pt;" (change)="changeprovinsi()">
+                                                <!-- <option value="" selected="true">SELECT</option> -->
+                                                <option [value]="[data.id,data.name]" *ngFor="let data of listprovinsi">{{data.name}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -115,17 +108,36 @@
                                             <h5 style="color: red;">*Kabupaten</h5>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control" #kabupaten>
+                                            <select [formControl]="fcselectkabupaten" class="form-control" style="font-size: 10pt;" (change)="changekabupaten()">
+                                                <!-- <option value="" selected="true">SELECT</option> -->
+                                                <option [value]="[data.id,data.name]" *ngFor="let data of listkabupaten">{{data.name}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-1">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h5 style="color: red;"> *Provinsi</h5>
+                                            <h5 style="color: red;">*Kecamatan</h5>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control" #provinsi>
+                                            <select [formControl]="fcselectkecamatan" class="form-control" style="font-size: 10pt;" (change)="changekecamatan()">
+                                                <!-- <option value="" selected="true">SELECT</option> -->
+                                                <option [value]="[data.id,data.name]" *ngFor="let data of listkecamatan">{{data.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-1">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h5 style="color: red;">*Kelurahan / Desa</h5>
+                                        </div>
+                                        <div class="col-6">
+                                            <select [formControl]="fcselectkelurahan" class="form-control" style="font-size: 10pt;">
+                                                <!-- <option value="" selected="true">SELECT</option> -->
+                                                <option [value]="[data.id,data.name]" *ngFor="let data of listkelurahan">{{data.name}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -339,10 +351,6 @@
                                         tgl_perubahan_anggaran_dasar.value,
                                         tgl_rat_terakhir.value,
                                         alamat.value,
-                                        kelurahan_desa.value,
-                                        kecamatan.value,
-                                        kabupaten.value,
-                                        provinsi.value,
                                         bentuk_koperasi.value,
                                         jenis_koperasi.value,
                                         kelompok_koperasi.value,

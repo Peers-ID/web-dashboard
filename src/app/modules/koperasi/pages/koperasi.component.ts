@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ApiService } from "../../../core/services/api/api.service";
 import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
 import * as $ from "jquery";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
 @Component({
   selector: "app-koperasi",
   templateUrl: "./koperasi.component.html",
@@ -13,16 +13,29 @@ export class KoperasiComponent implements OnInit {
   form: FormGroup;
   data: any;
   titlepage: string;
+  trigerselectkecamatan:boolean = true;
   trigeralerts: boolean = false;
   showmodalerror: boolean = false;
   showmodalsuccess: boolean = false;
   messagekoperasiregistration: string;
   dataimage:any;
+  listprovinsi = [];
+  listkabupaten = [];
+  listkecamatan = [];
+  listkelurahan = [];
+  fcselectprovinsi:FormControl
+  fcselectkabupaten:FormControl
+  fcselectkecamatan:FormControl
+  fcselectkelurahan:FormControl
   constructor(
     private apiservice: ApiService,
     public fb: FormBuilder,
     private state: StatemanagementService
   ) {
+    this.fcselectprovinsi = new FormControl('');
+    this.fcselectkabupaten = new FormControl('');
+    this.fcselectkecamatan = new FormControl('');
+    this.fcselectkelurahan = new FormControl('');
     this.form = this.fb.group({
       nama_koperasi: [""],
       no_badan_hukum: [""],
@@ -62,6 +75,7 @@ export class KoperasiComponent implements OnInit {
     } else {
       this.titlepage = window.location.pathname.split("/")[2];
     }
+    this.loadprovinsi();
     // $("body").addClass("sidebar-collapse");
   }
   processFile(event) {
@@ -82,10 +96,6 @@ export class KoperasiComponent implements OnInit {
     tgl_perubahan_anggaran_dasar,
     tgl_rat_terakhir,
     alamat,
-    kelurahan_desa,
-    kecamatan,
-    kabupaten,
-    provinsi,
     bentuk_koperasi,
     jenis_koperasi,
     kelompok_koperasi,
@@ -104,6 +114,7 @@ export class KoperasiComponent implements OnInit {
     hp_pengurus,
     email_pengurus
   ) {    
+    
     this.form.patchValue({
       nama_koperasi: nama_koperasi,
       no_badan_hukum: no_badan_hukum,
@@ -112,10 +123,10 @@ export class KoperasiComponent implements OnInit {
       tgl_perubahan_anggaran_dasar: tgl_perubahan_anggaran_dasar,
       tgl_rat_terakhir: tgl_rat_terakhir,
       alamat: alamat,
-      kelurahan_desa: kelurahan_desa,
-      kecamatan: kecamatan,
-      kabupaten: kabupaten,
-      provinsi: provinsi,
+      kelurahan_desa: this.fcselectkelurahan.value.split(',')[1],
+      kecamatan: this.fcselectkecamatan.value.split(',')[1],
+      kabupaten: this.fcselectkabupaten.value.split(',')[1],
+      provinsi: this.fcselectprovinsi.value.split(',')[1],
       bentuk_koperasi: bentuk_koperasi,
       jenis_koperasi: jenis_koperasi,
       kelompok_koperasi: kelompok_koperasi,
@@ -133,14 +144,14 @@ export class KoperasiComponent implements OnInit {
       status_grade: status_grade,
       hp_pengurus: hp_pengurus,
       email_pengurus: email_pengurus,
-    });
+    });            
     if (
       nama_koperasi === "" ||
       alamat === "" ||
-      kelurahan_desa === "" ||
-      kecamatan === "" ||
-      kabupaten === "" ||
-      provinsi === "" ||
+      this.fcselectkelurahan.value.split(',')[1] === undefined ||
+      this.fcselectkecamatan.value.split(',')[1] === undefined ||
+      this.fcselectkabupaten.value.split(',')[1] === undefined ||
+      this.fcselectprovinsi.value.split(',')[1] === undefined ||
       jenis_koperasi === "" ||
       nama_ketua === "" ||
       total_karyawan === "" ||
@@ -156,7 +167,7 @@ export class KoperasiComponent implements OnInit {
       setTimeout(() => {
         this.trigeralerts = false;
       }, 5000);
-    } else {
+    } else {      
       if (this.phonenumber(hp_pengurus) === false) {
         this.trigeralerts = true;
         this.state.valuestatealerts = {
@@ -291,5 +302,82 @@ export class KoperasiComponent implements OnInit {
       //   return false;
       // }
     }
+  }
+  loadprovinsi(){
+    this.apiservice.getcorelocation().subscribe(data => {
+      data.forEach(element => {
+          let dataobj = {
+            id:element.id,
+            name:element.name
+          }
+          this.listprovinsi.push(dataobj)
+      });
+    })
+  }
+  loadkabupaten(){
+    this.apiservice.getcorelocation().subscribe(data => {      
+      data.forEach(element => {
+        element.regencies.forEach(element => {
+           if (element.province_id === this.fcselectprovinsi.value.split(',')[0]){
+          let dataobj = {
+            id:element.id,
+            name:element.name
+          }
+          this.listkabupaten.push(dataobj)
+        }
+        });
+      });
+    })
+  }
+  loadkecamatan(){
+    this.apiservice.getcorelocation().subscribe(data => {      
+      data.forEach(element => {
+        element.regencies.forEach(element => {
+            element.districts.forEach(element => {
+              if (element.regency_id === this.fcselectkabupaten.value.split(',')[0]){
+                let dataobj = {
+                  id:element.id,
+                  name:element.name
+                }
+                this.listkecamatan.push(dataobj)
+              }     
+            })
+        });
+      });
+    })
+  }
+  loadkelurahan(){
+    this.apiservice.getcorelocation().subscribe(data => {      
+      data.forEach(element => {
+        element.regencies.forEach(element => {
+            element.districts.forEach(element => {
+              element.villages.forEach(element => {
+                if (element.district_id === this.fcselectkecamatan.value.split(',')[0]){
+                  let dataobj = {
+                    id:element.id,
+                    name:element.name
+                  }
+                  this.listkelurahan.push(dataobj)
+                }     
+              });  
+            })
+        });
+      });
+    })
+  }
+  changeprovinsi(){
+    this.listkabupaten = [];
+    this.listkecamatan = [];
+    this.listkelurahan = []
+    this.loadkabupaten();
+  }
+  changekabupaten(){
+    this.listkecamatan= [];
+    this.listkelurahan = [];
+    this.loadkecamatan();
+  }
+  changekecamatan(){
+    this.listkelurahan = [];
+    this.loadkelurahan();
   }
 }

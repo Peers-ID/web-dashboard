@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable , throwError } from 'rxjs';
 import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators'
+import { catchError, map } from 'rxjs/operators'
 import { Router } from "@angular/router";
 @Injectable({
   providedIn: 'root'
@@ -365,4 +365,34 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
+  getprovinsi(): Observable<any> {
+    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi';
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getkabupaten(idprovinsi): Observable<any> {
+    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi/'+idprovinsi+'/kabupaten';
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+      
+  }
+  getkecamatan(idkabupaten): Observable<any> {
+    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi/kabupaten/'+idkabupaten+'/kecamatan';
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+      
+  }
+  getkelurahan(idkecamatan): Observable<any> {
+    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi/kabupaten/kecamatan/' + idkecamatan;
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
+  }
+  getcorelocation(): Observable<any> {
+    return this.http.get('assets/indonesia-region.min.json').pipe(map(res => res));
+  }
+  
 }
