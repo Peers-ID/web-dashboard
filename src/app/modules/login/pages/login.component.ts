@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       this.trigeralerts = true;
       this.state.valuestatealerts = {
         type: "danger",
-        content: "Form cannot null"
+        content: "form username atau password tidak boleh kosong"
       };
       setTimeout(() => {
         this.trigeralerts = false;
@@ -159,7 +159,7 @@ export class LoginComponent implements OnInit {
         this.trigeralerts = true;
         this.state.valuestatealerts = {
           type: "danger",
-          content: "Form cannot null"
+          content: "form username atau password tidak boleh kosong"
         };
         setTimeout(() => {
           this.trigeralerts = false;

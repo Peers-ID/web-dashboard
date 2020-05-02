@@ -19,7 +19,7 @@
                                placeholder="Password" (keyup)="keyuplogin($event , userinput.value , password.value)" #password>
                     </div>
                     <button type="button" class="btn btn-success btn-lg btn-block" (click)="login(userinput.value , password.value)">Sign In</button>
-                    <a class="forget-pass f-10" routerLink="/forgotpassword" routerLinkActive="active">Have you forgot your username or password ?</a>
+                    <a class="forget-pass f-10" routerLink="/forgotpassword" routerLinkActive="active">Have you forgot your password ?</a>
                         <app-alerts *ngIf="trigeralerts"></app-alerts>
                 </form>
             </div>
