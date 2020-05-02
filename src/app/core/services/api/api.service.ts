@@ -52,7 +52,7 @@ export class ApiService {
     hp_pengurus,
     email_pengurus
      ): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/koperasi';
+    const url = 'http://35.225.186.199/api/v1/koperasi';
     let body = { 
       "nama_koperasi": nama_koperasi, 
       "no_badan_hukum": no_badan_hukum , 
@@ -95,7 +95,7 @@ export class ApiService {
       'uid':JSON.parse(localStorage.getItem('currentUser')).userId
     });
     const options = { headers: headers };
-    const url = 'http://dev-api.peers.id/api/v1/ao';
+    const url = 'http://35.225.186.199/api/v1/ao';
     let body = { "fullname": fullname, "phone_mobile": hp , "email" : email , "birthdate":birthday }
     return this.http.post(url, JSON.stringify(body), options).pipe(
       catchError(this.handleError)
@@ -144,41 +144,42 @@ export class ApiService {
       );
   }
   postchangepassword(paaswordlama , passwordbaru): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/users/change_password';
+    const url = 'http://35.225.186.199/api/v1/users/change_password';
     let body = { "email":JSON.parse(localStorage.getItem('currentUser')).email, "password": paaswordlama, "password_new": passwordbaru}
     return this.http.post(url, JSON.stringify(body), this.options).pipe(
       catchError(this.handleError)
       );
   }
+
   getaccountao(page , column , sort): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/ao/admin_koperasi/' + JSON.parse(localStorage.getItem('currentUser')).userId +'?page='+page+'&row=10&column='+column
+    const url = 'http://35.225.186.199/api/v1/ao/admin_koperasi/' + JSON.parse(localStorage.getItem('currentUser')).userId +'?page='+page+'&row=10&column='+column
     +'&sort='+sort;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   poststatusinactive(idao): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/ao/'+idao+'/status';
+    const url = 'http://35.225.186.199/api/v1/ao/'+idao+'/status';
     let body = {"status":"inactive"}
     return this.http.put(url, JSON.stringify(body), this.options).pipe(
       catchError(this.handleError)
       );
   }
   poststatusactive(idao): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/ao/'+idao+'/status';
+    const url = 'http://35.225.186.199/api/v1/ao/'+idao+'/status';
     let body = {"status":"active"}
     return this.http.put(url, JSON.stringify(body), this.options).pipe(
       catchError(this.handleError)
       );
   }
   getdetailaccountao(idao): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/ao/' + idao;
+    const url = 'http://35.225.186.199/api/v1/ao/' + idao;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   updatedetailao(idao , fullname , hp ,email, birthdate): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/ao/'+idao;
+    const url = 'http://35.225.186.199/api/v1/ao/'+idao;
     let body = {
       "fullname": fullname,
       "phone_mobile": hp,
@@ -191,7 +192,7 @@ export class ApiService {
   }
 
   getalldatamember(){
-    const url = 'http://dev-api.peers.id/api/v1/member_config/' + JSON.parse(localStorage.getItem('currentUser')).userId;
+    const url = 'http://35.225.186.199/api/v1/member_config/' + JSON.parse(localStorage.getItem('currentUser')).userId;
     // const url = 'http://dev-api.peers.id/api/v1/member/config/3';
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
@@ -205,7 +206,7 @@ export class ApiService {
     nomer_npwp , pekerja_usaha,bidang_pekerja,posisi_jabatan,nama_perusahaan,lama_bekerja,penghasilan_omset,alamat_kantor_jalan,
     alamat_kantor_nomer,alamat_kantor_rt,alamat_kantor_rw,alamat_kantor_kelurahan,alamat_kantor_kecamatan,alamat_kantor_kota,alamat_kantor_provinsi,
     nama,no_hp,hubungan){
-    const url = 'http://dev-api.peers.id/api/v1/member_config'
+    const url = 'http://35.225.186.199/api/v1/member_config'
     let body = {
     "koperasi_id": koperasi_id,
 	  "member_handphone": 1,
@@ -264,7 +265,7 @@ export class ApiService {
       );
   }
   postapprovalconfig(statusapproval): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = 'http://35.225.186.199/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     let body = {
       "ao_can_approved": statusapproval
     }
@@ -273,13 +274,13 @@ export class ApiService {
       );
   }
   getapprovalconfig(): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = 'http://35.225.186.199/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   postcutofftime(hours , minutes): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = 'http://35.225.186.199/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     let body = {
       "hours": hours,
       "minutes":minutes
@@ -289,25 +290,25 @@ export class ApiService {
       );
   }
   getcutofftime(): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = 'http://35.225.186.199/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   postloanformula(formula): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan/formula';
+    const url = 'http://35.225.186.199/api/v1/loan/formula';
     return this.http.post(url, JSON.stringify(formula), this.options).pipe(
       catchError(this.handleError)
       );
   }
   getloanformula(): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan/formula/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = 'http://35.225.186.199/api/v1/loan/formula/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getotherfee(): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan/other_fee/'+JSON.parse(localStorage.getItem('koperasiData')).formula_id;
+    const url = 'http://35.225.186.199/api/v1/loan/other_fee/'+JSON.parse(localStorage.getItem('koperasiData')).formula_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -320,31 +321,31 @@ export class ApiService {
       );
   }
   getviewloanapilcation(idloan): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan/'+idloan;
+    const url = 'http://35.225.186.199/api/v1/loan/'+idloan;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getviewmemberloanapilcation(idmember): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/member/'+idmember;
+    const url = 'http://35.225.186.199/api/v1/member/'+idmember;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   gethistoryloanapilcation(status,idmember): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan?status='+status+'&member_id='+idmember;
+    const url = 'http://35.225.186.199/api/v1/loan?status='+status+'&member_id='+idmember;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getstatusloanapplication(idmember , statusapprove): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan_approval/'+idmember+'/'+statusapprove;
+    const url = 'http://35.225.186.199/api/v1/loan_approval/'+idmember+'/'+statusapprove;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getcollection(idmember , statusapprove): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan_approval/'+idmember+'/'+statusapprove;
+    const url = 'http://35.225.186.199/api/v1/loan_approval/'+idmember+'/'+statusapprove;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -353,7 +354,7 @@ export class ApiService {
     const HttpUploadOptions = {
       headers: new HttpHeaders({'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token}), 
     }
-    const url = 'http://dev-api.peers.id/api/v1/koperasi';
+    const url = 'http://35.225.186.199/api/v1/koperasi';
     return this.http.post(url, formDataall, HttpUploadOptions).pipe(
       catchError(this.handleError)
       );
