@@ -3,13 +3,14 @@ import { Observable , throwError } from 'rxjs';
 import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators'
 import { Router } from "@angular/router";
+import { environment } from "../../../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   headers = new HttpHeaders({ 
     'content-type': 'application/json', 
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token
+    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token
   });
   options = { headers: this.headers };
   constructor(private http: HttpClient,
@@ -52,7 +53,7 @@ export class ApiService {
     hp_pengurus,
     email_pengurus
      ): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/koperasi';
+    const url = environment.apiurl+'koperasi';
     let body = { 
       "nama_koperasi": nama_koperasi, 
       "no_badan_hukum": no_badan_hukum , 
@@ -91,11 +92,11 @@ export class ApiService {
   postcreateaccountmanagement(fullname , hp , email , birthday): Observable<any> {
     const headers = new HttpHeaders({ 
       'content-type': 'application/json', 
-      'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token,
+      'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
       'uid':JSON.parse(localStorage.getItem('currentUser')).userId
     });
     const options = { headers: headers };
-    const url = 'http://35.225.186.199/api/v1/ao';
+    const url = environment.apiurl+'ao';
     let body = { "fullname": fullname, "phone_mobile": hp , "email" : email , "birthdate":birthday }
     return this.http.post(url, JSON.stringify(body), options).pipe(
       catchError(this.handleError)
@@ -144,7 +145,7 @@ export class ApiService {
       );
   }
   postchangepassword(paaswordlama , passwordbaru): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/users/change_password';
+    const url = environment.apiurl+'users/change_password';
     let body = { "email":JSON.parse(localStorage.getItem('currentUser')).email, "password": paaswordlama, "password_new": passwordbaru}
     return this.http.post(url, JSON.stringify(body), this.options).pipe(
       catchError(this.handleError)
@@ -152,34 +153,34 @@ export class ApiService {
   }
 
   getaccountao(page , column , sort): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/ao/admin_koperasi/' + JSON.parse(localStorage.getItem('currentUser')).userId +'?page='+page+'&row=10&column='+column
-    +'&sort='+sort;
+    const url = environment.apiurl+'ao/admin_koperasi/'+JSON.parse(localStorage.getItem('currentUser')).userId+'?page='+page+'&row=10&column='+column
+   +'&sort='+sort;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   poststatusinactive(idao): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/ao/'+idao+'/status';
+    const url = environment.apiurl+'ao/'+idao+'/status';
     let body = {"status":"inactive"}
     return this.http.put(url, JSON.stringify(body), this.options).pipe(
       catchError(this.handleError)
       );
   }
   poststatusactive(idao): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/ao/'+idao+'/status';
+    const url = environment.apiurl+'ao/'+idao+'/status';
     let body = {"status":"active"}
     return this.http.put(url, JSON.stringify(body), this.options).pipe(
       catchError(this.handleError)
       );
   }
   getdetailaccountao(idao): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/ao/' + idao;
+    const url = environment.apiurl+'ao/'+idao;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   updatedetailao(idao , fullname , hp ,email, birthdate): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/ao/'+idao;
+    const url = environment.apiurl+'ao/'+idao;
     let body = {
       "fullname": fullname,
       "phone_mobile": hp,
@@ -192,8 +193,7 @@ export class ApiService {
   }
 
   getalldatamember(){
-    const url = 'http://35.225.186.199/api/v1/member_config/' + JSON.parse(localStorage.getItem('currentUser')).userId;
-    // const url = 'http://dev-api.peers.id/api/v1/member/config/3';
+    const url = environment.apiurl+'/member_config/'+JSON.parse(localStorage.getItem('currentUser')).userId;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -206,7 +206,7 @@ export class ApiService {
     nomer_npwp , pekerja_usaha,bidang_pekerja,posisi_jabatan,nama_perusahaan,lama_bekerja,penghasilan_omset,alamat_kantor_jalan,
     alamat_kantor_nomer,alamat_kantor_rt,alamat_kantor_rw,alamat_kantor_kelurahan,alamat_kantor_kecamatan,alamat_kantor_kota,alamat_kantor_provinsi,
     nama,no_hp,hubungan){
-    const url = 'http://35.225.186.199/api/v1/member_config'
+    const url = environment.apiurl+'member_config'
     let body = {
     "koperasi_id": koperasi_id,
 	  "member_handphone": 1,
@@ -265,7 +265,7 @@ export class ApiService {
       );
   }
   postapprovalconfig(statusapproval): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = environment.apiurl+'koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     let body = {
       "ao_can_approved": statusapproval
     }
@@ -274,13 +274,13 @@ export class ApiService {
       );
   }
   getapprovalconfig(): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = environment.apiurl+'koperasi/approval/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   postcutofftime(hours , minutes): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = environment.apiurl+'koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     let body = {
       "hours": hours,
       "minutes":minutes
@@ -290,104 +290,78 @@ export class ApiService {
       );
   }
   getcutofftime(): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = environment.apiurl+'koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   postloanformula(formula): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/loan/formula';
+    const url = environment.apiurl+'loan/formula';
     return this.http.post(url, JSON.stringify(formula), this.options).pipe(
       catchError(this.handleError)
       );
   }
   getloanformula(): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/loan/formula/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
+    const url = environment.apiurl+'loan/formula/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getotherfee(): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/loan/other_fee/'+JSON.parse(localStorage.getItem('koperasiData')).formula_id;
+    const url = environment.apiurl+'loan/other_fee/'+JSON.parse(localStorage.getItem('koperasiData')).formula_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getloanapilcation(pagepagination,pagenavbar,order): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'
-    +'&sort='+order;
+    const url =  environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'
+   +'&sort='+order;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getviewloanapilcation(idloan): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/loan/'+idloan;
+    const url = environment.apiurl+'loan/'+idloan;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getviewmemberloanapilcation(idmember): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/member/'+idmember;
+    const url = environment.apiurl+'member/'+idmember;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   gethistoryloanapilcation(status,idmember): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/loan?status='+status+'&member_id='+idmember;
+    const url = environment.apiurl+'loan?status='+status+'&member_id='+idmember;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getstatusloanapplication(idmember , statusapprove): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/loan_approval/'+idmember+'/'+statusapprove;
+    const url = environment.apiurl+'loan_approval/'+idmember+'/'+statusapprove;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   getcollection(idmember , statusapprove): Observable<any> {
-    const url = 'http://35.225.186.199/api/v1/loan_approval/'+idmember+'/'+statusapprove;
+    const url = environment.apiurl+'loan_approval/'+idmember+'/'+statusapprove;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
   }
   postkoperasiwithimage(formDataall): Observable<any> {
     const HttpUploadOptions = {
-      headers: new HttpHeaders({'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token}), 
+      headers: new HttpHeaders({'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token}), 
     }
-    const url = 'http://35.225.186.199/api/v1/koperasi';
+    const url = environment.apiurl+'koperasi';
     return this.http.post(url, formDataall, HttpUploadOptions).pipe(
       catchError(this.handleError)
       );
   }
   gettablecollection(page,column,sort): Observable<any> {
-    const url = 'http://dev-api.peers.id/api/v1/collection?page='+page+'&row=10&column='+column
-    +'&sort='+sort;
-    return this.http.get(url,this.options).pipe(
-      catchError(this.handleError)
-      );
-  }
-  getprovinsi(): Observable<any> {
-    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi';
-    return this.http.get(url,this.options).pipe(
-      catchError(this.handleError)
-      );
-  }
-  getkabupaten(idprovinsi): Observable<any> {
-    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi/'+idprovinsi+'/kabupaten';
-    return this.http.get(url,this.options).pipe(
-      catchError(this.handleError)
-      );
-      
-  }
-  getkecamatan(idkabupaten): Observable<any> {
-    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi/kabupaten/'+idkabupaten+'/kecamatan';
-    return this.http.get(url,this.options).pipe(
-      catchError(this.handleError)
-      );
-      
-  }
-  getkelurahan(idkecamatan): Observable<any> {
-    const url = 'http://dev.farizdotid.com/api/daerahindonesia/provinsi/kabupaten/kecamatan/' + idkecamatan;
+    const url = environment.apiurl+'collection?page='+page+'&row=10&column='+column
+   +'&sort='+sort;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
