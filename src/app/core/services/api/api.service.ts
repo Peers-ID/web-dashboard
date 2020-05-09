@@ -313,9 +313,15 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
-  getloanapilcation(pagepagination,pagenavbar,order): Observable<any> {
-    const url =  environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'
-   +'&sort='+order;
+  getloanapilcation(pagepagination,pagenavbar,order,keywords,searchbyfield): Observable<any> {
+   let url;
+    if (keywords === '' && searchbyfield === ''){
+      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'+'&sort='+order;
+    }else if  (keywords !== '' && searchbyfield === '') {
+      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'+'&sort='+order+'&keywords='+keywords;
+    }else if (keywords === '' && searchbyfield !== ''){
+      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'+'&sort='+order+'&'+searchbyfield.name+'='+searchbyfield.value;
+    }
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -359,9 +365,15 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
-  gettablecollection(page,column,sort): Observable<any> {
-    const url = environment.apiurl+'collection?page='+page+'&row=10&column='+column
-   +'&sort='+sort;
+  gettablecollection(page,column,sort,keywords,searchbyfield): Observable<any> {
+    let url;
+    if (keywords === '' && searchbyfield === ''){
+      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort;
+    }else if  (keywords !== '' && searchbyfield === '') {
+      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort+'&keywords='+keywords;
+    }else if (keywords === '' && searchbyfield !== ''){
+      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort+'&'+searchbyfield.name+'='+searchbyfield.value;
+    }
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );

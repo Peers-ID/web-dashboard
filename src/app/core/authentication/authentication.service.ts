@@ -13,16 +13,6 @@ export class AuthenticationService {
   });
   options = { headers: this.headers };
   constructor(private http: HttpClient) { }
-  handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
-  }
-
   login(username, password): Observable<any> {
     const url = environment.apiurl+'login';
     let body = { "email": username, "password": password }

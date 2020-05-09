@@ -17,8 +17,10 @@
                         </div>
                         <div class="col-3">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="search..."
-                                    (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault />
+                                <!-- <input type="text" class="form-control" placeholder="search..."
+                                    (keyup)="searchnavbar($event,'default' , searchdefault.value)" 
+                                    #searchdefault /> -->
+                                    <input id="searchdefault" type="text" class="form-control" placeholder="search..." #searchdefault />
                                 <span class="input-group-append">
                                     <span class="input-group-text add-on white"
                                         (click)="searchclickdefault(searchdefault.value)">
@@ -35,36 +37,36 @@
                             <tr style="padding-right:0;">
                                 <th style="font-size: 11pt;">No</th>
                                 <th style="font-size: 11pt;width: 14%;">AO <span class="icon-sort pl-2"
-                                        (click)="sortinghandle('ao')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                        (click)="sortinghandle('ao_name')"></span>
+                                    <input type="text" id="ao_name" placeholder="search" class="form-control w-100" #aofield
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'ao_name',aofield.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Customer<span class="icon-sort pl-2"
-                                        (click)="sortinghandle('cost')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                        (click)="sortinghandle('member_name')"></span>
+                                    <input type="text" id="member_name" placeholder="search" class="form-control w-100" #customer
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'member_name',customer.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Waktu<span class="icon-sort pl-2"
-                                        (click)="sortinghandle('waktu')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                        (click)="sortinghandle('createdAt')"></span>
+                                    <input type="text" id="createdAt" placeholder="search" class="form-control w-100" #waktu
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'createdAt',waktu.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Jumlah<span class="icon-sort pl-2"
-                                        (click)="sortinghandle('jumlah')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                        (click)="sortinghandle('cicilan_jumlah')"></span>
+                                    <input type="text" id="cicilan_jumlah" placeholder="search" class="form-control w-100" #jumlah
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'cicilan_jumlah',jumlah.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Cicilan Ke<span class="icon-sort pl-2"
-                                        (click)="sortinghandle('cicilan')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                        (click)="sortinghandle('cicilan_ke')"></span>
+                                    <input type="text" id="cicilan_ke" placeholder="search" class="form-control w-100" #cicilan
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'cicilan_ke',cicilan.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Pokok<span class="icon-sort pl-2"
                                         (click)="sortinghandle('pokok')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                    <input type="text" id="pokok" placeholder="search" class="form-control w-100" #pokok
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'pokok',pokok.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Sukarela<span class="icon-sort pl-2"
                                         (click)="sortinghandle('sukarela')"></span>
-                                    <input type="text" name="" id="" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                    <input type="text" id="sukarela" placeholder="search" class="form-control w-100" #sukarela
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'sukarela',sukarela.value)"></th>
                             </tr>
                             <tr style="border-bottom: 2px solid darkcyan; padding-right: 0;"
-                                *ngFor="let data of datacollection| paginate: {itemsPerPage: 10, currentPage: p , totalItems: 10}">
+                                *ngFor="let data of datacollection| paginate: {itemsPerPage: 10, currentPage: p , totalItems: totalpage}">
                                 <td>{{data.number}}.</td>
                                 <td>{{data.ao_name}}</td>
                                 <td>{{data.member_name}}</td>

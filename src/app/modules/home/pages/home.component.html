@@ -807,10 +807,10 @@
                     <div class="row justify-content-end">
                         <div class="col-3">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="search..."
-                                    (keyup)="searchnavbar($event,'default' , searchdefault.value)" #searchdefault />
-                                <span class="input-group-append" (click)="searchclickdefault(searchdefault.value)">
-                                    <span class="input-group-text add-on white">
+                                <input id="searchdefault" type="text" class="form-control" placeholder="search..." #searchdefault />
+                                <span class="input-group-append">
+                                    <span class="input-group-text add-on white"
+                                        (click)="searchclickdefault(searchdefault.value)">
                                         <i class="icon-search"></i>
                                     </span>
                                 </span>
@@ -825,24 +825,24 @@
                                 <th style="font-size: 11pt;">No</th>
                                 <th style="font-size: 11pt;width: 14%;">AO <span class="icon-sort pl-2"
                                         (click)="sortinghandle('ao_name')"></span>
-                                    <input type="text" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                    <input type="text" placeholder="search" class="form-control w-100" id="ao_name" #aofield
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'ao_name',aofield.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Customer<span class="icon-sort pl-2"
                                         (click)="sortinghandle('member_name')"></span>
-                                    <input type="text" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                    <input type="text" placeholder="search" class="form-control w-100" id="member_name" #membername
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'member_name',membername.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Tanggal<span class="icon-sort pl-2"
                                         (click)="sortinghandle('createdAt')"></span>
-                                    <input type="text" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                    <input type="text" placeholder="search" class="form-control w-100" id="createdAt" #tanggal
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'createdAt',tanggal.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Jumlah<span class="icon-sort pl-2"
                                         (click)="sortinghandle('jumlah_loan')"></span>
-                                    <input type="text" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                    <input type="text" placeholder="search" class="form-control w-100" id="jumlah_loan" #jumlah
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'jumlah_loan',jumlah.value)"></th>
                                 <th style="font-size: 11pt;width: 13%;">Tenor<span class="icon-sort pl-2"
                                         (click)="sortinghandle('tenor')"></span>
-                                    <input type="text" placeholder="search" class="form-control w-100"
-                                        style="font-size: 10pt;"></th>
+                                    <input type="text" placeholder="search" class="form-control w-100" id="tenor" #tenor
+                                        style="font-size: 10pt;" (keyup)="searchfield($event,'tenor',tenor.value)"></th>
                                 <th style="font-size: 11pt;" class="text-center">Action
                                 </th>
                             </tr>

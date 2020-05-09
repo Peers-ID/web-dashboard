@@ -266,15 +266,16 @@ export class LoadformulaComponent implements OnInit {
 
   renderinitdata(){
     this.api.getloanformula().subscribe(data => {
-      localStorage.setItem(
-        "koperasiData",
-        JSON.stringify({
-          formula_id: data['data'][0].id,
-        })
-      )
-      if (data["data"][0].formula_name)
+      if (data['data'].length > 0){        
+        localStorage.setItem(
+          "koperasiData",
+          JSON.stringify({
+            formula_id: data['data'][0].id,
+          })
+        )
+        if (data["data"][0].formula_name)
         this.fcformulaname.setValue(data["data"][0].formula_name);
-      if (data["data"][0].min_loan_amount)
+       if (data["data"][0].min_loan_amount)
         this.fcminamount.setValue(data["data"][0].min_loan_amount);
       this.getminloanamount = true;
       this.fcminamount.enable();
@@ -316,9 +317,7 @@ export class LoadformulaComponent implements OnInit {
         this.fcdateservicefee.setValue(data["data"][0].service_cycle)
         this.fcdateservicefee.enable()
       }
-
-    });
-    this.api.getotherfee().subscribe(data => {
+        this.api.getotherfee().subscribe(data => {
       this.loopotherfee = [];
       let datatempother = [];
       data.data.forEach((element,index) => {
@@ -343,7 +342,9 @@ export class LoadformulaComponent implements OnInit {
       });      
       this.indexincrement = this.loopotherfee.length -1 ;
     })
-
+      }else{
+      }
+    });
   }
   removeotherfee(id){
     let idincrement = id.toElement.id.substring(id.toElement.id.length - 1)

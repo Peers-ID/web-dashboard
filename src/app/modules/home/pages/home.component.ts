@@ -30,21 +30,25 @@ export class HomeComponent implements OnInit {
   showmodalerror: boolean = false;
   showmodalsuccess: boolean = false;
   totalpage:number;
+  searchall:any;
+  searchbyfield:any;
   constructor(private api: ApiService, private state: StatemanagementService) {
   }
   ngOnInit() {
     this.showmodaltriger = false;
+    this.searchall = '';
+    this.searchbyfield = '';
     if (window.location.pathname.split("/")[1] !== "peers") {
       this.titlepage = window.location.pathname.split("/")[1];
     } else {
       this.titlepage = window.location.pathname.split("/")[2];
     }
     // $("body").addClass("sidebar-collapse");
-    this.loadData(this.pagecurrentvalue, "createdAt", "desc");
+    this.loadData(this.pagecurrentvalue, "createdAt", "desc",this.searchall,this.searchbyfield);
   }
   pageclick(event) {
     this.pagecurrentvalue = event;
-    this.loadData(this.pagecurrentvalue, "createdAt", "desc");
+    this.loadData(this.pagecurrentvalue, "createdAt", "desc",this.searchall,this.searchbyfield);
   }
   viewclick(idloan, idmember) {
     this.api.getviewloanapilcation(idloan).subscribe((data) => {
@@ -140,11 +144,11 @@ export class HomeComponent implements OnInit {
       this.isASC = false;
       sort = "desc";
     }
-    this.loadData(this.pagecurrentvalue, page, sort);
+    this.loadData(this.pagecurrentvalue, page, sort,this.searchall,this.searchbyfield);
   }
-  loadData(pagepagination, pagenavbar, order) {
+  loadData(pagepagination, pagenavbar, order,keywords,searchbyfield) {
     this.api
-      .getloanapilcation(pagepagination, pagenavbar, order)
+      .getloanapilcation(pagepagination, pagenavbar, order,keywords,searchbyfield)
       .subscribe((data) => {
       this.totalpage = data.message.total
       let datanumber = ((pagepagination - 1) * data.data.length) + 1
@@ -160,7 +164,17 @@ export class HomeComponent implements OnInit {
     if (event.key === "Enter") {
     }
   }
-  searchclickdefault(data) {}
+  searchclickdefault(data) {
+    this.searchall = data;
+    this.searchbyfield = '';
+    const field = ['ao_name','member_name','createdAt','jumlah_loan','tenor']    
+    field.forEach(element => {
+      if(data !== element){
+         $('#'+element).val(''); 
+      }
+    })
+    this.loadData(this.pagecurrentvalue, "createdAt", "desc", this.searchall,this.searchbyfield);
+  }
   clicknavtab(data) {
     if (data === "personal") {
       $("#navtabpersonal").attr("href", "#personal");
@@ -188,5 +202,26 @@ export class HomeComponent implements OnInit {
         this.showmodalviewloan = false;
         break;
     }  
+  }
+  searchfield(event,data,value){
+    const field = ['searchdefault','ao_name','member_name','createdAt','jumlah_loan','tenor']    
+    this.searchall = '';
+    if (event.key === "Enter" && value !== '') {
+      let obj = {
+        name:data,
+        value:value
+      }
+      field.forEach(element => {
+        if(data !== element){
+           $('#'+element).val(''); 
+        }
+      })      
+      this.searchbyfield = obj;
+      this.loadData(this.pagecurrentvalue, "createdAt", "desc",this.searchall,this.searchbyfield);
+    }else if (event.key === "Enter" && value === ''){
+      this.searchall = '';
+      this.searchbyfield = ''
+      this.loadData(this.pagecurrentvalue , 'createdAt' , 'desc',this.searchall,this.searchbyfield)
+    }
   }
 }
