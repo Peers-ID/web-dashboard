@@ -22,8 +22,8 @@ export class ForgotpasswordComponent implements OnInit {
       this.titlepage = window.location.pathname.split("/")[2];
     }
   }
-  forgotpassword(userinput, date) {
-    if (userinput === "" || date === "") {
+  forgotpassword(userinput) {
+    if (userinput === "") {
       this.trigeralerts = true;
       this.state.valuestatealerts = {
         type: "danger",
