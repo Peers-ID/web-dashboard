@@ -61,6 +61,7 @@ export class MemberdataComponent implements OnInit {
   getnama: boolean = false;
   getnohandphone: boolean = false;
   gethubungan: boolean = false;
+  contentstatusmodal:any;
   constructor(private api: ApiService, private state: StatemanagementService) {}
 
   ngOnInit() {
@@ -280,7 +281,7 @@ export class MemberdataComponent implements OnInit {
           ? true
           : false;
         this.gettanggallahir = datagetres[0].tanggal_lahir ? true : false;
-        this.gettempatlahir = datagetres[0].tanggal_lahir ? true : false;
+        this.gettempatlahir = datagetres[0].tempat_lahir ? true : false;
         this.getjeniskelamin = datagetres[0].jenis_kelamin ? true : false;
         this.getnamagadisibukandung = datagetres[0].nama_gadis_ibu
           ? true
@@ -432,14 +433,10 @@ export class MemberdataComponent implements OnInit {
       )
       .subscribe(data => {
         if (data["status"] === 201) {
-          this.state.valuestatusmodal = {
-            content: data["message"]
-          };
+          this.contentstatusmodal = data['message']
           this.showsuccessmodal = true;
         } else {
-          this.state.valuestatusmodal = {
-            content: data["message"]
-          };
+          this.contentstatusmodal = data['message']
           this.showerrormodal = true;
         }
       });
@@ -465,5 +462,12 @@ export class MemberdataComponent implements OnInit {
         this.FieldsChange("values", "emptydata", data["data"]);
       }
     });
+  }
+  closemodaldialog(status){
+    if (status === 'success'){
+      this.showsuccessmodal = false
+    }else{  
+        this.showerrormodal = false;
+    }
   }
 }
