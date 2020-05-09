@@ -11,6 +11,7 @@ export class ApprovalconfigComponent implements OnInit {
   showmodalerror: boolean = false;
   showmodalsuccess: boolean = false;
   titlepage:string;
+  contentstatusmodal:any;
   constructor(
     private state: StatemanagementService,
     private apiservice: ApiService
@@ -39,17 +40,19 @@ export class ApprovalconfigComponent implements OnInit {
     this.getapprovalconfig = values.currentTarget.checked;
     this.apiservice.postapprovalconfig(this.getapprovalconfig? 1: 0).subscribe(data =>{
       if (data["status"] === 201) {
-        this.state.valuestatusmodal = {
-          content: data["message"]
-        };
+        this.contentstatusmodal = data['message']
         this.showmodalsuccess = true;
       } else {
-        this.state.valuestatusmodal = {
-          content: data["message"]
-        };
+        this.contentstatusmodal = data['message']
         this.showmodalerror = true;
       }
     })
   }
-
+  closemodaldialog(status){
+    if (status === 'success'){
+      this.showmodalsuccess = false
+    }else{  
+        this.showmodalerror = false;
+    }
+  }
 }

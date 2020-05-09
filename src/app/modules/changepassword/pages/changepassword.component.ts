@@ -13,6 +13,7 @@ export class ChangepasswordComponent implements OnInit {
   showsuccessmodal:boolean = false;
   showerrormodal:boolean = false;
   trigeralerts:boolean = false;
+  contentstatusmodal:any;
   constructor(
     private state: StatemanagementService,
     private api : ApiService
@@ -50,18 +51,21 @@ export class ChangepasswordComponent implements OnInit {
       }else{
         this.api.postchangepassword(passwordlama , passwordbaru).subscribe(data => {
           if (data['status'] === 201){
-            this.state.valuestatusmodal = {
-              content: data["message"]
-            };
+            this.contentstatusmodal = data['message']
             this.showsuccessmodal = true;
           }else{
-            this.state.valuestatusmodal = {
-              content: data["message"]
-            };
+            this.contentstatusmodal = data['message']
             this.showerrormodal = true;
           }
         })
       }
+    }
+  }
+  closemodaldialog(status){
+    if (status === 'success'){
+      window.location.reload();
+    }else{  
+        this.showerrormodal = false;
     }
   }
 }

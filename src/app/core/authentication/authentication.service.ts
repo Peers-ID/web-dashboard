@@ -28,4 +28,11 @@ export class AuthenticationService {
     let body = { "email": username, "password": password }
     return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
   }
+  forgotpassword(email): Observable<any> {
+    let body = {
+      "email": email,
+    }
+    const url = environment.apiurl+'forgot_password';
+    return this.http.post(url, JSON.stringify(body), this.options).pipe(map(res => res))
+  }
 }

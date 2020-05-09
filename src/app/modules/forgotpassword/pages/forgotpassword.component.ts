@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import * as $ from "jquery";
 import { StatemanagementService } from "../../../core/services/statemanagement/statemanagement.service";
+import { AuthenticationService } from "../../../core/authentication/authentication.service";
 @Component({
   selector: "app-forgotpassword",
   templateUrl: "./forgotpassword.component.html",
@@ -8,7 +10,10 @@ import { StatemanagementService } from "../../../core/services/statemanagement/s
 export class ForgotpasswordComponent implements OnInit {
   titlepage: string;
   trigeralerts: boolean = false;
-  constructor(private state: StatemanagementService) {}
+  showmodalerror: boolean = false;
+  showmodalsuccess: boolean = false;
+  constructor(private state: StatemanagementService,
+    private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     if (window.location.pathname.split("/")[1] !== "peers") {
@@ -55,8 +60,19 @@ export class ForgotpasswordComponent implements OnInit {
         this.phonenumber(userinput) === true ||
         this.validateEmail(userinput) === true
       ) {
-        
-
+      this.authenticationService.forgotpassword(userinput).subscribe(data =>{
+        if (data['status'] === 200){
+          this.state.valuestatusmodal = {
+            content: 'Silahkan periksa inbox email anda'
+          };
+          this.showmodalsuccess = true;
+        }else{
+          this.state.valuestatusmodal = {
+            content: data['message']
+          };
+          this.showmodalerror = true;
+        }  
+      })
       }
     }
   }
@@ -69,21 +85,10 @@ export class ForgotpasswordComponent implements OnInit {
     }
   }
   phonenumber(input) {
-    // var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    // if (input.match(phoneno)) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
     if (input.toString().length < 10 || input.toString().length > 12){
       return false;
     }else{
         return true;
-      // if (input.match(phoneno)) {
-      //   return true;
-      // } else {
-      //   return false;
-      // }
     }
   }
   allnumeric(input) {

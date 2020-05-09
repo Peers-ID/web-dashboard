@@ -1,5 +1,35 @@
-<app-modalsuccess *ngIf="showmodalsuccess"></app-modalsuccess>
-<app-modalerror *ngIf="showmodalerror"></app-modalerror>
+<app-modalpopup *ngIf="showmodalsuccess">
+    <div class="modal-content" style="margin-top: 10%;">
+        <div class="modal-header" style="border: none;">
+            <button type="button" class="close" (click)="closemodaldialog('success')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body mb-5" style="border:none">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 style="color: green;">{{contentstatusmodal}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modalpopup>
+<app-modalpopup *ngIf="showmodalerror">
+    <div class="modal-content" style="margin-top: 10%;">
+        <div class="modal-header" style="border: none;">
+            <button type="button" class="close" (click)="closemodaldialog('error')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body mb-5" style="border:none">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 style="color: red;">{{contentstatusmodal}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modalpopup>
 <div class="col-md-12">
     <div class="card r-0 b-0">
         <div class="card-body">

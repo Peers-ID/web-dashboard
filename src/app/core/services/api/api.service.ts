@@ -193,7 +193,7 @@ export class ApiService {
   }
 
   getalldatamember(){
-    const url = environment.apiurl+'/member_config/'+JSON.parse(localStorage.getItem('currentUser')).userId;
+    const url = environment.apiurl+'member_config/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
@@ -368,6 +368,5 @@ export class ApiService {
   }
   getcorelocation(): Observable<any> {
     return this.http.get('assets/indonesia-region.min.json').pipe(map(res => res));
-  }
-  
+  }  
 }

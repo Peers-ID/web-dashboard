@@ -27,6 +27,7 @@ export class KoperasiComponent implements OnInit {
   fcselectkabupaten:FormControl
   fcselectkecamatan:FormControl
   fcselectkelurahan:FormControl
+  contentstatusmodal:any;
   constructor(
     private apiservice: ApiService,
     public fb: FormBuilder,
@@ -223,62 +224,13 @@ export class KoperasiComponent implements OnInit {
         formData.append("email_pengurus", this.form.get('email_pengurus').value);
         this.apiservice.postkoperasiwithimage(formData).subscribe(data => {
               if (data['data'] !== ''){
-                this.state.valuestatusmodal = {
-                  content: data['message']
-                };
+                this.contentstatusmodal = data['message']
                 this.showmodalsuccess = true;
               }else{
-                this.state.valuestatusmodal = {
-                  content: data['message']
-                };
+                this.contentstatusmodal = data['message']
                 this.showmodalerror = true;
               }  
         })
-        // this.apiservice
-        //     .postdatakoperasi(
-        //       nama_koperasi,
-        //       no_badan_hukum,
-        //       tgl_badan_hukum,
-        //       no_perubahan_anggaran_dasar,
-        //       tgl_perubahan_anggaran_dasar,
-        //       tgl_rat_terakhir,
-        //       alamat,
-        //       kelurahan_desa,
-        //       kecamatan,
-        //       kabupaten,
-        //       provinsi,
-        //       bentuk_koperasi,
-        //       jenis_koperasi,
-        //       kelompok_koperasi,
-        //       sektor_usaha,
-        //       nama_ketua,
-        //       nama_sekretaris,
-        //       nama_bendahara,
-        //       'name.png',
-        //       jml_anggota_pria,
-        //       jml_anggota_wanita,
-        //       total_anggota,
-        //       total_manajer,
-        //       total_karyawan,
-        //       no_induk_koperasi,
-        //       status_nik,
-        //       status_grade,
-        //       hp_pengurus,
-        //       email_pengurus
-        //     )
-        //     .subscribe(data => {
-        //       if (data['data'] !== ''){
-        //         this.state.valuestatusmodal = {
-        //           content: data['message']
-        //         };
-        //         this.showmodalsuccess = true;
-        //       }else{
-        //         this.state.valuestatusmodal = {
-        //           content: data['message']
-        //         };
-        //         this.showmodalerror = true;
-        //       }
-        //     });
       }
     }
   }
@@ -291,16 +243,10 @@ export class KoperasiComponent implements OnInit {
     }
   }
   phonenumber(input) {
-    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/;
     if (input.toString().length < 10 || input.toString().length > 12) {
       return false;
     } else {
       return true;
-      // if (input.match(phoneno)) {
-      //   return true;
-      // } else {
-      //   return false;
-      // }
     }
   }
   loadprovinsi(){
@@ -379,5 +325,12 @@ export class KoperasiComponent implements OnInit {
   changekecamatan(){
     this.listkelurahan = [];
     this.loadkelurahan();
+  }
+  closemodaldialog(status){
+    if (status === 'success'){
+      window.location.reload();
+    }else{  
+        this.showmodalerror = false;
+    }
   }
 }

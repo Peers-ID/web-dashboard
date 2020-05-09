@@ -379,7 +379,7 @@ export class MemberdataComponent implements OnInit {
   savenavtab() {
     this.api
       .postalldatamember(
-        JSON.parse(localStorage.getItem("currentUser")).userId,
+        JSON.parse(localStorage.getItem("currentUser")).koperasi_id,
         this.getjenisidentitas ? 1 : 0,
         this.getnoidentitas ? 1 : 0,
         this.getnamalengkapsesuaiktp ? 1 : 0,

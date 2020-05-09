@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit {
             type: "danger",
             content: "Invalid phone format"
           };
-          setTimeout(() => {
-            this.trigeralerts = false;
-          }, 3000);
+          // setTimeout(() => {
+          //   this.trigeralerts = false;
+          // }, 3000);
         }
       } else {
         if (this.validateEmail(userinput) === false) {
@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
             type: "danger",
             content: "Invalid email format"
           };
-          setTimeout(() => {
-            this.trigeralerts = false;
-          }, 3000);
+          // setTimeout(() => {
+          //   this.trigeralerts = false;
+          // }, 3000);
         }
       }
       if (
@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
         this.validateEmail(userinput) === true
       ) {
         this.loadingshow = true;
+        this.trigeralerts = false;
         this.authentication.login(userinput, password).subscribe(data => {
           if (data.data == "") {
             this.loadingshow = false;
@@ -55,9 +56,9 @@ export class LoginComponent implements OnInit {
               type: "danger",
               content: data.message
             };
-            setTimeout(() => {
-              this.trigeralerts = false;
-            }, 3000);
+            // setTimeout(() => {
+            //   this.trigeralerts = false;
+            // }, 3000);
           } else {
             localStorage.setItem(
               "currentUser",
@@ -86,9 +87,9 @@ export class LoginComponent implements OnInit {
         type: "danger",
         content: "form username atau password tidak boleh kosong"
       };
-      setTimeout(() => {
-        this.trigeralerts = false;
-      }, 3000);
+      // setTimeout(() => {
+      //   this.trigeralerts = false;
+      // }, 3000);
     }
   }
   keyuplogin(event, userinput, password) {
@@ -101,9 +102,9 @@ export class LoginComponent implements OnInit {
               type: "danger",
               content: "Invalid phone format"
             };
-            setTimeout(() => {
-              this.trigeralerts = false;
-            }, 3000);
+            // setTimeout(() => {
+            //   this.trigeralerts = false;
+            // }, 3000);
           }
         } else {
           if (this.validateEmail(userinput) === false) {
@@ -112,9 +113,9 @@ export class LoginComponent implements OnInit {
               type: "danger",
               content: "Invalid email format"
             };
-            setTimeout(() => {
-              this.trigeralerts = false;
-            }, 3000);
+            // setTimeout(() => {
+            //   this.trigeralerts = false;
+            // }, 3000);
           }
         }
         if (
@@ -122,6 +123,7 @@ export class LoginComponent implements OnInit {
           this.validateEmail(userinput) === true
         ) {
           this.loadingshow = true;
+          this.trigeralerts = false;
           this.authentication.login(userinput, password).subscribe(data => {
             if (data.data == "") {
               this.loadingshow = false;
@@ -130,9 +132,9 @@ export class LoginComponent implements OnInit {
                 type: "danger",
                 content: data.message
               };
-              setTimeout(() => {
-                this.trigeralerts = false;
-              }, 3000);
+              // setTimeout(() => {
+              //   this.trigeralerts = false;
+              // }, 3000);
             } else {
               localStorage.setItem(
                 "currentUser",
@@ -161,9 +163,9 @@ export class LoginComponent implements OnInit {
           type: "danger",
           content: "form username atau password tidak boleh kosong"
         };
-        setTimeout(() => {
-          this.trigeralerts = false;
-        }, 3000);
+        // setTimeout(() => {
+        //   this.trigeralerts = false;
+        // }, 3000);
       }
     }
   }

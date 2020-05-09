@@ -37,7 +37,8 @@ export class LoadformulaComponent implements OnInit {
   dataobjformcontrol: object;
   fcservicevalue: FormControl;
   trigeralerts: boolean = false;
-  arrotherfee = []
+  arrotherfee = [];
+  contentstatusmodal:any;
   constructor(private state: StatemanagementService, private api: ApiService) {
     this.fcminamount = new FormControl("");
     this.fcmaxamount = new FormControl("");
@@ -244,13 +245,9 @@ export class LoadformulaComponent implements OnInit {
       this.api.postloanformula(dataobj).subscribe(data => {
         if (data["status"] === 201) {
           this.showsuccessmodal = true;
-          this.state.valuestatusmodal = {
-            content: data["message"]
-          };
+          this.contentstatusmodal = data['message']
         } else {
-          this.state.valuestatusmodal = {
-            content: data["message"]
-          };
+          this.contentstatusmodal = data['message']
           this.showerrormodal = true;
         }
       });
@@ -350,5 +347,12 @@ export class LoadformulaComponent implements OnInit {
   }
   removeotherfee(id){
     let idincrement = id.toElement.id.substring(id.toElement.id.length - 1)
+  }
+  closemodaldialog(status){
+    if (status === 'success'){
+      window.location.reload();
+    }else{  
+        this.showerrormodal = false;
+    }
   }
 }
