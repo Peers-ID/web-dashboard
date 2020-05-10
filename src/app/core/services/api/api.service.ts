@@ -365,14 +365,14 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
-  gettablecollection(page,column,sort,keywords,searchbyfield): Observable<any> {
+  gettablecollection(page,column,sort,keywords,searchbyfield,hours,minutes): Observable<any> {
     let url;
     if (keywords === '' && searchbyfield === ''){
-      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort;
+      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort+'&cutHour='+hours+'&cutMinute='+minutes;
     }else if  (keywords !== '' && searchbyfield === '') {
-      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort+'&keywords='+keywords;
+      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort+'&keywords='+keywords+'&cutHour='+hours+'&cutMinute='+minutes;
     }else if (keywords === '' && searchbyfield !== ''){
-      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort+'&'+searchbyfield.name+'='+searchbyfield.value;
+      url = environment.apiurl+'collection?page='+page+'&row=10&column='+column+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&sort='+sort+'&'+searchbyfield.name+'='+searchbyfield.value+'&cutHour='+hours+'&cutMinute='+minutes;
     }
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
@@ -380,5 +380,11 @@ export class ApiService {
   }
   getcorelocation(): Observable<any> {
     return this.http.get('assets/indonesia-region.min.json').pipe(map(res => res));
+  }  
+  getcutofftimekoperasi(): Observable<any> {
+    const url = environment.apiurl+'koperasi/cutoff/'+JSON.parse(localStorage.getItem('currentUser')).koperasi_id
+    return this.http.get(url,this.options).pipe(
+      catchError(this.handleError)
+      );
   }  
 }

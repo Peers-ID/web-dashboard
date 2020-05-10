@@ -60,14 +60,20 @@ export class CollectionComponent implements OnInit {
   loadData(pagepagination,pagenavbar,order,keywords,field){
     let gettoday = new Date().toLocaleDateString();
     this.datatoday = gettoday;
-    this.apiservice.gettablecollection(pagepagination,pagenavbar,order,keywords,field).subscribe(data => {
-        this.totalpage = data.message.total
-        let datanumber = ((pagepagination - 1) * data.data.length) + 1
-        this.datacollection = [];
-        data['data'].forEach(element => {
-          element['number'] = datanumber++;
-          this.datacollection.push(element)   
-        });
+    this.apiservice.getcutofftimekoperasi().subscribe(data =>{
+      if (data.status === 200){
+        this.apiservice.gettablecollection(pagepagination,pagenavbar,order,keywords,field,('0' + data.data[0].hours).slice(-2),('0' + data.data[0].minutes).slice(-2)).subscribe(data => {
+          this.totalpage = data.message.total
+          let datanumber = ((pagepagination - 1) * data.data.length) + 1
+          this.datacollection = [];
+          data['data'].forEach(element => {
+            element['number'] = datanumber++;
+            this.datacollection.push(element)   
+          });
+      })
+      }else{
+        this.totalpage = 0;
+      }
     })
   }
   searchnavbar(event,page , data){
