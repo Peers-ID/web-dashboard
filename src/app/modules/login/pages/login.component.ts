@@ -59,8 +59,16 @@ export class LoginComponent implements OnInit {
             // setTimeout(() => {
             //   this.trigeralerts = false;
             // }, 3000);
-          } else {
-            localStorage.setItem(
+          } else {            
+            if (data.data.user.role == 'Admin AO'){
+              this.loadingshow = false;
+              this.trigeralerts = true;
+              this.state.valuestatealerts = {
+                type: "danger",
+                content: "Tidak ada akses"
+              };
+            }else{              
+              localStorage.setItem(
               "currentUser",
               JSON.stringify({
                 userId: data.data.user.id,
@@ -76,6 +84,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(["/loanapplication"]);
             }else{
               this.router.navigate(["/koperasiregistration"]);
+            }
             }
           }
         });
@@ -136,7 +145,15 @@ export class LoginComponent implements OnInit {
               //   this.trigeralerts = false;
               // }, 3000);
             } else {
-              localStorage.setItem(
+              if (data.data.user.role == 'Admin AO'){
+                this.loadingshow = false;
+                this.trigeralerts = true;
+                this.state.valuestatealerts = {
+                  type: "danger",
+                  content: "Tidak ada akses"
+                };
+              }else{              
+                localStorage.setItem(
                 "currentUser",
                 JSON.stringify({
                   userId: data.data.user.id,
@@ -149,10 +166,11 @@ export class LoginComponent implements OnInit {
                 })
               );
               if (JSON.parse(localStorage.getItem('currentUser')).role == 'Admin Koperasi'){
-                this.router.navigate(["/loanapplication"]);
-            }else{
-              this.router.navigate(["/koperasiregistration"]);
-            }
+                  this.router.navigate(["/loanapplication"]);
+              }else{
+                this.router.navigate(["/koperasiregistration"]);
+              }
+              }
             }
           });
         }

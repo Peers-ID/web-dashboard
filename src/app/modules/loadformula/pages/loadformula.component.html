@@ -61,7 +61,12 @@
                             Min Loan amount
                         </div>
                         <div class="col-3">
-                            <input type="number" class="form-control" #minloanamount [formControl]="fcminamount">
+                            <div class="input-group">
+                                <span class="input-group-append">
+                                    <span class="input-group-text add-on white">Rp.</span>
+                                </span>
+                                <input type="number" class="form-control" #minloanamount [formControl]="fcminamount">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,7 +80,12 @@
                             Max Loan amount
                         </div>
                         <div class="col-3">
-                            <input type="number" class="form-control" #maxloanamount [formControl]="fcmaxamount">
+                            <div class="input-group">
+                                <span class="input-group-append">
+                                    <span class="input-group-text add-on white">Rp.</span>
+                                </span>
+                                <input type="number" class="form-control" #maxloanamount [formControl]="fcmaxamount">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,7 +99,12 @@
                             Kelipatan
                         </div>
                         <div class="col-3">
-                            <input type="number" class="form-control" #kelipatan [formControl]="fckelipatan">
+                            <div class="input-group">
+                                <span class="input-group-append">
+                                    <span class="input-group-text add-on white">Rp.</span>
+                                </span>
+                                <input type="number" class="form-control" #kelipatan [formControl]="fckelipatan">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +121,12 @@
                             Min Tenure
                         </div>
                         <div class="col-3">
-                            <input type="number" class="form-control" #mintenure [formControl]="fcmintenure">
+                            <div class="input-group">
+                                <span class="input-group-append">
+                                    <span class="input-group-text add-on white">Rp.</span>
+                                </span>
+                                <input type="number" class="form-control" #mintenure [formControl]="fcmintenure">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,7 +140,12 @@
                             Max Tenure
                         </div>
                         <div class="col-3">
-                            <input type="number" class="form-control" #maxtenure [formControl]="fcmaxtenure">
+                            <div class="input-group">
+                                <span class="input-group-append">
+                                    <span class="input-group-text add-on white">Rp.</span>
+                                </span>
+                                <input type="number" class="form-control" #maxtenure [formControl]="fcmaxtenure">
+                            </div>
                         </div>
                         <div class="col-2">
                             <select style="width: 100%;" class="form-control" [formControl]="fcdatetenure">
@@ -155,7 +180,14 @@
                         </div>
                         <div class="col-3">
                             <div class="row">
-                                <div class="col-8"> <input type="number" class="form-control" [formControl]="fcservicevalue"></div>
+                                <div class="col-8">
+                                    <div class="input-group">
+                                        <span class="input-group-append">
+                                            <span class="input-group-text add-on white">Rp.</span>
+                                        </span>
+                                        <input type="number" class="form-control" [formControl]="fcservicevalue">
+                                    </div>
+                                    </div>
                                 <div class="col-3">Per</div>
                             </div>
                         </div>
@@ -221,7 +253,14 @@
                                         </div>
                                         <div class="col-3">
                                             <div class="row">
-                                                <div class="col-8"><input type="number" class="form-control" id="feevalueother{{i}}" value="" disabled></div>
+                                                <div class="col-8">
+                                                    <div class="input-group">
+                                                        <span class="input-group-append">
+                                                            <span class="input-group-text add-on white">Rp.</span>
+                                                        </span>
+                                                        <input type="number" class="form-control" id="feevalueother{{i}}" value="" disabled>
+                                                    </div>
+                                                </div>
                                                 <div class="col-3">Per</div>
                                             </div>
                                         </div>

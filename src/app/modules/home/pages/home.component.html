@@ -857,12 +857,12 @@
                                 <td>
                                     <div class="col-12">
                                         <div class="row">
-                                            <button class="btn mr-1" type="button"
+                                            <button class="btn mr-1" type="button" *ngIf="data.is_loan_approved === 1 || data.is_loan_approved === 3"
                                                 style="background-color: darkcyan;color: white;font-size: 10pt;"
                                                 (click)="viewclick(data.id,data.member_id)">View</button>
-                                            <button class="btn mr-1" type="button" *ngIf="data.is_loan_approved === 0"
+                                            <button class="btn mr-1" type="button" *ngIf="data.is_loan_approved === 3"
                                                 style="background-color: darkcyan;color: white;font-size: 10pt;" (click)="approveclick(data.member_id , 1)">Approve</button>
-                                            <button class="btn mr-1" type="button" *ngIf="data.is_loan_approved === 0"
+                                            <button class="btn mr-1" type="button" *ngIf="data.is_loan_approved === 3"
                                                 style="background-color: darkcyan;color: white;font-size: 10pt;" (click)="rejectclick(data.member_id, 2)">Reject</button>
                                         </div>
                                     </div>
