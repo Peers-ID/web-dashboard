@@ -68,6 +68,9 @@ export class CollectionComponent implements OnInit {
           this.datacollection = [];
           data['data'].forEach(element => {
             element['number'] = datanumber++;
+            element['cicilan_jumlah'] = new Intl.NumberFormat(['ban', 'id']).format(element.cicilan_jumlah)
+            element['pokok'] = new Intl.NumberFormat(['ban', 'id']).format(element.pokok)
+            element['sukarela'] = new Intl.NumberFormat(['ban', 'id']).format(element.sukarela)
             this.datacollection.push(element)   
           });
       })

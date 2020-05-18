@@ -724,18 +724,35 @@
                     </div>
                     <div id="history" class="container tab-pane fade"><br>
                         <div class="row">
-                            <div class="col-12 mt-3" *ngIf="trigernodatahistory">
+                            <div class="col-12 mt-3" *ngIf="datacollectall.length == 0">
                                 <h3>Tidak ada data ..</h3>
                             </div>
-                            <div class="col-12 mt-1" *ngFor="let data of datahistorygetall">
+                            <div class="col-12 mt-1">
                                 <div class="row justify-content-center">
-                                    <div class="col-5" style="font-size: 0.8rem;">
-                                        status
+                                    <div class="col-12">
+                                        <table id="t01">
+                                            <tr style="padding-right:0;">
+                                                <th style="font-size: 11pt;width: 10%;">No</th>
+                                                <th style="font-size: 11pt;width: 14%;">AO </th>
+                                                <th style="font-size: 11pt;width: 14%;">Jumlah </th>
+                                                <th style="font-size: 11pt;width: 14%;">Cicilan Ke </th>
+                                                <th style="font-size: 11pt;width: 14%;">Pokok </th>
+                                                <th style="font-size: 11pt;width: 14%;">Sukarela </th>
+                                            </tr>
+                                            <tr style="border-bottom: 2px solid darkcyan; padding-right: 0;"
+                                                *ngFor="let data of datacollectall| paginate: {itemsPerPage: 10, currentPage: p , totalItems:datacollectall.length} let i = index">
+                                                <td>{{data.number}}.</td>
+                                                <td>{{data.ao_name}}</td>
+                                                <td>Rp. {{data.jumlah_loan}}</td>
+                                                <td>dummy</td>
+                                                <td>Rp. dummy</td>
+                                                <td>Rp. dummy</td>
+                                            </tr>
+                                        </table>
                                     </div>
-                                    <div class="col-6">
-                                        <input type="text" disabled class="form-control"
-                                            value="{{data.is_loan_approved}}" style="font-size: 0.8rem;">
-                                    </div>
+                                <div class="col-12 mt-2" *ngIf="datacollectall.length > 0">
+                                    <pagination-controls (pageChange)="p = $event;pageclickhistory($event)"></pagination-controls>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -852,7 +869,7 @@
                                 <td>{{data.ao_name}}</td>
                                 <td>{{data.member_name}}</td>
                                 <td>{{data.createdAt | slice : 0 : 10}}</td>
-                                <td>{{data.jumlah_loan}}</td>
+                                <td>Rp. {{data.jumlah_loan}}</td>
                                 <td>{{data.tenor}}</td>
                                 <td>
                                     <div class="col-12">

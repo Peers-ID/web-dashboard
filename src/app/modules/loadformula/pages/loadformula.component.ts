@@ -38,7 +38,7 @@ export class LoadformulaComponent implements OnInit {
   fcservicevalue: FormControl;
   trigeralerts: boolean = false;
   arrotherfee = [];
-  contentstatusmodal:any;
+  contentstatusmodal: any;
   constructor(private state: StatemanagementService, private api: ApiService) {
     this.fcminamount = new FormControl("");
     this.fcmaxamount = new FormControl("");
@@ -203,7 +203,7 @@ export class LoadformulaComponent implements OnInit {
         let dataaddotherfee = {
           service_name: $("input[id=feenameother" + [i] + "]").val(),
           service_type: $("input[name=" + [i] + "]:checked").val(),
-          service_amount: $("input[id=feevalueother" + [i] + "]").val(),
+          service_amount: $("input[id=feevalueother" + [i] + "]").val().split('.').join(""),
           service_cycle: $("#selectfeeother" + [i]).val()
         };
         this.arrotherfee.push(dataaddotherfee);
@@ -227,21 +227,46 @@ export class LoadformulaComponent implements OnInit {
       } else {
         valueservice = "";
       }
+      let dataminloanammount = $('#minloanamount').val();
+      let datamaxloanammount = $('#maxloanamount').val();
+      let datamintenure = $('#mintenure').val();
+      let datamaxtenure = $('#maxtenure').val();
+      let datakelipatan = $('#kelipatan').val();
+      let dataservicefee = $('#servicefee').val();
+      if (dataminloanammount.includes(".")){
+          dataminloanammount = $('#minloanamount').val().split('.').join("")
+      }
+      if (datamaxloanammount.includes(".")){
+        datamaxloanammount = $('#maxloanamount').val().split('.').join("")
+      }
+      if (datamintenure.includes(".")){
+        datamintenure = $('#mintenure').val().split('.').join("")
+      }
+      if (datamaxtenure.includes(".")){
+        datamaxtenure = $('#maxtenure').val().split('.').join("")
+      }
+      if (dataservicefee.includes(".")){
+        dataservicefee = $('#servicefee').val().split('.').join("")
+      }
+      if (datakelipatan.includes(".")){
+        datakelipatan = $('#kelipatan').val().split('.').join("")
+      }
+      
       let dataobj = {
         koperasi_id: JSON.parse(localStorage.getItem("currentUser"))
           .koperasi_id,
         formula_name: this.fcformulaname.value,
-        min_loan_amount: this.fcminamount.value,
-        max_loan_amount: this.fcmaxamount.value,
-        kelipatan: this.fckelipatan.value,
-        min_tenure: this.fcmintenure.value,
-        max_tenure: this.fcmaxtenure.value,
+        min_loan_amount: dataminloanammount,
+        max_loan_amount: datamaxloanammount,
+        kelipatan: datakelipatan,
+        min_tenure: datamintenure,
+        max_tenure: datamaxtenure,
         tenure_cycle: this.fcdatetenure.value,
         service_type: valueservice,
-        service_amount: this.fcservicevalue.value,
+        service_amount: dataservicefee,
         service_cycle: this.fcdateservicefee.value,
         other_fee: this.arrotherfee
-      };
+      };          
       this.api.postloanformula(dataobj).subscribe(data => {
         if (data["status"] === 201) {
           this.showsuccessmodal = true;
@@ -260,13 +285,13 @@ export class LoadformulaComponent implements OnInit {
         $("input[name=" + [i] + "]:checked").val() !== ""
       )
         $("#selectfeeother" + [i]).removeAttr("disabled");
-        $("#feevalueother" + [i]).removeAttr("disabled");
+      $("#feevalueother" + [i]).removeAttr("disabled");
     }
   }
 
-  renderinitdata(){
+  renderinitdata() {
     this.api.getloanformula().subscribe(data => {
-      if (data['data'].length > 0){        
+      if (data['data'].length > 0) {
         localStorage.setItem(
           "koperasiData",
           JSON.stringify({
@@ -274,86 +299,86 @@ export class LoadformulaComponent implements OnInit {
           })
         )
         if (data["data"][0].formula_name)
-        this.fcformulaname.setValue(data["data"][0].formula_name);
-       if (data["data"][0].min_loan_amount)
-        this.fcminamount.setValue(data["data"][0].min_loan_amount);
-      this.getminloanamount = true;
-      this.fcminamount.enable();
-      if (data["data"][0].max_loan_amount) {
-        this.fcmaxamount.setValue(data["data"][0].max_loan_amount);
-        this.getmaxloanamount = true;
-        this.fcmaxamount.enable();
-      }
-      if (data["data"][0].kelipatan) {
-        this.fckelipatan.setValue(data["data"][0].kelipatan);
-        this.getkelipatan = true;
-        this.fckelipatan.enable();
-      }
-      if (data["data"][0].min_tenure) {
-        this.fcmintenure.setValue(data["data"][0].min_tenure);
-        this.getmintenure = true;
-        this.fcmintenure.enable();
-      }
-      if (data["data"][0].max_tenure) {
-        this.fcmaxtenure.setValue(data["data"][0].max_tenure);
-        this.getmaxtenure = true;
-        this.fcmaxtenure.enable();
-      }
-      if (data["data"][0].tenure_cycle) {
-        this.fcdatetenure.setValue(data["data"][0].tenure_cycle);
-        this.fcdatetenure.enable();
-      }
-      if (data["data"][0].service_type === 'fix') {
-        this.getservicefix = true;
-        this.fcservicevalue.setValue(data["data"][0].service_amount)
-        this.fcservicevalue.enable();        
-        this.fcdateservicefee.setValue(data["data"][0].service_cycle)
-        this.fcdateservicefee.enable()
-      }
-      if (data["data"][0].service_type === 'fee') {
-        this.getservicefee = true;
-        this.fcservicevalue.setValue(data["data"][0].service_amount)
-        this.fcservicevalue.enable();        
-        this.fcdateservicefee.setValue(data["data"][0].service_cycle)
-        this.fcdateservicefee.enable()
-      }
+          this.fcformulaname.setValue(data["data"][0].formula_name);
+        if (data["data"][0].min_loan_amount)
+          this.fcminamount.setValue(new Intl.NumberFormat(['ban', 'id']).format(data["data"][0].min_loan_amount));
+        this.getminloanamount = true;
+        this.fcminamount.enable();
+        if (data["data"][0].max_loan_amount) {
+          this.fcmaxamount.setValue(new Intl.NumberFormat(['ban', 'id']).format(data["data"][0].max_loan_amount));
+          this.getmaxloanamount = true;
+          this.fcmaxamount.enable();
+        }
+        if (data["data"][0].kelipatan) {
+          this.fckelipatan.setValue(new Intl.NumberFormat(['ban', 'id']).format(data["data"][0].kelipatan));
+          this.getkelipatan = true;
+          this.fckelipatan.enable();
+        }
+        if (data["data"][0].min_tenure) {
+          this.fcmintenure.setValue(new Intl.NumberFormat(['ban', 'id']).format(data["data"][0].min_tenure));
+          this.getmintenure = true;
+          this.fcmintenure.enable();
+        }
+        if (data["data"][0].max_tenure) {
+          this.fcmaxtenure.setValue(new Intl.NumberFormat(['ban', 'id']).format(data["data"][0].max_tenure));
+          this.getmaxtenure = true;
+          this.fcmaxtenure.enable();
+        }
+        if (data["data"][0].tenure_cycle) {
+          this.fcdatetenure.setValue(data["data"][0].tenure_cycle);
+          this.fcdatetenure.enable();
+        }
+        if (data["data"][0].service_type === 'fix') {
+          this.getservicefix = true;
+          this.fcservicevalue.setValue(new Intl.NumberFormat(['ban', 'id']).format(data["data"][0].service_amount))
+          this.fcservicevalue.enable();
+          this.fcdateservicefee.setValue(data["data"][0].service_cycle)
+          this.fcdateservicefee.enable()
+        }
+        if (data["data"][0].service_type === 'fee') {
+          this.getservicefee = true;
+          this.fcservicevalue.setValue(new Intl.NumberFormat(['ban', 'id']).format(data["data"][0].service_amount))
+          this.fcservicevalue.enable();
+          this.fcdateservicefee.setValue(data["data"][0].service_cycle)
+          this.fcdateservicefee.enable()
+        }
         this.api.getotherfee().subscribe(data => {
-      this.loopotherfee = [];
-      let datatempother = [];
-      data.data.forEach((element,index) => {
-          if (element.service_name !== ''){
-            this.loopotherfee.push(index)
-            datatempother.push(element);
-          }
-      });
-      datatempother.forEach((element,index) => {
-        setTimeout(() => {
-          $("#selectfeeother" + [index]).removeAttr("disabled");
-          $("#feevalueother" + [index]).removeAttr("disabled");
-          $("input[id=feenameother" + [index] + "]").val(element.service_name)
-          $("#selectfeeother" + [index]).val(element.service_cycle)
-          $("input[id=feevalueother" + [index] + "]").val(element.service_amount)
-          if (element.service_type === 'fix'){
-            $("#othercheckfix"+[index]).prop("checked", true);
-          }else{
-            $("#othercheckfee"+[index]).prop("checked", true);
-          }
-        }, 1000);          
-      });      
-      this.indexincrement = this.loopotherfee.length -1 ;
-    })
-      }else{
+          this.loopotherfee = [];
+          let datatempother = [];
+          data.data.forEach((element, index) => {
+            if (element.service_name !== '') {
+              this.loopotherfee.push(index)
+              datatempother.push(element);
+            }
+          });
+          datatempother.forEach((element, index) => {
+            setTimeout(() => {
+              $("#selectfeeother" + [index]).removeAttr("disabled");
+              $("#feevalueother" + [index]).removeAttr("disabled");
+              $("input[id=feenameother" + [index] + "]").val(element.service_name)
+              $("#selectfeeother" + [index]).val(element.service_cycle)
+              $("input[id=feevalueother" + [index] + "]").val(new Intl.NumberFormat(['ban', 'id']).format(element.service_amount))
+              if (element.service_type === 'fix') {
+                $("#othercheckfix" + [index]).prop("checked", true);
+              } else {
+                $("#othercheckfee" + [index]).prop("checked", true);
+              }
+            }, 1000);
+          });
+          this.indexincrement = this.loopotherfee.length - 1;
+        })
+      } else {
       }
     });
   }
-  removeotherfee(id){
+  removeotherfee(id) {
     let idincrement = id.toElement.id.substring(id.toElement.id.length - 1)
   }
-  closemodaldialog(status){
-    if (status === 'success'){
+  closemodaldialog(status) {
+    if (status === 'success') {
       window.location.reload();
-    }else{  
-        this.showerrormodal = false;
+    } else {
+      this.showerrormodal = false;
     }
   }
 }

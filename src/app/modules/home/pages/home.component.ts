@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
   trigernodatamember: boolean = false;
   trigernodataloan: boolean = false;
   p: number = 1;
+  idmember:any;
   pagecurrentvalue: number = 1;
+  pagecurrenthistory: number = 1;
   isASC: boolean = false;
   loadingshow: boolean = false;
   loandataget: any;
@@ -32,6 +34,7 @@ export class HomeComponent implements OnInit {
   totalpage:number;
   searchall:any;
   searchbyfield:any;
+  datacollectall = [];
   constructor(private api: ApiService, private state: StatemanagementService) {
   }
   ngOnInit() {
@@ -50,7 +53,12 @@ export class HomeComponent implements OnInit {
     this.pagecurrentvalue = event;
     this.loadData(this.pagecurrentvalue, "createdAt", "desc",this.searchall,this.searchbyfield);
   }
+  pageclickhistory(event) {
+    this.pagecurrenthistory = event;
+    // this.historyview();
+  }
   viewclick(idloan, idmember) {
+    this.idmember = idmember
     this.api.getviewloanapilcation(idloan).subscribe((data) => {
       if (data.data !== '') {
         this.loandataget = data.data;
@@ -65,30 +73,39 @@ export class HomeComponent implements OnInit {
         this.trigernodatamember = true;
       }
     });
-    this.api.gethistoryloanapilcation(1, idmember).subscribe((data) => {
+    this.historyview();  
+  }
+  historyview(){
+    this.api.gethistoryloanapilcation(this.pagecurrenthistory,1, this.idmember).subscribe((data) => {
+      let historystatus1 = [];
+      let historystatus2 = [];
       this.datahistorygetall = [];
       if (data.data.length === 0) {
         this.datahistorygetall = [];
       } else {
         data.data.forEach((element) => {
-          this.datahistorygetall.push(element);
+          // this.datahistorygetall.push(element);
+          historystatus1.push(element)
         });
       }      
-      this.api.gethistoryloanapilcation(2, idmember).subscribe((data) => {
-        if (data.data.length !== 0) {
+      this.api.gethistoryloanapilcation(this.pagecurrenthistory,2, this.idmember).subscribe((data) => {
+        if (data.data.length !== 0 ) {
           data.data.forEach((element) => {
-            this.datahistorygetall.push(element);
+            // this.datahistorygetall.push(element);
+            historystatus2.push(element)
           });
         }
+        var datacompare = historystatus1.filter((obj)=> {
+          return historystatus2.indexOf(obj) == -1; 
+         });
+         let datanumber = ((this.pagecurrenthistory - 1) * data.data.length) + 1
+         datacompare.forEach(data => {
+             data['number'] = datanumber++;
+             this.datacollectall.push(data)
+         })
       });
-      if (this.datahistorygetall.length === 0){
-        this.trigernodatahistory = true;
-      }else{
-        this.trigernodatahistory = false;
-      } 
-      this.showmodalviewloan = true;
-    });
-    
+      this.showmodalviewloan = true;    
+    });    
   }
   approveclick(idmember, status) {
     this.idmemberloan = idmember;
@@ -155,6 +172,7 @@ export class HomeComponent implements OnInit {
       this.dataloanaplication = [];
         data["data"].forEach((element, index) => {
           element['number'] = datanumber++;
+          element['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format(element.jumlah_loan)
           this.dataloanaplication.push(element);
         });
       });
