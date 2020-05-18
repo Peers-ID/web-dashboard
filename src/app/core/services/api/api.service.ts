@@ -339,7 +339,7 @@ export class ApiService {
       );
   }
   gethistoryloanapilcation(pagepagination,status,idmember): Observable<any> {
-    const url = environment.apiurl+'loan?status='+status+'&member_id='+idmember+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10';
+    const url = environment.apiurl+'loan?is_loan_approved='+status+'&member_id='+idmember+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10';
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );
