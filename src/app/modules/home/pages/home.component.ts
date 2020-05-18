@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit {
       let historystatus1 = [];
       let historystatus2 = [];
       this.datahistorygetall = [];
+      this.datacollectall = [];
       if (data.data.length === 0) {
         this.datahistorygetall = [];
       } else {
