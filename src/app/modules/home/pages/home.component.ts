@@ -189,6 +189,8 @@ export class HomeComponent implements OnInit {
             this.dataloanaplication = [];
           }else if (element.is_loan_approved === 2){
             this.dataloanaplication = [];
+          }else if (element.is_loan_approved === 1){
+            this.dataloanaplication = [];
           }else{
             element['number'] = datanumber++;
             element['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format(element.jumlah_loan)
