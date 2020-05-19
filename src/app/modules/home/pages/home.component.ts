@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
     this.historyview();  
   }
   historyview(){
-    this.api.gethistoryloanapilcation(this.pagecurrenthistory,1, this.idmember,this.idloan).subscribe((data) => {
+    this.api.gethistoryloanapilcation(this.pagecurrenthistory,4, this.idmember,this.idloan).subscribe((data) => {
       let historystatus1 = [];
       let historystatus2 = [];
       let totalpagehistory = 0;
@@ -186,15 +186,11 @@ export class HomeComponent implements OnInit {
       this.dataloanaplication = [];
         data["data"].forEach((element, index) => {
           if (element.is_loan_approved === 0){
-            this.dataloanaplication = [];
-          }else if (element.is_loan_approved === 2){
-            this.dataloanaplication = [];
-          }else if (element.is_loan_approved === 1){
-            this.dataloanaplication = [];
-          }else{
             element['number'] = datanumber++;
             element['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format(element.jumlah_loan)
             this.dataloanaplication.push(element);
+          }else {
+            this.dataloanaplication = [];
           }
         });
       });
