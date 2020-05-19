@@ -46,8 +46,13 @@
                                         Jumlah Loan
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" disabled class="form-control"
+                                        <div class="input-group">
+                                            <span class="input-group-append ">
+                                                <span class="input-group-text add-on white" style="font-size: 0.8rem;">Rp.</span>
+                                            </span>
+                                            <input type="text" disabled class="form-control"
                                             value="{{loandataget.jumlah_loan}}" style="font-size: 0.8rem;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -57,8 +62,13 @@
                                         Total Disbursed
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" disabled class="form-control"
+                                        <div class="input-group">
+                                            <span class="input-group-append ">
+                                                <span class="input-group-text add-on white" style="font-size: 0.8rem;">Rp.</span>
+                                            </span>
+                                            <input type="text" disabled class="form-control"
                                             value="{{loandataget.total_disbursed}}" style="font-size: 0.8rem;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -101,8 +111,13 @@
                                         Cicilan/Bln
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" disabled class="form-control"
+                                        <div class="input-group">
+                                            <span class="input-group-append ">
+                                                <span class="input-group-text add-on white" style="font-size: 0.8rem;">Rp.</span>
+                                            </span>
+                                            <input type="text" disabled class="form-control"
                                             value="{{loandataget.cicilan_per_bln}}" style="font-size: 0.8rem;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -727,30 +742,31 @@
                             <div class="col-12 mt-3" *ngIf="datacollectall.length == 0">
                                 <h3>Tidak ada data ..</h3>
                             </div>
-                            <div class="col-12 mt-1">
+                            <div class="col-12 mt-1" *ngIf="datacollectall.length > 0">
                                 <div class="row justify-content-center">
-                                    <div class="col-12">
+                                    <div class="col-12" >
                                         <table id="t01">
                                             <tr style="padding-right:0;">
                                                 <th style="font-size: 11pt;width: 10%;">No</th>
                                                 <th style="font-size: 11pt;width: 14%;">AO </th>
-                                                <th style="font-size: 11pt;width: 14%;">Jumlah </th>
-                                                <th style="font-size: 11pt;width: 14%;">Cicilan Ke </th>
-                                                <th style="font-size: 11pt;width: 14%;">Pokok </th>
-                                                <th style="font-size: 11pt;width: 14%;">Sukarela</th>
+                                                <th style="font-size: 11pt;width: 18%;">Tanggal </th>
+                                                <th style="font-size: 11pt;width: 18%;">Jumlah </th>
+                                                <th style="font-size: 11pt;width: 5%;">Tenor </th>
+                                                <th style="font-size: 11pt;width: 5%;">Status</th>
                                             </tr>
                                             <tr style="border-bottom: 2px solid darkcyan; padding-right: 0;"
-                                                *ngFor="let data of datacollectall| paginate: {itemsPerPage: 10, currentPage: p , totalItems:datacollectall.length} let i = index">
+                                                *ngFor="let data of datacollectall| paginate: {itemsPerPage: 10, currentPage: p , totalItems:totalpagegethistory} let i = index">
                                                 <td>{{data.number}}.</td>
                                                 <td>{{data.ao_name}}</td>
+                                                <td>{{data.createdAt | slice :0:10}}</td>
                                                 <td>Rp. {{data.jumlah_loan}}</td>
-                                                <td>dummy</td>
-                                                <td>Rp. dummy</td>
-                                                <td>Rp. dummy</td>
+                                                <td>{{data.tenor}}</td>
+                                                <td *ngIf="data.is_loan_approved == 1">Approve</td>
+                                                <td *ngIf="data.is_loan_approved == 2">Reject</td>
                                             </tr>
                                         </table>
                                     </div>
-                                <div class="col-12 mt-2" *ngIf="datacollectall.length > 0">
+                                <div class="col-12 mt-2">
                                     <pagination-controls (pageChange)="p = $event;pageclickhistory($event)"></pagination-controls>
                                 </div>
                                 </div>

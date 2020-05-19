@@ -316,11 +316,11 @@ export class ApiService {
   getloanapilcation(pagepagination,pagenavbar,order,keywords,searchbyfield): Observable<any> {
    let url;
     if (keywords === '' && searchbyfield === ''){
-      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'+'&sort='+order;
+      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&sort='+order;
     }else if  (keywords !== '' && searchbyfield === '') {
-      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'+'&sort='+order+'&keywords='+keywords;
+      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&sort='+order+'&keywords='+keywords;
     }else if (keywords === '' && searchbyfield !== ''){
-      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&status=0'+'&sort='+order+'&'+searchbyfield.name+'='+searchbyfield.value;
+      url = environment.apiurl+'loan?koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10&column='+pagenavbar+'&sort='+order+'&'+searchbyfield.name+'='+searchbyfield.value;
     }
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
@@ -338,8 +338,8 @@ export class ApiService {
       catchError(this.handleError)
       );
   }
-  gethistoryloanapilcation(pagepagination,status,idmember): Observable<any> {
-    const url = environment.apiurl+'loan?is_loan_approved='+status+'&member_id='+idmember+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10';
+  gethistoryloanapilcation(pagepagination,status,idmember,loan_id): Observable<any> {
+    const url = environment.apiurl+'loan?is_loan_approved='+status+'&member_id='+idmember+'&koperasi_id='+JSON.parse(localStorage.getItem('currentUser')).koperasi_id+'&page='+pagepagination+'&row=10'+'&loan_id='+loan_id;
     return this.http.get(url,this.options).pipe(
       catchError(this.handleError)
       );

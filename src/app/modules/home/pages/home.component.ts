@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
   searchall:any;
   searchbyfield:any;
   datacollectall = [];
+  idloan:any;
+  totalpagegethistory:number = 0;
   constructor(private api: ApiService, private state: StatemanagementService) {
   }
   ngOnInit() {
@@ -55,13 +57,17 @@ export class HomeComponent implements OnInit {
   }
   pageclickhistory(event) {
     this.pagecurrenthistory = event;
-    // this.historyview();
+    this.historyview();
   }
   viewclick(idloan, idmember) {
     this.idmember = idmember
+    this.idloan = idloan;
     this.api.getviewloanapilcation(idloan).subscribe((data) => {
       if (data.data !== '') {
         this.loandataget = data.data;
+        this.loandataget['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format( data.data.jumlah_loan)
+        this.loandataget['total_disbursed'] = new Intl.NumberFormat(['ban', 'id']).format( data.data.total_disbursed)
+        this.loandataget['cicilan_per_bln'] = new Intl.NumberFormat(['ban', 'id']).format( data.data.cicilan_per_bln)
       } else {
         this.trigernodataloan = true;
       }
@@ -76,32 +82,39 @@ export class HomeComponent implements OnInit {
     this.historyview();  
   }
   historyview(){
-    this.api.gethistoryloanapilcation(this.pagecurrenthistory,1, this.idmember).subscribe((data) => {
+    this.api.gethistoryloanapilcation(this.pagecurrenthistory,1, this.idmember,this.idloan).subscribe((data) => {
       let historystatus1 = [];
       let historystatus2 = [];
+      let totalpagehistory = 0;
       this.datahistorygetall = [];
-      this.datacollectall = [];
       if (data.data.length === 0) {
-        this.datahistorygetall = [];
+        this.datacollectall = [];
       } else {
+        this.datacollectall = [];
+        totalpagehistory += data.message.total
         data.data.forEach((element) => {
           // this.datahistorygetall.push(element);
           historystatus1.push(element)
         });
       }      
-      this.api.gethistoryloanapilcation(this.pagecurrenthistory,2, this.idmember).subscribe((data) => {
+      this.api.gethistoryloanapilcation(this.pagecurrenthistory,2, this.idmember,this.idloan).subscribe((data) => {
         if (data.data.length !== 0 ) {
+          totalpagehistory += data.message.total
           data.data.forEach((element) => {
             // this.datahistorygetall.push(element);
             historystatus2.push(element)
-          });
+          }); 
         }
         var datacompare = historystatus1.filter((obj)=> {
           return historystatus2.indexOf(obj) == -1; 
          });
          let datanumber = ((this.pagecurrenthistory - 1) * data.data.length) + 1
+         this.totalpagegethistory = totalpagehistory
          datacompare.forEach(data => {
              data['number'] = datanumber++;
+             data['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format(data.jumlah_loan)
+            //  data['pokok'] = new Intl.NumberFormat(['ban', 'id']).format(data.pokok)
+            //  data['sukarela'] = new Intl.NumberFormat(['ban', 'id']).format(data.sukarela)
              this.datacollectall.push(data)
          })
       });
@@ -172,9 +185,15 @@ export class HomeComponent implements OnInit {
       let datanumber = ((pagepagination - 1) * data.data.length) + 1
       this.dataloanaplication = [];
         data["data"].forEach((element, index) => {
-          element['number'] = datanumber++;
-          element['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format(element.jumlah_loan)
-          this.dataloanaplication.push(element);
+          if (element.is_loan_approved === 0){
+            this.dataloanaplication = [];
+          }else if (element.is_loan_approved === 2){
+            this.dataloanaplication = [];
+          }else{
+            element['number'] = datanumber++;
+            element['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format(element.jumlah_loan)
+            this.dataloanaplication.push(element);
+          }
         });
       });
 
