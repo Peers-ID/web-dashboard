@@ -185,13 +185,9 @@ export class HomeComponent implements OnInit {
       let datanumber = ((pagepagination - 1) * data.data.length) + 1
       this.dataloanaplication = [];
         data["data"].forEach((element, index) => {
-          if (element.is_loan_approved === 0){
             element['number'] = datanumber++;
             element['jumlah_loan'] = new Intl.NumberFormat(['ban', 'id']).format(element.jumlah_loan)
             this.dataloanaplication.push(element);
-          }else {
-            this.dataloanaplication = [];
-          }
         });
       });
 

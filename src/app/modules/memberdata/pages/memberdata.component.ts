@@ -12,7 +12,7 @@ export class MemberdataComponent implements OnInit {
   showsuccessmodal: boolean = false;
   showerrormodal: boolean = false;
   checkBoxValue: any = false;
-  getjenisidentitas: boolean = false;
+  getjenisidentitas: boolean = true;
   getnoidentitas: boolean = false;
   getnamalengkapsesuaiktp: boolean = false;
   gettanggallahir: boolean = false;
@@ -224,55 +224,55 @@ export class MemberdataComponent implements OnInit {
         this.gethubungan = values.currentTarget.checked;
         break;
       case "emptydata":
-        this.getjenisidentitas = false;
-        this.getnoidentitas = false;
-        this.getnamalengkapsesuaiktp = false;
-        this.gettanggallahir = false;
-        this.gettempatlahir = false;
-        this.getjeniskelamin = false;
-        this.getnamagadisibukandung = false;
-        this.getstatusperkawinan = false;
-        this.getpendidikanterakhir = false;
-        this.getjalan = false;
-        this.getnomer = false;
-        this.getrt = false;
-        this.getrw = false;
-        this.getprovinsi = false;
-        this.getkota = false;
-        this.getkecamatan = false;
-        this.getkelurahan = false;
-        this.getstatustempattinggalktp = false;
-        this.getlamatinggalktp = false;
-        this.getapakahalamatsesuaidomisili = false;
-        this.getdomisilijalan = false;
-        this.getdomisilinomer = false;
-        this.getdomisilirt = false;
-        this.getdomisilirw = false;
-        this.getdomisiliprovinsi = false;
-        this.getdomisilikota = false;
-        this.getdomisilikecamatan = false;
-        this.getdomisilikelurahan = false;
-        this.getstatustempattinggal = false;
-        this.getlamatinggal = false;
-        this.getmemilikinpwp = false;
-        this.getnomernpwp = false;
-        this.getpekerjausaha = false;
-        this.getbidangpekerjaanusaha = false;
-        this.getposisijabatan = false;
-        this.getnamaperusahaanusaha = false;
-        this.getlamabekerjausaha = false;
-        this.getpenghasilanomsetusaha = false;
-        this.getalamatkantorjalan = false;
-        this.getalamatkantornomer = false;
-        this.getalamatkantorrt = false;
-        this.getalamatkantorrw = false;
-        this.getalamatkantorprovinsi = false;
-        this.getalamatkantorkota = false;
-        this.getalamatkantorkecamatan = false;
-        this.getalamatkantorkelurahan = false;
-        this.getnama = false;
-        this.getnohandphone = false;
-        this.gethubungan = false;
+        this.getjenisidentitas = true;
+        this.getnoidentitas = true;
+        this.getnamalengkapsesuaiktp = true;
+        this.gettanggallahir = true;
+        this.gettempatlahir = true;
+        this.getjeniskelamin = true;
+        this.getnamagadisibukandung = true;
+        this.getstatusperkawinan = true;
+        this.getpendidikanterakhir = true;
+        this.getjalan = true;
+        this.getnomer = true;
+        this.getrt = true;
+        this.getrw = true;
+        this.getprovinsi = true;
+        this.getkota = true;
+        this.getkecamatan = true;
+        this.getkelurahan = true;
+        this.getstatustempattinggalktp = true;
+        this.getlamatinggalktp = true;
+        this.getapakahalamatsesuaidomisili = true;
+        this.getdomisilijalan = true;
+        this.getdomisilinomer = true;
+        this.getdomisilirt = true;
+        this.getdomisilirw = true;
+        this.getdomisiliprovinsi = true;
+        this.getdomisilikota = true;
+        this.getdomisilikecamatan = true;
+        this.getdomisilikelurahan = true;
+        this.getstatustempattinggal = true;
+        this.getlamatinggal = true;
+        this.getmemilikinpwp = true;
+        this.getnomernpwp = true;
+        this.getpekerjausaha = true;
+        this.getbidangpekerjaanusaha = true;
+        this.getposisijabatan = true;
+        this.getnamaperusahaanusaha = true;
+        this.getlamabekerjausaha = true;
+        this.getpenghasilanomsetusaha = true;
+        this.getalamatkantorjalan = true;
+        this.getalamatkantornomer = true;
+        this.getalamatkantorrt = true;
+        this.getalamatkantorrw = true;
+        this.getalamatkantorprovinsi = true;
+        this.getalamatkantorkota = true;
+        this.getalamatkantorkecamatan = true;
+        this.getalamatkantorkelurahan = true;
+        this.getnama = true;
+        this.getnohandphone = true;
+        this.gethubungan = true;
         break;
       case "notemptydata":
         this.getjenisidentitas = datagetres[0].jenis_identitas ? true : false;
@@ -457,7 +457,17 @@ export class MemberdataComponent implements OnInit {
   getdatamemberinit() {
     this.api.getalldatamember().subscribe(data => {
       if (data["data"].length > 0) {
-        this.FieldsChange("values", "notemptydata", data["data"]);
+        let datacountnumber1 = 0;
+        Object.values(data["data"][0]).forEach(data =>{
+          if (data === 1 ){
+            datacountnumber1 += data
+          }
+        })
+        if (datacountnumber1 === 1){
+            this.FieldsChange("values", "emptydata", data["data"]);
+        }else{
+          this.FieldsChange("values", "notemptydata", data["data"]);
+        }        
       } else {
         this.FieldsChange("values", "emptydata", data["data"]);
       }

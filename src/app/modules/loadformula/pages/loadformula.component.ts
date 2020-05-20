@@ -39,6 +39,7 @@ export class LoadformulaComponent implements OnInit {
   trigeralerts: boolean = false;
   arrotherfee = [];
   contentstatusmodal: any;
+  trigerotherchecked:any;
   constructor(private state: StatemanagementService, private api: ApiService) {
     this.fcminamount = new FormControl("");
     this.fcmaxamount = new FormControl("");
@@ -278,15 +279,20 @@ export class LoadformulaComponent implements OnInit {
       });
     }
   }
-  changeradio() {
+  changeradio(data,index) {
     for (let i = 0; i < this.loopotherfee.length; i++) {
       if (
         $("input[name=" + [i] + "]:checked").val() !== undefined ||
         $("input[name=" + [i] + "]:checked").val() !== ""
       )
         $("#selectfeeother" + [i]).removeAttr("disabled");
-      $("#feevalueother" + [i]).removeAttr("disabled");
+        $("#feevalueother" + [i]).removeAttr("disabled");
     }
+    if (data === 'fee'){
+      $("#fixchecked" + [index]).css("display",'none');
+    }else{
+      $("#fixchecked" + [index]).css("display",'block');
+    }    
   }
 
   renderinitdata() {
@@ -352,6 +358,7 @@ export class LoadformulaComponent implements OnInit {
             }
           });
           datatempother.forEach((element, index) => {
+
             setTimeout(() => {
               $("#selectfeeother" + [index]).removeAttr("disabled");
               $("#feevalueother" + [index]).removeAttr("disabled");
@@ -360,13 +367,15 @@ export class LoadformulaComponent implements OnInit {
               $("input[id=feevalueother" + [index] + "]").val(new Intl.NumberFormat(['ban', 'id']).format(element.service_amount))
               if (element.service_type === 'fix') {
                 $("#othercheckfix" + [index]).prop("checked", true);
-              } else {
-                $("#othercheckfee" + [index]).prop("checked", true);
+                $("#fixchecked" + [index]).css("display",'block');
               }
+              if (element.service_type === 'fee') {
+                $("#othercheckfee" + [index]).prop("checked", true);
+              }              
             }, 1000);
           });
           this.indexincrement = this.loopotherfee.length - 1;
-        })
+          })
       } else {
       }
     });

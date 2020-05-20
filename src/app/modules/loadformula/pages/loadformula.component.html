@@ -65,7 +65,7 @@
                                 <span class="input-group-append">
                                     <span class="input-group-text add-on white">Rp.</span>
                                 </span>
-                                <input type="number" class="form-control" #minloanamount [formControl]="fcminamount" id="minloanamount">
+                                <input type="text" class="form-control" #minloanamount [formControl]="fcminamount" id="minloanamount">
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                 <span class="input-group-append">
                                     <span class="input-group-text add-on white">Rp.</span>
                                 </span>
-                                <input type="number" class="form-control" #maxloanamount [formControl]="fcmaxamount" id="maxloanamount">
+                                <input type="text" class="form-control" #maxloanamount [formControl]="fcmaxamount" id="maxloanamount">
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                 <span class="input-group-append">
                                     <span class="input-group-text add-on white">Rp.</span>
                                 </span>
-                                <input type="number" class="form-control" #kelipatan [formControl]="fckelipatan" id="kelipatan">
+                                <input type="text" class="form-control" #kelipatan [formControl]="fckelipatan" id="kelipatan">
                             </div>
                         </div>
                     </div>
@@ -122,10 +122,10 @@
                         </div>
                         <div class="col-3">
                             <div class="input-group">
-                                <span class="input-group-append">
+                                <!-- <span class="input-group-append">
                                     <span class="input-group-text add-on white">Rp.</span>
-                                </span>
-                                <input type="number" class="form-control" #mintenure [formControl]="fcmintenure" id="mintenure">
+                                </span> -->
+                                <input type="text" class="form-control" #mintenure [formControl]="fcmintenure" id="mintenure">
                             </div>
                         </div>
                     </div>
@@ -141,10 +141,10 @@
                         </div>
                         <div class="col-3">
                             <div class="input-group">
-                                <span class="input-group-append">
+                                <!-- <span class="input-group-append">
                                     <span class="input-group-text add-on white">Rp.</span>
-                                </span>
-                                <input type="number" class="form-control" #maxtenure [formControl]="fcmaxtenure" id="maxtenure">
+                                </span> -->
+                                <input type="text" class="form-control" #maxtenure [formControl]="fcmaxtenure" id="maxtenure">
                             </div>
                         </div>
                         <div class="col-2">
@@ -182,10 +182,10 @@
                             <div class="row">
                                 <div class="col-8">
                                     <div class="input-group">
-                                        <span class="input-group-append">
+                                        <span class="input-group-append" *ngIf="getservicefix === true">
                                             <span class="input-group-text add-on white">Rp.</span>
                                         </span>
-                                        <input type="number" class="form-control" [formControl]="fcservicevalue" id="servicefee">
+                                        <input type="text" class="form-control" [formControl]="fcservicevalue" id="servicefee">
                                     </div>
                                     </div>
                                 <div class="col-3">Per</div>
@@ -229,14 +229,14 @@
                                 <div class="col-12 mt-1">
                                     <div class="row">
                                         <div class="col-1">
-                                            <input type="radio" name="{{i}}" value="fee" (change)="changeradio()"  id="othercheckfee{{i}}">
+                                            <input type="radio" name="{{i}}" value="fee" (change)="changeradio('fee',i)"  id="othercheckfee{{i}}">
                                         </div>
                                         <div class="col-3">
                                             (%)
                                         </div>
                                         <!-- <div class="col-3">
                                             <div class="row">
-                                                <div class="col-8"> <input type="number" class="form-control" id="fcfee{{i}}"></div>
+                                                <div class="col-8"> <input type="text" class="form-control" id="fcfee{{i}}"></div>
                                             </div>
                                         </div>
                                         <div class="col-2">
@@ -246,7 +246,7 @@
                                 <div class="col-12 mt-1">
                                     <div class="row">
                                         <div class="col-1">
-                                            <input type="radio" name="{{i}}" value="fix" (change)="changeradio()" id="othercheckfix{{i}}">
+                                            <input type="radio" name="{{i}}" value="fix" (change)="changeradio('fix',i)" id="othercheckfix{{i}}">
                                         </div>
                                         <div class="col-3" >
                                             (fix)
@@ -255,10 +255,10 @@
                                             <div class="row">
                                                 <div class="col-8">
                                                     <div class="input-group">
-                                                        <span class="input-group-append">
+                                                        <span class="input-group-append" id="fixchecked{{i}}" style="display: none;">
                                                             <span class="input-group-text add-on white">Rp.</span>
                                                         </span>
-                                                        <input type="number" class="form-control" id="feevalueother{{i}}" value="" disabled>
+                                                        <input type="text" class="form-control" id="feevalueother{{i}}" value="" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-3">Per</div>
