@@ -107,19 +107,15 @@ export class AccountComponent implements OnInit {
         this.apiservice
           .postcreateaccountmanagement(fullname, hp, email, birthday)
           .subscribe((data) => {
-            if (data.status === 500){
+            if (data['data'] == "" || data['status'] == 500){
               this.showmodalcreate = false;
               this.showmodalerror = true;
-              this.contentstatusmodal ="Email sudah terpakai"
+              this.contentstatusmodal ="Pastikan email dan no HP tidak pernah didaftarkan sebelumnya"
             }
             if (data["data"] === 201) {
               this.contentstatusmodal = data['message']
               this.showmodalcreate = false;
               this.showmodalsuccess = true;
-            } else {
-              this.contentstatusmodal = data['message']
-              this.showmodalcreate = false;
-              this.showmodalerror = true;
             }
           });
       }
