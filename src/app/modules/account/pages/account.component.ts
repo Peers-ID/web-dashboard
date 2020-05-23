@@ -107,7 +107,12 @@ export class AccountComponent implements OnInit {
         this.apiservice
           .postcreateaccountmanagement(fullname, hp, email, birthday)
           .subscribe((data) => {
-            if (data["data"] !== "") {
+            if (data.status === 500){
+              this.showmodalcreate = false;
+              this.showmodalerror = true;
+              this.contentstatusmodal ="Email sudah terpakai"
+            }
+            if (data["data"] === 201) {
               this.contentstatusmodal = data['message']
               this.showmodalcreate = false;
               this.showmodalsuccess = true;
