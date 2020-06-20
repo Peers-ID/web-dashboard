@@ -112,7 +112,7 @@ export class AccountComponent implements OnInit {
               this.showmodalerror = true;
               this.contentstatusmodal ="Pastikan email dan no HP tidak pernah didaftarkan sebelumnya"
             }
-            if (data["data"] === 201) {
+            if (data["status"] === 201) {
               this.contentstatusmodal = data['message']
               this.showmodalcreate = false;
               this.showmodalsuccess = true;
