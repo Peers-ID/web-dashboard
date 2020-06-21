@@ -894,9 +894,9 @@
                                                 style="background-color: darkcyan;color: white;font-size: 10pt;"
                                                 (click)="viewclick(data.id,data.member_id)">View</button>
                                             <button class="btn mr-1" type="button" *ngIf="data.is_loan_approved === 0"
-                                                style="background-color: darkcyan;color: white;font-size: 10pt;" (click)="approveclick(data.loan_id , 3)">Approve</button>
+                                                style="background-color: darkcyan;color: white;font-size: 10pt;" (click)="approveclick(data.id , 3)">Approve</button>
                                             <button class="btn mr-1" type="button" *ngIf="data.is_loan_approved === 0"
-                                                style="background-color: darkcyan;color: white;font-size: 10pt;" (click)="rejectclick(data.loan_id, 2)">Reject</button>
+                                                style="background-color: darkcyan;color: white;font-size: 10pt;" (click)="rejectclick(data.id, 2)">Reject</button>
                                         </div>
                                     </div>
                                 </td>
