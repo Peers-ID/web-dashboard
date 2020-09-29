@@ -15,6 +15,7 @@ import { ignoreElements } from 'rxjs/operators';
 })
 export class PinjamanComponent implements OnInit {
   listangsuransebagain: any;
+  loadingshow:boolean = false;
   listperhitunganpelunasandipercepat: any;
   listsimpanan: any;
   listdendasar: any;
@@ -183,7 +184,7 @@ export class PinjamanComponent implements OnInit {
             this.apakahsimpananFc.setValue('Ya')
           }else{
             this.apakahsimpananFc.setValue('Tidak')
-            
+
           }
         }
       }
