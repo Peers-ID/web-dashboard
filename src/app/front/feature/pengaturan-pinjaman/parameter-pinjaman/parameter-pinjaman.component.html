@@ -1,0 +1,167 @@
+<app-modalloading *ngIf="loadingshow"></app-modalloading>
+<div class="col-md-12 mt-2">
+    <div class="card r-0 b-0">
+        <div class="card-body" style="display: flex; align-items: center">
+            <div class="col-12" *ngIf="!datashow">
+                <div class="row justify-content-between">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-6">Jumlah Hari dalam 1 Bulan Pinjaman</div>
+                            <div class="col-2"><input type="number" class="form-control"  maxlength='2' required  pattern='^([1-9]|[12][0-9]|30)$'[formControl]="jumlahhariFc" /></div>
+                            <div class="col-2">Hari</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">Angsuran Sebagian</div>
+                            <div class="col-2">
+                                <select class="form-control" (change)="option('angsuran')"
+                                    [formControl]="optionangsuranFc">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option value="ya">Ya</option>
+                                    <option value="tidak">Tidak</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <select [formControl]="angsuransebagianFc" class="form-control">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option [value]="data.id"
+                                        *ngFor="let data of listangsuransebagain.data">
+                                        {{data.desc_dasar_cicilan_sebagian}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">Masa Tenggang</div>
+                            <div class="col-2">
+                                <select class="form-control" (change)="option('masatenggang')"
+                                    [formControl]="optionmasatenggangFc">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option value="ya">Ya</option>
+                                    <option value="tidak">Tidak</option>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <input type="number" class="form-control" [formControl]="masatenggangFc">
+                            </div>
+                            <div class="col-2">Hari</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">Denda Keterlambatan</div>
+                            <div class="col-4">
+                                <select class="form-control" (change)="option('dendaketerlambatan')"
+                                    [formControl]="optiondendaketerlambatanFc">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option value="tidak">Tidak ada</option>
+                                    <option value="Fix">Fix Amount</option>
+                                    <option value="Persen">Persentase %</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">Dasar Pengenaan Denda</div>
+                            <div class="col-4">
+                                <select [formControl]="dendadasar" class="form-control">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option [value]="data.id"
+                                        *ngFor="let data of listdendasar.data">{{data.desc_dasar_denda}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">Pelunasan Dipercepat</div>
+                            <div class="col-4">
+                                <select class="form-control" (change)="option('pelunasandipercepat')"
+                                    [formControl]="pelunasandipercepatFc">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option value="tidak">Tidak ada</option>
+                                    <option value="Fix">Fix Amount</option>
+                                    <option value="Persen">Persentase %</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">Perhitungan Pelunasan Dipercepat</div>
+                            <div class="col-4">
+                                <select [formControl]="perhitunganpelunasandipercepatFc" class="form-control">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option [value]="data.id"
+                                        *ngFor="let data of listperhitunganpelunasandipercepat.data">
+                                        {{data.desc_dasar_pelunasan}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">Apakah Simpanan untuk Membayar Angsuran</div>
+                            <div class="col-2">
+                                <select class="form-control" [formControl]="simpananmembayarFc" (change)="simpanselectchange()">
+                                    <option [defaultSelected]=true hidden value="">Pilih</option>
+                                    <option value="ya">Ya</option>
+                                    <option value="tidak">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2" *ngIf="simpananshow">
+                        <div class="row">
+                            <div class="col-6">Simpanan untuk Pembayaran Angsuran</div>
+                            <div class="col-6">
+                                <form [formGroup]="form">
+                                    <div class="row">
+                                        <div class="col-12 text-left" *ngFor="let data of ordersData; let i = index" formArrayName="orders">
+                                            <span><input type="checkbox" [formControlName]="i" 
+                                                (change)="changecheckbox()" [id]="'checkbox'+i"/>
+                                            <span>{{data.desc_simpanan}}</span></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2" *ngIf="urutansimpananshow">
+                        <div class="row">
+                            <div class="col-6">Urutan Pembayaran dengan Simpanan</div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12 mt-1" *ngFor="let item of listdatasimpanan; let i = index">
+                                        <div class="row">
+                                            <div class="col-1">{{i+1}}</div>
+                                            <div class="col-7">
+                                                <select class="form-control" (change)="changeoptionselect($event,i)" [id]="'select'+i">
+                                                    <option [defaultSelected]=true hidden value="null">Pilih</option>
+                                                    <option [value]="[data.id,data.desc_simpanan]"
+                                                        *ngFor="let data of listdatasimpanan" >
+                                                        {{data.desc_simpanan}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 my-5  text-center">
+                        <button class="btn btn-primary" (click)="aktivasi('create')" *ngIf="statusproduct === 'create'">Aktivasi</button>
+                        <button class="btn btn-primary" (click)="ubah('edit')" *ngIf="statusproduct === 'edit'">Ubah</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 text-center" *ngIf="datashow">
+                Load Data ...
+            </div>
+        </div>
+    </div>
+</div>
+<app-notification></app-notification>

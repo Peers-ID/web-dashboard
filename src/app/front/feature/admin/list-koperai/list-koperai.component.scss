@@ -1,0 +1,28 @@
+.btn-cari{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.card-body{
+    min-height: 70vh;
+}
+table{
+    width: 100%; border: 1px solid grey;
+}
+tr{
+    border: 1px solid grey;
+}
+td{
+    border: 1px solid grey;
+    padding: 10px;  
+}
+th{
+    border: 1px solid grey;
+    padding: 10px;
+
+}
+
+.load-container{
+    display: flex;
+    align-items: center;
+}

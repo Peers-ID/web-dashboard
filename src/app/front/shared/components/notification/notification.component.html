@@ -1,0 +1,22 @@
+<div class="admin_notif_stack_wrapper">
+    <div [class]="'admin_notif_stack '+ notification.type" *ngFor="let notification of notificationSvc.notificationList; let i = index" [@scaleState]="'in'">
+      <div class="icon">
+        <h4>
+          <i class="fa fa-fw" aria-hidden="true" style="color: white;"
+            [class.fa-bell]="notification.type === 'default'"
+            [class.fa-check]="notification.type === 'success'"
+            [class.fa-ban]="notification.type === 'danger'"
+            [class.fa-exclamation-triangle]="notification.type === 'warning'" >
+          </i>
+        </h4>
+      </div>
+      <div class="notif_content">
+        <h4 style="color: white;">{{ notification.head }}</h4>
+        <p>{{ notification.body }}</p>
+      </div>
+      <div class="close_notif" (click)="notificationSvc.deleteNotification(i)">
+        <i class="fa fa-times"></i>
+      </div>
+    </div>
+  </div>
+  

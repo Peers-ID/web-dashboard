@@ -1,0 +1,55 @@
+.admin_notif_stack_wrapper {
+  position: fixed;
+  z-index: 1051;
+  width: 400px;
+  bottom: 12px;
+  right: 12px;
+}
+
+.admin_notif_stack {
+  padding: 12px;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  margin: 8px;
+  display: flex;
+  position: relative;
+  &.default {
+    color: grey;
+    border-color: grey;
+    background-color: grey;
+  }
+  &.success {
+    color: white;
+    border-color: green;
+    background-color: green;
+  }
+  &.danger {
+    color: white;
+    border-color: red;
+    background-color: red;
+  }
+  &.warning {
+    color: orange;
+    border-color: orange;
+    background-color: orange;
+  }
+  .icon {
+    display: flex;
+    margin-right: 12px;
+  }
+  .notif_content {
+    flex-grow: 1;
+  }
+}
+
+.close_notif {
+  position: absolute;
+  top: -5px;
+  right: 3px;
+  background-color: color('ruby-50');
+  color: color('snow');
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px 8px;
+}

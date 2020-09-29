@@ -1,0 +1,29 @@
+.card-body{
+    min-height: 70vh;
+}
+table{
+    width: 100%; border: 1px solid grey;
+}
+tr{
+    border: 1px solid grey;
+}
+td{
+    border: 1px solid grey;
+    padding: 10px;  
+}
+th{
+    border: 1px solid grey;
+    padding: 10px;
+
+}
+
+.load-container{
+    display: flex;
+    align-items: center;
+}
+.nav-item{
+    cursor: pointer;
+}
+.modal-dialog {
+    max-width: 1200px ;
+}

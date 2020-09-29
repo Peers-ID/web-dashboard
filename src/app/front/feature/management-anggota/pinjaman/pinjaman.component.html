@@ -1,0 +1,1067 @@
+<app-modalloading *ngIf="loadingshow"></app-modalloading>
+<div class="col-md-12 mt-2">
+    <div class="card r-0 b-0">
+        <div class="card-body" *ngIf="anggotapinjamanshow">
+            <div class="col-12">
+                <div class="row justify-content-between">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-3">
+                                <input type="text" class="form-control w-100" placeholder="search...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-12" *ngIf="listdatapinjamananggota.length > 0">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th>No</th>
+                                        <th class="text-center">Nama Anggota</th>
+                                    </tr>
+                                    <tr *ngFor="let item of listdatapinjamananggota; let i = index">
+                                        <td>{{i + 1}}</td>
+                                        <td class="text-center" (click)="detailmember(item.member_id)" style="cursor: pointer;">{{item.nama_lengkap}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12 text-center" *ngIf="listdatapinjamananggota.length === 0">
+                                No data...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body load-container" *ngIf="!anggotapinjamanshow">
+            <div class="col-12 text-center">
+                Load Data ...
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #anggotapinjamanmodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="anggotapinjamanmodal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 pl-5 pr-5" *ngIf="datapinjamananggotashow">
+                    <div class="row">
+                        <div class="col-12 mt-2">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-datapribadi-tab" data-toggle="tab"
+                                        role="tab" aria-controls="nav-pribadi" aria-selected="true"
+                                        (click)="navtabclick('datapribadi')">Data Pribadi</a>
+                                    <a class="nav-item nav-link" id="nav-pekerjaan-tab" data-toggle="tab" role="tab"
+                                        aria-controls="nav-pekerjaan" aria-selected="false"
+                                        (click)="navtabclick('dataperkerjaan')">Data Pekerjaan</a>
+                                    <a class="nav-item nav-link" id="nav-alamat-tab" data-toggle="tab" role="tab"
+                                        aria-controls="nav-alamat" aria-selected="false"
+                                        (click)="navtabclick('alamat')">Alamat</a>
+                                    <a class="nav-item nav-link" id="nav-datapasangan-tab" data-toggle="tab" role="tab"
+                                        aria-controls="nav-datapasangan" aria-selected="false"
+                                        (click)="navtabclick('datapasangan')">Data Pasangan</a>
+                                    <a class="nav-item nav-link" id="nav-datapenjamin-tab" data-toggle="tab" role="tab"
+                                        aria-controls="nav-datapenjamin" aria-selected="false"
+                                        (click)="navtabclick('datapenjamin')">Data Penjamin</a>
+                                    <a class="nav-item nav-link" id="nav-kontakdarurat-tab" data-toggle="tab" role="tab"
+                                        aria-controls="nav-kontakdarurat" aria-selected="false"
+                                        (click)="navtabclick('kontakdarurat')">Kontak Darurat</a>
+                                    <a class="nav-item nav-link" id="nav-survey-tab" data-toggle="tab" role="tab"
+                                        aria-controls="nav-survey" aria-selected="false"
+                                        (click)="navtabclick('survey')">Survey</a>
+                                    <a class="nav-item nav-link" id="nav-dokumen-tab" data-toggle="tab" role="tab"
+                                        aria-controls="nav-dokumen" aria-selected="false"
+                                        (click)="navtabclick('dokumen')">Dokumen Pribadi</a>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div [class.active]="trigerclick === 'datapribadi'" class="tab-pane fade show"
+                                    role="tabpanel" aria-labelledby="nav-datapribadi-tab">
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Nomor Identitas</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.no_identitas}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">No Handphone:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.member_handphone}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Email:</div>
+                                                        <div class="col-6 text-left">{{dataloandetailmember.email}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Nama Lengkap(KTP):</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.nama_lengkap}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Tempat Lahir:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.tempat_lahir}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Tanggal Lahir:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.tanggal_lahir}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Usia:</div>
+                                                        <div class="col-6 text-left">{{dataloandetailmember.usia}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Jenis Kelamin:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.jenis_kelamin}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Status Pernikahan:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.status_perkawinan}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Pendidikan Terakhir:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.pendidikan_terakhir}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Nama Gadis Ibu Kandung:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.nama_gadis_ibu}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [class.active]="trigerclick === 'dataperkerjaan'" class="tab-pane fade show "
+                                    role="tabpanel" aria-labelledby="nav-perkerjaan-tab">
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Memiliki NPWP?:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.memiliki_npwp === 1 ? 'Ya' : 'Tidak'}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Nomor NPWP:</div>
+                                                        <div class="col-6 text-left">{{dataloandetailmember.nomer_npwp}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Pekerjaan/Usaha:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.pekerja_usaha}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Jenis UMKM?:</div>
+                                                        <div class="col-6 text-left">{{dataloandetailmember.jenis_umkm}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Nama Perusahaan/Usaha:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.nama_perusahaan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Lama Bekerja/Usaha:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.lama_bekerja}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Penghasilan/Omset Usaha:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.penghasilan_omset}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Alamat Usaha(Jalan,no):</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_kantor_jalan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Provinsi:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_kantor_provinsi}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Kota/Kabupaten:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_kantor_kota}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Kecamatan:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_kantor_kecamatan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Kelurahan/Desa:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_kantor_kelurahan}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Kode Pos:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_kantor_kota}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [class.active]="trigerclick === 'alamat'" class="tab-pane fade show"
+                                    role="tabpanel" aria-labelledby="nav-alamat-tab">
+                                    <div class="row">
+                                        <div class="col-6 mt-2">
+                                            <div class="row">
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Jalan,No Rumah,RT,RW:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_ktp_jalan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Provinsi:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_ktp_provinsi}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kota/Kabupaten</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_ktp_jalan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kecamatan:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_ktp_kecamatan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kelurahan/Desa:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_ktp_kelurahan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kode Pos:</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Status Tempat Tinggal(KTP):</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_ktp_status_tempat_tinggal}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Lama Tinggal:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_ktp_lama_tinggal}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mt-2">
+                                            <div class="row">
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Alamat Domisili (Jika Berbeda dengan KTP):</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.domisili_sesuai_ktp === 1 ? 'Ya' : 'Tidak'}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Jalan,No Rumah,RT,RW:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_domisili_jalan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Provinsi:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_domisili_provinsi}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kota/Kabupaten</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_domisili_kota}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kecamatan:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_domisili_kecamatan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kelurahan/Desa:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_domisili_kelurahan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Kode Pos:</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Status Tempat Tinggal(Domisili):</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_domisili_status_tempat_tinggal}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">Lama Tinggal:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.alamat_domisili_lama_tempat_tinggal}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [class.active]="trigerclick === 'datapasangan'" class="tab-pane fade show"
+                                    role="tabpanel" aria-labelledby="nav-datapasangan-tab">
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Nama Pasangan</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.nama_pasangan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Nomor Identitas Pasangan:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.no_identitas_pasangan}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Pekerjaan Pasangan</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.pekerjaan_pasangan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">No Handphone Pasangan:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.no_hp_pasangan}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [class.active]="trigerclick === 'datapenjamin'" class="tab-pane fade show"
+                                    role="tabpanel" aria-labelledby="nav-datapenjamin-tab">
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Nama Penjamin</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.nama_penjamin}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">No Hanphone:</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.no_hp_penjamin}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Hubungan dengan Penjamin</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.hubungan_penjamin}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [class.active]="trigerclick === 'kontakdarurat'" class="tab-pane fade show"
+                                    role="tabpanel" aria-labelledby="nav-kontakdarurat-tab">
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Nama Kontak Darurat :</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Nomor Identitas Pasangan :</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-6">Hubungan dengan Kontak Darurat :</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [class.active]="trigerclick === 'survey'" class="tab-pane fade show"
+                                    role="tabpanel" aria-labelledby="nav-survey-tab">
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Luas Rumah</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_luas_rumah}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Jenis Atap</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_jenis_atap}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Jenis Dinding</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_jenis_dinding}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Kondisi Rumah</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_kondisi_rumah}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Letak Rumah</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_letak_rumah}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Tanggungan Keluarga</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_tanggungan_keluarga}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Data Fisik Perabot&Elektronik</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_data_fisik_perabot}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Akses ke Lembaga keuangan lain</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_akses_lembaga_keuangan}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Informasi Tentang Usaha</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_info_ttg_usaha}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">indeks Rumah</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_index_rumah}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Indeks Aset</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_index_asset}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Kepemilikan Aset</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_kepemilikan_asset}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Pendapatan dari luar usaha</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_pendapatan_luar_usaha}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Perkembangan Aset</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_perkembangan_asset}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Perkembangan Usaha</div>
+                                                        <div class="col-6 text-left">
+                                                            {{dataloandetailmember.survey_perkembangan_usaha}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [class.active]="trigerclick === 'dokumen'" class="tab-pane fade show"
+                                    role="tabpanel" aria-labelledby="nav-dokumen-tab">
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">KTP</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">SIM</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Kartu Keluarga</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Surat Keterangan Bekerja</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Slip Gaji</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Akta Nikah</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">BPKB</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">Dokumen Lainnya</div>
+                                                        <div class="col-6 text-left">
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4 mb-4">
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                    Data Pinjaman
+                                </div>
+                                <div class="col-5 mt-2">
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <th>No</th>
+                                            <th class="text-center">Nama Produk Pinjaman</th>
+                                            <th class="text-center">Status</th>
+                                        </tr>
+                                        <tr *ngFor="let item of listdataprodukanggota; let i = index">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{item.nama_produk}}</td>
+                                            <td class="text-center"  style="cursor: pointer;">
+                                                <button (click)="statusproduk(item.id)" class="btn btn-primary">
+                                                    {{item.desc_status}}
+                                                </button>
+                                                </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-center" *ngIf="!datapinjamananggotashow">
+                    Load Data ...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #detailanggotapinjaman="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="detailanggotapinjaman.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Nama Anggota</div>
+                                    <div class="col-6">: {{detailloan?.nama_member}}</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Produk Pinjaman</div>
+                                    <div class="col-6">: {{detailloan?.nama_produk}}</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Status Pinjaman</div>
+                                    <div class="col-6">: {{detailloan?.desc_status}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Jumlah Pinjaman</div>
+                                    <div class="col-6">: {{detailloan?.jumlah_pengajuan}}</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Tenor Pinjaman</div>
+                                    <div class="col-6">:</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Bunga Pinjaman</div>
+                                    <div class="col-6">: {{detailloan?.bunga_pinjaman}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Jumlah Pencairan</div>
+                            <div class="col-6">: {{detailloan?.jumlah_pencairan}}</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Angsuran</div>
+                                    <div class="col-6">: {{detailloan?.jumlah_cicilan}}</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Persetujuan Oleh</div>
+                                    <div class="col-6">: {{detailloan?.approved_by}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Pencairan Oleh</div>
+                                        <div class="col-6">{{detailloan?.disbursed_by}}</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">Bukti Pencairan</div>
+                                        <div class="col-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6" style="font-weight: bold;">Parameter Pinjaman</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-8">Jumlah Hari dalam 1 Bulan Pinjaman</div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="text" disabled [formControl]="valuehariFc" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">Cicilan Sebagian</div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <input type="text" disabled [formControl]="cicilanvalueFc" class="form-control">
+                                            </div>
+                                            <div class="col-9"><input type="text" disabled [formControl]="cicilanFc" class="form-control"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Masa Tenggang</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input type="text" disabled [formControl]="masatenggangvalueFc" class="form-control">
+                                            </div>
+                                            <div class="col-4" *ngIf="masatenggangvalueFc.value !== 'Tidak'">
+                                                <input type="text" disabled [formControl]="masatengganghariFc" class="form-control">
+                                            </div>
+                                            <div class="col-4">Hari</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Denda Keterlambatan</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" disabled [formControl]="dendaketerlambatanFc" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Dasar Pengenaan Denda</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" disabled [formControl]="dasarpengenaandendaFc" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Pelunasan Dipercepat</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" disabled [formControl]="pelunasandipercepatFc" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Perhitungan Pelunasan Dipercepat</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" disabled [formControl]="perhitunganFc" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Apakah Simpanan untuk Membayar Angsuran</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" disabled [formControl]="apakahsimpananFc" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Simpanan untuk Pembayaran Angsuran</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="checkbox" disabled checked>
+                                                Simpanan Pokok
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="checkbox" disabled checked>
+                                                Simpanan Wajib
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="checkbox" disabled checked>
+                                                Simpanan Sukarela
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">Urutan Pembayaran dengan Simpanan</div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                    <input type="text" disabled value="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-6" style="font-weight: bold;">Pembayaran Angsuran</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-12">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th>Angsuran</th>
+                                        <th class="text-center">Tanggal Jatuh Tempo</th>
+                                        <th class="text-center">Tanggal Pembayaran</th>
+                                        <th class="text-center">Jumlah Pembayaran</th>
+                                        <th class="text-center">Status</th>
+                                    </tr>
+                                    <tr *ngFor="let item of listpembayaranangsuran; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.loan_due_date.split('T')[0]}}</td>
+                                        <td>{{item.loan_payment_date.split('T')[0]}}</td>
+                                        <td>{{item.setoran}}</td>
+                                        <td>{{item.status_pembayaran}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-notification></app-notification>
+
+

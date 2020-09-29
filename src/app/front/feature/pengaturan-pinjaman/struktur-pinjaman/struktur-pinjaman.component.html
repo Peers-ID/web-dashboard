@@ -1,0 +1,237 @@
+<app-modalloading *ngIf="loadingshow"></app-modalloading>
+<div class="col-md-12 mt-2">
+    <div class="card r-0 b-0">
+        <div class="card-body" >
+            <div class="col-12" *ngIf="!datashow">
+                <div class="row justify-content-between">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-3">
+                                <button class="btn btn-primary w-100" (click)="tambahproduk()">Tambah Produk</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <table>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Produk</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    <tr *ngFor="let item of liststruktur; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.nama_produk}}</td>
+                                        <td *ngIf="item.status === 'active'"><button class="btn btn-primary" (click)="editaktif(item.id)">Aktif</button></td>
+                                        <td *ngIf="item.status === 'inactive'"><button class="btn btn-primary" (click)="editnonaktif(item.id)">Non Aktif</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body load-container" *ngIf="datashow">
+                <div class="col-12 text-center">
+                    Load Data ...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #strukturmodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="strukturmodal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <div class="col-12 pl-5 pr-5" *ngIf="produkshow">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">Nama Produk</div>
+                                <div class="col-6">
+                                    <input type="text" class="w-100 form-control" [formControl]="namaprodukFc">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Tenor</div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="number" class="w-100 form-control" [formControl]="tenorFc">
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control" [formControl]="optiontenorFc">
+                                                <option [defaultSelected]=true hidden value="">Pilih</option>
+                                                <option value="hari">Hari</option>
+                                                <option value="minggu">Minggu</option>
+                                                <option value="bulan">Bulan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Bunga</div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="w-100 form-control input-prefix"
+                                                [formControl]="bungaFc" (keyup)="percentinput()" />
+                                            <div class="prefix">%</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control" [formControl]="optionbungaFc">
+                                                <option [defaultSelected]=true hidden value="">Pilih</option>
+                                                <option value="hari">Hari</option>
+                                                <option value="minggu">Minggu</option>
+                                                <option value="bulan">Bulan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Biaya Admin</div>
+                                <div class="col-6">
+                                    <input type="number" class="w-100 form-control input-sufix" [formControl]="biayaadminFc">
+                                    <div class="sufix">Rp</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Biaya Provisi</div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-control" [formControl]="optionbiayaprovisiFc" (change)="changetypeselect('biayaprovisi')">
+                                                <option [defaultSelected]=true hidden value="">Pilih</option>
+                                                <option value="">Tidak ada</option>
+                                                <option value="Fix">Fix Amount</option>
+                                                <option value="Persen">Persentase %</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" class="w-100 form-control" [formControl]="provisiFc" [class.input-sufix]="optionbiayaprovisiFc.value === 'Fix'" [class.input-prefix]="optionbiayaprovisiFc.value === 'Persen'">
+                                            <div class="sufix" *ngIf="optionbiayaprovisiFc.value === 'Fix'">Rp</div>
+                                            <div class="prefix" *ngIf="optionbiayaprovisiFc.value === 'Persen'">%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Simpanan Pokok</div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-control" [formControl]="optionsimpananpokokFc" (change)="changetypeselect('simpananpokok')" >
+                                                <option [defaultSelected]=true hidden value="">Pilih</option>
+                                                <option value="">Tidak ada</option>
+                                                <option value="Fix">Fix Amount</option>
+                                                <option value="Persen">Persentase %</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" class="w-100 form-control" [formControl]="simpananpokokFc" [class.input-sufix]="optionsimpananpokokFc.value === 'Fix'" [class.input-prefix]="optionsimpananpokokFc.value === 'Persen'">
+                                                <div class="sufix" *ngIf="optionsimpananpokokFc.value === 'Fix'">Rp</div>
+                                            <div class="prefix" *ngIf="optionsimpananpokokFc.value === 'Persen'">%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Simpanan Wajib</div>
+                                <div class="col-6">
+                                    <input type="number" class="w-100 form-control input-sufix"
+                                        [formControl]="simpananwajibFc" (keyup)="simpananwajib()">
+                                    <div class="sufix">Rp</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Denda Keterlambatan</div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <input type="number" class="w-100 form-control" [formControl]="dendaketerlambatanFc" [class.input-sufix]="typedendaketerlambatanFc.value === 'Fix'" [class.input-prefix]="typedendaketerlambatanFc.value === 'Persen'">
+                                            <div class="sufix" *ngIf="typedendaketerlambatanFc.value === 'Fix'">Rp</div>
+                                            <div class="prefix" *ngIf="typedendaketerlambatanFc.value === 'Persen'">%</div>
+                                        </div>
+                                        <div class="col-3">
+                                            /Hari
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Denda Pelunasan Awal</div>
+                                <div class="col-6">
+                                    <input type="number" class="w-100 form-control" [formControl]="dendapelunasanawalFc" [class.input-sufix]="typepelunasanawalFc.value === 'Fix'" [class.input-prefix]="typepelunasanawalFc.value === 'Persen'">
+                                        <div class="sufix" *ngIf="typepelunasanawalFc.value === 'Fix'">Rp</div>
+                                        <div class="prefix" *ngIf="typepelunasanawalFc.value === 'Persen'">%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-center" *ngIf="!produkshow">
+                    Load Data ...
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12" *ngIf="statusmodal === 'create'">
+                            <div class="row justify-content-center">
+                                <div class="col-3">
+                                    <button class="btn btn-primary w-100" (click)="aktivasi('create')">Aktivasi</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="statusmodal === 'active'">
+                            <div class="row justify-content-center">
+                                <div class="col-3">
+                                    <button class="btn btn-primary w-100" (click)="ubah('edit')">Ubah</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-primary w-100" (click)="btnnonaktif('statusnonaktif')">Non Aktif</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="statusmodal === 'inactive'">
+                            <div class="row justify-content-center">
+                                <div class="col-3">
+                                    <button class="btn btn-primary w-100" (click)="ubah('edit')">Ubah</button>
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-primary w-100" (click)="btnaktif('statusaktif')">Aktivasi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-notification></app-notification>
