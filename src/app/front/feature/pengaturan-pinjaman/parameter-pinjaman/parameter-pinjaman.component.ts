@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, ValidatorFn, Validators } from '@angular/forms';
 import { ContentService, NotificationService } from '@app/core';
 import * as CryptoJS from 'crypto-js';
@@ -42,6 +42,8 @@ export class ParameterPinjamanComponent implements OnInit {
   loadingshow: boolean;
   datashow: boolean;
   statusproduct: string;
+  contentkonfirmasi:string;
+  @ViewChild('konfirmasimodal', { static: false }) public konfirmasimodal: any;
   constructor(
     private contentSvc: ContentService,
     private formBuilder: FormBuilder,
@@ -138,7 +140,7 @@ export class ParameterPinjamanComponent implements OnInit {
         result => {
           this.datashow = false
           setTimeout(() => {
-            if (result.data) {
+            if (result.data.length > 0) {
               this.statusproduct = 'edit'
               this.jumlahhariFc.setValue(result.data[0].hari_per_bulan)
               if (result.data[0].id_angsuran_sebagian > 0) {
@@ -307,13 +309,19 @@ export class ParameterPinjamanComponent implements OnInit {
       this.simpananshow = false
     }
   }
-  aktivasi(type) {
-    this.postdata(type)
+  aktivasi() {
+    this.konfirmasimodal.show();
+    this.contentkonfirmasi = 'Apakah anda yakin untuk menyimpan data ini ?'
   }
-  ubah(type) {
-    this.postdata(type)
+  ubah() {
+    this.konfirmasimodal.show();
+    this.contentkonfirmasi = 'Apakah anda yakin untuk mengubah data ini ?'
   }
-  postdata(type: string) {
+  btnya(){
+    this.postdata()
+    this.konfirmasimodal.hide();
+  }
+  postdata() {
     this.loadingshow = true;
     let dataurutan = []
     this.dataselect.forEach(data => {
@@ -357,7 +365,6 @@ export class ParameterPinjamanComponent implements OnInit {
       this.posturutansimpanan.setValue("")
     }
 
-
     this.formgrouppostdata = this.fb.group({
       "hari_per_bulan": [this.jumlahhariFc.value, [Validators.required]],
       "id_angsuran_sebagian": [this.postangsuransebagian.value, [Validators.required]],
@@ -368,26 +375,36 @@ export class ParameterPinjamanComponent implements OnInit {
       "id_dasar_pelunasan": [this.postdasarpelunasan.value, [Validators.required]],
       "id_urutan_simpanan": [this.posturutansimpanan.value]
     });
-    if (this.formgrouppostdata.status === "VALID" && !this.hasDuplicates(dataurutan)) {
-          this.contentSvc.postParameter(this.formgrouppostdata.value).subscribe(
-            result => {
-              if (result.status !== 500) {
-                this.loadingshow = false;
-                this.notifSvc.addNotification({
-                  type: 'success',
-                  head: 'Success',
-                  body: result.message
-                });
-              } else {
-                this.loadingshow = false;
-                this.notifSvc.addNotification({
-                  type: 'danger',
-                  head: 'Danger',
-                  body: result.message
-                });
-              }
+    if (this.formgrouppostdata.status === "VALID") {
+      if (!this.hasDuplicates(dataurutan)){
+        this.contentSvc.postParameter(this.formgrouppostdata.value).subscribe(
+          result => {
+            if (result.status !== 500) {
+              this.loadingshow = false;
+              this.notifSvc.addNotification({
+                type: 'success',
+                head: 'Success',
+                body: result.message
+              });
+              this.statusproduct = 'edit';
+            } else {
+              this.loadingshow = false;
+              this.notifSvc.addNotification({
+                type: 'danger',
+                head: 'Danger',
+                body: result.message
+              });
             }
-          )
+          }
+        )
+      }else{
+        this.loadingshow = false;
+        this.notifSvc.addNotification({
+          type: 'danger',
+          head: 'Danger',
+          body: 'Urutan pembayaran dengan simpanan tidak boleh sama'
+        });
+      }
     } else {
       setTimeout(() => {
         this.loadingshow = false;

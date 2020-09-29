@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server && npm run serve:ssr",
     "build:client-and-server-bundles": "ng build --prod && ng run peers-v2:server:production --bundleDependencies all"
   },
   "private": true,
