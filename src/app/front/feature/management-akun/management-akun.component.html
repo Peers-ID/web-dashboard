@@ -115,7 +115,7 @@
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input type="checkbox" [formControl]="persetujuanFc">
+                                                        <input type="checkbox" [formControl]="persetujuanFc" (change)='changepersetujuanselect()'>
                                                         Persetujuan
                                                     </div>
                                                     <div class="col-6">
@@ -134,7 +134,7 @@
                                             <div class="col-12 mt-1">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input type="checkbox" [formControl]="pencarianFc">
+                                                        <input type="checkbox" [formControl]="pencarianFc" (change)="changepencairanselect()">
                                                         Percairan
                                                     </div>
                                                     <div class="col-6">

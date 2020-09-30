@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, ValidatorFn, Validators } from '@angular/forms';
 import { ContentService, NotificationService } from '@app/core';
 import * as CryptoJS from 'crypto-js';
+import { stat } from 'fs';
 import * as $ from "jquery";
 @Component({
   selector: 'app-parameter-pinjaman',
@@ -161,28 +162,35 @@ export class ParameterPinjamanComponent implements OnInit {
               }
               if (result.data[0].type_denda_keterlambatan !== "") {
                 this.optiondendaketerlambatanFc.setValue(result.data[0].type_denda_keterlambatan)
+                if(result.data[0].type_denda_keterlambatan === "Persen"){
+                  this.dendadasar.enable();
+                }else{
+                  this.dendadasar.disable();
+                  this.dendadasar.setValue("")
+                }
               } else {
                 this.optiondendaketerlambatanFc.setValue("")
               }
               if (result.data[0].id_dasar_denda > 0) {
-                this.dendadasar.enable();
                 this.dendadasar.setValue(result.data[0].id_dasar_denda)
               } else {
-                this.dendadasar.disable();
                 this.dendadasar.setValue("")
               }
               if (result.data[0].type_pelunasan_dipercepat !== "") {
-                this.pelunasandipercepatFc.enable();
+                this.perhitunganpelunasandipercepatFc.enable();
                 this.pelunasandipercepatFc.setValue(result.data[0].type_pelunasan_dipercepat)
+                if (result.data[0].type_pelunasan_dipercepat === "Persen"){
+                  this.perhitunganpelunasandipercepatFc.enable();
+                }else{
+                  this.perhitunganpelunasandipercepatFc.disable();
+                  this.perhitunganpelunasandipercepatFc.setValue("")
+                }
               } else {
-                this.pelunasandipercepatFc.disable();
                 this.pelunasandipercepatFc.setValue("")
               }
-              if (result.data[0].id_dasar_pelunasan > 0) {
-                this.perhitunganpelunasandipercepatFc.enable();
+              if (result.data[0].id_dasar_pelunasan > 0) {                
                 this.perhitunganpelunasandipercepatFc.setValue(result.data[0].id_dasar_pelunasan)
-              } else {
-                this.perhitunganpelunasandipercepatFc.disable();
+              }else{
                 this.perhitunganpelunasandipercepatFc.setValue("")
               }
               if (result.data[0].id_urutan_simpanan !== "") {
@@ -305,8 +313,14 @@ export class ParameterPinjamanComponent implements OnInit {
   simpanselectchange() {
     if (this.simpananmembayarFc.value === 'ya') {
       this.simpananshow = true
+      this.ordersData.forEach(data => {
+        setTimeout(() => {
+          $('#checkbox' + (data.id - 1)).prop("checked", false);
+        }, 100);
+        })  
     } else {
       this.simpananshow = false
+      this.urutansimpananshow = false
     }
   }
   aktivasi() {
@@ -324,6 +338,13 @@ export class ParameterPinjamanComponent implements OnInit {
   postdata() {
     this.loadingshow = true;
     let dataurutan = []
+    let status;
+    if(this.listdatasimpanan.length === this.dataselect.length || this.simpananmembayarFc.value === 'tidak' || this.simpananmembayarFc.value === ''){
+      status = 'valid'
+    }else{
+      status = 'invalid'
+    }
+
     this.dataselect.forEach(data => {
       if (data) {
         dataurutan.push(data.id)
@@ -339,7 +360,7 @@ export class ParameterPinjamanComponent implements OnInit {
     } else {
       this.postmasatenggang.setValue(this.masatenggangFc.value)
     }
-    if (this.optiondendaketerlambatanFc.value === 'tidak') {
+    if (this.optiondendaketerlambatanFc.value === '') {
       this.postdendaketerlambatan.setValue(0)
     } else {
       this.postdendaketerlambatan.setValue(this.optiondendaketerlambatanFc.value)
@@ -349,15 +370,15 @@ export class ParameterPinjamanComponent implements OnInit {
     } else {
       this.postdasarpengenaandenda.setValue(this.dendadasar.value)
     }
-    if (this.pelunasandipercepatFc.value === 'tidak') {
+    if (this.pelunasandipercepatFc.value === '') {
       this.postpelunasandipercepat.setValue("")
     } else {
       this.postpelunasandipercepat.setValue(this.pelunasandipercepatFc.value)
     }
-    if (this.simpananmembayarFc.value === 'tidak') {
+    if (this.perhitunganpelunasandipercepatFc.value === '' ) {
       this.postdasarpelunasan.setValue(0)
     } else {
-      this.postdasarpelunasan.setValue(this.perhitunganpelunasandipercepatFc.value)
+      this.postdasarpelunasan.setValue(Number(this.perhitunganpelunasandipercepatFc.value))
     }
     if (!this.hasDuplicates(dataurutan)) {
       this.posturutansimpanan.setValue(dataurutan.toString().replace(/,/g, "|"))
@@ -375,7 +396,7 @@ export class ParameterPinjamanComponent implements OnInit {
       "id_dasar_pelunasan": [this.postdasarpelunasan.value, [Validators.required]],
       "id_urutan_simpanan": [this.posturutansimpanan.value]
     });
-    if (this.formgrouppostdata.status === "VALID") {
+    if (this.formgrouppostdata.status === "VALID" && status === 'valid') {
       if (!this.hasDuplicates(dataurutan)){
         this.contentSvc.postParameter(this.formgrouppostdata.value).subscribe(
           result => {

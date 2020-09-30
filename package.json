@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 6200",
-    "build": "ng build",
-    "build-prod": "ng build --prod --build-optimizer ",
+    "build": "ng build --base-href /peers",
+    "build-prod": "ng build --prod --build-optimizer --base-href /peers",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

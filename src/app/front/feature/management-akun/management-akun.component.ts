@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, ValidatorFn, Validators } from '@angular/forms';
 import { ContentService, NotificationService } from '@app/core';
 import * as CryptoJS from 'crypto-js';
+import { stat } from 'fs';
 import { ignoreElements } from 'rxjs/operators';
 
 @Component({
@@ -198,6 +199,20 @@ export class ManagementAkunComponent implements OnInit {
       }
     )
   }
+  changepersetujuanselect(){
+    if(this.persetujuanFc.value === true){
+      this.optionperstujuanFc.enable()
+    }else{
+      this.optionperstujuanFc.disable()
+    } 
+  }
+  changepencairanselect(){
+    if(this.pencarianFc.value === true){
+      this.optionpencarianFc.enable()
+    }else{
+      this.optionpencarianFc.disable()
+    } 
+  }
   changeoptionfungsional(){
     if(this.optionfungsionalFc.value === 'AO/CMO/Sales'){
       this.persetujuanFc.setValue(true)
@@ -207,13 +222,8 @@ export class ManagementAkunComponent implements OnInit {
     }
   }
   postdata(type: string) {
+    let status;
     this.loadingshow = true;
-    this.kinjerkoperasiFc.setValue(this.kinjerkoperasiFc.value === true ? 1 : 0)
-    this.pengaturanpinjamanFc.setValue(this.pengaturanpinjamanFc.value === true ? 1 : 0)
-    this.manajementpinjamanFc.setValue(this.manajementpinjamanFc.value === true ? 1 : 0)
-    this.manajementanggotaFc.setValue(this.manajementanggotaFc.value === true ? 1 : 0)
-    this.anguranFc.setValue(this.anguranFc.value === true ? 1 : 0)
-    this.penagihanFc.setValue(this.penagihanFc.value === true ? 1 : 0)
     if (this.manajementakunFc.value === true) {
       switch (this.optionfungsionalFc.value) {
         case 'Admin Koperasi':
@@ -359,7 +369,25 @@ export class ManagementAkunComponent implements OnInit {
       "mn_management_pinjaman": [this.manajementpinjamanFc.value, [Validators.required]],
       "mn_management_anggota": [this.manajementanggotaFc.value, [Validators.required]]
     });
-    if (this.formgrouppostdata.status === "VALID") {
+    if (this.persetujuanFc.value === true && this.approve_max_1jt.value === null && this.approve_max_3jt.value === null && this.approve_max_5jt.value === null
+      && this.approve_max_10jt.value === null && this.approve_more_10jt.value === null  ){
+        status = 'invalid'
+    }else{
+      status = 'valid'
+    }
+    if (this.pencarianFc.value === true && this.disburse_max_5jt.value === null
+      && this.disburse_max_10jt.value === null && this.disburse_more_10jt.value === null  ){
+        status = 'invalid'
+    }else{
+      status = 'valid'
+    }
+    if (this.formgrouppostdata.status === "VALID" && status === 'valid') {
+      this.kinjerkoperasiFc.setValue(this.kinjerkoperasiFc.value === true ? 1 : 0)
+      this.pengaturanpinjamanFc.setValue(this.pengaturanpinjamanFc.value === true ? 1 : 0)
+      this.manajementpinjamanFc.setValue(this.manajementpinjamanFc.value === true ? 1 : 0)
+      this.manajementanggotaFc.setValue(this.manajementanggotaFc.value === true ? 1 : 0)
+      this.anguranFc.setValue(this.anguranFc.value === true ? 1 : 0)
+      this.penagihanFc.setValue(this.penagihanFc.value === true ? 1 : 0)
       switch (type) {
         case 'create':
           this.contentSvc.postakun(this.formgrouppostdata.value).subscribe(
