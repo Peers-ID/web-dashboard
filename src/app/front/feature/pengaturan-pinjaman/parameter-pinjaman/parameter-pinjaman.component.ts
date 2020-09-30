@@ -4,6 +4,7 @@ import { ContentService, NotificationService } from '@app/core';
 import * as CryptoJS from 'crypto-js';
 import { stat } from 'fs';
 import * as $ from "jquery";
+import { ComponentLoaderFactory } from 'ngx-bootstrap';
 @Component({
   selector: 'app-parameter-pinjaman',
   templateUrl: './parameter-pinjaman.component.html',
@@ -332,6 +333,8 @@ export class ParameterPinjamanComponent implements OnInit {
     this.contentkonfirmasi = 'Apakah anda yakin untuk mengubah data ini ?'
   }
   btnya(){
+    console.log('===');
+    
     this.postdata()
     this.konfirmasimodal.hide();
   }
@@ -339,10 +342,14 @@ export class ParameterPinjamanComponent implements OnInit {
     this.loadingshow = true;
     let dataurutan = []
     let status;
+    if(this.listdatasimpanan){
     if(this.listdatasimpanan.length === this.dataselect.length || this.simpananmembayarFc.value === 'tidak' || this.simpananmembayarFc.value === ''){
       status = 'valid'
     }else{
       status = 'invalid'
+    }
+    }else{
+        status = 'valid'
     }
 
     this.dataselect.forEach(data => {
@@ -431,8 +438,8 @@ export class ParameterPinjamanComponent implements OnInit {
         this.loadingshow = false;
         this.notifSvc.addNotification({
           type: 'danger',
-          head: 'Invalid Form Value',
-          body: 'Please check your form'
+          head: 'Danger',
+          body: 'Pastikan semua form sudah terisi dengan benar'
         });
       }, 500);
     }

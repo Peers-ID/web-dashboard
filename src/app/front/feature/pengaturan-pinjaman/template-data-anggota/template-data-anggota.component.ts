@@ -290,8 +290,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
         this.loadingshow = false;
         this.notifSvc.addNotification({
           type: 'danger',
-          head: 'Invalid Form Value',
-          body: 'Please check your form'
+          head: 'Danger',
+          body: 'Pastikan semua form sudah terisi dengan benar'
         });
       }, 500);
     }

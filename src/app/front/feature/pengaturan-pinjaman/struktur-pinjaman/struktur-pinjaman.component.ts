@@ -110,6 +110,7 @@ export class StrukturPinjamanComponent implements OnInit {
         if (result) {
           this.produkshow = true
           this.namaprodukFc.setValue(result.data[0].nama_produk)
+          console.log(result.data[0]);
           setTimeout(() => {
             this.pushdataform(result.data[0].nama_produk, result.data[0].tenor, result.data[0].satuan_tenor,
               result.data[0].bunga, result.data[0].tenor_bunga, result.data[0].admin, result.data[0].provisi, result.data[0].type_provisi,
@@ -129,9 +130,9 @@ export class StrukturPinjamanComponent implements OnInit {
     this.bungaFc.setValue(bunga)
     this.optionbungaFc.setValue(optionbunga)
     this.biayaadminFc.setValue(biayaadmin)
-    this.provisiFc.setValue(provisi)
+    this.provisiFc.setValue(provisi === 0 ? '' : provisi)
     this.optionbiayaprovisiFc.setValue(optionprovisi)
-    this.simpananpokokFc.setValue(simpananpokok)
+    this.simpananpokokFc.setValue(simpananpokok === 0 ? '' : simpananpokok)
     this.optionsimpananpokokFc.setValue(optionsimpananpokok)
     this.simpananwajibFc.setValue(simpananwajib)
     this.dendaketerlambatanFc.setValue(dendaketerlambatan)
@@ -170,6 +171,8 @@ export class StrukturPinjamanComponent implements OnInit {
     this.loadingshow = true;
     if (this.optionbiayaprovisiFc.value === '')this.provisiFc.setValue(0)
     if (this.optionsimpananpokokFc.value === '')this.simpananpokokFc.setValue(0)
+    this.biayaadminFc.setValue(this.biayaadminFc.value === '' ? 0 : this.biayaadminFc.value)
+    this.simpananwajibFc.setValue(this.simpananwajibFc.value === '' ? 0 : this.simpananwajibFc.value)
     this.formgrouppostdata = this.fb.group({
       "nama_produk": [this.namaprodukFc.value, [Validators.required]],
       "tenor": [this.tenorFc.value, [Validators.required]],
@@ -283,8 +286,8 @@ export class StrukturPinjamanComponent implements OnInit {
         this.loadingshow = false;
         this.notifSvc.addNotification({
           type: 'danger',
-          head: 'Invalid Form Value',
-          body: 'Please check your form'
+          head: 'Danger',
+          body: 'Pastikan semua form sudah terisi dengan benar'
         });
       }, 500);
     }
