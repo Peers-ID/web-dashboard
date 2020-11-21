@@ -33,7 +33,7 @@
     "express": "^4.15.2",
     "font-awesome": "^4.7.0",
     "ng2-pdf-viewer": "^5.2.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "2.19.3",
     "ngx-bootstrap": "^3.0.1",
     "ngx-pagination": "^5.0.0",
