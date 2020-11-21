@@ -8,6 +8,7 @@ import * as CryptoJS from 'crypto-js';
 import { ComponentLoaderFactory, idLocale } from 'ngx-bootstrap';
 import { element } from 'protractor';
 import { ignoreElements } from 'rxjs/operators';
+import { UtilService } from "@app/core/util.service";
 @Component({
   selector: 'app-pinjaman',
   templateUrl: './pinjaman.component.html',
@@ -36,17 +37,22 @@ export class PinjamanComponent implements OnInit {
   pelunasandipercepatFc:FormControl = new FormControl()
   perhitunganFc:FormControl = new FormControl()
   apakahsimpananFc:FormControl = new FormControl()
+  checkbungavalue:boolean;
+  datapinjamananggotashowdetail:boolean = false;
   @ViewChild('anggotapinjamanmodal', { static: false }) public anggotapinjamanmodal: any;
   @ViewChild('detailanggotapinjaman', { static: false }) public detailanggotapinjaman: any;
   listdataprodukanggota:any;
+  listsimpanandataget:any;
+  dataallurutan = []
   constructor(
     private contentSvc: ContentService,
     public fb: FormBuilder,
-    private notifSvc: NotificationService
+    private notifSvc: NotificationService,
+    private utilSvc:UtilService
   ) { }
 
   ngOnInit() {
-    if (!localStorage.getItem("simpanan")) {
+        if (!localStorage.getItem("simpanan") || !localStorage.getItem("pelunasan") || !localStorage.getItem("denda") || !localStorage.getItem("sebagian")) {
       this.contentSvc.getparametersimpanan().subscribe(
         simpanan => {
           if (simpanan) {
@@ -141,7 +147,10 @@ export class PinjamanComponent implements OnInit {
     this.contentSvc.getcollectionId(id).subscribe(
       result => {
         if (result.status !== 500){
+          this.datapinjamananggotashowdetail = true
           this.detailloan = result.data.loan
+          if (/^\d+$/.test(result.data.loan.bunga_pinjaman)) this.checkbungavalue = true
+          else this.checkbungavalue = true
           this.listpembayaranangsuran = result.data.collection
           this.valuehariFc.setValue(result.data.parameter.hari_per_bulan)
           if (result.data.parameter.id_angsuran_sebagian !== 0){
@@ -180,12 +189,27 @@ export class PinjamanComponent implements OnInit {
             this.perhitunganFc.setValue('')
           }
           this.pelunasandipercepatFc.setValue(result.data.parameter.type_pelunasan_dipercepat)
-          if (result.data.parameter.id_urutan_simpanan !== ' '){
+          if (result.data.parameter.id_urutan_simpanan !== ""){
             this.apakahsimpananFc.setValue('Ya')
           }else{
             this.apakahsimpananFc.setValue('Tidak')
-
           }
+          let data  = result.data.parameter.id_urutan_simpanan;
+          const databj = data.split('|').join(',').split('')
+          const dataarrpush  = []
+          this.dataallurutan = []
+          databj.forEach(data => {
+            if (data !== ','){        
+              dataarrpush.push(data)  
+            }
+          })
+          dataarrpush.forEach(element => {
+            for (let a of this.listsimpanan.data) {
+              if (a.id == element){
+                  this.dataallurutan.push(a)
+              }
+            }
+          })
         }
       }
     )   

@@ -1,0 +1,55 @@
+<div class="col-md-12 mt-2">
+    <div class="card r-0 b-0">
+        <div class="card-body" *ngIf="anggotasimpananshowdetail">
+            <div class="col-12">
+                <div class="row justify-content-between">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-3">
+                                <input type="text" class="form-control w-100" placeholder="search...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-12" *ngIf="listdatasimpanananggotadetail.length > 0">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th class="text-center">{{namesimpanan}}</th>
+                                    </tr>
+                                </table>
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th (click)="detailsimpananbytype('simpanan_pokok' , totalsimpananpokok)">Simpanan Pokok</th>
+                                        <th>Rp. {{utilSvc.formatNumber(totalsimpananpokok)}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th (click)="detailsimpananbytype('simpanan_wajib' , totalsimpananwajib)">Simpanan Wajib</th>
+                                        <th>Rp. {{utilSvc.formatNumber(totalsimpananwajib)}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th (click)="detailsimpananbytype('simpanan_sukarela' , totalsimpanansukarela)">Simpanan Sukarela</th>
+                                        <th>Rp. {{utilSvc.formatNumber(totalsimpanansukarela)}}</th>
+                                    </tr>
+                                </table>
+                                <table style="width: 100%" class="mt-2">
+                                    <tr>
+                                        <th class="text-center">Total Simpanan Rp. {{utilSvc.formatNumber(totalsimpanan)}}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12 text-center" *ngIf="listdatasimpanananggotadetail.length === 0">
+                                No data...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body load-container" *ngIf="!anggotasimpananshowdetail">
+            <div class="col-12 text-center">
+                Load Data ...
+            </div>
+        </div>
+    </div>
+</div>

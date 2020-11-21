@@ -5,6 +5,7 @@ import { FormControl, FormGroup, FormBuilder, FormArray, ValidatorFn, Validators
 import { ContentService, NotificationService } from '@app/core';
 import * as CryptoJS from 'crypto-js';
 import { stat } from 'fs';
+import { element } from 'protractor';
 import { ignoreElements } from 'rxjs/operators';
 
 @Component({
@@ -35,14 +36,14 @@ export class ManagementAkunComponent implements OnInit {
   nohpakunFc: FormControl = new FormControl()
   emailFc: FormControl = new FormControl()
   tanggallahirFc: FormControl = new FormControl()
-  approve_max_1jt: FormControl = new FormControl()
-  approve_max_3jt: FormControl = new FormControl()
-  approve_max_5jt: FormControl = new FormControl()
-  approve_max_10jt: FormControl = new FormControl()
-  approve_more_10jt: FormControl = new FormControl()
-  disburse_max_5jt: FormControl = new FormControl()
-  disburse_max_10jt: FormControl = new FormControl()
-  disburse_more_10jt: FormControl = new FormControl()
+  approve_max_1jt: FormControl = new FormControl(0)
+  approve_max_3jt: FormControl = new FormControl(0)
+  approve_max_5jt: FormControl = new FormControl(0)
+  approve_max_10jt: FormControl = new FormControl(0)
+  approve_more_10jt: FormControl = new FormControl(0)
+  disburse_max_5jt: FormControl = new FormControl(0)
+  disburse_max_10jt: FormControl = new FormControl(0)
+  disburse_more_10jt: FormControl = new FormControl(0)
   optionperstujuanFc: FormControl = new FormControl()
   optionpencarianFc: FormControl = new FormControl()
   menuao: FormControl = new FormControl()
@@ -131,14 +132,18 @@ export class ManagementAkunComponent implements OnInit {
     , approve_max_10jt: any, approve_more_10jt: any, disburse_max_5jt: any, disburse_max_10jt: any, disburse_more_10jt: any, repayment: any,
     collection: any, mn_kinerja_koperasi: any, mn_pengaturan_pinjaman: any, mn_tambah_ao: any, mn_tambah_admin: any,
     mn_tambah_super_admin: any, mn_management_pinjaman: any, mn_management_anggota: any) {
+    this.datashow = true
     this.namaakuninputFc.setValue(nama)
     this.nohpakunFc.setValue(no)
     this.emailFc.setValue(email)
     this.tanggallahirFc.setValue(tanggallahir.split(' ')[0])
-    this.optionfungsionalFc.setValue(optionfunsional)
+    setTimeout(() => {
+      this.optionfungsionalFc.setValue(optionfunsional)
+    }, 100);
     if (approve_max_1jt === 0 && approve_max_3jt === 0 && approve_max_5jt === 0 && approve_max_10jt === 0 &&
       approve_more_10jt === 0) {
       this.persetujuanFc.setValue(false)
+      this.optionperstujuanFc.disable()
     } else {
       const dataarraprove = [
         { id: '1', value: approve_max_1jt },
@@ -155,9 +160,11 @@ export class ManagementAkunComponent implements OnInit {
         }
       })
       this.persetujuanFc.setValue(true)
+      this.optionperstujuanFc.enable()
     }
     if (disburse_max_5jt === 0 && disburse_max_10jt === 0 && disburse_more_10jt === 0) {
       this.pencarianFc.setValue(false)
+      this.optionpencarianFc.disable()
     } else {
       const dataarrdisburse = [
         { id: '5', value: disburse_max_5jt },
@@ -171,6 +178,7 @@ export class ManagementAkunComponent implements OnInit {
           }, 100);
         }
       })
+      this.optionpencarianFc.enable()
       this.pencarianFc.setValue(true)
     }
     this.anguranFc.setValue(repayment === 1 ? true : false)
@@ -186,9 +194,20 @@ export class ManagementAkunComponent implements OnInit {
     }
 
   }
+  closemodal(){
+    this.tambahakunmodal.hide()
+    this.approve_max_1jt.setValue(0)
+    this.approve_max_3jt.setValue(0)
+    this.approve_max_5jt.setValue(0)
+    this.approve_max_10jt.setValue(0)
+    this.approve_more_10jt.setValue(0)
+    this.disburse_max_5jt.setValue(0)
+    this.disburse_max_10jt.setValue(0)
+    this.disburse_more_10jt.setValue(0)
+  }
   loaddata(id: any) {
     this.resetform()
-    this.datashow = true
+    this.datashow = false
     this.contentSvc.getAccountbyid(this.iddata).subscribe(
       result => {
         this.pushdataform(result.data.users.fullname, result.data.users.phone_mobile, result.data.users.email, result.data.users.birthdate,
@@ -219,6 +238,15 @@ export class ManagementAkunComponent implements OnInit {
       this.pencarianFc.setValue(true)
       this.anguranFc.setValue(true)
       this.penagihanFc.setValue(true)
+      this.optionperstujuanFc.enable()
+      this.optionpencarianFc.enable()
+    }
+    if(this.optionfungsionalFc.value === 'Admin Koperasi' || this.optionfungsionalFc.value === 'Super Admin'){
+      this.kinjerkoperasiFc.setValue(true)
+      this.pengaturanpinjamanFc.setValue(true)
+      this.manajementakunFc.setValue(true)
+      this.manajementpinjamanFc.setValue(true)
+      this.manajementanggotaFc.setValue(true)
     }
   }
   postdata(type: string) {
@@ -368,19 +396,42 @@ export class ManagementAkunComponent implements OnInit {
       "mn_tambah_super_admin": [this.menusuperadmin.value, [Validators.required]],
       "mn_management_pinjaman": [this.manajementpinjamanFc.value, [Validators.required]],
       "mn_management_anggota": [this.manajementanggotaFc.value, [Validators.required]]
-    });
-    if (this.persetujuanFc.value === true && this.approve_max_1jt.value === null && this.approve_max_3jt.value === null && this.approve_max_5jt.value === null
-      && this.approve_max_10jt.value === null && this.approve_more_10jt.value === null  ){
-        status = 'invalid'
+    });  
+    
+    if (this.optionfungsionalFc.value === 'AO/CMO/Sales'){
+      if (this.persetujuanFc.value === true && this.pencarianFc.value === false){
+        if (this.approve_max_1jt.value === 0 && this.approve_max_3jt.value === 0 && this.approve_max_5jt.value === 0
+            && this.approve_max_10jt.value === 0 && this.approve_more_10jt.value === 0){
+          status = 'invalid'
+        }else{
+          status = 'valid'
+        }
+      }
+      if (this.persetujuanFc.value === false && this.pencarianFc.value === true){
+        if (this.disburse_max_5jt.value === 0 && this.disburse_max_10jt.value === 0 && this.disburse_more_10jt.value === 0  ){
+          status = 'invalid'
+        }else{
+          status = 'valid'
+        }
+      }
+  
+      if (this.persetujuanFc.value === true && this.pencarianFc.value === true){
+        if (this.disburse_max_5jt.value === 0 && this.disburse_max_10jt.value === 0 && this.disburse_more_10jt.value === 0  ||
+          this.approve_max_1jt.value === 0 && this.approve_max_3jt.value === 0 && this.approve_max_5jt.value === 0
+            && this.approve_max_10jt.value === 0 && this.approve_more_10jt.value === 0){
+          status = 'invalid'
+        }else{
+          status = 'valid'
+        }
+      }
+      
+      if (this.persetujuanFc.value === false && this.pencarianFc.value === false){
+        status = 'valid'
+      }
     }else{
       status = 'valid'
     }
-    if (this.pencarianFc.value === true && this.disburse_max_5jt.value === null
-      && this.disburse_max_10jt.value === null && this.disburse_more_10jt.value === null  ){
-        status = 'invalid'
-    }else{
-      status = 'valid'
-    }
+
     if (this.formgrouppostdata.status === "VALID" && status === 'valid') {
       this.kinjerkoperasiFc.setValue(this.kinjerkoperasiFc.value === true ? 1 : 0)
       this.pengaturanpinjamanFc.setValue(this.pengaturanpinjamanFc.value === true ? 1 : 0)

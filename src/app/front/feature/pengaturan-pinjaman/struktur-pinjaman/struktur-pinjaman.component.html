@@ -40,17 +40,17 @@
         </div>
     </div>
 </div>
-<div bsModal #strukturmodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div bsModal #strukturmodalcreate="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true" [config]="{backdrop: 'static'}">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" (click)="strukturmodal.hide()" aria-label="Close">
+                <button type="button" class="close" (click)="strukturmodalcreate.hide()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body" >
-                <div class="col-12 pl-5 pr-5" *ngIf="produkshow">
+                <div class="col-12 pl-5 pr-5" *ngIf="produkshowcreate">
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
@@ -66,7 +66,7 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="number" class="w-100 form-control" [formControl]="tenorFc">
+                                            <input FrontDigitOnly type="number" class="w-100 form-control" [formControl]="tenorFc">
                                         </div>
                                         <div class="col-6">
                                             <select class="form-control" [formControl]="optiontenorFc">
@@ -86,8 +86,8 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="text" class="w-100 form-control input-prefix"
-                                                [formControl]="bungaFc" (keyup)="percentinput()" />
+                                            <input maxlength="5" type="text" class="w-100 form-control input-prefix"
+                                                [formControl]="bungaFc" />
                                             <div class="prefix">%</div>
                                         </div>
                                         <div class="col-6">
@@ -106,7 +106,7 @@
                             <div class="row">
                                 <div class="col-6">Biaya Admin</div>
                                 <div class="col-6">
-                                    <input type="number" class="w-100 form-control input-sufix" [formControl]="biayaadminFc">
+                                    <input FormatNumber type="text" class="w-100 form-control input-sufix" [formControl]="biayaadminFc">
                                     <div class="sufix">Rp</div>
                                 </div>
                             </div>
@@ -119,13 +119,14 @@
                                         <div class="col-6">
                                             <select class="form-control" [formControl]="optionbiayaprovisiFc" (change)="changetypeselect('biayaprovisi')">
                                                 <option [defaultSelected]=true hidden value="">Pilih</option>
-                                                <option value="">Tidak ada</option>
+                                                <option value="tidak">Tidak ada</option>
                                                 <option value="Fix">Fix Amount</option>
                                                 <option value="Persen">Persentase %</option>
                                             </select>
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="w-100 form-control" [formControl]="provisiFc" [class.input-sufix]="optionbiayaprovisiFc.value === 'Fix'" [class.input-prefix]="optionbiayaprovisiFc.value === 'Persen'">
+                                            <input FormatNumber *ngIf="optionbiayaprovisiFc.value === 'Fix'" type="text" class="w-100 form-control input-sufix" [formControl]="provisiFc" >
+                                            <input  maxlength="5" *ngIf="optionbiayaprovisiFc.value === 'Persen'" type="text" class="w-100 form-control input-prefix" [formControl]="provisiFc" >
                                             <div class="sufix" *ngIf="optionbiayaprovisiFc.value === 'Fix'">Rp</div>
                                             <div class="prefix" *ngIf="optionbiayaprovisiFc.value === 'Persen'">%</div>
                                         </div>
@@ -141,14 +142,15 @@
                                         <div class="col-6">
                                             <select class="form-control" [formControl]="optionsimpananpokokFc" (change)="changetypeselect('simpananpokok')" >
                                                 <option [defaultSelected]=true hidden value="">Pilih</option>
-                                                <option value="">Tidak ada</option>
+                                                <option value="tidak">Tidak ada</option>
                                                 <option value="Fix">Fix Amount</option>
                                                 <option value="Persen">Persentase %</option>
                                             </select>
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="w-100 form-control" [formControl]="simpananpokokFc" [class.input-sufix]="optionsimpananpokokFc.value === 'Fix'" [class.input-prefix]="optionsimpananpokokFc.value === 'Persen'">
-                                                <div class="sufix" *ngIf="optionsimpananpokokFc.value === 'Fix'">Rp</div>
+                                            <input FormatNumber *ngIf="optionsimpananpokokFc.value === 'Fix'"  type="text" class="w-100 form-control input-sufix" [formControl]="simpananpokokFc" >
+                                            <input  maxlength="5" *ngIf="optionsimpananpokokFc.value === 'Persen'"  type="text" class="w-100 form-control input-prefix" [formControl]="simpananpokokFc" >
+                                            <div class="sufix" *ngIf="optionsimpananpokokFc.value === 'Fix'">Rp</div>
                                             <div class="prefix" *ngIf="optionsimpananpokokFc.value === 'Persen'">%</div>
                                         </div>
                                     </div>
@@ -159,42 +161,41 @@
                             <div class="row">
                                 <div class="col-6">Simpanan Wajib</div>
                                 <div class="col-6">
-                                    <input type="number" class="w-100 form-control input-sufix"
-                                        [formControl]="simpananwajibFc" (keyup)="simpananwajib()">
+                                    <input FormatNumber type="text" class="w-100 form-control input-sufix"
+                                        [formControl]="simpananwajibFc" >
                                     <div class="sufix">Rp</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 mt-2">
+                        <div class="col-12 mt-2" *ngIf="editfieldketerlambatan">
                             <div class="row">
                                 <div class="col-6">Denda Keterlambatan</div>
                                 <div class="col-6">
                                     <div class="row">
-                                        <div class="col-9">
-                                            <input type="number" class="w-100 form-control" [formControl]="dendaketerlambatanFc" [class.input-sufix]="typedendaketerlambatanFc.value === 'Fix'" [class.input-prefix]="typedendaketerlambatanFc.value === 'Persen'">
+                                        <div class="col-12">
+                                            <input FormatNumber type="text" *ngIf="typedendaketerlambatanFc.value === 'Fix'" class="w-100 form-control" [formControl]="dendaketerlambatanFc" [class.input-sufix]="typedendaketerlambatanFc.value === 'Fix'" [class.input-prefix]="typedendaketerlambatanFc.value === 'Persen'">
                                             <div class="sufix" *ngIf="typedendaketerlambatanFc.value === 'Fix'">Rp</div>
+                                            <input maxlength="5" type="text" *ngIf="typedendaketerlambatanFc.value === 'Persen'" class="w-100 form-control" [formControl]="dendaketerlambatanFc" [class.input-sufix]="typedendaketerlambatanFc.value === 'Fix'" [class.input-prefix]="typedendaketerlambatanFc.value === 'Persen'">
                                             <div class="prefix" *ngIf="typedendaketerlambatanFc.value === 'Persen'">%</div>
-                                        </div>
-                                        <div class="col-3">
-                                            /Hari
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 mt-2">
+                        <div class="col-12 mt-2" *ngIf="editfieldpelunasan">
                             <div class="row">
                                 <div class="col-6">Denda Pelunasan Awal</div>
                                 <div class="col-6">
-                                    <input type="number" class="w-100 form-control" [formControl]="dendapelunasanawalFc" [class.input-sufix]="typepelunasanawalFc.value === 'Fix'" [class.input-prefix]="typepelunasanawalFc.value === 'Persen'">
+                                    <input FormatNumber *ngIf="typepelunasanawalFc.value === 'Fix'" type="text" class="w-100 form-control" [formControl]="dendapelunasanawalFc" [class.input-sufix]="typepelunasanawalFc.value === 'Fix'" [class.input-prefix]="typepelunasanawalFc.value === 'Persen'">
                                         <div class="sufix" *ngIf="typepelunasanawalFc.value === 'Fix'">Rp</div>
+                                    <input maxlength="5"  *ngIf="typepelunasanawalFc.value === 'Persen'" type="text" class="w-100 form-control" [formControl]="dendapelunasanawalFc" [class.input-sufix]="typepelunasanawalFc.value === 'Fix'" [class.input-prefix]="typepelunasanawalFc.value === 'Persen'">
                                         <div class="prefix" *ngIf="typepelunasanawalFc.value === 'Persen'">%</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 text-center" *ngIf="!produkshow">
+                <div class="col-12 text-center" *ngIf="!produkshowcreate">
                     Load Data ...
                 </div>
             </div>
@@ -234,4 +235,6 @@
         </div>
     </div>
 </div>
+
 <app-notification></app-notification>
+

@@ -149,7 +149,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.ktplamatinggalFc.setValue(this.ktplamatinggalFc.value === true ? 1 : 0)
     this.luasrumahFc.setValue(this.luasrumahFc.value === true ? 1 : 0)
     this.jenisatapFc.setValue(this.jenisatapFc.value === true ? 1 : 0)
-    this.jenisdindingFc.setValue(this.nomoridentitasFc.value === true ? 1 : 0)
+    this.jenisdindingFc.setValue(this.jenisdindingFc.value === true ? 1 : 0)
     this.kondisirumahFc.setValue(this.kondisirumahFc.value === true ? 1 : 0)
     this.letakrumahFc.setValue(this.letakrumahFc.value === true ? 1 : 0)
     this.tanggungankeluargaFc.setValue(this.tanggungankeluargaFc.value === true ? 1 : 0)
@@ -221,6 +221,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "alamat_ktp_provinsi": [this.ktpprovinsiFc.value, [Validators.required]],
       "alamat_ktp_status_tempat_tinggal": [this.ktpstatustempatFc.value, [Validators.required]],
       "alamat_ktp_lama_tinggal": [this.ktplamatinggalFc.value, [Validators.required]],
+      "alamat_ktp_kode_pos": [this.ktpkodeposFc.value, [Validators.required]],
       "domisili_sesuai_ktp": [this.alamtsesuaiktpFc.value, [Validators.required]],
       "alamat_domisili_jalan": [this.domisilijalanFc.value, [Validators.required]],
       "alamat_domisili_kelurahan": [this.domisilikelurahanFc.value, [Validators.required]],
@@ -229,6 +230,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "alamat_domisili_provinsi": [this.domisiliprovinsiFc.value, [Validators.required]],
       "alamat_domisili_status_tempat_tinggal": [this.domisilistatustempatFc.value, [Validators.required]],
       "alamat_domisili_lama_tempat_tinggal": [this.domisililamatinggalFc.value, [Validators.required]],
+      "alamat_domisili_kode_pos":[this.domisilikodeposFc.value, [Validators.required]],
       "memiliki_npwp": [this.memilikinpwpFc.value, [Validators.required]],
       "nomer_npwp": [this.nomornpwpFc.value, [Validators.required]],
       "pekerja_usaha": [this.pekerjaanusahaFc.value, [Validators.required]],
@@ -241,6 +243,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "alamat_kantor_kecamatan": [this.kecamatanpekerjaanFc.value, [Validators.required]],
       "alamat_kantor_kota": [this.kotapekerjaanFc.value, [Validators.required]],
       "alamat_kantor_provinsi": [this.provinsipekerjaanFc.value, [Validators.required]],
+      "alamat_kantor_kode_pos":[this.kodepospekerjaanFc.value, [Validators.required]],
       "nama_pasangan": [this.namapasanganFc.value, [Validators.required]],
       "no_identitas_pasangan": [this.nomorpasanganFc.value, [Validators.required]],
       "pekerjaan_pasangan": [this.pekerjaanpasanganFc.value, [Validators.required]],
@@ -253,6 +256,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "dokumen_kk": [this.dokumenkkFc.value, [Validators.required]],
       "dokumen_keterangan_kerja": [this.dokumensuratkerjaFc.value, [Validators.required]],
       "dokumen_slip_gaji": [this.dokumenslipgajiFc.value, [Validators.required]],
+      "dokumen_akta_nikah": [this.dokumenaktanikahFc.value, [Validators.required]],
       "dokumen_bpkb": [this.dokumenbpkbFc.value, [Validators.required]],
       "dokumen_lainnya": [this.dokumenlainnyaFc.value, [Validators.required]],
       "survey_luas_rumah": [this.luasrumahFc.value, [Validators.required]],
@@ -304,6 +308,82 @@ export class TemplateDataAnggotaComponent implements OnInit {
           this.loaddata = true
           this.statubutton = false
           this.trigerconditionform('disable')
+          this.pushdataform(
+            result.data[0].no_identitas,
+            result.data[0].member_handphone,
+            result.data[0].email,
+            result.data[0].nama_lengkap,
+            result.data[0].tempat_lahir,
+            result.data[0].tanggal_lahir,
+            result.data[0].usia,
+            result.data[0].jenis_kelamin,
+            result.data[0].status_perkawinan,
+            result.data[0].pendidikan_terakhir,
+            result.data[0].nama_gadis_ibu,
+            result.data[0].alamat_ktp_jalan,
+            result.data[0].alamat_ktp_provinsi,
+            result.data[0].alamat_ktp_kota,
+            result.data[0].alamat_ktp_kecamatan,
+            result.data[0].alamat_ktp_kelurahan,
+            result.data[0].alamat_ktp_kode_pos,
+            result.data[0].alamat_ktp_status_tempat_tinggal,
+            result.data[0].alamat_ktp_lama_tinggal,
+            result.data[0].survey_luas_rumah,
+            result.data[0].survey_jenis_atap,
+            result.data[0].survey_jenis_dinding,
+            result.data[0].survey_kondisi_rumah,
+            result.data[0].survey_letak_rumah,
+            result.data[0].survey_tanggungan_keluarga,
+            result.data[0].survey_data_fisik_perabot,
+            result.data[0].survey_akses_lembaga_keuangan,
+            result.data[0].survey_info_ttg_usaha,
+            result.data[0].survey_index_rumah,
+            result.data[0].survey_index_asset,
+            result.data[0].survey_kepemilikan_asset,
+            result.data[0].survey_pendapatan_luar_usaha,
+            result.data[0].survey_perkembangan_asset,
+            result.data[0].survey_perkembangan_usaha,
+            result.data[0].nama_pasangan,
+            result.data[0].no_identitas_pasangan,
+            result.data[0].pekerjaan_pasangan,
+            result.data[0].no_hp_pasangan,
+            result.data[0].memiliki_npwp,
+            result.data[0].nomer_npwp,
+            result.data[0].pekerja_usaha,
+            result.data[0].jenis_umkm,
+            result.data[0].nama_perusahaan,
+            result.data[0].lama_bekerja,
+            result.data[0].penghasilan_omset,
+            result.data[0].alamat_kantor_provinsi,
+            result.data[0].alamat_kantor_kota,
+            result.data[0].alamat_kantor_kecamatan,
+            result.data[0].alamat_kantor_kelurahan,
+            result.data[0].alamat_kantor_kode_pos,
+            result.data[0].alamat_domisili_jalan,
+            result.data[0].alamat_domisili_provinsi,
+            result.data[0].alamat_domisili_kota,
+            result.data[0].alamat_domisili_kecamatan,
+            result.data[0].alamat_domisili_kelurahan,
+            result.data[0].alamat_domisili_kode_pos,
+            result.data[0].alamat_domisili_status_tempat_tinggal,
+            result.data[0].alamat_domisili_lama_tempat_tinggal,
+            0,
+            0,
+            0,
+            result.data[0].nama_penjamin,
+            result.data[0].no_hp_penjamin,
+            result.data[0].hubungan_penjamin,
+            result.data[0].dokumen_ktp,
+            result.data[0].dokumen_sim,
+            result.data[0].dokumen_kk,
+            result.data[0].dokumen_keterangan_kerja,
+            result.data[0].dokumen_slip_gaji,
+            result.data[0].dokumen_akta_nikah,
+            result.data[0].dokumen_bpkb,
+            result.data[0].dokumen_lainnya,
+            result.data[0].domisili_sesuai_ktp,
+            result.data[0].alamat_kantor_jalan
+          )
         } else {
           this.loaddata = true
           this.statubutton = true
@@ -313,6 +393,157 @@ export class TemplateDataAnggotaComponent implements OnInit {
     )
   }
 
+  pushdataform(
+    nomoridentitas: any,
+    nomorhandphone: any,
+    email: any,
+    namalengkap: any,
+    tempatlahir: any,
+    tanggallahir: any,
+    usia: any,
+    jeniskelamin: any,
+    statuspernikahan: any,
+    pendidikanterakhir: any,
+    namagadisibukandung: any,
+    ktpjalan: any,
+    ktpprovinsi: any,
+    ktpkota: any,
+    ktpkecamatan: any,
+    ktpkelurahan: any,
+    ktpkodepos: any,
+    ktpstatustempat: any,
+    ktplamatinggal: any,
+    luasrumah: any,
+    jenisatap: any,
+    jenisdinding: any,
+    kondisirumah: any,
+    letakrumah: any,
+    tanggungankeluarga: any,
+    datafisikperabot: any,
+    akseslembaga: any,
+    informasiusaha: any,
+    indexrumah: any,
+    indexaset: any,
+    kepemilikanaset: any,
+    pendapatanluar: any,
+    perkembanganaset: any,
+    perkembanganusaha: any,
+    namapasangan: any,
+    nomorpasangan: any,
+    pekerjaanpasangan: any,
+    nomorhandphonepasangan: any,
+    memilikinpwp: any,
+    nomornpwp: any,
+    pekerjaanusaha: any,
+    jenisumkm: any,
+    namaperusahaan: any,
+    lamabekerja: any,
+    penghasil: any,
+    provinsipekerjaan: any,
+    kotapekerjaan: any,
+    kecamatanpekerjaan: any,
+    kelurahanpekerjaan: any,
+    kodepospekerjaan: any,
+    domisilijalan: any,
+    domisiliprovinsi: any,
+    domisilikota: any,
+    domisilikecamatan: any,
+    domisilikelurahan: any,
+    domisilikodepos: any,
+    domisilistatustempat: any,
+    domisililamatinggal: any,
+    namakontakdarurat: any,
+    nomorhandphonedarurat: any,
+    hubungandarurat: any,
+    namapenjamin: any,
+    nomorpenjamin: any,
+    hubunganpenjamin: any,
+    dokumenktp: any,
+    dokumensim: any,
+    dokumenkk: any,
+    dokumensuratkerja: any,
+    dokumenslipgaji: any,
+    dokumenaktanikah: any,
+    dokumenbpkb: any,
+    dokumenlainnya: any,
+    alamtsesuaiktp: any,
+    jalanpekerjaan: any
+  ) {
+    this.nomoridentitasFc.setValue(nomoridentitas === 1 ? true : false)
+    this.nomorhandphoneFc.setValue(nomorhandphone === 1 ? true : false)
+    this.emailFc.setValue(email === 1 ? true : false)
+    this.namalengkapFc.setValue(namalengkap === 1 ? true : false)
+    this.tempatlahirFc.setValue(tempatlahir === 1 ? true : false)
+    this.tanggallahirFc.setValue(tanggallahir === 1 ? true : false)
+    this.usiaFc.setValue(usia === 1 ? true : false)
+    this.jeniskelaminFc.setValue(jeniskelamin === 1 ? true : false)
+    this.statuspernikahanFc.setValue(statuspernikahan === 1 ? true : false)
+    this.pendidikanterakhirFc.setValue(pendidikanterakhir === 1 ? true : false)
+    this.namagadisibukandungFc.setValue(namagadisibukandung === 1 ? true : false)
+    this.ktpjalanFc.setValue(ktpjalan === 1 ? true : false)
+    this.ktpprovinsiFc.setValue(ktpprovinsi === 1 ? true : false)
+    this.ktpkotaFc.setValue(ktpkota === 1 ? true : false)
+    this.ktpkecamatanFc.setValue(ktpkecamatan === 1 ? true : false)
+    this.ktpkelurahanFc.setValue(ktpkelurahan === 1 ? true : false)
+    this.ktpkodeposFc.setValue(ktpkodepos === 1 ? true : false)
+    this.ktpstatustempatFc.setValue(ktpstatustempat === 1 ? true : false)
+    this.ktplamatinggalFc.setValue(ktplamatinggal === 1 ? true : false)
+    this.luasrumahFc.setValue(luasrumah === 1 ? true : false)
+    this.jenisatapFc.setValue(jenisatap === 1 ? true : false)
+    this.jenisdindingFc.setValue(jenisdinding === 1 ? true : false)
+    this.kondisirumahFc.setValue(kondisirumah === 1 ? true : false)
+    this.letakrumahFc.setValue(letakrumah === 1 ? true : false)
+    this.tanggungankeluargaFc.setValue(tanggungankeluarga === 1 ? true : false)
+    this.datafisikperabotFc.setValue(datafisikperabot === 1 ? true : false)
+    this.akseslembagaFc.setValue(akseslembaga === 1 ? true : false)
+    this.informasiusahaFc.setValue(informasiusaha === 1 ? true : false)
+    this.indexrumahFc.setValue(indexrumah === 1 ? true : false)
+    this.indexasetFc.setValue(indexaset === 1 ? true : false)
+    this.kepemilikanasetFc.setValue(kepemilikanaset === 1 ? true : false)
+    this.pendapatanluarFc.setValue(pendapatanluar === 1 ? true : false)
+    this.perkembanganasetFc.setValue(perkembanganaset === 1 ? true : false)
+    this.perkembanganusahaFc.setValue(perkembanganusaha === 1 ? true : false)
+    this.namapasanganFc.setValue(namapasangan === 1 ? true : false)
+    this.nomorpasanganFc.setValue(nomorpasangan === 1 ? true : false)
+    this.pekerjaanpasanganFc.setValue(pekerjaanpasangan === 1 ? true : false)
+    this.nomorhandphonepasanganFc.setValue(nomorhandphonepasangan === 1 ? true : false)
+    this.memilikinpwpFc.setValue(memilikinpwp === 1 ? true : false)
+    this.nomornpwpFc.setValue(nomornpwp === 1 ? true : false)
+    this.pekerjaanusahaFc.setValue(pekerjaanusaha === 1 ? true : false)
+    this.jenisumkmFc.setValue(jenisumkm === 1 ? true : false)
+    this.namaperusahaanFc.setValue(namaperusahaan === 1 ? true : false)
+    this.lamabekerjaFc.setValue(lamabekerja === 1 ? true : false)
+    this.penghasilFc.setValue(penghasil === 1 ? true : false)
+    this.provinsipekerjaanFc.setValue(provinsipekerjaan === 1 ? true : false)
+    this.kotapekerjaanFc.setValue(kotapekerjaan === 1 ? true : false)
+    this.kecamatanpekerjaanFc.setValue(kecamatanpekerjaan === 1 ? true : false)
+    this.kelurahanpekerjaanFc.setValue(kelurahanpekerjaan === 1 ? true : false)
+    this.kodepospekerjaanFc.setValue(kodepospekerjaan === 1 ? true : false)
+    this.domisilijalanFc.setValue(domisilijalan === 1 ? true : false)
+    this.domisiliprovinsiFc.setValue(domisiliprovinsi === 1 ? true : false)
+    this.domisilikotaFc.setValue(domisilikota === 1 ? true : false)
+    this.domisilikecamatanFc.setValue(domisilikecamatan === 1 ? true : false)
+    this.domisilikelurahanFc.setValue(domisilikelurahan === 1 ? true : false)
+    this.domisilikodeposFc.setValue(domisilikodepos === 1 ? true : false)
+    this.domisilistatustempatFc.setValue(domisilistatustempat === 1 ? true : false)
+    this.domisililamatinggalFc.setValue(domisililamatinggal === 1 ? true : false)
+    this.namakontakdaruratFc.setValue(namakontakdarurat === 1 ? true : false)
+    this.nomorhandphonedaruratFc.setValue(nomorhandphonedarurat === 1 ? true : false)
+    this.hubungandaruratFc.setValue(hubungandarurat === 1 ? true : false)
+    this.namapenjaminFc.setValue(namapenjamin === 1 ? true : false)
+    this.nomorpenjaminFc.setValue(nomorpenjamin === 1 ? true : false)
+    this.hubunganpenjaminFc.setValue(hubunganpenjamin === 1 ? true : false)
+    this.dokumenktpFc.setValue(dokumenktp === 1 ? true : false)
+    this.dokumensimFc.setValue(dokumensim === 1 ? true : false)
+    this.dokumenkkFc.setValue(dokumenkk === 1 ? true : false)
+    this.dokumensuratkerjaFc.setValue(dokumensuratkerja === 1 ? true : false)
+    this.dokumenslipgajiFc.setValue(dokumenslipgaji === 1 ? true : false)
+    this.dokumenaktanikahFc.setValue(dokumenaktanikah === 1 ? true : false)
+    this.dokumenbpkbFc.setValue(dokumenbpkb === 1 ? true : false)
+    this.dokumenlainnyaFc.setValue(dokumenlainnya === 1 ? true : false)
+    this.alamtsesuaiktpFc.setValue(alamtsesuaiktp === 1 ? true : false)
+    this.jalanpekerjaanFc.setValue(jalanpekerjaan === 1 ? true : false)
+  }
   trigerconditionform(type: any) {
     if (type === 'disable') {
       this.nomoridentitasFc.disable()

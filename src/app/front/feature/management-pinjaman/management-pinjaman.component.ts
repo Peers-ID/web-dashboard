@@ -7,6 +7,7 @@ import { ContentService, NotificationService } from '@app/core';
 import * as CryptoJS from 'crypto-js';
 import { ComponentLoaderFactory, idLocale } from 'ngx-bootstrap';
 import { ignoreElements } from 'rxjs/operators';
+import { UtilService } from "@app/core/util.service";
 @Component({
   selector: 'app-management-pinjaman',
   templateUrl: './management-pinjaman.component.html',
@@ -33,7 +34,8 @@ export class ManagementPinjamanComponent implements OnInit {
   constructor(
     private contentSvc: ContentService,
     public fb: FormBuilder,
-    private notifSvc: NotificationService
+    private notifSvc: NotificationService,
+    public utilSvc:UtilService,
   ) { }
 
   ngOnInit() {
@@ -172,5 +174,9 @@ export class ManagementPinjamanComponent implements OnInit {
   detailloan(id: any) {
     this.pinajamanmodal.show()
     this.loadata(id)
+  }
+  handleBrokenImage(data: any): void {
+    const imgElement: HTMLElement = data.target;
+    imgElement.setAttribute('src', '');
   }
 }

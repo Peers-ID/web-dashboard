@@ -345,14 +345,15 @@
                                                     <div class="row">
                                                         <div class="col-6">Kode Pos:</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <div class="row">
                                                         <div class="col-6">Status Tempat Tinggal(KTP):</div>
                                                         <div class="col-6 text-left">
-                                                            {{dataloandetailmember.alamat_ktp_status_tempat_tinggal}}</div>
+                                                            {{dataloandetailmember.alamat_ktp_status_tempat_tinggal}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-2">
@@ -368,9 +369,11 @@
                                             <div class="row">
                                                 <div class="col-12 mt-2">
                                                     <div class="row">
-                                                        <div class="col-6">Alamat Domisili (Jika Berbeda dengan KTP):</div>
+                                                        <div class="col-6">Alamat Domisili (Jika Berbeda dengan KTP):
+                                                        </div>
                                                         <div class="col-6 text-left">
-                                                            {{dataloandetailmember.domisili_sesuai_ktp === 1 ? 'Ya' : 'Tidak'}}</div>
+                                                            {{dataloandetailmember.domisili_sesuai_ktp === 1 ? 'Ya' : 'Tidak'}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-2">
@@ -412,21 +415,23 @@
                                                     <div class="row">
                                                         <div class="col-6">Kode Pos:</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <div class="row">
                                                         <div class="col-6">Status Tempat Tinggal(Domisili):</div>
                                                         <div class="col-6 text-left">
-                                                            {{dataloandetailmember.alamat_domisili_status_tempat_tinggal}}</div>
+                                                            {{dataloandetailmember.alamat_domisili_status_tempat_tinggal}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <div class="row">
                                                         <div class="col-6">Lama Tinggal:</div>
                                                         <div class="col-6 text-left">
-                                                            {{dataloandetailmember.alamat_domisili_lama_tempat_tinggal}}</div>
+                                                            {{dataloandetailmember.alamat_domisili_lama_tempat_tinggal}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -518,14 +523,14 @@
                                                     <div class="row">
                                                         <div class="col-6">Nama Kontak Darurat :</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="row">
                                                         <div class="col-6">Nomor Identitas Pasangan :</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -536,7 +541,7 @@
                                                     <div class="row">
                                                         <div class="col-6">Hubungan dengan Kontak Darurat :</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -682,21 +687,25 @@
                                                     <div class="row">
                                                         <div class="col-6">KTP</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                            <img [src]="dataloandetailmember.dokumen_ktp" alt=""
+                                                                srcset="" (error)="handleBrokenImage($event)">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6">SIM</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6">Kartu Keluarga</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                            <img [src]="dataloandetailmember.dokumen_kk" alt=""
+                                                                srcset="" (error)="handleBrokenImage($event)">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -707,21 +716,33 @@
                                                     <div class="row">
                                                         <div class="col-6">Surat Keterangan Bekerja</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                            <pdf-viewer [src]="dataloandetailmember.dokumen_keterangan_kerja" [render-text]="true"
+                                                                [fit-to-page]="true"
+                                                                style="display: block; height: 100%">
+                                                            </pdf-viewer>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6">Slip Gaji</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                            <pdf-viewer [src]="dataloandetailmember.dokumen_slip_gaji" [render-text]="true"
+                                                                [fit-to-page]="true"
+                                                                style="display: block; height: 100%">
+                                                            </pdf-viewer>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6">Akta Nikah</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                            <pdf-viewer [src]="dataloandetailmember.dokumen_akta_nikah" [render-text]="true"
+                                                                [fit-to-page]="true"
+                                                                style="display: block; height: 100%">
+                                                            </pdf-viewer>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -732,14 +753,14 @@
                                                     <div class="row">
                                                         <div class="col-6">BPKB</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6">Dokumen Lainnya</div>
                                                         <div class="col-6 text-left">
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -762,31 +783,33 @@
                                 <div class="col-12 mt-2">
                                     <div class="row">
                                         <div class="col-6">Jumlah Pengajuan Pinjaman</div>
-                                        <div class="col-6">{{dataloandetailloan.jumlah_pengajuan}}</div>
+                                        <div class="col-6">Rp. {{utilSvc.formatNumber(dataloandetailloan.jumlah_pengajuan)}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row">
                                         <div class="col-6">Tenor Pinjaman</div>
-                                        <div class="col-6">{{dataloandetailproduk.tenor}} {{dataloandetailproduk.satuan_tenor}}</div>
+                                        <div class="col-6">{{dataloandetailproduk.tenor}}
+                                            {{dataloandetailproduk.satuan_tenor}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row">
                                         <div class="col-6">Bunga Pinjaman</div>
-                                        <div class="col-6">{{dataloandetailproduk.bunga}} {{dataloandetailproduk.tenor_bunga}}</div>   
+                                        <div class="col-6">{{dataloandetailproduk.bunga}}
+                                            {{dataloandetailproduk.tenor_bunga}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row">
                                         <div class="col-6">Jumlah Pencairan</div>
-                                        <div class="col-6">{{dataloandetailloan.jumlah_pencairan}}</div>
+                                        <div class="col-6">Rp. {{utilSvc.formatNumber(dataloandetailloan.jumlah_pencairan)}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row">
                                         <div class="col-6">Angsuran</div>
-                                        <div class="col-6">{{dataloandetailloan.jumlah_cicilan}}</div>
+                                        <div class="col-6">Rp. {{utilSvc.formatNumber(dataloandetailloan.jumlah_cicilan)}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -803,27 +826,33 @@
                         <div class="col-12" *ngIf="buttontriger === 'setuju'">
                             <div class="row justify-content-center">
                                 <div class="col-3">
-                                    <button class="btn btn-primary w-100" (click)="openkonfirmasi('setuju')">Setuju</button>
+                                    <button class="btn btn-primary w-100"
+                                        (click)="openkonfirmasi('setuju')">Setuju</button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="btn btn-primary w-100" (click)="openkonfirmasi('tolak')">Totak</button>
+                                    <button class="btn btn-primary w-100"
+                                        (click)="openkonfirmasi('tolak')">Totak</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12" *ngIf="buttontriger === 'proseskantor'">
                             <div class="row justify-content-center">
                                 <div class="col-3">
-                                    <button class="btn btn-primary w-100" (click)="openkonfirmasi('proseskantor')">Proses Pencairan (Pencairan dikantor)</button>
+                                    <button class="btn btn-primary w-100"
+                                        (click)="openkonfirmasi('proseskantor')">Proses Pencairan (Pencairan
+                                        dikantor)</button>
                                 </div>
                                 <div class="col-3">
-                                    <button class="btn btn-primary w-100" (click)="openkonfirmasi('prosesao')">Proses Pencairan Melalui AO/CMO/Sales</button>
+                                    <button class="btn btn-primary w-100" (click)="openkonfirmasi('prosesao')">Proses
+                                        Pencairan Melalui AO/CMO/Sales</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12" *ngIf="buttontriger === 'pencairankantor'">
                             <div class="row justify-content-center">
                                 <div class="col-3">
-                                    <button class="btn btn-primary w-100" (click)="openkonfirmasi('pencairankantor')">Pencarian dikantor</button>
+                                    <button class="btn btn-primary w-100"
+                                        (click)="openkonfirmasi('pencairankantor')">Pencarian dikantor</button>
                                 </div>
                             </div>
                         </div>
@@ -842,7 +871,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" >
+            <div class="modal-body">
                 <div class="row">
                     <div class="col-12 text-center">
                         {{contentkonfirmasi}}

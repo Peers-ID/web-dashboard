@@ -5,6 +5,7 @@ import * as CryptoJS from 'crypto-js';
 import { stat } from 'fs';
 import * as $ from "jquery";
 import { ComponentLoaderFactory } from 'ngx-bootstrap';
+import { element } from 'protractor';
 @Component({
   selector: 'app-parameter-pinjaman',
   templateUrl: './parameter-pinjaman.component.html',
@@ -44,7 +45,8 @@ export class ParameterPinjamanComponent implements OnInit {
   loadingshow: boolean;
   datashow: boolean;
   statusproduct: string;
-  contentkonfirmasi:string;
+  contentkonfirmasi: string;
+  dataurutan = []
   @ViewChild('konfirmasimodal', { static: false }) public konfirmasimodal: any;
   constructor(
     private contentSvc: ContentService,
@@ -84,7 +86,7 @@ export class ParameterPinjamanComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!localStorage.getItem("simpanan")) {
+    if (!localStorage.getItem("simpanan") || !localStorage.getItem("pelunasan") || !localStorage.getItem("denda") || !localStorage.getItem("sebagian")) {
       this.contentSvc.getparametersimpanan().subscribe(
         simpanan => {
           if (simpanan) {
@@ -126,11 +128,11 @@ export class ParameterPinjamanComponent implements OnInit {
           }
         }
       )
-    }else{
+    } else {
       this.initloaddata()
     }
   }
-  initloaddata(){
+  initloaddata() {
     if (localStorage.getItem("sebagian") && localStorage.getItem("denda") && localStorage.getItem("simpanan")) {
       this.listangsuransebagain = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('sebagian'), 'secret').toString(CryptoJS.enc.Utf8))
       this.listdendasar = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('denda'), 'secret').toString(CryptoJS.enc.Utf8))
@@ -151,7 +153,8 @@ export class ParameterPinjamanComponent implements OnInit {
                 this.angsuransebagianFc.setValue(result.data[0].id_angsuran_sebagian)
               } else {
                 this.angsuransebagianFc.disable()
-                this.optionangsuranFc.setValue("")
+                this.angsuransebagianFc.setValue('')
+                this.optionangsuranFc.setValue("tidak")
               }
               if (result.data[0].id_masa_tenggang > 0) {
                 this.masatenggangFc.enable()
@@ -159,18 +162,19 @@ export class ParameterPinjamanComponent implements OnInit {
                 this.masatenggangFc.setValue(result.data[0].id_masa_tenggang)
               } else {
                 this.masatenggangFc.disable()
-                this.optionmasatenggangFc.setValue("")
+                this.masatenggangFc.setValue('')
+                this.optionmasatenggangFc.setValue("tidak")
               }
               if (result.data[0].type_denda_keterlambatan !== "") {
                 this.optiondendaketerlambatanFc.setValue(result.data[0].type_denda_keterlambatan)
-                if(result.data[0].type_denda_keterlambatan === "Persen"){
+                if (result.data[0].type_denda_keterlambatan === "Persen") {
                   this.dendadasar.enable();
-                }else{
+                } else {
                   this.dendadasar.disable();
                   this.dendadasar.setValue("")
                 }
               } else {
-                this.optiondendaketerlambatanFc.setValue("")
+                this.optiondendaketerlambatanFc.setValue("tidak")
               }
               if (result.data[0].id_dasar_denda > 0) {
                 this.dendadasar.setValue(result.data[0].id_dasar_denda)
@@ -180,18 +184,19 @@ export class ParameterPinjamanComponent implements OnInit {
               if (result.data[0].type_pelunasan_dipercepat !== "") {
                 this.perhitunganpelunasandipercepatFc.enable();
                 this.pelunasandipercepatFc.setValue(result.data[0].type_pelunasan_dipercepat)
-                if (result.data[0].type_pelunasan_dipercepat === "Persen"){
+                if (result.data[0].type_pelunasan_dipercepat === "Persen") {
                   this.perhitunganpelunasandipercepatFc.enable();
-                }else{
+                } else {
                   this.perhitunganpelunasandipercepatFc.disable();
                   this.perhitunganpelunasandipercepatFc.setValue("")
                 }
               } else {
-                this.pelunasandipercepatFc.setValue("")
+                this.pelunasandipercepatFc.setValue("tidak")
+                
               }
-              if (result.data[0].id_dasar_pelunasan > 0) {                
+              if (result.data[0].id_dasar_pelunasan > 0) {
                 this.perhitunganpelunasandipercepatFc.setValue(result.data[0].id_dasar_pelunasan)
-              }else{
+              } else {
                 this.perhitunganpelunasandipercepatFc.setValue("")
               }
               if (result.data[0].id_urutan_simpanan !== "") {
@@ -214,6 +219,7 @@ export class ParameterPinjamanComponent implements OnInit {
                 this.listdatasimpanan = dataarrsimpananlist;
                 let dataincrement = 0;
                 dataarrsimpananlist.forEach((item, index) => {
+                  this.dataselect.push(item)
                   setTimeout(() => {
                     $('#checkbox' + (item.id - 1)).prop("checked", true);
                     if (item === 1) {
@@ -225,7 +231,7 @@ export class ParameterPinjamanComponent implements OnInit {
                   }, 100);
                 })
               } else {
-                this.simpananmembayarFc.setValue("")
+                this.simpananmembayarFc.setValue("tidak")
               }
             } else {
               this.statusproduct = 'create'
@@ -285,6 +291,7 @@ export class ParameterPinjamanComponent implements OnInit {
       case 'angsuran':
         if (this.optionangsuranFc.value === 'tidak') {
           this.angsuransebagianFc.disable()
+          this.angsuransebagianFc.setValue('')
         } else {
           this.angsuransebagianFc.enable()
         }
@@ -292,6 +299,7 @@ export class ParameterPinjamanComponent implements OnInit {
       case 'masatenggang':
         if (this.optionmasatenggangFc.value === 'tidak') {
           this.masatenggangFc.disable()
+          this.masatenggangFc.setValue('')
         } else {
           this.masatenggangFc.enable()
         }
@@ -301,12 +309,14 @@ export class ParameterPinjamanComponent implements OnInit {
           this.dendadasar.enable()
         } else {
           this.dendadasar.disable()
+          this.dendadasar.setValue('')
         }
       case 'pelunasandipercepat':
         if (this.pelunasandipercepatFc.value === 'Persen') {
           this.perhitunganpelunasandipercepatFc.enable()
         } else {
           this.perhitunganpelunasandipercepatFc.disable()
+          this.perhitunganpelunasandipercepatFc.setValue('')
         }
         break;
     }
@@ -318,10 +328,11 @@ export class ParameterPinjamanComponent implements OnInit {
         setTimeout(() => {
           $('#checkbox' + (data.id - 1)).prop("checked", false);
         }, 100);
-        })  
+      })
     } else {
       this.simpananshow = false
       this.urutansimpananshow = false
+      this.posturutansimpanan.setValue("")
     }
   }
   aktivasi() {
@@ -332,106 +343,183 @@ export class ParameterPinjamanComponent implements OnInit {
     this.konfirmasimodal.show();
     this.contentkonfirmasi = 'Apakah anda yakin untuk mengubah data ini ?'
   }
-  btnya(){
-    console.log('===');
-    
+  btnya() {
     this.postdata()
     this.konfirmasimodal.hide();
   }
   postdata() {
     this.loadingshow = true;
-    let dataurutan = []
     let status;
-    if(this.listdatasimpanan){
-    if(this.listdatasimpanan.length === this.dataselect.length || this.simpananmembayarFc.value === 'tidak' || this.simpananmembayarFc.value === ''){
+    let dataurutan = []
+    if (this.jumlahhariFc.value !== null && this.jumlahhariFc.value !== '') {
       status = 'valid'
-    }else{
+    } else {
       status = 'invalid'
     }
-    }else{
+
+    if (this.optionangsuranFc.value !== null && this.optionangsuranFc.value === 'tidak') {
+      status = 'valid'
+    } else {
+      if (this.angsuransebagianFc.value !== null && this.angsuransebagianFc.value !== '') {
         status = 'valid'
-    }
-
-    this.dataselect.forEach(data => {
-      if (data) {
-        dataurutan.push(data.id)
+      } else {
+        status = 'invalid'
       }
-    })
-    if (this.optionangsuranFc.value === 'tidak') {
-      this.postangsuransebagian.setValue(0)
-    } else {
-      this.postangsuransebagian.setValue(this.angsuransebagianFc.value)
-    }
-    if (this.optionmasatenggangFc.value === 'tidak') {
-      this.postmasatenggang.setValue(0)
-    } else {
-      this.postmasatenggang.setValue(this.masatenggangFc.value)
-    }
-    if (this.optiondendaketerlambatanFc.value === '') {
-      this.postdendaketerlambatan.setValue(0)
-    } else {
-      this.postdendaketerlambatan.setValue(this.optiondendaketerlambatanFc.value)
-    }
-    if (this.optiondendaketerlambatanFc.value === 'tidak' || this.optiondendaketerlambatanFc.value === 'Fix') {
-      this.postdasarpengenaandenda.setValue(0)
-    } else {
-      this.postdasarpengenaandenda.setValue(this.dendadasar.value)
-    }
-    if (this.pelunasandipercepatFc.value === '') {
-      this.postpelunasandipercepat.setValue("")
-    } else {
-      this.postpelunasandipercepat.setValue(this.pelunasandipercepatFc.value)
-    }
-    if (this.perhitunganpelunasandipercepatFc.value === '' ) {
-      this.postdasarpelunasan.setValue(0)
-    } else {
-      this.postdasarpelunasan.setValue(Number(this.perhitunganpelunasandipercepatFc.value))
-    }
-    if (!this.hasDuplicates(dataurutan)) {
-      this.posturutansimpanan.setValue(dataurutan.toString().replace(/,/g, "|"))
-    } else {
-      this.posturutansimpanan.setValue("")
     }
 
-    this.formgrouppostdata = this.fb.group({
-      "hari_per_bulan": [this.jumlahhariFc.value, [Validators.required]],
-      "id_angsuran_sebagian": [this.postangsuransebagian.value, [Validators.required]],
-      "id_masa_tenggang": [this.postmasatenggang.value, [Validators.required]],
-      "type_denda_keterlambatan": [this.postdendaketerlambatan.value, [Validators.required]],
-      "id_dasar_denda": [this.postdasarpengenaandenda.value, [Validators.required]],
-      "type_pelunasan_dipercepat": [this.postpelunasandipercepat.value],
-      "id_dasar_pelunasan": [this.postdasarpelunasan.value, [Validators.required]],
-      "id_urutan_simpanan": [this.posturutansimpanan.value]
-    });
-    if (this.formgrouppostdata.status === "VALID" && status === 'valid') {
-      if (!this.hasDuplicates(dataurutan)){
-        this.contentSvc.postParameter(this.formgrouppostdata.value).subscribe(
-          result => {
-            if (result.status !== 500) {
-              this.loadingshow = false;
-              this.notifSvc.addNotification({
-                type: 'success',
-                head: 'Success',
-                body: result.message
-              });
-              this.statusproduct = 'edit';
+    if (this.optionmasatenggangFc.value !== null && this.optionmasatenggangFc.value === 'tidak') {
+      status = 'valid'
+    } else {
+      if (this.masatenggangFc.value !== null && this.masatenggangFc.value !== '') {
+        status = 'valid'
+      } else {
+        status = 'invalid'
+      }
+    }
+
+    if (this.optiondendaketerlambatanFc.value !== null && this.optiondendaketerlambatanFc.value !== '') {
+      if (this.optiondendaketerlambatanFc.value === 'tidak' || this.optiondendaketerlambatanFc.value === 'Fix') {
+        status = 'valid'
+      } else {
+        if (this.dendadasar.value !== null && this.dendadasar.value !== '') {
+          status = 'valid'
+        } else {
+          status = 'invalid'
+        }
+      }
+    } else {
+      status = 'invalid'
+    }
+    if (this.pelunasandipercepatFc.value !== null && this.pelunasandipercepatFc.value !== '') {
+      if (this.pelunasandipercepatFc.value === 'tidak' || this.pelunasandipercepatFc.value === 'Fix') {
+        status = 'valid'
+      } else {
+        if (this.perhitunganpelunasandipercepatFc.value !== null && this.perhitunganpelunasandipercepatFc.value !== '') {
+          status = 'valid'
+        } else {
+          status = 'invalid'
+        }
+      }
+    } else {
+      status = 'invalid'
+    }
+    if (status === 'valid') {
+      if (this.simpananmembayarFc.value === null && this.simpananmembayarFc.value === '') {
+        status = 'invalid'
+      } else {
+        if (this.simpananmembayarFc.value === 'tidak') {
+          status = 'valid'
+          this.posturutansimpanan.setValue("")
+          let data = {
+            orders: [false, false, false]
+          }
+          this.form.setValue(data)
+        } else {
+          if (this.form.value.orders.includes(true) === false) {
+            status = 'invalid'
+          } else {
+            if (this.listdatasimpanan.length === this.dataselect.length) {
+              this.dataselect.forEach(data => {
+                if (data) {
+                  if (data.id) {
+                    dataurutan.push(data.id)
+                  } else {
+                    dataurutan.push(data)
+                  }
+                }
+              })
+              if (!this.hasDuplicates(dataurutan)) {
+                this.posturutansimpanan.setValue(dataurutan.toString().replace(/,/g, "|"))
+                status = 'valid'
+              } else {
+                this.posturutansimpanan.setValue("")
+                status = 'invalid'
+              }
             } else {
-              this.loadingshow = false;
-              this.notifSvc.addNotification({
-                type: 'danger',
-                head: 'Danger',
-                body: result.message
-              });
+              status = 'invalid'
             }
           }
-        )
-      }else{
-        this.loadingshow = false;
-        this.notifSvc.addNotification({
-          type: 'danger',
-          head: 'Danger',
-          body: 'Urutan pembayaran dengan simpanan tidak boleh sama'
-        });
+        }
+      }
+      if (this.optionangsuranFc.value === 'tidak') {
+        this.postangsuransebagian.setValue(0)
+      } else {
+        this.postangsuransebagian.setValue(this.angsuransebagianFc.value)
+      }
+      if (this.optionmasatenggangFc.value === 'tidak') {
+        this.postmasatenggang.setValue(0)
+      } else {
+        this.postmasatenggang.setValue(this.masatenggangFc.value)
+      }
+      if (this.optiondendaketerlambatanFc.value === '') {
+        this.postdendaketerlambatan.setValue(0)
+      } else {
+        this.postdendaketerlambatan.setValue(this.optiondendaketerlambatanFc.value)
+      }
+      if (this.optiondendaketerlambatanFc.value === 'tidak' || this.optiondendaketerlambatanFc.value === 'Fix') {
+        this.postdasarpengenaandenda.setValue(0)
+      } else {
+        this.postdasarpengenaandenda.setValue(this.dendadasar.value)
+      }
+      if (this.pelunasandipercepatFc.value === '') {
+        this.postpelunasandipercepat.setValue("")
+      } else {
+        this.postpelunasandipercepat.setValue(this.pelunasandipercepatFc.value)
+      }
+      if (this.perhitunganpelunasandipercepatFc.value === '') {
+        this.postdasarpelunasan.setValue(0)
+      } else {
+        this.postdasarpelunasan.setValue(Number(this.perhitunganpelunasandipercepatFc.value))
+      }
+      this.formgrouppostdata = this.fb.group({
+        "hari_per_bulan": [this.jumlahhariFc.value, [Validators.required]],
+        "id_angsuran_sebagian": [this.postangsuransebagian.value, [Validators.required]],
+        "id_masa_tenggang": [this.postmasatenggang.value, [Validators.required]],
+        "type_denda_keterlambatan": [this.postdendaketerlambatan.value, [Validators.required]],
+        "id_dasar_denda": [this.postdasarpengenaandenda.value, [Validators.required]],
+        "type_pelunasan_dipercepat": [this.postpelunasandipercepat.value],
+        "id_dasar_pelunasan": [this.postdasarpelunasan.value, [Validators.required]],
+        "id_urutan_simpanan": [this.posturutansimpanan.value]
+      });
+      if (this.formgrouppostdata.status === "VALID" && status === 'valid') {
+        if (!this.hasDuplicates(dataurutan)) {
+          this.contentSvc.postParameter(this.formgrouppostdata.value).subscribe(
+            result => {
+              if (result.status !== 500) {
+                this.loadingshow = false;
+                this.notifSvc.addNotification({
+                  type: 'success',
+                  head: 'Success',
+                  body: result.message
+                });
+                this.statusproduct = 'edit';
+              } else {
+                this.loadingshow = false;
+                this.notifSvc.addNotification({
+                  type: 'danger',
+                  head: 'Danger',
+                  body: result.message
+                });
+              }
+            }
+          )
+        } else {
+          this.loadingshow = false;
+          this.notifSvc.addNotification({
+            type: 'danger',
+            head: 'Danger',
+            body: 'Urutan pembayaran dengan simpanan tidak boleh sama'
+          });
+        }
+      } else {
+        setTimeout(() => {
+          this.loadingshow = false;
+          this.notifSvc.addNotification({
+            type: 'danger',
+            head: 'Danger',
+            body: 'Pastikan semua form sudah terisi dengan benar'
+          });
+        }, 500);
       }
     } else {
       setTimeout(() => {

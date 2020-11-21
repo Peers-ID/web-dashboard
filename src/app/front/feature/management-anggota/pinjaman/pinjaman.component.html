@@ -788,274 +788,273 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Nama Anggota</div>
-                                    <div class="col-6">: {{detailloan?.nama_member}}</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Produk Pinjaman</div>
-                                    <div class="col-6">: {{detailloan?.nama_produk}}</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Status Pinjaman</div>
-                                    <div class="col-6">: {{detailloan?.desc_status}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Jumlah Pinjaman</div>
-                                    <div class="col-6">: {{detailloan?.jumlah_pengajuan}}</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Tenor Pinjaman</div>
-                                    <div class="col-6">:</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Bunga Pinjaman</div>
-                                    <div class="col-6">: {{detailloan?.bunga_pinjaman}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Jumlah Pencairan</div>
-                            <div class="col-6">: {{detailloan?.jumlah_pencairan}}</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Angsuran</div>
-                                    <div class="col-6">: {{detailloan?.jumlah_cicilan}}</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Persetujuan Oleh</div>
-                                    <div class="col-6">: {{detailloan?.approved_by}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Pencairan Oleh</div>
-                                        <div class="col-6">{{detailloan?.disbursed_by}}</div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-6">Bukti Pencairan</div>
-                                        <div class="col-6"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-6" style="font-weight: bold;">Parameter Pinjaman</div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-8">Jumlah Hari dalam 1 Bulan Pinjaman</div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <input type="text" disabled [formControl]="valuehariFc" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-4">Cicilan Sebagian</div>
-                                    <div class="col-8">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <input type="text" disabled [formControl]="cicilanvalueFc" class="form-control">
-                                            </div>
-                                            <div class="col-9"><input type="text" disabled [formControl]="cicilanFc" class="form-control"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Masa Tenggang</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <input type="text" disabled [formControl]="masatenggangvalueFc" class="form-control">
-                                            </div>
-                                            <div class="col-4" *ngIf="masatenggangvalueFc.value !== 'Tidak'">
-                                                <input type="text" disabled [formControl]="masatengganghariFc" class="form-control">
-                                            </div>
-                                            <div class="col-4">Hari</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Denda Keterlambatan</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" disabled [formControl]="dendaketerlambatanFc" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Dasar Pengenaan Denda</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" disabled [formControl]="dasarpengenaandendaFc" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Pelunasan Dipercepat</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" disabled [formControl]="pelunasandipercepatFc" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Perhitungan Pelunasan Dipercepat</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" disabled [formControl]="perhitunganFc" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Apakah Simpanan untuk Membayar Angsuran</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" disabled [formControl]="apakahsimpananFc" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Simpanan untuk Pembayaran Angsuran</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="checkbox" disabled checked>
-                                                Simpanan Pokok
-                                            </div>
-                                            <div class="col-12">
-                                                <input type="checkbox" disabled checked>
-                                                Simpanan Wajib
-                                            </div>
-                                            <div class="col-12">
-                                                <input type="checkbox" disabled checked>
-                                                Simpanan Sukarela
-                                            </div>
-                                        </div>
-                                    </div>
-                                  </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">Urutan Pembayaran dengan Simpanan</div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                    <input type="text" disabled value="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="row">
-                            <div class="col-6" style="font-weight: bold;">Pembayaran Angsuran</div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-12 text-center" *ngIf="datapinjamananggotashowdetail">
                         <div class="row">
                             <div class="col-12">
-                                <table style="width: 100%">
-                                    <tr>
-                                        <th>Angsuran</th>
-                                        <th class="text-center">Tanggal Jatuh Tempo</th>
-                                        <th class="text-center">Tanggal Pembayaran</th>
-                                        <th class="text-center">Jumlah Pembayaran</th>
-                                        <th class="text-center">Status</th>
-                                    </tr>
-                                    <tr *ngFor="let item of listpembayaranangsuran; let i = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{item.loan_due_date.split('T')[0]}}</td>
-                                        <td>{{item.loan_payment_date.split('T')[0]}}</td>
-                                        <td>{{item.setoran}}</td>
-                                        <td>{{item.status_pembayaran}}</td>
-                                    </tr>
-                                </table>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Nama Anggota</div>
+                                            <div class="col-6">: {{detailloan?.nama_member}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Produk Pinjaman</div>
+                                            <div class="col-6">: {{detailloan?.nama_produk}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Status Pinjaman</div>
+                                            <div class="col-6">: {{detailloan?.desc_status}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Jumlah Pinjaman</div>
+                                            <div class="col-6">: Rp. {{utilSvc.formatNumber(detailloan?.jumlah_pengajuan)}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Tenor Pinjaman</div>
+                                            <div class="col-6">:</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Bunga Pinjaman</div>
+                                            <div class="col-6" *ngIf="checkbungavalue">: {{utilSvc.formatNumber(detailloan?.bunga_pinjaman)}}</div>
+                                            <div class="col-6" *ngIf="!checkbungavalue">: {{detailloan?.bunga_pinjaman}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Jumlah Pencairan</div>
+                                    <div class="col-6">: Rp. {{utilSvc.formatNumber(detailloan?.jumlah_pencairan)}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Angsuran</div>
+                                            <div class="col-6">: Rp. {{utilSvc.formatNumber(detailloan?.jumlah_cicilan)}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Persetujuan Oleh</div>
+                                            <div class="col-6">: {{detailloan?.approved_by}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Pencairan Oleh</div>
+                                                <div class="col-6">{{detailloan?.disbursed_by}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-6">Bukti Pencairan</div>
+                                                <div class="col-6"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-6" style="font-weight: bold;">Parameter Pinjaman</div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-8">Jumlah Hari dalam 1 Bulan Pinjaman</div>
+                                            <div class="col-4">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input type="text" disabled [formControl]="valuehariFc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-4">Cicilan Sebagian</div>
+                                            <div class="col-8">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <input type="text" disabled [formControl]="cicilanvalueFc" class="form-control">
+                                                    </div>
+                                                    <div class="col-9"><input type="text" disabled [formControl]="cicilanFc" class="form-control"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Masa Tenggang</div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <input type="text" disabled [formControl]="masatenggangvalueFc" class="form-control">
+                                                    </div>
+                                                    <div class="col-4" *ngIf="masatenggangvalueFc.value !== 'Tidak'">
+                                                        <input type="text" disabled [formControl]="masatengganghariFc" class="form-control">
+                                                    </div>
+                                                    <div class="col-4">Hari</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Denda Keterlambatan</div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <input type="text" disabled [formControl]="dendaketerlambatanFc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Dasar Pengenaan Denda</div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <input type="text" disabled [formControl]="dasarpengenaandendaFc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Pelunasan Dipercepat</div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <input type="text" disabled [formControl]="pelunasandipercepatFc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Perhitungan Pelunasan Dipercepat</div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <input type="text" disabled [formControl]="perhitunganFc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Apakah Simpanan untuk Membayar Angsuran</div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <input type="text" disabled [formControl]="apakahsimpananFc" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Simpanan untuk Pembayaran Angsuran</div>
+                                            <div class="col-6" *ngIf="apakahsimpananFc.value === 'Ya'">
+                                                <div class="row">
+                                                    <div class="col-12" *ngFor="let item of dataallurutan">
+                                                        <input type="checkbox" disabled checked>
+                                                        {{item.desc_simpanan}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">Urutan Pembayaran dengan Simpanan</div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12" *ngFor="let item of dataallurutan">
+                                                            <input type="text" disabled [value]="item.desc_simpanan" class="form-control mt-2" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-6" style="font-weight: bold;">Pembayaran Angsuran</div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <th>Angsuran</th>
+                                                <th class="text-center">Tanggal Jatuh Tempo</th>
+                                                <th class="text-center">Tanggal Pembayaran</th>
+                                                <th class="text-center">Jumlah Pembayaran</th>
+                                                <th class="text-center">Status</th>
+                                            </tr>
+                                            <tr *ngFor="let item of listpembayaranangsuran; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{item.loan_due_date.split('T')[0]}}</td>
+                                                <td>{{item.loan_payment_date.split('T')[0]}}</td>
+                                                <td>Rp. {{utilSvc.formatNumber(item.setoran)}}</td>
+                                                <td>{{item.status_pembayaran}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-12 text-center" *ngIf="!datapinjamananggotashowdetail">
+                        Load Data ...
                     </div>
                 </div>
             </div>

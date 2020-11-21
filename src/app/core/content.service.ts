@@ -77,6 +77,11 @@ export class ContentService {
     const body = JSON.stringify(data);
     return this.api.postData(url, body);
   }
+  updateProduct(data: any): Observable<any> {
+    const url = 'product';
+    const body = JSON.stringify(data);
+    return this.api.updateData(url, body);
+  }
   postakun(data: any): Observable<any> {
     const url = 'account';
     const body = JSON.stringify(data);
@@ -102,6 +107,7 @@ export class ContentService {
     const body = JSON.stringify(data);
     return this.api.postData(url, body);
   }
+
   updatestatusProduct(data: any): Observable<any> {
     const url = 'product/status';
     const body = JSON.stringify(data);
@@ -119,6 +125,27 @@ export class ContentService {
   getProduct(): Observable<any> {
     const url = 'product';
     return this.api.getData(url);
+  }
+  getGraph(): Observable<any> {
+    const url = 'graph';
+    return this.api.getData(url);
+  }
+  getsimpananTotal(id:any): Observable<any> {
+    const url = `loan/simpanan/${id}/total`;
+    return this.api.getData(url);
+  }
+  getsimpanantotalbyType(type:any,id:any): Observable<any> {
+    const url = `loan/${type}/${id}/total`;
+    return this.api.getData(url);
+  }
+  getsimpananDetail(type:any,id:any): Observable<any> {
+    const url = `loan/${type}/${id}/detail`;
+    return this.api.getData(url);
+  }
+  postPenarikanSimpanan(type: any,data:any): Observable<any> {
+    const url = `loan/${type}/penarikan`;
+    const body = JSON.stringify(data);
+    return this.api.postData(url, body);
   }
   getListKoperasi(): Observable<any> {
     const url = 'koperasi';

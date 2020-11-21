@@ -10,5 +10,6 @@ export * from './module-import-guard';
 export * from './account.service';
 export * from './statemanagement.service';
 export * from './notification.service';
+export * from './util.service'
 
 

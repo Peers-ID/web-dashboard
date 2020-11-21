@@ -12,6 +12,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { AccountService } from "./account.service";
 import { StatemanagementService } from "./statemanagement.service";
 import { NotificationService } from "./notification.service";
+import { UtilService } from "./util.service";
 @NgModule({
   declarations: [],
   imports: [
@@ -28,7 +29,8 @@ import { NotificationService } from "./notification.service";
     UserService,
     AccountService,
     StatemanagementService,
-    NotificationService
+    NotificationService,
+    UtilService
   ]
 })
 export class CoreModule {

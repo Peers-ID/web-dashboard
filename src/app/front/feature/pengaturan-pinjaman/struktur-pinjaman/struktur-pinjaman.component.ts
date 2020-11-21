@@ -3,13 +3,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, ValidatorFn, Validators } from '@angular/forms';
 import { ContentService, NotificationService } from '@app/core';
 import * as CryptoJS from 'crypto-js';
+import { ComponentLoaderFactory } from 'ngx-bootstrap';
+import { UtilService } from "@app/core/util.service";
 @Component({
   selector: 'app-struktur-pinjaman',
   templateUrl: './struktur-pinjaman.component.html',
   styleUrls: ['./struktur-pinjaman.component.scss']
 })
 export class StrukturPinjamanComponent implements OnInit {
-  @ViewChild('strukturmodal', { static: false }) public strukturmodal: any;
+  @ViewChild('strukturmodalcreate', { static: false }) public strukturmodalcreate: any;
   formgrouppostdata: FormGroup;
   statusmodal: string;
   namaprodukFc: FormControl = new FormControl();
@@ -31,14 +33,21 @@ export class StrukturPinjamanComponent implements OnInit {
   datashow: boolean;
   liststruktur = [];
   produkshow: boolean;
-  iddata:any;
+  iddata: any;
+  produkshowcreate: boolean;
+  trigerdatavalidationketerlambatan: boolean;
+  trigerdatavalidationpelunasan: boolean;
+  editfieldketerlambatan: boolean = false
+  editfieldpelunasan: boolean = false
   constructor(
     private contentSvc: ContentService,
     public fb: FormBuilder,
-    private notifSvc: NotificationService
+    private notifSvc: NotificationService,
+    private utilSvc: UtilService
   ) {
     this.datashow = true;
     this.produkshow = false;
+    this.produkshowcreate = false
     this.provisiFc.disable()
     this.simpananpokokFc.disable()
     this.dendaketerlambatanFc.disable()
@@ -46,19 +55,38 @@ export class StrukturPinjamanComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getdata();
+  }
+  getparameterdata() {
     this.contentSvc.getParameter().subscribe(
       result => {
-        if (result) {
+        if (result.data.length > 0) {
+          this.produkshowcreate = true
           this.typedendaketerlambatanFc.setValue(result.data[0].type_denda_keterlambatan)
           this.typepelunasanawalFc.setValue(result.data[0].type_pelunasan_dipercepat)
-          if (this.typedendaketerlambatanFc.value !== '')this.dendaketerlambatanFc.enable()      
-          else this.dendaketerlambatanFc.disable()
-          if (this.typepelunasanawalFc.value !== '')this.dendapelunasanawalFc.enable()      
-          else this.dendapelunasanawalFc.disable()
+          if (result.data[0].type_denda_keterlambatan === 'tidak') {
+            this.dendaketerlambatanFc.disable()
+            this.trigerdatavalidationketerlambatan = false
+            this.editfieldketerlambatan = false
+          } else {
+            this.trigerdatavalidationketerlambatan = true
+            this.dendaketerlambatanFc.enable()
+            this.editfieldketerlambatan = true
+          }
+          if (this.typepelunasanawalFc.value === 'tidak') {
+            this.dendapelunasanawalFc.disable()
+            this.trigerdatavalidationpelunasan = true
+            this.editfieldpelunasan = false
+          } else {
+            this.dendapelunasanawalFc.enable()
+            this.trigerdatavalidationpelunasan = false
+            this.editfieldpelunasan = true
+          }
+        } else {
+          this.produkshowcreate = false
         }
       }
     )
-    this.getdata();
   }
   getdata() {
     this.liststruktur = []
@@ -75,47 +103,64 @@ export class StrukturPinjamanComponent implements OnInit {
     )
   }
   tambahproduk() {
-    this.statusmodal = 'create'
-    this.produkshow = true;
-    this.strukturmodal.show();
+    this.strukturmodalcreate.show();
     this.resetform();
-    if (this.optionbiayaprovisiFc.value !== '' )this.provisiFc.enable()
-    else this.provisiFc.disable()
-    if (this.optionsimpananpokokFc.value !== '' )this.simpananpokokFc.enable()
-        else this.simpananpokokFc.disable()
+    this.getparameterdata();
+    this.statusmodal = 'create'
   }
   editaktif(id) {
     this.statusmodal = 'active'
-    this.strukturmodal.show();
+    this.strukturmodalcreate.show();
     this.loadeditdataproduct(id);
     this.iddata = id
   }
   changetypeselect(type) {
     switch (type) {
       case 'biayaprovisi':
-        if (this.optionbiayaprovisiFc.value !== '' )this.provisiFc.enable()
-        else this.provisiFc.disable()
+        this.provisiFc.setValue('')
+        if (this.optionbiayaprovisiFc.value !== '' && this.optionbiayaprovisiFc.value !== 'tidak') this.provisiFc.enable()
+        else {
+          this.provisiFc.disable()
+          this.provisiFc.setValue('')
+        }
         break;
       case 'simpananpokok':
-        if (this.optionsimpananpokokFc.value !== '' )this.simpananpokokFc.enable()
-        else this.simpananpokokFc.disable()
+        this.simpananpokokFc.setValue('')
+        if (this.optionsimpananpokokFc.value !== '' && this.optionsimpananpokokFc.value !== 'tidak') this.simpananpokokFc.enable()
+        else {
+          this.simpananpokokFc.disable()
+          this.simpananpokokFc.setValue('')
+        }
         break;
     }
   }
   loadeditdataproduct(id: any) {
     this.resetform()
-    this.produkshow = false
+    this.produkshowcreate = false
     this.contentSvc.getProductbyId(id).subscribe(
       result => {
         if (result) {
-          this.produkshow = true
+          this.produkshowcreate = true
           this.namaprodukFc.setValue(result.data[0].nama_produk)
-          console.log(result.data[0]);
+          if (result.data[0].denda_keterlambatan !== '' && result.data[0].denda_keterlambatan !== 0) {
+            this.editfieldketerlambatan = true
+            this.dendaketerlambatanFc.enable();
+          } else {
+            this.editfieldketerlambatan = false
+            this.dendaketerlambatanFc.setValue('')
+          }
+          if (result.data[0].pelunasan_dipercepat !== '' && result.data[0].pelunasan_dipercepat !== 0) {
+            this.editfieldpelunasan = true
+            this.dendapelunasanawalFc.enable()
+          } else {
+            this.editfieldpelunasan = false
+            this.dendapelunasanawalFc.setValue('')
+          }
           setTimeout(() => {
             this.pushdataform(result.data[0].nama_produk, result.data[0].tenor, result.data[0].satuan_tenor,
               result.data[0].bunga, result.data[0].tenor_bunga, result.data[0].admin, result.data[0].provisi, result.data[0].type_provisi,
               result.data[0].simpanan_pokok, result.data[0].type_simpanan_pokok, result.data[0].simpanan_wajib, result.data[0].denda_keterlambatan,
-              result.data[0].pelunasan_dipercepat)
+              result.data[0].pelunasan_dipercepat, result.data[0].type_denda_keterlambatan, result.data[0].type_pelunasan_dipercepat)
           }, 100);
         }
       }
@@ -123,24 +168,42 @@ export class StrukturPinjamanComponent implements OnInit {
   }
 
   pushdataform(nama: any, tenor: any, optiontenor: any, bunga: any, optionbunga: any, biayaadmin: any, provisi: any, optionprovisi: any, simpananpokok: any,
-    optionsimpananpokok: any, simpananwajib: any, dendaketerlambatan: any, dendapelunasanawal: any) {
+    optionsimpananpokok: any, simpananwajib: any, dendaketerlambatan: any, dendapelunasanawal: any, typedendaketerlambatan: any, typepelunasandipercepat: any) {
     this.namaprodukFc.setValue(nama)
     this.tenorFc.setValue(tenor)
     this.optiontenorFc.setValue(optiontenor)
-    this.bungaFc.setValue(bunga)
+    this.bungaFc.setValue(this.utilSvc.formatPercentage(bunga))
     this.optionbungaFc.setValue(optionbunga)
-    this.biayaadminFc.setValue(biayaadmin)
-    this.provisiFc.setValue(provisi === 0 ? '' : provisi)
+    this.biayaadminFc.setValue(this.utilSvc.formatNumber(biayaadmin))
+    if (optionprovisi === 'Persen') this.provisiFc.setValue(provisi == 0 ? '' : provisi)
+    else this.provisiFc.setValue(this.utilSvc.formatNumber(provisi) == 0 ? '' : this.utilSvc.formatNumber(provisi))
+    if (optionsimpananpokok === 'Persen') this.simpananpokokFc.setValue(simpananpokok == 0 ? '' : simpananpokok)
+    else this.simpananpokokFc.setValue(this.utilSvc.formatNumber(simpananpokok) == 0 ? '' : this.utilSvc.formatNumber(simpananpokok))
     this.optionbiayaprovisiFc.setValue(optionprovisi)
-    this.simpananpokokFc.setValue(simpananpokok === 0 ? '' : simpananpokok)
     this.optionsimpananpokokFc.setValue(optionsimpananpokok)
-    this.simpananwajibFc.setValue(simpananwajib)
-    this.dendaketerlambatanFc.setValue(dendaketerlambatan)
-    this.dendapelunasanawalFc.setValue(dendapelunasanawal)
-    if (this.optionbiayaprovisiFc.value !== '' )this.provisiFc.enable()
-    else this.provisiFc.disable()
-    if (this.optionsimpananpokokFc.value !== '' )this.simpananpokokFc.enable()
-        else this.simpananpokokFc.disable()
+    this.simpananwajibFc.setValue(this.utilSvc.formatNumber(simpananwajib))
+    if (typedendaketerlambatan === 'Fix') {
+      this.dendaketerlambatanFc.setValue(this.utilSvc.formatNumber(dendaketerlambatan))
+    } else {
+      this.dendaketerlambatanFc.setValue(dendaketerlambatan)
+    }
+    if (typepelunasandipercepat === 'Fix') {
+      this.dendapelunasanawalFc.setValue(this.utilSvc.formatNumber(dendapelunasanawal))
+    } else {
+      this.dendapelunasanawalFc.setValue(dendapelunasanawal)
+    }
+    this.typedendaketerlambatanFc.setValue(typedendaketerlambatan)
+    this.typepelunasanawalFc.setValue(typepelunasandipercepat)
+    if (this.optionbiayaprovisiFc.value !== '' && this.optionbiayaprovisiFc.value !== 'tidak') this.provisiFc.enable()
+    else {
+      this.provisiFc.disable()
+      this.provisiFc.setValue('')
+    }
+    if (this.optionsimpananpokokFc.value !== '' && this.optionsimpananpokokFc.value !== 'tidak') this.simpananpokokFc.enable()
+    else {
+      this.simpananpokokFc.disable()
+      this.simpananpokokFc.setValue('')
+    }
   }
   resetform() {
     this.namaprodukFc.setValue('')
@@ -159,54 +222,102 @@ export class StrukturPinjamanComponent implements OnInit {
   }
   editnonaktif(id) {
     this.statusmodal = 'inactive'
-    this.strukturmodal.show();
+    this.strukturmodalcreate.show();
     this.loadeditdataproduct(id);
     this.iddata = id
   }
   aktivasi(type) {
     this.postdata(type)
   }
-
   postdata(type: string) {
-    this.loadingshow = true;
-    if (this.optionbiayaprovisiFc.value === '')this.provisiFc.setValue(0)
-    if (this.optionsimpananpokokFc.value === '')this.simpananpokokFc.setValue(0)
-    this.biayaadminFc.setValue(this.biayaadminFc.value === '' ? 0 : this.biayaadminFc.value)
-    this.simpananwajibFc.setValue(this.simpananwajibFc.value === '' ? 0 : this.simpananwajibFc.value)
+    this.loadingshow = false;
+    let statusprovisi: any;
+    let statuspokok: any;
+    let statusketerlambatan: any;
+    let statuspelunasan: any;
+    if (this.optionbiayaprovisiFc.value !== null && this.optionbiayaprovisiFc.value !== '' && this.optionbiayaprovisiFc.value === 'tidak') {
+      statusprovisi = 'valid'
+    } else {
+      if (this.provisiFc.value !== null && this.provisiFc.value !== '') {
+        statusprovisi = 'valid'
+      } else {
+        statusprovisi = 'invalid'
+      }
+    }
+    if (this.optionsimpananpokokFc.value !== null && this.optionsimpananpokokFc.value !== '' && this.optionsimpananpokokFc.value === 'tidak') {
+      statuspokok = 'valid'
+    } else {
+      if (this.simpananpokokFc.value !== null && this.simpananpokokFc.value !== '') {
+        statuspokok = 'valid'
+      } else {
+        statuspokok = 'invalid'
+      }
+    }
+    if (this.typedendaketerlambatanFc.value !== null && this.typedendaketerlambatanFc.value !== '' && this.typedendaketerlambatanFc.value === 'tidak' && type === 'create') {
+      statusketerlambatan = 'valid'
+    } else {
+      if(this.dendaketerlambatanFc.value !== null && this.dendaketerlambatanFc.value !== '' && type === 'create')statusketerlambatan = 'valid'
+      else {
+        if(type === 'create')statusketerlambatan = 'invalid'
+        else {
+          if (this.dendaketerlambatanFc.value !== null && this.dendaketerlambatanFc.value !== ''){
+            statusketerlambatan = 'valid'
+          }else{
+            statusketerlambatan = 'invalid'
+          }
+        }
+      }
+    }
+    if (this.typepelunasanawalFc.value !== null && this.typepelunasanawalFc.value !== '' && this.typepelunasanawalFc.value === 'tidak' && type === 'create') { 
+      statuspelunasan = 'valid'
+    } else {
+      if(this.dendapelunasanawalFc.value !== null && this.dendapelunasanawalFc.value !== '' && type === 'create')statuspelunasan = 'valid'
+      if(type === 'create')statuspelunasan = 'invalid'
+      if (this.dendapelunasanawalFc.value !== null && this.dendapelunasanawalFc.value !== ''){
+        statuspelunasan = 'valid'
+      }else{
+        statuspelunasan = 'invalid'
+      }
+    }
+    if (this.dendaketerlambatanFc.value.toString().includes('.'))
+      this.dendaketerlambatanFc.setValue(this.utilSvc.formatNumber(this.dendaketerlambatanFc.value.toString().replace(/\./g,'')))
+    if (this.dendapelunasanawalFc.value.toString().includes('.'))
+      this.dendapelunasanawalFc.setValue(this.utilSvc.formatNumber(this.dendapelunasanawalFc.value.toString().replace(/\./g,'')))
     this.formgrouppostdata = this.fb.group({
       "nama_produk": [this.namaprodukFc.value, [Validators.required]],
       "tenor": [this.tenorFc.value, [Validators.required]],
       "satuan_tenor": [this.optiontenorFc.value, [Validators.required]],
       "bunga": [this.bungaFc.value, [Validators.required]],
       "tenor_bunga": [this.optionbungaFc.value, [Validators.required]],
-      "admin": [this.biayaadminFc.value, [Validators.required]],
-      "provisi": [this.provisiFc.value],
-      "type_provisi": [this.optionbiayaprovisiFc.value],
-      "simpanan_pokok": [this.simpananpokokFc.value],
-      "type_simpanan_pokok": [this.optionsimpananpokokFc.value],
-      "simpanan_wajib": [this.simpananwajibFc.value, [Validators.required]],
-      "denda_keterlambatan": [this.dendaketerlambatanFc.value, [Validators.required]],
+      "admin": [this.utilSvc.formatnonNumber(this.biayaadminFc.value), [Validators.required]],
+      "provisi": [this.provisiFc.value === '' ? 0 : this.provisiFc.value],
+      "type_provisi": [this.optionbiayaprovisiFc.value, [Validators.required]],
+      "simpanan_pokok": [this.simpananpokokFc.value === '' ? 0 : this.simpananpokokFc.value],
+      "type_simpanan_pokok": [this.optionsimpananpokokFc.value, [Validators.required]],
+      "simpanan_wajib": [this.utilSvc.formatnonNumber(this.simpananwajibFc.value), [Validators.required]],
+      "denda_keterlambatan": [this.dendaketerlambatanFc.value === '' ? 0 : this.dendaketerlambatanFc.value],
       "type_denda_keterlambatan": [this.typedendaketerlambatanFc.value, [Validators.required]],
-      "pelunasan_dipercepat": [this.dendapelunasanawalFc.value, [Validators.required]],
+      "pelunasan_dipercepat": [this.dendapelunasanawalFc.value === '' ? 0 : this.dendapelunasanawalFc.value]  ,
       "type_pelunasan_dipercepat": [this.typepelunasanawalFc.value, [Validators.required]]
     });
-    if (this.formgrouppostdata.status === "VALID") {
+    if (this.formgrouppostdata.status === "VALID" && statusprovisi === 'valid'
+      && statuspokok === 'valid' && statusketerlambatan === 'valid' && statuspelunasan === 'valid') {
       switch (type) {
         case 'create':
           this.contentSvc.postProduct(this.formgrouppostdata.value).subscribe(
             result => {
-              if (result.status !== 500 ) {
+              if (result.status !== 500) {
                 this.loadingshow = false;
-                this.strukturmodal.hide();
+                this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
                   type: 'success',
                   head: 'Success',
                   body: result.message
                 });
                 this.getdata();
-              }else{
+              } else {
                 this.loadingshow = false;
-                this.strukturmodal.hide();
+                this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
                   type: 'danger',
                   head: 'Danger',
@@ -218,9 +329,30 @@ export class StrukturPinjamanComponent implements OnInit {
           )
           break;
         case 'edit':
-          setTimeout(() => {
-            this.loadingshow = false
-          }, 500);
+          this.formgrouppostdata.value.id = this.iddata
+          this.contentSvc.updateProduct(this.formgrouppostdata.value).subscribe(
+            result => {
+              if (result.status !== 500) {
+                this.loadingshow = false;
+                this.strukturmodalcreate.hide();
+                this.notifSvc.addNotification({
+                  type: 'success',
+                  head: 'Success',
+                  body: result.message
+                });
+                this.getdata();
+              } else {
+                this.loadingshow = false;
+                this.strukturmodalcreate.hide();
+                this.notifSvc.addNotification({
+                  type: 'danger',
+                  head: 'Danger',
+                  body: result.message
+                });
+                this.getdata();
+              }
+            }
+          )
           break;
         case 'statusnonaktif':
           let dataaktif = {
@@ -229,18 +361,18 @@ export class StrukturPinjamanComponent implements OnInit {
           }
           this.contentSvc.updatestatusProduct(dataaktif).subscribe(
             result => {
-              if (result.status !== 500 ) {
+              if (result.status !== 500) {
                 this.loadingshow = false;
-                this.strukturmodal.hide();
+                this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
                   type: 'success',
                   head: 'Success',
                   body: result.message
                 });
                 this.getdata();
-              }else{
+              } else {
                 this.loadingshow = false;
-                this.strukturmodal.hide();
+                this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
                   type: 'danger',
                   head: 'Danger',
@@ -258,18 +390,18 @@ export class StrukturPinjamanComponent implements OnInit {
           }
           this.contentSvc.updatestatusProduct(datanonaktif).subscribe(
             result => {
-              if (result.status !== 500 ) {
+              if (result.status !== 500) {
                 this.loadingshow = false;
-                this.strukturmodal.hide();
+                this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
                   type: 'success',
                   head: 'Success',
                   body: result.message
                 });
                 this.getdata();
-              }else{
+              } else {
                 this.loadingshow = false;
-                this.strukturmodal.hide();
+                this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
                   type: 'danger',
                   head: 'Danger',
@@ -300,12 +432,5 @@ export class StrukturPinjamanComponent implements OnInit {
   }
   ubah(type) {
     this.postdata(type)
-  }
-  percentinput() {
-    // this.bungaFc.setValue(parseInt(this.bungaFc.value).toLocaleString())
-  }
-  simpananwajib() {
-    // console.log(parseInt(this.simpananwajibFc.value).toLocaleString());
-    // this.simpananwajibFc.setValue(parseInt(this.simpananwajibFc.value).toLocaleString())
   }
 }

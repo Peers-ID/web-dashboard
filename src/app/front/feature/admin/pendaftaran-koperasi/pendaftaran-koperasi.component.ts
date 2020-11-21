@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { NotificationService, ContentService, ApiService } from '@app/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NotificationService, ContentService, ApiService, throwIfAlreadyLoaded } from '@app/core';
 import { FormBuilder, FormGroup, FormControl, Form, Validators } from "@angular/forms";
+import * as $ from "jquery";
+import { phoneNumberValidator } from '@app/front/shared/components/validator/phone-number-validator.directive';
+import { emailValidator } from '@app/front/shared/components/validator/email-validator.directive';
+import { postalCodeValidator } from "@app/front/shared/components/validator/postal-code-validator.directive";
 @Component({
   selector: 'app-pendaftaran-koperasi',
   templateUrl: './pendaftaran-koperasi.component.html',
@@ -47,6 +51,8 @@ export class PendaftaranKoperasiComponent implements OnInit {
   jabatanFc: FormControl;
   nomorhandphoneFc: FormControl;
   emailFc: FormControl;
+  @ViewChild('konfirmasimodal', { static: false }) public konfirmasimodal: any;
+  contentkonfirmasi: string = 'Apakah anda yakin menambahkan koperasi ini ?'
   constructor(
     private notifSvc: NotificationService,
     private contentSvc: ContentService,
@@ -55,7 +61,7 @@ export class PendaftaranKoperasiComponent implements OnInit {
   ) {
     this.loadingshow = false;
     this.namakoperasiFc = new FormControl();
-    this.nomorbadanhukumpendirianFc = new FormControl();
+    this.nomorbadanhukumpendirianFc = new FormControl(Validators.required);
     this.tanggalbadanhukumberdiriFc = new FormControl();
     this.nomorperubahananggarandasarterbaruFc = new FormControl();
     this.tanggalperubahananggarandasarFc = new FormControl();
@@ -90,11 +96,25 @@ export class PendaftaranKoperasiComponent implements OnInit {
 
   ngOnInit() {
     this.loadprovinsi();
+    this.nomorhandphoneFc.setValidators([Validators.required,phoneNumberValidator()])
+    this.emailFc.setValidators([Validators.required,emailValidator()]);
+    // this.kodeposFc.setValidators([Validators.required,postalCodeValidator()]);
   }
   processFile(event) {
     this.fileimage = (event.target as HTMLInputElement).files[0];
   }
+  btnya(){
+    this.konfirmasimodal.hide()
+    this.postdata();
+  }
   simpan() {
+    this.konfirmasimodal.show()
+  }
+  postdata(){
+    this.loadingshow = false
+    console.log(this.emailFc.status);
+    console.log(this.nomorhandphoneFc.status);
+    
     if(this.jumlahanggotapriaFc.value !== null || this.jumlahanggotawanitaFc.value !== null){
       this.totalanggotaFc.setValue(this.jumlahanggotapriaFc.value + this.jumlahanggotawanitaFc.value)
     }else{
@@ -105,19 +125,26 @@ export class PendaftaranKoperasiComponent implements OnInit {
     }else{
       this.totalkaryawanFc.setValue(null)
     }
-    if (this.fcselectprovinsi.value.includes(',')){
-      this.fcselectprovinsi.setValue(this.fcselectprovinsi.value.split(',')[1])
+    if (this.fcselectprovinsi.value){
+      if(this.fcselectprovinsi.value.includes(',')){
+        this.fcselectprovinsi.setValue(this.fcselectprovinsi.value.split(',')[1])
+      }
     }
-    if (this.fcselectkelurahan.value.includes(',')){
-      this.fcselectkelurahan.setValue(this.fcselectkelurahan.value.split(',')[1])
+    if (this.fcselectkelurahan.value){
+      if(this.fcselectkelurahan.value.includes(',')){
+        this.fcselectkelurahan.setValue(this.fcselectkelurahan.value.split(',')[1])
+      }
     }
-    if (this.fcselectkabupaten.value.includes(',')){
-      this.fcselectkabupaten.setValue(this.fcselectkabupaten.value.split(',')[1])
+    if (this.fcselectkabupaten.value){
+      if(this.fcselectkabupaten.value.includes(',')){
+        this.fcselectkabupaten.setValue(this.fcselectkabupaten.value.split(',')[1])
+      }
     }
-    if (this.fcselectkecamatan.value.includes(',')){
-      this.fcselectkecamatan.setValue(this.fcselectkecamatan.value.split(',')[1])
+    if (this.fcselectkecamatan.value){
+      if(this.fcselectkecamatan.value.includes(',')){
+        this.fcselectkecamatan.setValue(this.fcselectkecamatan.value.split(',')[1])
+      }
     }
-    this.loadingshow = true
     this.form = this.fb.group({
       nama_koperasi: [this.namakoperasiFc.value, [Validators.required]],
       no_badan_hukum: this.nomorbadanhukumpendirianFc.value,
@@ -148,15 +175,14 @@ export class PendaftaranKoperasiComponent implements OnInit {
       hp_pengurus: this.nomorhandphoneFc.value,
       email_pengurus: this.emailFc.value,
     });
-    if (this.form.status === "INVALID"){
+    if (this.form.status === "INVALID" || this.emailFc.status === "INVALID" || this.nomorhandphoneFc.status === "INVALID"){
       this.loadingshow = false
       this.notifSvc.addNotification({
         type: 'danger',
         head: 'Invalid Form Value',
-        body: 'Please check your form'
+        body: 'Semua form label merah harus terisi dan pastikan format pengisian sudah benar'
       });
     }else{
-      this.loadingshow = false
       const formData: FormData = new FormData();
       formData.append("nama_koperasi", this.form.value.nama_koperasi);
       formData.append("no_badan_hukum", this.form.value.no_badan_hukum);
@@ -195,6 +221,7 @@ export class PendaftaranKoperasiComponent implements OnInit {
               head: 'Success',
               body: result.message
             });   
+            this.resetform()
           }else{
             this.notifSvc.addNotification({
               type: 'danger',
@@ -216,6 +243,36 @@ export class PendaftaranKoperasiComponent implements OnInit {
         this.listprovinsi.push(dataobj)
       });
     })
+  }
+  resetform(){
+    this.namakoperasiFc.setValue('')
+    this.nomorbadanhukumpendirianFc.setValue('')
+    this.tanggalbadanhukumberdiriFc.setValue('')
+    this.nomorperubahananggarandasarterbaruFc.setValue('')
+    this.tanggalperubahananggarandasarFc.setValue('')
+    this.tanggalratterakhirFc.setValue('')
+    this.alamatsesuaiaktaFc.setValue('')
+    this.fcselectprovinsi.setValue('')
+    this.fcselectkabupaten.setValue('')
+    this.fcselectkecamatan.setValue('')
+    this.fcselectkelurahan.setValue('')
+    this.kodeposFc.setValue('')
+    this.bentukkoperasiFc.setValue('')
+    this.jeniskoperasiFc.setValue('')
+    this.namalengkapketuaFc.setValue('')
+    this.namalengkapsekretarisFc.setValue('')
+    this.namalengkapbendaharaFc.setValue('')
+    this.fileimage = ''
+    this.namapengelolahariankoperasiFc.setValue('')
+    this.jumlahanggotapriaFc.setValue('')
+    this.jumlahanggotawanitaFc.setValue('')
+    this.totalmanajerFc.setValue('')
+    this.nomorindukkoperasiFc.setValue('')
+    this.statusnomorindukkoperasiFc.setValue('')
+    this.statusgradeFc.setValue('')
+    this.jabatanFc.setValue('')
+    this.nomorhandphoneFc.setValue('')
+    this.emailFc.setValue('')
   }
   loadkabupaten() {
     this.contentSvc.getcorelocation().subscribe(data => {

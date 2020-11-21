@@ -12,6 +12,8 @@ import { PendaftaranKoperasiComponent } from "./feature/admin/pendaftaran-kopera
 import { ListKoperaiComponent } from "./feature/admin/list-koperai/list-koperai.component";
 import { PinjamanComponent } from "./feature/management-anggota/pinjaman/pinjaman.component";
 import { SimpananComponent } from "./feature/management-anggota/simpanan/simpanan.component";
+import { SimpananDetailComponent } from "./feature/management-anggota/simpanan/simpanan-detail.component";
+import { SimpananDetailByidComponent } from "./feature/management-anggota/simpanan/simpanan-detail-byid.component";
 import { ParameterPinjamanComponent } from "./feature/pengaturan-pinjaman/parameter-pinjaman/parameter-pinjaman.component";
 import { StrukturPinjamanComponent } from "./feature/pengaturan-pinjaman/struktur-pinjaman/struktur-pinjaman.component";
 import { TemplateDataAnggotaComponent } from "./feature/pengaturan-pinjaman/template-data-anggota/template-data-anggota.component";
@@ -77,6 +79,16 @@ const routes: Routes = [
       {
         path: "management-anggota-simpanan",
         component:SimpananComponent,
+        canActivate: [AuthManajemenAnggotaGuard],
+      },
+      {
+        path: "management-anggota-simpanan/:id/:name",
+        component:SimpananDetailComponent,
+        canActivate: [AuthManajemenAnggotaGuard],
+      },
+      {
+        path: "management-anggota-simpanan/:id/:name/:type",
+        component:SimpananDetailByidComponent,
         canActivate: [AuthManajemenAnggotaGuard],
       },
     ]

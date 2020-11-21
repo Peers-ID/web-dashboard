@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe ,CurrencyPipe} from '@angular/common';
 
 import { FrontRoutingModule } from './front-routing.module';
 import { FrontComponent } from "./front.component";
@@ -23,6 +23,21 @@ import { StrukturPinjamanComponent } from "./feature/pengaturan-pinjaman/struktu
 import { TemplateDataAnggotaComponent } from "./feature/pengaturan-pinjaman/template-data-anggota/template-data-anggota.component";
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ChartModule } from 'angular2-highcharts';
+import { SimpananDetailComponent } from './feature/management-anggota/simpanan/simpanan-detail.component';
+import { SimpananDetailByidComponent } from './feature/management-anggota/simpanan/simpanan-detail-byid.component';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+declare var require: any;
+
+export function highchartsFactory() {
+  const hc = require('highcharts');
+  const dd = require('highcharts/modules/drilldown');
+  dd(hc);
+
+  return hc;
+}
+
 @NgModule({
   declarations: [
     ParameterPinjamanComponent,
@@ -41,7 +56,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ManagementAkunComponent,
     ManagementPinjamanComponent,
     GantiPasswordComponent,
-    KinerjaKoperasiComponent
+    KinerjaKoperasiComponent,
+    SimpananDetailComponent,
+    SimpananDetailByidComponent
   ],
   imports: [
     CommonModule,
@@ -49,10 +66,16 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartModule,
     ModalModule.forRoot(),
+    PdfViewerModule,
   ],
   providers: [
-    AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    },
+    CurrencyPipe,DecimalPipe,AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard
   ]
 })
 export class FrontModule { }

@@ -14,7 +14,7 @@ td{
 th{
     border: 1px solid grey;
     padding: 10px;
-
+    cursor: pointer;
 }
 
 .load-container{
@@ -23,9 +23,6 @@ th{
 }
 .nav-item{
     cursor: pointer;
-}
-.modal-dialog {
-    max-width: 1200px ;
 }
 .modal {
     overflow-y:auto;

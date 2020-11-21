@@ -43,7 +43,7 @@ export class AccountService {
         res => {
           if (res.data.token) {
             this.token.setToken(res.data.token);
-            var data = {
+            var datapost = {
               userId: res.data.user.id,
               fullname: res.data.user.fullname,
               email: res.data.user.email,
@@ -52,7 +52,7 @@ export class AccountService {
               koperasi_id: res.data.user.koperasi_id,
               access:res.data.myRole === null ? 'all' : res.data.myRole 
             }
-            localStorage.setItem("currentUser",CryptoJS.AES.encrypt(JSON.stringify(data), 'secret').toString());
+            localStorage.setItem("currentUser",CryptoJS.AES.encrypt(JSON.stringify(datapost), 'secret').toString());
             this.auth.signIn(data.email);
             observer.next(true);
           } else {
@@ -75,7 +75,7 @@ export class AccountService {
     const obs = new Observable<any>(observer => {
       this.content.postForgotPassword(data).subscribe(
         res => {
-          if (res.status !== 500) {
+          if (res.status === 200 ||res.status === 201) {
             observer.next(true);
             this.notification.addNotification({
               type: 'success',

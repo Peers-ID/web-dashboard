@@ -53,7 +53,7 @@ export class NotificationService {
     }, obj.duration);
   }
 
-  private clearNotification(): void {
+  public clearNotification(): void {
     this.notificationObs.next({ message: '', type: '', position: 'global', duration: 0 });
     setTimeout(() => {
       this.next();
@@ -87,14 +87,14 @@ export class NotificationService {
       }
     }
     if (isPlatformBrowser(this.platformId)) {
-        if(this.notificationList.length > 0){
-            this.notificationList.shift()
-            setTimeout(() => {
-              this.notificationList.push(notif); 
-            }, 300);
-        }else{
-          this.notificationList.push(notif);  
-        }         
+      if (this.notificationList.length > 0) {
+        this.notificationList.shift()
+        setTimeout(() => {
+          this.notificationList.push(notif);
+        }, 300);
+      } else {
+        this.notificationList.push(notif);
+      }
       if (notif.type !== 'danger') {
         setTimeout(() => {
           this.notificationList = [];
@@ -103,6 +103,14 @@ export class NotificationService {
     }
   }
 
+  removenotif() {
+    if (this.notificationList) {
+      if (this.notificationList.length > 0) {
+        this.notificationList = []
+      }
+    }
+
+  }
   addDefaultSuccessNotification(): void {
     this.addNotification({
       type: 'success',
