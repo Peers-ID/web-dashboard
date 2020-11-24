@@ -178,7 +178,7 @@ export class StrukturPinjamanComponent implements OnInit {
     if (optionprovisi === 'Persen') this.provisiFc.setValue(provisi == 0 ? '' : provisi)
     else this.provisiFc.setValue(this.utilSvc.formatNumber(provisi) == 0 ? '' : this.utilSvc.formatNumber(provisi))
     if (optionsimpananpokok === 'Persen') this.simpananpokokFc.setValue(simpananpokok == 0 ? '' : simpananpokok)
-    else this.simpananpokokFc.setValue(this.utilSvc.formatNumber(simpananpokok) == 0 ? '' : this.utilSvc.formatNumber(simpananpokok))
+    else this.simpananpokokFc.setValue(this.utilSvc.formatNumber(simpananpokok) == 0 ? '' : this.utilSvc.formatNumber(simpananpokok))    
     this.optionbiayaprovisiFc.setValue(optionprovisi)
     this.optionsimpananpokokFc.setValue(optionsimpananpokok)
     this.simpananwajibFc.setValue(this.utilSvc.formatNumber(simpananwajib))
@@ -256,33 +256,39 @@ export class StrukturPinjamanComponent implements OnInit {
     if (this.typedendaketerlambatanFc.value !== null && this.typedendaketerlambatanFc.value !== '' && this.typedendaketerlambatanFc.value === 'tidak' && type === 'create') {
       statusketerlambatan = 'valid'
     } else {
-      if(this.dendaketerlambatanFc.value !== null && this.dendaketerlambatanFc.value !== '' && type === 'create')statusketerlambatan = 'valid'
+      if (this.dendaketerlambatanFc.value !== null && this.dendaketerlambatanFc.value !== '' && type === 'create') statusketerlambatan = 'valid'
       else {
-        if(type === 'create')statusketerlambatan = 'invalid'
+        if (type === 'create') statusketerlambatan = 'invalid'
         else {
-          if (this.dendaketerlambatanFc.value !== null && this.dendaketerlambatanFc.value !== ''){
+          if (this.dendaketerlambatanFc.value !== null && this.dendaketerlambatanFc.value !== '') {
             statusketerlambatan = 'valid'
-          }else{
+          } else {
             statusketerlambatan = 'invalid'
           }
         }
       }
     }
-    if (this.typepelunasanawalFc.value !== null && this.typepelunasanawalFc.value !== '' && this.typepelunasanawalFc.value === 'tidak' && type === 'create') { 
+    if (this.typepelunasanawalFc.value !== null && this.typepelunasanawalFc.value !== '' && this.typepelunasanawalFc.value === 'tidak' && type === 'create') {
       statuspelunasan = 'valid'
     } else {
-      if(this.dendapelunasanawalFc.value !== null && this.dendapelunasanawalFc.value !== '' && type === 'create')statuspelunasan = 'valid'
-      if(type === 'create')statuspelunasan = 'invalid'
-      if (this.dendapelunasanawalFc.value !== null && this.dendapelunasanawalFc.value !== ''){
+      if (this.dendapelunasanawalFc.value !== null && this.dendapelunasanawalFc.value !== '' && type === 'create') statuspelunasan = 'valid'
+      if (type === 'create') statuspelunasan = 'invalid'
+      if (this.dendapelunasanawalFc.value !== null && this.dendapelunasanawalFc.value !== '') {
         statuspelunasan = 'valid'
-      }else{
+      } else {
         statuspelunasan = 'invalid'
       }
     }
-    if (this.dendaketerlambatanFc.value.toString().includes('.'))
-      this.dendaketerlambatanFc.setValue(this.utilSvc.formatNumber(this.dendaketerlambatanFc.value.toString().replace(/\./g,'')))
-    if (this.dendapelunasanawalFc.value.toString().includes('.'))
-      this.dendapelunasanawalFc.setValue(this.utilSvc.formatNumber(this.dendapelunasanawalFc.value.toString().replace(/\./g,'')))
+    if (this.dendaketerlambatanFc.value.includes('.'))
+      this.dendaketerlambatanFc.setValue(this.dendaketerlambatanFc.value.toString().replace(/\./g, ''))
+    if (this.dendapelunasanawalFc.value.includes('.'))
+      this.dendapelunasanawalFc.setValue(this.dendapelunasanawalFc.value.toString().replace(/\./g, ''))
+    if (this.provisiFc.value.includes('.'))
+      this.provisiFc.setValue(this.provisiFc.value.toString().replace(/\./g, ''))
+    if (this.provisiFc.value.includes('.'))
+      this.provisiFc.setValue(this.provisiFc.value.toString().replace(/\./g, ''))
+    if (this.simpananpokokFc.value.includes('.'))
+      this.simpananpokokFc.setValue(this.simpananpokokFc.value.toString().replace(/\./g, ''))
     this.formgrouppostdata = this.fb.group({
       "nama_produk": [this.namaprodukFc.value, [Validators.required]],
       "tenor": [this.tenorFc.value, [Validators.required]],
@@ -297,7 +303,7 @@ export class StrukturPinjamanComponent implements OnInit {
       "simpanan_wajib": [this.utilSvc.formatnonNumber(this.simpananwajibFc.value), [Validators.required]],
       "denda_keterlambatan": [this.dendaketerlambatanFc.value === '' ? 0 : this.dendaketerlambatanFc.value],
       "type_denda_keterlambatan": [this.typedendaketerlambatanFc.value, [Validators.required]],
-      "pelunasan_dipercepat": [this.dendapelunasanawalFc.value === '' ? 0 : this.dendapelunasanawalFc.value]  ,
+      "pelunasan_dipercepat": [this.dendapelunasanawalFc.value === '' ? 0 : this.dendapelunasanawalFc.value],
       "type_pelunasan_dipercepat": [this.typepelunasanawalFc.value, [Validators.required]]
     });
     if (this.formgrouppostdata.status === "VALID" && statusprovisi === 'valid'
