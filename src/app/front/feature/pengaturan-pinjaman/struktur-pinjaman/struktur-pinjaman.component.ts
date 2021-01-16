@@ -177,8 +177,7 @@ export class StrukturPinjamanComponent implements OnInit {
     this.biayaadminFc.setValue(this.utilSvc.formatNumber(biayaadmin))
     if (optionprovisi === 'Persen') this.provisiFc.setValue(provisi == 0 ? '' : provisi)
     else this.provisiFc.setValue(this.utilSvc.formatNumber(provisi) == 0 ? '' : this.utilSvc.formatNumber(provisi))
-    if (optionsimpananpokok === 'Persen') this.simpananpokokFc.setValue(simpananpokok == 0 ? '' : simpananpokok)
-    else this.simpananpokokFc.setValue(this.utilSvc.formatNumber(simpananpokok) == 0 ? '' : this.utilSvc.formatNumber(simpananpokok))    
+    this.simpananpokokFc.setValue(this.utilSvc.formatNumber(simpananpokok) == 0 ? '' : this.utilSvc.formatNumber(simpananpokok))    
     this.optionbiayaprovisiFc.setValue(optionprovisi)
     this.optionsimpananpokokFc.setValue(optionsimpananpokok)
     this.simpananwajibFc.setValue(this.utilSvc.formatNumber(simpananwajib))
@@ -279,13 +278,11 @@ export class StrukturPinjamanComponent implements OnInit {
         statuspelunasan = 'invalid'
       }
     }
-    if (this.dendaketerlambatanFc.value.includes('.'))
+    if (this.dendaketerlambatanFc.value.includes('.') && this.typedendaketerlambatanFc.value !== 'Persen')
       this.dendaketerlambatanFc.setValue(this.dendaketerlambatanFc.value.toString().replace(/\./g, ''))
-    if (this.dendapelunasanawalFc.value.includes('.'))
+    if (this.dendapelunasanawalFc.value.includes('.') && this.typepelunasanawalFc.value !== 'Persen')
       this.dendapelunasanawalFc.setValue(this.dendapelunasanawalFc.value.toString().replace(/\./g, ''))
-    if (this.provisiFc.value.includes('.'))
-      this.provisiFc.setValue(this.provisiFc.value.toString().replace(/\./g, ''))
-    if (this.provisiFc.value.includes('.'))
+    if (this.provisiFc.value.includes('.') && this.optionbiayaprovisiFc.value !== 'Persen')
       this.provisiFc.setValue(this.provisiFc.value.toString().replace(/\./g, ''))
     if (this.simpananpokokFc.value.includes('.'))
       this.simpananpokokFc.setValue(this.simpananpokokFc.value.toString().replace(/\./g, ''))

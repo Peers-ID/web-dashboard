@@ -13,6 +13,7 @@ export class ListKoperaiComponent implements OnInit {
   form: FormGroup;
   koperasishow: boolean = false;
   @ViewChild('listkoperasimodal', { static: false }) public listkoperasimodal: any;
+  @ViewChild('previewimage', { static: false }) public previewimage: any;
   listkoperasi = [];
   datalistkoperasishow: boolean;
   namakoperasiFc: FormControl;
@@ -53,6 +54,9 @@ export class ListKoperaiComponent implements OnInit {
   emailFc: FormControl;
   loadingshow: boolean;
   idgetkoperasi:any;
+  namechoosefile:any = 'Upload File'
+  fotoktp:any;
+  previewfoto:any;
   constructor(
     private notifSvc: NotificationService,
     private contentSvc: ContentService,
@@ -118,10 +122,11 @@ export class ListKoperaiComponent implements OnInit {
     this.contentSvc.getKoperasibyId(id).subscribe(
       result => {
         if (result.status !== 500) {
+          this.fotoktp = result.data.foto_ktp_ketua
           this.idgetkoperasi = result.data.id
           this.datalistkoperasishow = true
           this.namakoperasiFc.setValue(result.data.nama_koperasi)
-          this.nomorbadanhukumpendirianFc.setValue(result.data.no_badan_hukum)
+          this.nomorbadanhukumpendirianFc.setValue(result.data.no_badan_hukum !== 'null' ? result.data.no_badan_hukum: '')
           this.tanggalbadanhukumberdiriFc.setValue(result.data.tgl_badan_hukum)
           this.nomorperubahananggarandasarterbaruFc.setValue(result.data.no_perubahan_anggaran_dasar)
           this.tanggalperubahananggarandasarFc.setValue(result.data.tgl_perubahan_anggaran_dasar)
@@ -192,19 +197,19 @@ export class ListKoperaiComponent implements OnInit {
               })
             }
           })
-          this.bentukkoperasiFc.setValue(result.data.bentuk_koperasi)
+          this.bentukkoperasiFc.setValue(result.data.bentuk_koperasi !== 'null' ? result.data.bentuk_koperasi : '')
           this.jeniskoperasiFc.setValue(result.data.jenis_koperasi)
           this.namalengkapketuaFc.setValue(result.data.nama_ketua)
-          this.namalengkapsekretarisFc.setValue(result.data.nama_sekretaris)
-          this.namalengkapbendaharaFc.setValue(result.data.nama_bendahara)
+          this.namalengkapsekretarisFc.setValue(result.data.nama_sekretaris !== 'null' ? result.data.nama_sekretaris : '')
+          this.namalengkapbendaharaFc.setValue(result.data.nama_bendahara !== 'null' ? result.data.nama_bendahara : '')
           this.namapengelolahariankoperasiFc.setValue(result.data.nama_pengelola_harian)
           this.jumlahanggotapriaFc.setValue(result.data.jml_anggota_pria)
           this.jumlahanggotawanitaFc.setValue(result.data.jml_anggota_wanita)
           this.totalmanajerFc.setValue(result.data.total_manajer)
           this.nomorindukkoperasiFc.setValue(result.data.no_induk_koperasi)
-          this.statusnomorindukkoperasiFc.setValue(result.data.status_nik)
-          this.statusgradeFc.setValue(result.data.status_grade)
-          this.jabatanFc.setValue(result.data.jabatan)
+          this.statusnomorindukkoperasiFc.setValue(result.data.status_nik !== 'null' ? result.data.status_nik : '')
+          this.statusgradeFc.setValue(result.data.status_grade !== 'null' ? result.data.status_grade : '')
+          this.jabatanFc.setValue(result.data.jabatan !== 'null' ? result.data.jabatan : '')
           this.nomorhandphoneFc.setValue(result.data.hp_pengurus)
           this.emailFc.setValue(result.data.email_pengurus)
         } else {
@@ -412,5 +417,16 @@ export class ListKoperaiComponent implements OnInit {
   changekecamatan() {
     this.listkelurahan = [];
     this.loadkelurahan();
+  }
+  preview(){
+    this.previewimage.show()
+    this.listkoperasimodal.hide();
+    this.previewfoto = 'http://api.peers.id/files/'+this.fotoktp
+    console.log(this.previewfoto);
+    
+  }
+  previewClose(){
+    this.previewimage.hide()
+    this.listkoperasimodal.show();
   }
 }

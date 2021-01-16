@@ -70,7 +70,9 @@ export class ManagementAkunComponent implements OnInit {
         if (result.data.length > 0) {
           this.accountshow = true
           result.data.forEach(element => {
-            this.listdataaccount.push(element)
+            if (element.role !== 'Super Admin'){
+                  this.listdataaccount.push(element)
+            }
           });
         } else {
           this.accountshow = true
@@ -397,7 +399,6 @@ export class ManagementAkunComponent implements OnInit {
       "mn_management_pinjaman": [this.manajementpinjamanFc.value, [Validators.required]],
       "mn_management_anggota": [this.manajementanggotaFc.value, [Validators.required]]
     });  
-    
     if (this.optionfungsionalFc.value === 'AO/CMO/Sales'){
       if (this.persetujuanFc.value === true && this.pencarianFc.value === false){
         if (this.approve_max_1jt.value === 0 && this.approve_max_3jt.value === 0 && this.approve_max_5jt.value === 0

@@ -1,3 +1,11 @@
+.offcanvas .sidebar-menu>li {
+  border-bottom: none !important;
+}
+.menu{
+  color: #707070 !important;
+  font-size: 12px !important;
+  font-weight: 500;
+}
 .navbar .nav {
     > li {
       &.dropdown {
@@ -19,9 +27,14 @@
       }
     }
   }
+  .sub-select {
+    color: #1b75bc !important;
+    background-color: white;
+  }
   .nav-select {
     cursor: pointer;
-    background-color: darkcyan;
+    background-image: linear-gradient(to bottom, #27a8df, #2b398e);
+    font-size: 12px;
     color: white;
     span {
       color: white;

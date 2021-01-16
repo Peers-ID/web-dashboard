@@ -1,85 +1,98 @@
 <aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
     <section class="sidebar">
         <ul class="sidebar-menu">
-            <li class="mt-4 mb-4 text-center" style="border-bottom: none;"><strong>PEERS</strong></li>
-            <!-- <li class="header light mt-3" ><strong>CONSOLE </strong></li> -->
+            <li class="mt-4 mb-4 text-center" style="border-bottom: none;">
+                <div class="text-center mb-4"><img width="100px" src="assets/images/Logo.png"></div>
+            </li>
             <li class="treeview" *ngIf="trigeraccount === 'Admin Peers'">
-                <a [class.nav-select]="active === 'list-koperasi'" [class.!nav-select]="active !== 'list-koperasi'"
-                    (click)="goTo('list-koperasi')"><i [class.text-white]="active === 'list-koperasi'"
-                        [class.text-blue]="active !== 'list-koperasi'" class="icon icon-wpforms s-18"></i>
+                <a [class.nav-select]="active === 'list-koperasi'" [class.!nav-select]="active !== 'list-koperasi'"(click)="goTo('list-koperasi')">
+                    <span *ngIf="active !== 'list-koperasi'"><img height="14px" class="mr-2 mb-1" src="assets/iconadmin/listabu2.svg"></span>
+                    <span *ngIf="active === 'list-koperasi'"><img height="14px" class="mr-2 mb-1" src="assets/iconadmin/listputih.svg"></span>
                     <span>Daftar Koperasi</span></a>
             </li>
             <li class="treeview" *ngIf="trigeraccount === 'Admin Peers' ">
                 <a [class.nav-select]="active === 'pendaftaran-koperasi'"
-                    [class.!nav-select]="active !== 'pendaftaran-koperasi'" (click)="goTo('pendaftaran-koperasi')"><i
-                        [class.text-white]="active === 'pendaftaran-koperasi'"
-                        [class.text-blue]="active !== 'pendaftaran-koperasi'" class="icon icon-wpforms s-18"></i>
+                    [class.!nav-select]="active !== 'pendaftaran-koperasi'" (click)="goTo('pendaftaran-koperasi')">
+                    <span *ngIf="active !== 'pendaftaran-koperasi'"><img height="14px" class="mr-2 mb-1" src="assets/iconadmin/penaabu.svg"></span>
+                    <span *ngIf="active === 'pendaftaran-koperasi'"><img height="14px" class="mr-2 mb-1" src="assets/iconadmin/penaputih.svg"></span>
                     <span>Pendaftaran Koperasi</span></a>
             </li>
             <li class="treeview" *ngIf="trigeraccount !== 'Admin Peers'">
                 <a [class.nav-select]="active === 'kinerja-koperasi'" [class.!nav-select]="active !== 'kinerja-koperasi'"
-                    (click)="goTo('kinerja-koperasi')"><i [class.text-white]="active === 'kinerja-koperasi'"
-                        [class.text-blue]="active !== 'kinerja-koperasi'" class="icon icon-wpforms s-18"></i>
+                    (click)="goTo('kinerja-koperasi')">
+                    <span *ngIf="active !== 'kinerja-koperasi'"><img height="14px" class="mr-2 mb-1" src="assets/images/kinerja.png"></span>
+                    <span *ngIf="active === 'kinerja-koperasi'"><img height="14px" class="mr-2 mb-1" src="assets/icon-white/kinerja.png"></span>
                     <span>Kinerja Koperasi</span></a>
             </li>
-            <li class="header light mt-3" *ngIf="menupengaturan"><strong>PENGATURAN PINJAMAN</strong></li>
+            <li class="header" *ngIf="menupengaturan">
+                <span><img height="14px" class="mr-2 mb-1" src="assets/images/pinjaman.png"></span>
+                <span class="menu">Pengaturan Pinjaman</span>
+            </li>
             <li class="treeview "  *ngIf="menupengaturan">
                 <a
                     [class.nav-select]="active === 'pengaturan-parameter-pinjaman'" [class.!nav-select]="active !== 'pengaturan-parameter-pinjaman'"
-                    (click)="goTo('pengaturan-parameter-pinjaman')"><i [class.text-white]="active === 'pengaturan-parameter-pinjaman'"
-                        [class.text-blue]="active !== 'pengaturan-parameter-pinjaman'" class="icon icon-wpforms s-18"></i> <span>
-                            Parameter Pinjaman</span></a>
+                    (click)="goTo('pengaturan-parameter-pinjaman')">
+                    <span><img class="ml-4 mr-2" src="assets/images/active.png"></span>
+                    <span>Parameter Pinjaman</span></a>
             </li>
             <li class="treeview "  *ngIf="menupengaturan">
                 <a
                     [class.nav-select]="active === 'pengaturan-struktur-pinjaman'" [class.!nav-select]="active !== 'pengaturan-struktur-pinjaman'"
-                    (click)="goTo('pengaturan-struktur-pinjaman')"><i [class.text-white]="active === 'pengaturan-struktur-pinjaman'"
-                        [class.text-blue]="active !== 'pengaturan-struktur-pinjaman'" class="icon icon-wpforms s-18"></i> <span>
-                            Struktur Pinjaman</span></a>
+                    (click)="goTo('pengaturan-struktur-pinjaman')">
+                    <span><img class="ml-4 mr-2" src="assets/images/active.png"></span> 
+                    <span>Struktur Pinjaman</span></a>
             </li>
             <li class="treeview "  *ngIf="menupengaturan">
                 <a
                     [class.nav-select]="active === 'pengaturan-template-data-anggota'" [class.!nav-select]="active !== 'pengaturan-template-data-anggota'"
-                    (click)="goTo('pengaturan-template-data-anggota')"><i [class.text-white]="active === 'pengaturan-template-data-anggota'"
-                        [class.text-blue]="active !== 'pengaturan-template-data-anggota'" class="icon icon-wpforms s-18"></i> <span>
-                            Template Data Anggota</span></a>
+                    (click)="goTo('pengaturan-template-data-anggota')">
+                    <span><img class="ml-4 mr-2" src="assets/images/active.png"></span>  
+                    <span>Template Data Anggota</span></a>
             </li>
             <li class="treeview "  *ngIf="menumanajemenakun">
                 <a
                     [class.nav-select]="active === 'management-akun'" [class.!nav-select]="active !== 'management-akun'"
-                    (click)="goTo('management-akun')"><i [class.text-white]="active === 'management-akun'"
-                        [class.text-blue]="active !== 'management-akun'" class="icon icon-wpforms s-18"></i> <span>
-                            Manajemen Akun</span></a>
+                    (click)="goTo('management-akun')">
+                    <span *ngIf="active !== 'management-akun'"><img height="14px" class="mr-2 mb-1" src="assets/images/akun.png"></span>
+                    <span *ngIf="active === 'management-akun'"><img height="14px" class="mr-2 mb-1" src="assets/icon-white/akun.png"></span>
+                    <span>Manajemen Akun</span></a>
             </li>
             <li class="treeview "  *ngIf="menumanajemenpinjaman">
                 <a
                     [class.nav-select]="active === 'management-pinjaman'" [class.!nav-select]="active !== 'management-pinjaman'"
-                    (click)="goTo('management-pinjaman')"><i [class.text-white]="active === 'management-pinjaman'"
-                        [class.text-blue]="active !== 'management-pinjaman'" class="icon icon-wpforms s-18"></i> <span>
-                            Manajemen Pinjaman</span></a>
+                    (click)="goTo('management-pinjaman')">
+                    <span *ngIf="active !== 'management-pinjaman'"><img height="14px" class="mr-2 mb-1" src="assets/images/manajemen-pinjaman.png"></span>
+                    <span *ngIf="active === 'management-pinjaman'"><img height="14px" class="mr-2 mb-1" src="assets/icon-white/manajemenpinjaman.png"></span>
+                    <span>Manajemen Pinjaman</span></a>
             </li>
-            <li class="header light mt-3" *ngIf="menumanajemenanggota"><strong>Manajemen Anggota</strong></li>
+            <li class="header" *ngIf="menumanajemenanggota">
+                <span><img height="14px" class="mr-2 mb-1" src="assets/images/anggota.png"></span>
+                <strong>Manajemen Anggota</strong>
+            </li>
             <li class="treeview "  *ngIf="menumanajemenanggota">
                 <a
                     [class.nav-select]="active === 'management-anggota-pinjaman'" [class.!nav-select]="active !== 'management-anggota-pinjaman'"
-                    (click)="goTo('management-anggota-pinjaman')"><i [class.text-white]="active === 'management-anggota-pinjaman'"
-                        [class.text-blue]="active !== 'management-anggota-pinjaman'" class="icon icon-wpforms s-18"></i> <span>
-                            Pinjaman</span></a>
+                    (click)="goTo('management-anggota-pinjaman')">
+                    <span><img class="ml-4 mr-2" src="assets/images/active.png"></span>
+                    <span>Pinjaman</span></a>
             </li>
             <li class="treeview "  *ngIf="menumanajemenanggota">
                 <a
                     [class.nav-select]="active === 'management-anggota-simpanan'" [class.!nav-select]="active !== 'management-anggota-simpanan'"
-                    (click)="goTo('management-anggota-simpanan')"><i [class.text-white]="active === 'management-anggota-simpanan'"
-                        [class.text-blue]="active !== 'management-anggota-simpanan'" class="icon icon-wpforms s-18"></i> <span>
-                            Simpanan</span></a>
+                    (click)="goTo('management-anggota-simpanan')">
+                    <span><img class="ml-4 mr-2" src="assets/images/active.png"></span>
+                    <span>Simpanan</span></a>
             </li>
-            <li class="header light mt-3"><strong>SETTING & CONFIGURATION </strong></li>
+            <li class="header">
+                <span><img height="14px" class="mr-2 mb-1" src="assets/images/setting.png"></span>
+                <strong>Setting & Configuration </strong>
+            </li>
             <li class="treeview ">
                 <a
                     [class.nav-select]="active === 'ganti-password'" [class.!nav-select]="active !== 'ganti-password'"
-                    (click)="goTo('ganti-password')"><i [class.text-white]="active === 'ganti-password'"
-                        [class.text-blue]="active !== 'ganti-password'" class="icon icon-wpforms s-18"></i> <span>Ganti
-                        Password</span></a>
+                    (click)="goTo('ganti-password')">
+                    <span><img class="ml-4 mr-2" src="assets/images/active.png"></span>
+                    <span>Ganti Password</span></a>
             </li>
         </ul>
     </section>

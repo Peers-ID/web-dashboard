@@ -53,6 +53,7 @@ export class PendaftaranKoperasiComponent implements OnInit {
   emailFc: FormControl;
   @ViewChild('konfirmasimodal', { static: false }) public konfirmasimodal: any;
   contentkonfirmasi: string = 'Apakah anda yakin menambahkan koperasi ini ?'
+  namechoosefile:any = 'Upload File'
   constructor(
     private notifSvc: NotificationService,
     private contentSvc: ContentService,
@@ -61,7 +62,7 @@ export class PendaftaranKoperasiComponent implements OnInit {
   ) {
     this.loadingshow = false;
     this.namakoperasiFc = new FormControl();
-    this.nomorbadanhukumpendirianFc = new FormControl(Validators.required);
+    this.nomorbadanhukumpendirianFc = new FormControl();
     this.tanggalbadanhukumberdiriFc = new FormControl();
     this.nomorperubahananggarandasarterbaruFc = new FormControl();
     this.tanggalperubahananggarandasarFc = new FormControl();
@@ -102,6 +103,7 @@ export class PendaftaranKoperasiComponent implements OnInit {
   }
   processFile(event) {
     this.fileimage = (event.target as HTMLInputElement).files[0];
+    this.namechoosefile = this.fileimage.name
   }
   btnya(){
     this.konfirmasimodal.hide()
@@ -112,9 +114,6 @@ export class PendaftaranKoperasiComponent implements OnInit {
   }
   postdata(){
     this.loadingshow = false
-    console.log(this.emailFc.status);
-    console.log(this.nomorhandphoneFc.status);
-    
     if(this.jumlahanggotapriaFc.value !== null || this.jumlahanggotawanitaFc.value !== null){
       this.totalanggotaFc.setValue(this.jumlahanggotapriaFc.value + this.jumlahanggotawanitaFc.value)
     }else{
@@ -123,7 +122,7 @@ export class PendaftaranKoperasiComponent implements OnInit {
     if (this.totalanggotaFc.value !== null || this.totalmanajerFc.value !== null){
       this.totalkaryawanFc.setValue(this.totalanggotaFc.value + this.totalmanajerFc.value)
     }else{
-      this.totalkaryawanFc.setValue(null)
+      this.totalkaryawanFc.setValue(0)
     }
     if (this.fcselectprovinsi.value){
       if(this.fcselectprovinsi.value.includes(',')){
@@ -175,6 +174,23 @@ export class PendaftaranKoperasiComponent implements OnInit {
       hp_pengurus: this.nomorhandphoneFc.value,
       email_pengurus: this.emailFc.value,
     });
+    if (this.emailFc.status === "INVALID"){
+        this.loadingshow = false
+      this.notifSvc.addNotification({
+        type: 'danger',
+        head: 'Invalid Form Value',
+        body: 'Format penulisan salah'
+      });
+    }
+    if (this.nomorhandphoneFc.status === "INVALID"){
+      this.loadingshow = false
+    this.notifSvc.addNotification({
+      type: 'danger',
+      head: 'Invalid Form Value',
+      body: 'Format penulisan salah'
+    });
+  }
+
     if (this.form.status === "INVALID" || this.emailFc.status === "INVALID" || this.nomorhandphoneFc.status === "INVALID"){
       this.loadingshow = false
       this.notifSvc.addNotification({

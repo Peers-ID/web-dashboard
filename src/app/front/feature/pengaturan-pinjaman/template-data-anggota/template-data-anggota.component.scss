@@ -1,3 +1,26 @@
 .card-body{
     min-height: 70vh;
+    .content-box{
+        padding: 15px 30px;
+        border-radius: 11.3px;
+        border: solid 0.5px #c2c2c2;
+        .title{
+            font-size: 16px;
+            font-weight: bold;
+            color: #545454;
+        }
+        .line{
+            border-bottom: solid 1px #d4d4d4;
+        }
+        label{
+            font-size: 12px;
+        }
+    }
 }
+.btn-primary{
+    height: 35px;
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: 6px 6px 11px 0 rgba(0, 0, 0, 0.11);
+    background-image: linear-gradient(to bottom, #27a8df, #296ab2 120%, #2b398e 151%);
+  }

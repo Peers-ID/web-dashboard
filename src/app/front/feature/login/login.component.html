@@ -1,26 +1,25 @@
 <app-modalloading *ngIf="loadingshow"></app-modalloading>
-<div id="primary" class="p-t-b-100 height-full ">
+<div id="primary" class="height-full login-container">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mx-md-auto">
-                <div class="text-center">
-                    <img src="../../../../assets/template2/img/dummy/u4.png" alt="">
-                    <h3>Welcome Back</h3>
-                    <p class="p-t-b-20">Hey Soldier welcome back signin now there is lot of new stuff waiting
-                        for you</p>
+        <div class="row justify-content-center">
+            <div class="col-auto mx-md-auto">
+                <div class="form-container">
+                    
+                    <form>
+                        <div class="text-center mb-4"><img width="150px" src="assets/images/Logo.png"></div>
+                        <div class="text-center"><p class="welcome">Selamat Datang</p></div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg form-input"
+                                   placeholder="Username" #userinput>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control form-control-lg f-12 form-input"
+                                   placeholder="Password" (keyup)="keyuplogin($event , userinput.value , password.value)" #password>
+                        </div>
+                        <button type="button" class="btn btn-success btn-lg btn-block btn-login" (click)="login(userinput.value , password.value)">Masuk</button>
+                    </form>
+                    <div class="text-right"><span class="forget-pass f-10 btn forgot" (click)="forgotPassword()">Lupa Password?</span></div>
                 </div>
-                <form>
-                    <div class="form-group has-icon"><i class="icon-envelope-o"></i>
-                        <input type="text" class="form-control form-control-lg"
-                               placeholder="Username" #userinput>
-                    </div>
-                    <div class="form-group has-icon"><i class="icon-lock"></i>
-                        <input type="password" class="form-control form-control-lg f-12"
-                               placeholder="Password" (keyup)="keyuplogin($event , userinput.value , password.value)" #password>
-                    </div>
-                    <button type="button" class="btn btn-success btn-lg btn-block" (click)="login(userinput.value , password.value)">Sign In</button>
-                </form>
-                <button class="forget-pass f-10 btn" (click)="forgotPassword()">Have you forgot your password ?</button>
             </div>
         </div>
     </div>

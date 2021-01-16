@@ -14,19 +14,19 @@
                     <div class="col-12 mt-4">
                         <div class="row">
                             <div class="col-12" *ngIf="listdataaccount.length > 0">
-                                <table style="width: 100%">
-                                    <tr>
+                                <table style="width: 100%; text-align: center;">
+                                    <tr style="background-color: #f3f7fd; font-size: 14px; color: #707070">
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Fungsional</th>
                                         <th>Status</th>
                                     </tr>
                                     <tr *ngFor="let item of listdataaccount; let i = index">
-                                        <td>{{i + 1}}</td>
+                                        <td>{{i + 1}}.</td>
                                         <td>{{item.fullname}}</td>
                                         <td>{{item.role}}</td>
-                                        <td *ngIf="item.status === 'active'"><button class="btn btn-primary" (click)="editaktif(item.id)">Aktif</button></td>
-                                        <td *ngIf="item.status === 'inactive'"><button class="btn btn-primary" (click)="editnonaktif(item.id)">Non Aktif</button></td>
+                                        <td *ngIf="item.status === 'active'"><button class="btn btn-primary" style="width: 90px;" (click)="editaktif(item.id)">Aktif</button></td>
+                                        <td *ngIf="item.status === 'inactive'"><button class="btn btn-secondary" style="width: 90px;" (click)="editnonaktif(item.id)">Non Aktif</button></td>
                                     </tr>
                                 </table>
                             </div>
@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-6">No HP</div>
                                 <div class="col-6"> 
-                                    <input type="text" class="w-100 form-control" [formControl]="nohpakunFc">
+                                    <input type="text" class="w-100 form-control" [formControl]="nohpakunFc" style="font-family: 'SegoeUI'">
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             <div class="row">
                                 <div class="col-6">Tanggal Lahir</div>
                                 <div class="col-6">
-                                    <input type="date" class="w-100 form-control" [formControl]="tanggallahirFc">
+                                    <input type="date" class="w-100 form-control" [formControl]="tanggallahirFc" style="font-family: 'SegoeUI'">
                                 </div>
                             </div>
                         </div>
@@ -108,21 +108,20 @@
                         </div>
                         <div class="col-12 mt-2">
                             <div class="row">
-                                <div class="col-2">Batasan Tugas</div>
-                                <div class="col-10">
+                                <div class="col-3">Batasan Tugas</div>
+                                <div class="col-12">
                                     <div class="row">
-                                        <div class="col-12" *ngIf="optionfungsionalFc.value === 'AO/CMO/Sales'">
-                                            <div class="col-12">
+                                            <div class="col-12" *ngIf="optionfungsionalFc.value === 'AO/CMO/Sales'">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <input type="checkbox" [formControl]="persetujuanFc" (change)='changepersetujuanselect()'>
                                                         Persetujuan
                                                     </div>
                                                     <div class="col-6">
-                                                        <select class="form-control" [formControl]="optionperstujuanFc">
+                                                        <select class="form-control" [formControl]="optionperstujuanFc" style="font-family: 'SegoeUI'">
                                                             <option [defaultSelected]=true hidden value="">Pilih
                                                             </option>
-                                                            <option value="1">Maksimal Rp 1.000.000</option>
+                                                            <option value="1" >Maksimal Rp 1.000.000</option>
                                                             <option value="3">Maksimal Rp 3.000.000</option>
                                                             <option value="5">Maksimal Rp 5.000.000</option>
                                                             <option value="10">Maksimal Rp 10.000.000</option>
@@ -131,14 +130,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 mt-1">
+                                            <div class="col-12 mt-1" *ngIf="optionfungsionalFc.value === 'AO/CMO/Sales'">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <input type="checkbox" [formControl]="pencarianFc" (change)="changepencairanselect()">
                                                         Percairan
                                                     </div>
                                                     <div class="col-6">
-                                                        <select class="form-control" [formControl]="optionpencarianFc">
+                                                        <select class="form-control" [formControl]="optionpencarianFc" style="font-family: 'SegoeUI'">
                                                             <option [defaultSelected]=true hidden value="">Pilih
                                                             </option>
                                                             <option value="5">Maksimal Rp 5.000.000</option>
@@ -148,15 +147,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 mt-1">
+                                            <div class="col-12 mt-1" *ngIf="optionfungsionalFc.value === 'AO/CMO/Sales'">
                                                 <input type="checkbox" [formControl]="anguranFc">
                                                 Pembayaran Angsuran
                                             </div>
-                                            <div class="col-12 mt-1">
+                                            <div class="col-12 mt-1" *ngIf="optionfungsionalFc.value === 'AO/CMO/Sales'">
                                                 <input type="checkbox" [formControl]="penagihanFc">
                                                 Penagihan
                                             </div>
-                                        </div>
                                         <div class="col-12" *ngIf="optionfungsionalFc.value === 'Admin Koperasi' || optionfungsionalFc.value === 'Super Admin'">
                                             <div class="col-12">
                                                 <input type="checkbox" [formControl]="kinjerkoperasiFc">

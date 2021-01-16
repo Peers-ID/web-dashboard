@@ -9,400 +9,443 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h5>Data Pribadi</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nomor Indentitas</label>
+                                        <div class="content-box">
+                                            <h5 class="title">Data Pribadi</h5>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nomor Indentitas</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="nomoridentitasFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="nomoridentitasFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>No Handphone</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">No Handphone</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="nomorhandphoneFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="nomorhandphoneFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Email</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Email</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="emailFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="emailFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nama Lengkap (KTP)</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nama Lengkap (KTP)</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="namalengkapFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="namalengkapFc" >
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Tempat Lahir</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Tempat Lahir</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="tempatlahirFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="tempatlahirFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Tanggal Lahir</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Tanggal Lahir</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="tanggallahirFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="tanggallahirFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Usia</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Usia</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="usiaFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="usiaFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Jenis Kelamin</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Jenis Kelamin</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="jeniskelaminFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="jeniskelaminFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Status Pernikahan</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Status Pernikahan</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="statuspernikahanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="statuspernikahanFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Pendidikan Terakhir</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Pendidikan Terakhir</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="pendidikanterakhirFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="pendidikanterakhirFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nama Gadis Ibu Kandung</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="namagadisibukandungFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-1">
-                                        <h5>Alamat (KTP)</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Jalan,No Rumah,RT,RW</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktpjalanFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Provinsi</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktpprovinsiFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kota / Kabupate</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktpkotaFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kecamatan</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktpkecamatanFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kelurahan / Desa</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktpkelurahanFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kode Pos</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktpkodeposFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Status Tempat Tinggal (KTP)</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktpstatustempatFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Lama Tinggal</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="ktplamatinggalFc">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nama Gadis Ibu Kandung</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox"
+                                                                [formControl]="namagadisibukandungFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-1">
-                                        <h5>Survey</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Luas Rumah</label>
+                                    <div class="col-12 mt-5">
+                                        <div class="content-box">
+                                            <h5 class="title">Alamat (KTP)</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Jalan,No Rumah,RT,RW</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktpjalanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="luasrumahFc">
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Provinsi</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktpprovinsiFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kota / Kabupaten</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktpkotaFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kecamatan</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktpkecamatanFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kelurahan / Desa</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktpkelurahanFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kode Pos</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktpkodeposFc">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Jenis Atap</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Status Tempat Tinggal (KTP)</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktpstatustempatFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="jenisatapFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Jenis Dinding</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="jenisdindingFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kondisi Rumah</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="kondisirumahFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Letak Rumah</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="letakrumahFc" >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Tanggungan Keluarga</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="tanggungankeluargaFc" >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Data Fisik Perabot & Elektronik</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="datafisikperabotFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Akses ke lembaga keuangan lain</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="akseslembagaFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Informasi Tentang Usaha</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="informasiusahaFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Indeks Rumah</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="indexrumahFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Indeks Aset</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="indexasetFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kepemilikan Aset</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="kepemilikanasetFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Pendapatan dari luar usaha</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="pendapatanluarFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Perkembangan Aset</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="perkembanganasetFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Perkembangan Usaha</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="perkembanganusahaFc">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Lama Tinggal</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="ktplamatinggalFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-1">
-                                        <h5>Data Pasangan</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nama Pasangan</label>
+                                    <div class="col-12 mt-5">
+                                        <div class="content-box">
+                                            <h5 class="title">Survey</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Luas Rumah</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="luasrumahFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="namapasanganFc">
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Jenis Atap</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="jenisatapFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Jenis Dinding</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="jenisdindingFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kondisi Rumah</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="kondisirumahFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Letak Rumah</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="letakrumahFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Tanggungan Keluarga</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="tanggungankeluargaFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Data Fisik Perabot & Elektronik</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="datafisikperabotFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Akses ke lembaga keuangan lain</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="akseslembagaFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Informasi Tentang Usaha</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="informasiusahaFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Indeks Rumah</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="indexrumahFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Indeks Aset</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="indexasetFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kepemilikan Aset</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="kepemilikanasetFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Pendapatan dari luar usaha</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="pendapatanluarFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Perkembangan Aset</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="perkembanganasetFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Perkembangan Usaha</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="perkembanganusahaFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nomor Indentitas Pasangan</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-5">
+                                        <div class="content-box">
+                                            <h5 class="title">Data Pasangan</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nama Pasangan</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="namapasanganFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="nomorpasanganFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Pekerjaan Pasangan</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nomor Indentitas Pasangan</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="nomorpasanganFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="pekerjaanpasanganFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nomor Handphone </label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Pekerjaan Pasangan</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="pekerjaanpasanganFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="nomorhandphonepasanganFc">
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nomor Handphone </label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox"
+                                                                [formControl]="nomorhandphonepasanganFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -413,383 +456,428 @@
                             <div class="col-6">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h5>Data Pekerjaan</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Memiliki NPWP ?</label>
+                                        <div class="content-box">
+                                            <h5 class="title">Data Pekerjaan</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Memiliki NPWP ?</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="memilikinpwpFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="memilikinpwpFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nomor NPWP</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nomor NPWP</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="nomornpwpFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="nomornpwpFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Pekerjaan / Usaha</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Pekerjaan / Usaha</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="pekerjaanusahaFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="pekerjaanusahaFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Jenis UMKM</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Jenis UMKM</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="jenisumkmFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="jenisumkmFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nama Perusahaan / Usaha</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nama Perusahaan / Usaha</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="namaperusahaanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="namaperusahaanFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Lama Bekerja / Usaha</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Lama Bekerja / Usaha</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="lamabekerjaFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="lamabekerjaFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Penghasilan / Omset Usaha</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Penghasilan / Omset Usaha</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="penghasilFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="penghasilFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Alamat Usaha(Jalan,No)</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Alamat Usaha(Jalan,No)</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="jalanpekerjaanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="jalanpekerjaanFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Provinsi</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Provinsi</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="provinsipekerjaanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="provinsipekerjaanFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kota / Kabupaten</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kota / Kabupaten</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="kotapekerjaanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="kotapekerjaanFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kecamatan</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kecamatan</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="kecamatanpekerjaanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="kecamatanpekerjaanFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kelurahan / Desa</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kelurahan / Desa</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="kelurahanpekerjaanFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="kelurahanpekerjaanFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kode Pos</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="kodepospekerjaanFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-1">
-                                        <h5>Alamat (Domisili)</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Apakah alamat domisili sama dengan KTP ?</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="alamtsesuaiktpFc" (change)="changequestion()">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Jalan,No Rumah,RT,RW</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisilijalanFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Provinsi</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisiliprovinsiFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kota / Kabupate</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisilikotaFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kecamatan</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisilikecamatanFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kelurahan / Desa</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisilikelurahanFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kode Pos</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisilikodeposFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Status Tempat Tinggal (Domisili)</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisilistatustempatFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Lama Tinggal</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="domisililamatinggalFc">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kode Pos</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="kodepospekerjaanFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-1">
-                                        <h5>Kontak Darurat</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nama Kontak Darurat</label>
+                                    <div class="col-12 mt-5">
+                                        <div class="content-box">
+                                            <h5 class="title">Alamat (Domisili)</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Apakah alamat domisili sama dengan KTP ?</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="alamtsesuaiktpFc"
+                                                                (change)="changequestion()">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="namakontakdaruratFc">
+                                                    <div class="line"></div>
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Jalan,No Rumah,RT,RW</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="domisilijalanFc">
+                                                        </div>
                                                     </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nomor Hanphone</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Provinsi</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="domisiliprovinsiFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="nomorhandphonedaruratFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Hubungan dengan kontak darurat</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kota / Kabupaten</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="domisilikotaFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="hubungandaruratFc">
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kecamatan</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="domisilikecamatanFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kelurahan / Desa</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="domisilikelurahanFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kode Pos</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="domisilikodeposFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Status Tempat Tinggal (Domisili)</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox"
+                                                                [formControl]="domisilistatustempatFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Lama Tinggal</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox"
+                                                                [formControl]="domisililamatinggalFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-1">
-                                        <h5>Data Penjamin</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nama Penjamin</label>
+                                    <div class="col-12 mt-5">
+                                        <div class="content-box">
+                                            <h5 class="title">Kontak Darurat</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nama Kontak Darurat</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="namakontakdaruratFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="namapenjaminFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Nomor Hanphone</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nomor Handphone</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox"
+                                                                [formControl]="nomorhandphonedaruratFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="nomorpenjaminFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Hubungan dengan penjamin</label>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="hubunganpenjaminFc">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Hubungan dengan kontak darurat</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="hubungandaruratFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-1">
-                                        <h5>Dokumen</h5>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>KTP</label>
+                                    <div class="col-12 mt-5">
+                                        <div class="content-box">
+                                            <h5 class="title">Data Penjamin</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nama Penjamin</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="namapenjaminFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumenktpFc">
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Nomor Handphone</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="nomorpenjaminFc">
+                                                        </div>
+                                                    </div>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Hubungan dengan penjamin</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="hubunganpenjaminFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>SIM</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-5">
+                                        <div class="content-box">
+                                            <h5 class="title">Dokumen</h5>
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">KTP</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumenktpFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumensimFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Kartu Keluarga</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">SIM</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumensimFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumenkkFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Surat Keterangan Bekerja</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Kartu Keluarga</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumenkkFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumensuratkerjaFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Slip Gaji</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Surat Keterangan Bekerja</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumensuratkerjaFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumenslipgajiFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Akta Nikah</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Slip Gaji</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumenslipgajiFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumenaktanikahFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>BPKB</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Akta Nikah</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumenaktanikahFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumenbpkbFc">
-                                                    </div>
+                                                    <div class="line"></div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <label>Dokumen Lainnya</label>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">BPKB</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumenbpkbFc">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="checkbox" [formControl]="dokumenlainnyaFc">
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-10" style="margin: 5px 0px;">
+                                                            <label class="mb-0">Dokumen Lainnya</label>
+                                                        </div>
+                                                        <div class="col-2" style="border-left: solid 1px #d4d4d4;align-self: center;">
+                                                            <input type="checkbox" [formControl]="dokumenlainnyaFc">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -818,4 +906,3 @@
     </div>
 </div>
 <app-notification></app-notification>
-

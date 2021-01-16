@@ -21,6 +21,11 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets"
+              ]
+            },
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -31,7 +36,9 @@
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,7 +100,9 @@
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js"
+            ]
           }
         },
         "lint": {
@@ -126,7 +135,12 @@
           "options": {
             "outputPath": "dist/server",
             "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "tsConfig": "tsconfig.server.json",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets"
+              ]
+            }
           },
           "configurations": {
             "production": {

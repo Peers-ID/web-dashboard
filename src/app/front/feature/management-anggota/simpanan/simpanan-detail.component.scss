@@ -2,17 +2,18 @@
     min-height: 70vh;
 }
 table{
-    width: 100%; border: 1px solid grey;
+    width: 100%;
+    border: 1px solid #c2c2c2 !important
 }
 tr{
-    border: 1px solid grey;
+    border: 1px solid #c2c2c2 !important
 }
 td{
-    border: 1px solid grey;
+    border: 1px solid #c2c2c2 !important;
     padding: 10px;  
 }
 th{
-    border: 1px solid grey;
+    border: 1px solid #c2c2c2 !important;
     padding: 10px;
     cursor: pointer;
 }

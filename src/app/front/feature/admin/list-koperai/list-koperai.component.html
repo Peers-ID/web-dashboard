@@ -5,14 +5,14 @@
             <div class="col-12">
                 <div class="row justify-content-between">
                     <div class="col-6 mt-4">
-                        <input type="text" class="form-control w-100" placeholder="search..." >
-                        <button class="btn btn-primary btn-cari">Cari</button>
+                        <!-- <input type="text" class="form-control w-100" placeholder="search..." >
+                        <button class="btn btn-primary btn-cari">Cari</button> -->
                     </div>
                     <div class="col-12 mt-5">
                         <div class="row">
                             <div class="col-12" *ngIf="listkoperasi.length > 0">
-                                <table style="width: 100%">
-                                    <tr>
+                                <table style="width: 100%; text-align: center;">
+                                    <tr style="background-color: #f3f7fd; font-size: 14px; color: #707070">
                                         <th>No</th>
                                         <th>Tanggal Registrasi</th>
                                         <th>Nama Koperasi</th>
@@ -21,10 +21,10 @@
                                         <th></th>
                                     </tr>
                                     <tr *ngFor="let item of listkoperasi; let i  = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{item.createdAt.split('T')[0]}}</td>
+                                        <td style="font-family: 'SegoeUI'">{{i+1}}</td>
+                                        <td style="font-family: 'SegoeUI'">{{item.createdAt.split('T')[0]}}</td>
                                         <td>{{item.nama_koperasi}}</td>
-                                        <td>{{item.total_karyawan}}</td>
+                                        <td style="font-family: 'SegoeUI'">{{item.total_karyawan}}</td>
                                         <td>{{item.email_pengurus}}</td>
                                         <td><button class="btn btn-primary" (click)="edit(item.id)">Edit</button></td>
                                     </tr>
@@ -54,13 +54,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" >
-                <div class="col-12 pl-5 pr-5" *ngIf="datalistkoperasishow">
+            <div class="modal-body">
+                <div class="col-12 pl-2 pr-2" *ngIf="datalistkoperasishow">
                     <div class="row">
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Data Koperasi</h5>
+                                    <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                        <h5 style="font-size:16px;color:#545454"> Data Koperasi</h5>
+                                    <div class="line"></div>
                                     <div class="row mt-3">
                                         <div class="col-12">
                                             <div class="row">
@@ -68,7 +70,8 @@
                                                     <label class="text-red">Nama Koperasi*</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" class="form-control" [formControl]="namakoperasiFc">
+                                                    <input type="text" class="form-control"
+                                                        [formControl]="namakoperasiFc">
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +81,8 @@
                                                     <label>Nomor Badan Hukum Pendirian</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="number" class="form-control" [formControl]="nomorbadanhukumpendirianFc">
+                                                    <input type="number" class="form-control"
+                                                        [formControl]="nomorbadanhukumpendirianFc" style="font-family: 'SegoeUI'">
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +92,8 @@
                                                     <label>Tanggal Badan Hukum Pendirian</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="date" class="form-control" [formControl]="tanggalbadanhukumberdiriFc">
+                                                    <input type="date" class="form-control"
+                                                        [formControl]="tanggalbadanhukumberdiriFc" style="font-family: 'SegoeUI'">
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +103,8 @@
                                                     <label>Nomor Perubahan Anggaran Dasar Terbaru</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="number" class="form-control" [formControl]="nomorperubahananggarandasarterbaruFc">
+                                                    <input type="number" class="form-control"
+                                                        [formControl]="nomorperubahananggarandasarterbaruFc" style="font-family: 'SegoeUI'">
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +114,8 @@
                                                     <label>Tanggal Perubahan Anggaran Dasar Terbaru</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="date" class="form-control" [formControl]="tanggalperubahananggarandasarFc">
+                                                    <input type="date" class="form-control"
+                                                        [formControl]="tanggalperubahananggarandasarFc" style="font-family: 'SegoeUI'">
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +125,8 @@
                                                     <label>Tanggal RAT Terakhir</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="date" class="form-control" [formControl]="tanggalratterakhirFc">
+                                                    <input type="date" class="form-control"
+                                                        [formControl]="tanggalratterakhirFc" style="font-family: 'SegoeUI'">
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +136,8 @@
                                                     <label class="text-red">Alamat (Sesuai Akta)*</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" class="form-control" [formControl]="alamatsesuaiaktaFc">
+                                                    <input type="text" class="form-control"
+                                                        [formControl]="alamatsesuaiaktaFc">
                                                 </div>
                                             </div>
                                         </div>
@@ -138,8 +147,11 @@
                                                     <label class="text-red">Provinsi *</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <select [formControl]="fcselectprovinsi" class="form-control" style="font-size: 10pt;" (change)="changeprovinsi()" id="provinsiselected">
-                                                        <option [value]="[data.id,data.name]" *ngFor="let data of listprovinsi">{{data.name}}</option>
+                                                    <select [formControl]="fcselectprovinsi" class="form-control"
+                                                        style="font-size: 10pt;" (change)="changeprovinsi()"
+                                                        id="provinsiselected">
+                                                        <option [value]="[data.id,data.name]"
+                                                            *ngFor="let data of listprovinsi">{{data.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -150,8 +162,10 @@
                                                     <label class="text-red">Kota / Kabupaten*</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <select [formControl]="fcselectkabupaten" class="form-control" style="font-size: 10pt;" (change)="changekabupaten()">
-                                                        <option [value]="[data.id,data.name]" *ngFor="let data of listkabupaten">{{data.name}}</option>
+                                                    <select [formControl]="fcselectkabupaten" class="form-control"
+                                                        style="font-size: 10pt;" (change)="changekabupaten()">
+                                                        <option [value]="[data.id,data.name]"
+                                                            *ngFor="let data of listkabupaten">{{data.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -162,8 +176,10 @@
                                                     <label class="text-red">Kecamatan*</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <select [formControl]="fcselectkecamatan" class="form-control" style="font-size: 10pt;" (change)="changekecamatan()">
-                                                        <option [value]="[data.id,data.name]" *ngFor="let data of listkecamatan">{{data.name}}</option>
+                                                    <select [formControl]="fcselectkecamatan" class="form-control"
+                                                        style="font-size: 10pt;" (change)="changekecamatan()">
+                                                        <option [value]="[data.id,data.name]"
+                                                            *ngFor="let data of listkecamatan">{{data.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -174,8 +190,10 @@
                                                     <label class="text-red">Kelurahan / Desa*</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <select [formControl]="fcselectkelurahan" class="form-control" style="font-size: 10pt;">
-                                                        <option [value]="[data.id,data.name]" *ngFor="let data of listkelurahan">{{data.name}}</option>
+                                                    <select [formControl]="fcselectkelurahan" class="form-control"
+                                                        style="font-size: 10pt;">
+                                                        <option [value]="[data.id,data.name]"
+                                                            *ngFor="let data of listkelurahan">{{data.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -186,7 +204,7 @@
                                                     <label>Kode Pos</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="number" class="form-control" [formControl]="kodeposFc">
+                                                    <input type="number" class="form-control" [formControl]="kodeposFc" style="font-family: 'SegoeUI'">
                                                 </div>
                                             </div>
                                         </div>
@@ -196,7 +214,8 @@
                                                     <label>Bentuk Koperasi</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" class="form-control" [formControl]="bentukkoperasiFc">
+                                                    <input type="text" class="form-control"
+                                                        [formControl]="bentukkoperasiFc">
                                                 </div>
                                             </div>
                                         </div>
@@ -206,10 +225,12 @@
                                                     <label class="text-red">Jenis Koperasi*</label>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" class="form-control" [formControl]="jeniskoperasiFc">
+                                                    <input type="text" class="form-control"
+                                                        [formControl]="jeniskoperasiFc">
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -217,155 +238,201 @@
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Data Pengurus</h5>
-                                </div>
-                                <div class="col-12 mt-3">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label class="text-red">Nama Lengkap Ketua*</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="namalengkapketuaFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Nama Lengkap Sekretaris</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="namalengkapsekretarisFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Nama Lengkap Bendahara</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="namalengkapbendaharaFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Foto KTP Ketua</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="file" class="w-100" #imageInput type="file" accept=".jpeg,.png,.jpg"
-                                            (change)="processFile($event)">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Nama Pengelola Harian Koperasi</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="namapengelolahariankoperasiFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-4">
-                                    <h5>Data Kelembagaan</h5>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Jumlah Anggota Pria</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="number" class="form-control" [formControl]="jumlahanggotapriaFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Jumlah Anggota Wanita</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="number" class="form-control" [formControl]="jumlahanggotawanitaFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Total Manajer</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="number" class="form-control" [formControl]="totalmanajerFc">
+                                    <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h5 style="font-size:16px;color:#545454"> Data Pengurus</h5>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div class="col-12 mt-3">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label class="text-red">Nama Lengkap Ketua*</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control"
+                                                            [formControl]="namalengkapketuaFc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Nama Lengkap Sekretaris</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control"
+                                                            [formControl]="namalengkapsekretarisFc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Nama Lengkap Bendahara</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control"
+                                                            [formControl]="namalengkapbendaharaFc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Foto KTP Ketua</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <!-- <input type="file" class="w-100" #imageInput type="file" accept=".jpeg,.png,.jpg"
+                                                    (change)="processFile($event)"> -->
+                                                        <label class="btn custom-input-btn">
+                                                            <input type="file" name="photo" style="display:none" accept="*"
+                                                                accept=".jpeg,.png,.jpg" #imageInput
+                                                                (change)="processFile($event)">
+                                                            <i class="fa fa-cloud-upload"></i> {{namechoosefile}}
+                                                        </label>
+                                                        <button class="btn btn-primary" (click)="preview()" *ngIf="fotoktp">Preview</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Nama Pengelola Harian Koperasi</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control"
+                                                            [formControl]="namapengelolahariankoperasiFc">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <h5>Data Lainnya</h5>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label class="text-red">Nomor Induk Koperasi*</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="number" class="form-control" [formControl]="nomorindukkoperasiFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Status Nomor Induk Koperasi</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="statusnomorindukkoperasiFc">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Status Grade</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="statusgradeFc">
+                                    <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                        <div class="row">
+                                            <div class="col-12 mt-4">
+                                                <h5 style="font-size:16px;color:#545454"> Data Kelembagaan</h5>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Jumlah Anggota Pria</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="number" class="form-control"
+                                                            [formControl]="jumlahanggotapriaFc" style="font-family: 'SegoeUI'">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Jumlah Anggota Wanita</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="number" class="form-control"
+                                                            [formControl]="jumlahanggotawanitaFc" style="font-family: 'SegoeUI'">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Total Manajer</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="number" class="form-control"
+                                                            [formControl]="totalmanajerFc" style="font-family: 'SegoeUI'">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <h5>Kontak</h5>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label>Jabatan</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="jabatanFc">
+                                    <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                        <div class="row">
+                                            <div class="col-12 mt-4">
+                                                <h5 style="font-size:16px;color:#545454"> Data Lainnya</h5>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label class="text-red">Nomor Induk Koperasi*</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="number" class="form-control"
+                                                            [formControl]="nomorindukkoperasiFc" style="font-family: 'SegoeUI'">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Status Nomor Induk Koperasi</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control"
+                                                            [formControl]="statusnomorindukkoperasiFc" style="font-family: 'SegoeUI'">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Status Grade</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control"
+                                                            [formControl]="statusgradeFc">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label class="text-red">Nomor Handphone *</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="nomorhandphoneFc"> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label class="text-red">Email*</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" [formControl]="emailFc">
+                                <div class="col-12 mt-4">
+                                    <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                        <div class="row">
+                                            <div class="col-12 mt-4">
+                                                <h5 style="font-size:16px;color:#545454"> Kontak </h5>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Jabatan</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control" [formControl]="jabatanFc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label class="text-red">Nomor Handphone *</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control"
+                                                            [formControl]="nomorhandphoneFc" style="font-family: 'SegoeUI'">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label class="text-red">Email*</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control" [formControl]="emailFc">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -393,6 +460,26 @@
         </div>
     </div>
 </div>
+<div bsModal #previewimage="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabelpreview"
+    aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="previewClose()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h5 style="font-size:16px;color:#3a89c5">Preview</h5>
+                    </div>
+                    <div class="col-12 mt-4 text-center">
+                        <img [src]="previewfoto" alt="" style="height: 279px;width: 279px;" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <app-notification></app-notification>
-
-

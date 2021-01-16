@@ -1,23 +1,28 @@
 <div class="col-md-12 mt-2">
     <div class="card r-0 b-0">
+        <div class="card-body load-container" *ngIf="loading">
+            <div class="col-12 text-center">
+                Load Data ...
+            </div>
+        </div>
         <div class="card-body">
-            <div class="col-12" *ngIf="showkinerja === 1">
-                <div class="row justify-content-center">
-                    <div class="col-12">
+            <div class="col-12" *ngIf="showkinerja === 1 && !loading">
+                <div class="row">
+                    <div class="col-6" id="containermember">
                         <chart [options]="optionsmember"></chart>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-6 mt-2" id="containerpencairan">
                         <chart [options]="optionspencairan"></chart>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-6 mt-2" id="containersetoran">
                         <chart [options]="optionssetoran"></chart>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-6 mt-2" id="containerpinjaman">
                         <chart [options]="optionspinjaman"></chart>
                     </div>
                 </div>
             </div>
-            <div class="col-12 text-center" *ngIf="showkinerja === 0">
+            <div class="col-12 text-center" *ngIf="showkinerja === 0 && !loading">
                 <h1 style="margin-top: 15%;">This feature is hidden for you</h1>
             </div>
         </div>

@@ -29,6 +29,26 @@ $fa-font-path : '~font-awesome/fonts';
 @import "~font-awesome/scss/icons";
 @import "~font-awesome/scss/screen-reader";
 // @import '~font-awesome/scss/font-awesome.scss';
+@font-face {
+  font-family: 'Raleway-Regular';
+  src: url(assets/font/Raleway-Regular.ttf) format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url(assets/font/Raleway-Bold.ttf) format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Raleway-Italic';
+  src: url(assets/font/Raleway-Italic.ttf) format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SegoeUI';
+  src: url(assets/font/segoeui.ttf) format("truetype");
+  font-display: swap;
+}
 .text-red{
   color:red;
 }
@@ -69,8 +89,10 @@ $fa-font-path : '~font-awesome/fonts';
 .brand-wrapper {
     height: unset !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+  height: 100%; 
+    font-family: 'Raleway-Regular' !important;
+}
 .form-control:focus {
     box-shadow: none !important;
 }

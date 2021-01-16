@@ -30,6 +30,8 @@ export class SimpananDetailByidComponent implements OnInit {
   contentkonfirmasi: string;
   datapenarikan: any;
   loadingshow: boolean;
+  productname:any;
+  totalsimpanan:any;
   constructor(
     private contentSvc: ContentService,
     public fb: FormBuilder,
@@ -50,27 +52,33 @@ export class SimpananDetailByidComponent implements OnInit {
           this.namesimpanan = result.name;
           this.idsimpanan = result.id;
           this.typesimpanan = result.type;
-          this.contentSvc.getsimpananDetail(this.typesimpanan, this.idsimpanan).subscribe(
+          this.productname = result.product;
+          this.contentSvc.getsimpanantotalbyType(this.namesimpanan, this.typesimpanan, this.idsimpanan).subscribe(
             result => {
-              this.anggotasimpananshowdetailtype = true;
-              this.listdatasimpanananggotadetailtype = []
-              if (result.status === 200) {
-                this.detailsimpanan = result.data.slice(-1)[0].total_simpanan
-                result.data.forEach(element => {
-                  this.listdatasimpanananggotadetailtype.push(element)
-                  if (element.simpanan_pokok) {
-                    element['transaksi'] = element.simpanan_pokok
-                  } else if (element.simpanan_wajib) {
-                    element['transaksi'] = element.simpanan_wajib
-                  } else {
-                    element['transaksi'] = element.simpanan_sukarela
-                  }
-                });
-              } else {
-                this.listdatasimpanananggotadetailtype = []
+              if (result.data.total_simpanan){
+                this.anggotasimpananshowdetailtype = true;
               }
-            }
-          )
+              this.contentSvc.getsimpananDetail(this.namesimpanan, this.typesimpanan, this.idsimpanan).subscribe(
+                result => {
+                  this.listdatasimpanananggotadetailtype = []
+                  if (result.status === 200) {
+                    this.totalsimpanan = result.data.slice(-1)[0].total_simpanan
+                    result.data.forEach(element => {
+                      if (element.simpanan_pokok) {
+                        element['transaksi'] = element.simpanan_pokok
+                      } else if (element.simpanan_wajib) {
+                        element['transaksi'] = element.simpanan_wajib
+                      } else {
+                        element['transaksi'] = element.simpanan_sukarela
+                      }
+                      this.listdatasimpanananggotadetailtype.push(element)
+                    });
+                  } else {
+                    this.listdatasimpanananggotadetailtype = []
+                  }
+                }
+              )
+            })
         }
       }
     )
@@ -89,14 +97,15 @@ export class SimpananDetailByidComponent implements OnInit {
   btnya() {
     this.loadingshow = true;
     this.konfirmasimodal.hide();
-    if (this.detailsimpanan !== 0){
+    if (this.totalsimpanan !== 0) {
       this.loadingshow = false;
-      if (this.datapenarikan <= this.detailsimpanan){
+      if (this.datapenarikan <= this.totalsimpanan) {
         const datapost = {
-          "id_member": this.idsimpanan,
-          "jumlah_penarikan": this.datapenarikan
+          "id_member": this.typesimpanan,
+          "jumlah_penarikan": this.datapenarikan,
+          "id_loan":this.idsimpanan
         }
-        this.contentSvc.postPenarikanSimpanan(this.typesimpanan, datapost).subscribe(
+        this.contentSvc.postPenarikanSimpanan(this.namesimpanan, datapost).subscribe(
           result => {
             if (result.status === 200) {
               this.notifSvc.addNotification({
@@ -115,14 +124,14 @@ export class SimpananDetailByidComponent implements OnInit {
             this.loadingshow = false
           }
         )
-      }else{
+      } else {
         this.notifSvc.addNotification({
           type: 'danger',
           head: 'danger',
           body: 'Saldo tidak mencukupi'
         });
       }
-    }else{
+    } else {
       this.loadingshow = false;
       this.notifSvc.addNotification({
         type: 'danger',

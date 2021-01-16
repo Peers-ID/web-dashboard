@@ -87,7 +87,7 @@ const routes: Routes = [
         canActivate: [AuthManajemenAnggotaGuard],
       },
       {
-        path: "management-anggota-simpanan/:id/:name/:type",
+        path: "management-anggota-simpanan/:id/:name/:type/:product",
         component:SimpananDetailByidComponent,
         canActivate: [AuthManajemenAnggotaGuard],
       },

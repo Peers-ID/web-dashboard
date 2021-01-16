@@ -134,12 +134,12 @@ export class ContentService {
     const url = `loan/simpanan/${id}/total`;
     return this.api.getData(url);
   }
-  getsimpanantotalbyType(type:any,id:any): Observable<any> {
-    const url = `loan/${type}/${id}/total`;
+  getsimpanantotalbyType(type:any,id:any,idloan:any): Observable<any> {
+    const url = `loan/${type}/${id}/${idloan}/total`;
     return this.api.getData(url);
   }
-  getsimpananDetail(type:any,id:any): Observable<any> {
-    const url = `loan/${type}/${id}/detail`;
+  getsimpananDetail(type:any,id:any,idloan:any): Observable<any> {
+    const url = `loan/${type}/${id}/${idloan}/detail`;
     return this.api.getData(url);
   }
   postPenarikanSimpanan(type: any,data:any): Observable<any> {

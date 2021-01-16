@@ -4,6 +4,7 @@ import { ContentService } from '@app/core';
 import { DatepickerConfig } from 'ngx-bootstrap';
 import { element } from 'protractor';
 import { MergeMapSubscriber } from 'rxjs/internal/operators/mergeMap';
+import * as $ from "jquery";
 @Component({
   selector: 'app-kinerja-koperasi',
   templateUrl: './kinerja-koperasi.component.html',
@@ -15,6 +16,7 @@ export class KinerjaKoperasiComponent implements OnInit {
   optionssetoran:object;
   optionspinjaman:object;
   showkinerja:number;
+  loading:boolean = true;
   constructor(
     private contentSvc: ContentService,
   ) { }
@@ -27,6 +29,7 @@ export class KinerjaKoperasiComponent implements OnInit {
 
 
   loaddataagraph() {
+    this.loading = false
     this.contentSvc.getGraph().subscribe(
       result => {
         let datacategories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -68,9 +71,11 @@ export class KinerjaKoperasiComponent implements OnInit {
           { name: 'setoran', data: datasetoran },
           { name: 'pinjaman', data: datapinjaman },
         ]
-
         this.optionsmember = {
           title: { text: 'Member Monitoring' },
+          chart:{
+            width: $("#containermember").width(),
+          },
           xAxis: {
             categories: datacategories
           },
@@ -94,6 +99,9 @@ export class KinerjaKoperasiComponent implements OnInit {
           xAxis: {
             categories: datacategories
           },
+          chart:{
+            width: $("#containerpencairan").width(),
+          },
           yAxis: {
             title: {
               text: 'Value'
@@ -111,6 +119,9 @@ export class KinerjaKoperasiComponent implements OnInit {
         };
         this.optionssetoran = {
           title: { text: 'Setoran Monitoring' },
+          chart:{
+            width: $("#containersetoran").width(),
+          },
           xAxis: {
             categories: datacategories
           },
@@ -131,6 +142,9 @@ export class KinerjaKoperasiComponent implements OnInit {
         };
         this.optionspinjaman = {
           title: { text: 'Pinjaman Monitoring' },
+          chart:{
+            width: $("#containerpinjaman").width(),
+          },
           xAxis: {
             categories: datacategories
           },

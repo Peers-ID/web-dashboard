@@ -4,37 +4,39 @@
             <div class="col-12">
                 <div class="row justify-content-between">
                     <div class="col-12 mt-4">
-                        <div class="row">
-                            <div class="col-3">
-                                <input type="text" class="form-control w-100" placeholder="search...">
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <label class="text-center w-100" style="  border: solid 1px #c2c2c2;border-radius: 23px;background-color: #eff7ff;color: #1b75bc;font-weight: bold; padding-top: 5px;padding-bottom: 5px;">{{namesimpanan}}</label>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 mt-4">
                         <div class="row">
                             <div class="col-12" *ngIf="listdatasimpanananggotadetail.length > 0">
-                                <table style="width: 100%">
-                                    <tr>
-                                        <th class="text-center">{{namesimpanan}}</th>
+                                <table style="width: 100%; text-align: center;" *ngFor="let item of listdatasimpanananggotadetail">
+                                    <tr style="background-color: #f3f7fd; font-size: 14px; color: #414141">
+                                        <th>Produk Pinjaman</th>
+                                        <th>{{item.nama_produk}}</th>
                                     </tr>
-                                </table>
-                                <table style="width: 100%">
-                                    <tr>
-                                        <th (click)="detailsimpananbytype('simpanan_pokok' , totalsimpananpokok)">Simpanan Pokok</th>
-                                        <th>Rp. {{utilSvc.formatNumber(totalsimpananpokok)}}</th>
+                                    <tr style="background-color: #f3f7fd; font-size: 14px; color: #414141">
+                                        <th>Status Pinjaman</th>
+                                        <th>{{item.desc_status}}</th>
                                     </tr>
-                                    <tr>
-                                        <th (click)="detailsimpananbytype('simpanan_wajib' , totalsimpananwajib)">Simpanan Wajib</th>
-                                        <th>Rp. {{utilSvc.formatNumber(totalsimpananwajib)}}</th>
+                                    <tr style="color: #707070;font-size: 13px;">
+                                        <th (click)="detailsimpananbytype('simpanan_pokok' , item.id , item.nama_produk)">Simpanan Pokok</th>
+                                        <th style="font-family: 'SegoeUI'">Rp. {{utilSvc.formatNumber(item.SimpananPokok[0].total_simpanan)}}</th>
                                     </tr>
-                                    <tr>
-                                        <th (click)="detailsimpananbytype('simpanan_sukarela' , totalsimpanansukarela)">Simpanan Sukarela</th>
-                                        <th>Rp. {{utilSvc.formatNumber(totalsimpanansukarela)}}</th>
+                                    <tr style="color: #707070;font-size: 13px;">
+                                        <th (click)="detailsimpananbytype('simpanan_wajib' , item.id , item.nama_produk)" >Simpanan Wajib</th>
+                                        <th style="font-family: 'SegoeUI'">Rp. {{utilSvc.formatNumber(item.SimpananWajib[0].total_simpanan)}}</th>
                                     </tr>
-                                </table>
-                                <table style="width: 100%" class="mt-2">
-                                    <tr>
-                                        <th class="text-center">Total Simpanan Rp. {{utilSvc.formatNumber(totalsimpanan)}}</th>
+                                    <tr style="color: #707070;font-size: 13px;">
+                                        <th (click)="detailsimpananbytype('simpanan_sukarela' , item.id , item.nama_produk)" >Simpanan Sukarela</th>
+                                        <th style="font-family: 'SegoeUI'" >Rp. {{utilSvc.formatNumber(item.SimpananSukarela[0].total_simpanan)}}</th>
+                                    </tr>
+                                    <tr style="background-color: #f3f7fd; font-size: 14px; color: #414141">
+                                        <th>Total Simpanan</th>
+                                        <th style="font-family: 'SegoeUI'">Rp. {{utilSvc.formatNumber(item.SimpananPokok[0].total_simpanan+item.SimpananWajib[0].total_simpanan+item.SimpananSukarela[0].total_simpanan)}}</th>
                                     </tr>
                                 </table>
                             </div>

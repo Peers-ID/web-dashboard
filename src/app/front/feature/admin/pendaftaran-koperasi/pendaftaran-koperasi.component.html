@@ -2,14 +2,15 @@
 <div class="col-md-12 mt-2">
     <div class="card r-0 b-0">
         <div class="card-body">
-            <div class="col-12">
-                <div class="row justify-content-between">
+                <div class="row">
                     <div class="col-12 mt-4">
                         <div class="row">
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <h5>Data Koperasi</h5>
+                                    <div class="col-12" >
+                                        <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                            <h5 style="font-size:16px;color:#545454"> Data Koperasi</h5>
+                                        <div class="line"></div>
                                         <div class="row mt-3">
                                             <div class="col-12">
                                                 <div class="row">
@@ -27,7 +28,7 @@
                                                         <label>Nomor Badan Hukum Pendirian</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input FrontDigitOnly type="number" class="form-control" [formControl]="nomorbadanhukumpendirianFc">
+                                                        <input FrontDigitOnly type="number" class="form-control" [formControl]="nomorbadanhukumpendirianFc" style="font-family: 'SegoeUI'">
                                                     </div>
                                                 </div>
                                             </div>
@@ -37,7 +38,7 @@
                                                         <label>Tanggal Badan Hukum Pendirian</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="date" class="form-control" [formControl]="tanggalbadanhukumberdiriFc">
+                                                        <input type="date" class="form-control" [formControl]="tanggalbadanhukumberdiriFc" style="font-family: 'SegoeUI'">
                                                     </div>
                                                 </div>
                                             </div>
@@ -47,7 +48,7 @@
                                                         <label>Nomor Perubahan Anggaran Dasar Terbaru</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input FrontDigitOnly type="number" class="form-control" [formControl]="nomorperubahananggarandasarterbaruFc">
+                                                        <input FrontDigitOnly type="number" class="form-control" [formControl]="nomorperubahananggarandasarterbaruFc" style="font-family: 'SegoeUI'">
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,7 +58,7 @@
                                                         <label>Tanggal Perubahan Anggaran Dasar Terbaru</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="date" class="form-control" [formControl]="tanggalperubahananggarandasarFc">
+                                                        <input type="date" class="form-control" [formControl]="tanggalperubahananggarandasarFc" style="font-family: 'SegoeUI'">
                                                     </div>
                                                 </div>
                                             </div>
@@ -67,7 +68,7 @@
                                                         <label>Tanggal RAT Terakhir</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="date" class="form-control" [formControl]="tanggalratterakhirFc">
+                                                        <input type="date" class="form-control" [formControl]="tanggalratterakhirFc" style="font-family: 'SegoeUI'">
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,36 +82,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-12 mt-2">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label>Nomor</label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <input type="number" class="form-control" [formControl]="nomorFc">
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                            <!-- <div class="col-12 mt-2">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label>RT</label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <input type="number" class="form-control" [formControl]="rtFc">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label>RW</label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <input type="number" class="form-control" [formControl]="rwFc">
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div class="col-12 mt-2">
                                                 <div class="row">
                                                     <div class="col-6">
@@ -165,7 +136,7 @@
                                                         <label>Kode Pos</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="text" class="form-control" [formControl]="kodeposFc">
+                                                        <input type="text" class="form-control" [formControl]="kodeposFc" style="font-family: 'SegoeUI'">
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,181 +161,194 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <h5>Data Pengurus</h5>
-                                    </div>
-                                    <div class="col-12 mt-3">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label class="text-red">Nama Lengkap Ketua*</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="namalengkapketuaFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Nama Lengkap Sekretaris</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="namalengkapsekretarisFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Nama Lengkap Bendahara</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="namalengkapbendaharaFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Foto KTP Ketua</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="file" class="w-100" #imageInput type="file" accept=".jpeg,.png,.jpg"
-                                                (change)="processFile($event)">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Nama Pengelola Harian Koperasi</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="namapengelolahariankoperasiFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <h5>Data Kelembagaan</h5>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Jumlah Anggota Pria</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input FrontDigitOnly type="number" class="form-control" [formControl]="jumlahanggotapriaFc">
+                                    <div class="12">
+                                        <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h5 style="font-size:16px;color:#545454"> Data Pengurus</h5>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12 mt-3">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label class="text-red">Nama Lengkap Ketua*</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control" [formControl]="namalengkapketuaFc">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Nama Lengkap Sekretaris</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control" [formControl]="namalengkapsekretarisFc">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Nama Lengkap Bendahara</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control" [formControl]="namalengkapbendaharaFc">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Foto KTP Ketua</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <!-- <input type="file" class="w-100" #imageInput type="file" accept=".jpeg,.png,.jpg"
+                                                            (change)="processFile($event)"> -->
+                                                            <label class="btn custom-input-btn">
+                                                                <input type="file" name="photo" style="display:none" accept="*" accept=".jpeg,.png,.jpg" #imageInput (change)="processFile($event)">        
+                                                                <i class="fa fa-cloud-upload"></i> {{namechoosefile}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Nama Pengelola Harian Koperasi</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control" [formControl]="namapengelolahariankoperasiFc">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Jumlah Anggota Wanita</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input FrontDigitOnly type="number" class="form-control" [formControl]="jumlahanggotawanitaFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Total Anggota</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="number" class="form-control" [formControl]="totalanggotaFc">
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Total Manajer</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input FrontDigitOnly type="number" class="form-control" [formControl]="totalmanajerFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label class="text-red">Total Karyawan*</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="number" class="form-control" [formControl]="totalkaryawanFc">
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-12 mt-4">
-                                        <h5>Data Lainnya</h5>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label class="text-red">Nomor Induk Koperasi*</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input FrontDigitOnly type="number" class="form-control" [formControl]="nomorindukkoperasiFc">
+                                    <div class="12 mt-4">
+                                        <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h5 style="font-size:16px;color:#545454"> Data Kelembagaan</h5>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Jumlah Anggota Pria</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input FrontDigitOnly type="number" class="form-control" [formControl]="jumlahanggotapriaFc" style="font-family: 'SegoeUI'">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Jumlah Anggota Wanita</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input FrontDigitOnly type="number" class="form-control" [formControl]="jumlahanggotawanitaFc" style="font-family: 'SegoeUI'">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Total Manajer</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input FrontDigitOnly type="number" class="form-control" [formControl]="totalmanajerFc" style="font-family: 'SegoeUI'">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Status Nomor Induk Koperasi</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="statusnomorindukkoperasiFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Status Grade</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="statusgradeFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <h5>Kontak</h5>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Jabatan</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="jabatanFc">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label class="text-red">Nomor Handphone *</label>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" [formControl]="nomorhandphoneFc"> 
+                                    <div class="12 mt-4" >
+                                        <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h5 style="font-size:16px;color:#545454"> Data Lainnya</h5>
+                                                    <div class="line"></div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label class="text-red">Nomor Induk Koperasi*</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input FrontDigitOnly type="number" class="form-control" [formControl]="nomorindukkoperasiFc" style="font-family: 'SegoeUI'">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Status Nomor Induk Koperasi</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control" [formControl]="statusnomorindukkoperasiFc" style="font-family: 'SegoeUI'">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>Status Grade</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input type="text" class="form-control" [formControl]="statusgradeFc">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label class="text-red">Email*</label>
+                                    <div class="12 mt-4" >
+                                        <div style="border: solid 0.3px #c2c2c2;  padding: 14px 13.4px 19.5px 11px;  border-radius: 11.3px;">
+                                            <div class="row">
+                                                <div class="col-12">
+                                            <h5 style="font-size:16px;color:#545454"> Kontak</h5>
+                                            <div class="line"></div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label>Jabatan</label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" class="form-control" [formControl]="jabatanFc">
+                                                </div>
                                             </div>
-                                            <div class="col-6">
-                                                <input type="email" class="form-control" [formControl]="emailFc">
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="text-red">Nomor Handphone *</label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" class="form-control" [formControl]="nomorhandphoneFc" style="font-family: 'SegoeUI'"> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="text-red">Email*</label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="email" class="form-control" [formControl]="emailFc">
+                                                </div>
+                                            </div>
+                                        </div>
                                             </div>
                                         </div>
                                     </div>
@@ -380,7 +364,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

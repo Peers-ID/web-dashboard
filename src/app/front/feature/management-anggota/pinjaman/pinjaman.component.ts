@@ -26,6 +26,7 @@ export class PinjamanComponent implements OnInit {
   trigerclick: string = 'datapribadi';
   dataloandetailmember: any;
   detailloan:any;
+  detailtenor:any;
   listpembayaranangsuran:any;
   valuehariFc:FormControl = new FormControl()
   cicilanvalueFc:FormControl = new FormControl()
@@ -44,12 +45,22 @@ export class PinjamanComponent implements OnInit {
   listdataprodukanggota:any;
   listsimpanandataget:any;
   dataallurutan = []
+  imageKtp: string = ''
+  imageKk: string = ''
+  imageSuratkerja: string = ''
+  imageSIM: string = ''
+  imageSlipgaji: string = ''
+  imageAktanikah: string = ''
+  imageBPKB: string = ''
+  imageDokumenlainnya: string = ''
+  imageBuktiPencairan:string = ''
   constructor(
     private contentSvc: ContentService,
     public fb: FormBuilder,
     private notifSvc: NotificationService,
     private utilSvc:UtilService
-  ) { }
+  ) {
+   }
 
   ngOnInit() {
         if (!localStorage.getItem("simpanan") || !localStorage.getItem("pelunasan") || !localStorage.getItem("denda") || !localStorage.getItem("sebagian")) {
@@ -134,7 +145,16 @@ export class PinjamanComponent implements OnInit {
         if (result.status !== 500) {
           this.datapinjamananggotashow = true
           this.dataloandetailmember = result.data.member
+          if (result.data.member.dokumen_ktp) this.imageKtp = 'http://api.peers.id/files/' +  result.data.member.dokumen_ktp
+          if (result.data.member.dokumen_kk) this.imageKk = 'http://api.peers.id/files/' +  result.data.member.dokumen_kk
+          if (result.data.member.dokumen_sim) this.imageSIM = 'http://api.peers.id/files/' +  result.data.member.dokumen_sim
+          if (result.data.member.dokumen_keterangan_kerja) this.imageSuratkerja = 'http://api.peers.id/files/' +  result.data.member.dokumen_keterangan_kerja
+          if (result.data.member.dokumen_slip_gaji) this.imageSlipgaji = 'http://api.peers.id/files/' +  result.data.member.dokumen_slip_gaji
+          if (result.data.member.dokumen_akta_nikah) this.imageAktanikah = 'http://api.peers.id/files/' +  result.data.member.dokumen_akta_nikah
+          if (result.data.member.dokumen_bpkb) this.imageBPKB = 'http://api.peers.id/files/' +  result.data.member.dokumen_bpkb
+          if (result.data.member.dokumen_lainnya) this.imageDokumenlainnya = 'http://api.peers.id/files/' +  result.data.member.dokumen_lainnya
           this.listdataprodukanggota = result.data.loan
+
         }else{
           this.datapinjamananggotashow = false
         }
@@ -149,6 +169,8 @@ export class PinjamanComponent implements OnInit {
         if (result.status !== 500){
           this.datapinjamananggotashowdetail = true
           this.detailloan = result.data.loan
+          this.detailtenor = result.data.product
+          if (result.data.loan.member_photo_url) this.imageBuktiPencairan = 'http://api.peers.id/files/' + result.data.loan.member_photo_url
           if (/^\d+$/.test(result.data.loan.bunga_pinjaman)) this.checkbungavalue = true
           else this.checkbungavalue = true
           this.listpembayaranangsuran = result.data.collection

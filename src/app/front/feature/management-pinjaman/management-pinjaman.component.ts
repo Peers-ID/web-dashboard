@@ -31,6 +31,15 @@ export class ManagementPinjamanComponent implements OnInit {
   @ViewChild('pinajamanmodal', { static: false }) public pinajamanmodal: any;
   @ViewChild('konfirmasimodal', { static: false }) public konfirmasimodal: any;
   loadingshow:boolean;
+  imageKtp: string = ''
+  imageKk: string = ''
+  imageSuratkerja: string = ''
+  imageSIM: string = ''
+  imageSlipgaji: string = ''
+  imageAktanikah: string = ''
+  imageBPKB: string = ''
+  imageDokumenlainnya: string = ''
+  imageBuktiPencairan:string = ''
   constructor(
     private contentSvc: ContentService,
     public fb: FormBuilder,
@@ -81,6 +90,14 @@ export class ManagementPinjamanComponent implements OnInit {
       result => {
         if (result.status !== 500) {
           this.dataloandetailmember = result.data.member
+          if (result.data.member.dokumen_ktp) this.imageKtp = 'http://api.peers.id/files/' +  result.data.member.dokumen_ktp
+          if (result.data.member.dokumen_kk) this.imageKk = 'http://api.peers.id/files/' +  result.data.member.dokumen_kk
+          if (result.data.member.dokumen_sim) this.imageSIM = 'http://api.peers.id/files/' +  result.data.member.dokumen_sim
+          if (result.data.member.dokumen_keterangan_kerja) this.imageSuratkerja = 'http://api.peers.id/files/' +  result.data.member.dokumen_keterangan_kerja
+          if (result.data.member.dokumen_slip_gaji) this.imageSlipgaji = 'http://api.peers.id/files/' +  result.data.member.dokumen_slip_gaji
+          if (result.data.member.dokumen_akta_nikah) this.imageAktanikah = 'http://api.peers.id/files/' +  result.data.member.dokumen_akta_nikah
+          if (result.data.member.dokumen_bpkb) this.imageBPKB = 'http://api.peers.id/files/' +  result.data.member.dokumen_bpkb
+          if (result.data.member.dokumen_lainnya) this.imageDokumenlainnya = 'http://api.peers.id/files/' +  result.data.member.dokumen_lainnya
           this.dataloandetailloan = result.data.loan
           this.dataloandetailproduk = result.data.produk
           this.datapinjamanshow = true
@@ -96,6 +113,9 @@ export class ManagementPinjamanComponent implements OnInit {
               break;
             case 4:
               this.buttontriger = 'pencairankantor'
+              break;
+            case 2:
+              this.buttontriger = 'proseskantor'
               break;
           }
         }
@@ -138,6 +158,9 @@ export class ManagementPinjamanComponent implements OnInit {
         break;
       case 'proseskantor':
         idpoststatus = 4
+        break;
+        case 'prosesao':
+        idpoststatus = 6
         break;
       case 'pencairankantor':
         idpoststatus = 5

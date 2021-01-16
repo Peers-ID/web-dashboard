@@ -24,6 +24,8 @@ export class SimpananDetailComponent implements OnInit {
   namesimpanan:string;
   idsimpanan:any;
   totalsimpanan:any;
+  totalgetdata = []
+  idmember:any;
   constructor(
     private contentSvc: ContentService,
     public fb: FormBuilder,
@@ -42,16 +44,14 @@ export class SimpananDetailComponent implements OnInit {
       result => {
         if (result) {
           this.namesimpanan = result.name;
-          this.idsimpanan = result.id
+          this.idmember = result.id;
           this.contentSvc.getsimpananTotal(result.id).subscribe(
             result => {
               this.anggotasimpananshowdetail = true;
-              if (result.status === 200){
-                  this.totalsimpananpokok = result.data.simpanan_pokok !== null? result.data.simpanan_pokok.total : 0
-                  this.totalsimpananwajib= result.data.simpanan_wajib !== null ? result.data.simpanan_wajib.total : 0 
-                  this.totalsimpanansukarela= result.data.simpanan_sukarela !== null ? result.data.simpanan_sukarela.total : 0
-                  this.totalsimpanan = (this.totalsimpananpokok + this.totalsimpanansukarela) + this.totalsimpananwajib
-                  this.listdatasimpanananggotadetail = [true]
+              if (result.status === 200 && result.data.loan.length > 0){
+                  result.data.loan.forEach(element => {
+                      this.listdatasimpanananggotadetail.push(element)
+                  });
               }else{
                 this.listdatasimpanananggotadetail = []
               }
@@ -61,7 +61,10 @@ export class SimpananDetailComponent implements OnInit {
       }
     )
   }
-  detailsimpananbytype(type:any,amount:any){
-    this.router.navigate(['/management-anggota-simpanan',this.idsimpanan,this.namesimpanan,type]); 
+  clickproduct(id){
+    // this.router.navigate(['/management-anggota-simpanan',id,this.namesimpanan]); 
+  }
+  detailsimpananbytype(type:any,id:any,nameproduct:any){
+    this.router.navigate(['/management-anggota-simpanan',id,type,this.idmember,nameproduct]); 
   }
 }

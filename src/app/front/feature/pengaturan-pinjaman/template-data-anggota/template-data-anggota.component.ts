@@ -48,9 +48,9 @@ export class TemplateDataAnggotaComponent implements OnInit {
   pekerjaanpasanganFc: FormControl = new FormControl();
   nomorhandphonepasanganFc: FormControl = new FormControl();
   memilikinpwpFc: FormControl = new FormControl(true);
-  nomornpwpFc: FormControl = new FormControl();
+  nomornpwpFc: FormControl = new FormControl(true);
   pekerjaanusahaFc: FormControl = new FormControl(true);
-  jenisumkmFc: FormControl = new FormControl();
+  jenisumkmFc: FormControl = new FormControl(true);
   namaperusahaanFc: FormControl = new FormControl();
   lamabekerjaFc: FormControl = new FormControl();
   penghasilFc: FormControl = new FormControl();
@@ -59,14 +59,14 @@ export class TemplateDataAnggotaComponent implements OnInit {
   kecamatanpekerjaanFc: FormControl = new FormControl();
   kelurahanpekerjaanFc: FormControl = new FormControl();
   kodepospekerjaanFc: FormControl = new FormControl();
-  domisilijalanFc: FormControl = new FormControl();
-  domisiliprovinsiFc: FormControl = new FormControl();
-  domisilikotaFc: FormControl = new FormControl();
-  domisilikecamatanFc: FormControl = new FormControl();
-  domisilikelurahanFc: FormControl = new FormControl();
-  domisilikodeposFc: FormControl = new FormControl();
-  domisilistatustempatFc: FormControl = new FormControl();
-  domisililamatinggalFc: FormControl = new FormControl();
+  domisilijalanFc: FormControl = new FormControl(true);
+  domisiliprovinsiFc: FormControl = new FormControl(true);
+  domisilikotaFc: FormControl = new FormControl(true);
+  domisilikecamatanFc: FormControl = new FormControl(true);
+  domisilikelurahanFc: FormControl = new FormControl(true);
+  domisilikodeposFc: FormControl = new FormControl(true);
+  domisilistatustempatFc: FormControl = new FormControl(true);
+  domisililamatinggalFc: FormControl = new FormControl(true);
   namakontakdaruratFc: FormControl = new FormControl();
   nomorhandphonedaruratFc: FormControl = new FormControl();
   hubungandaruratFc: FormControl = new FormControl();
@@ -81,7 +81,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
   dokumenaktanikahFc: FormControl = new FormControl();
   dokumenbpkbFc: FormControl = new FormControl();
   dokumenlainnyaFc: FormControl = new FormControl();
-  alamtsesuaiktpFc: FormControl = new FormControl();
+  alamtsesuaiktpFc: FormControl = new FormControl(true);
   jalanpekerjaanFc: FormControl = new FormControl();
   statubutton: boolean;
   loadingshow: boolean;
@@ -92,6 +92,36 @@ export class TemplateDataAnggotaComponent implements OnInit {
     public fb: FormBuilder,
   ) {
     this.loaddata = false
+    this.nomoridentitasFc.disable()
+    this.nomorhandphoneFc.disable()
+    this.namalengkapFc.disable()
+    this.tempatlahirFc.disable()
+    this.tanggallahirFc.disable()
+    this.jeniskelaminFc.disable()
+    this.statuspernikahanFc.disable()
+    this.namagadisibukandungFc.disable()
+    this.ktpjalanFc.disable()
+    this.ktpprovinsiFc.disable()
+    this.ktpkotaFc.disable()
+    this.ktpkecamatanFc.disable()
+    this.ktpkelurahanFc.disable()
+    this.ktpkodeposFc.disable()
+    this.dokumenktpFc.disable()
+    this.ktpstatustempatFc.disable()
+    this.ktplamatinggalFc.disable()
+    this.alamtsesuaiktpFc.disable()
+    this.domisilijalanFc.disable()
+    this.domisiliprovinsiFc.disable()
+    this.domisilikotaFc.disable()
+    this.domisilikecamatanFc.disable()
+    this.domisilikelurahanFc.disable()
+    this.domisilikodeposFc.disable()
+    this.domisilistatustempatFc.disable()
+    this.domisililamatinggalFc.disable()
+    this.memilikinpwpFc.disable()
+    this.pekerjaanusahaFc.disable()
+    this.nomornpwpFc.disable()
+    this.jenisumkmFc.disable()
   }
 
   ngOnInit() {
@@ -106,47 +136,47 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.trigerconditionform('enable')
   }
   changequestion() {
-    if (this.alamtsesuaiktpFc.value === true) {
-      this.domisilijalanFc.setValue(true)
-      this.domisiliprovinsiFc.setValue(true)
-      this.domisilikotaFc.setValue(true)
-      this.domisilikecamatanFc.setValue(true)
-      this.domisilikelurahanFc.setValue(true)
-      this.domisilikodeposFc.setValue(true)
-      this.domisilistatustempatFc.setValue(true)
-      this.domisililamatinggalFc.setValue(true)
-    } else {
-      this.domisilijalanFc.setValue(false)
-      this.domisiliprovinsiFc.setValue(false)
-      this.domisilikotaFc.setValue(false)
-      this.domisilikecamatanFc.setValue(false)
-      this.domisilikelurahanFc.setValue(false)
-      this.domisilikodeposFc.setValue(false)
-      this.domisilistatustempatFc.setValue(false)
-      this.domisililamatinggalFc.setValue(false)
-    }
+    // if (this.alamtsesuaiktpFc.value === true) {
+    //   this.domisilijalanFc.setValue(true)
+    //   this.domisiliprovinsiFc.setValue(true)
+    //   this.domisilikotaFc.setValue(true)
+    //   this.domisilikecamatanFc.setValue(true)
+    //   this.domisilikelurahanFc.setValue(true)
+    //   this.domisilikodeposFc.setValue(true)
+    //   this.domisilistatustempatFc.setValue(true)
+    //   this.domisililamatinggalFc.setValue(true)
+    // } else {
+    //   this.domisilijalanFc.setValue(false)
+    //   this.domisiliprovinsiFc.setValue(false)
+    //   this.domisilikotaFc.setValue(false)
+    //   this.domisilikecamatanFc.setValue(false)
+    //   this.domisilikelurahanFc.setValue(false)
+    //   this.domisilikodeposFc.setValue(false)
+    //   this.domisilistatustempatFc.setValue(false)
+    //   this.domisililamatinggalFc.setValue(false)
+    // }
   }
   postdata(type: any) {
     this.loadingshow = true
-    this.nomoridentitasFc.setValue(this.nomoridentitasFc.value === true ? 1 : 0)
-    this.nomorhandphoneFc.setValue(this.nomorhandphoneFc.value === true ? 1 : 0)
+    this.nomoridentitasFc.setValue(1)
+    this.nomorhandphoneFc.setValue(1)
     this.emailFc.setValue(this.emailFc.value === true ? 1 : 0)
-    this.namalengkapFc.setValue(this.namalengkapFc.value === true ? 1 : 0)
-    this.tempatlahirFc.setValue(this.tempatlahirFc.value === true ? 1 : 0)
-    this.tanggallahirFc.setValue(this.tanggallahirFc.value === true ? 1 : 0)
+    this.namalengkapFc.setValue(1)
+    this.tempatlahirFc.setValue(1)
+    this.tanggallahirFc.setValue(1)
     this.usiaFc.setValue(this.usiaFc.value === true ? 1 : 0)
-    this.jeniskelaminFc.setValue(this.jeniskelaminFc.value === true ? 1 : 0)
-    this.statuspernikahanFc.setValue(this.statuspernikahanFc.value === true ? 1 : 0)
+    this.jeniskelaminFc.setValue(1)
+    this.statuspernikahanFc.setValue(1)
     this.pendidikanterakhirFc.setValue(this.pendidikanterakhirFc.value === true ? 1 : 0)
-    this.namagadisibukandungFc.setValue(this.namagadisibukandungFc.value === true ? 1 : 0)
-    this.ktpjalanFc.setValue(this.ktpjalanFc.value === true ? 1 : 0)
-    this.ktpprovinsiFc.setValue(this.ktpprovinsiFc.value === true ? 1 : 0)
-    this.ktpkotaFc.setValue(this.ktpkotaFc.value === true ? 1 : 0)
-    this.ktpkecamatanFc.setValue(this.ktpkecamatanFc.value === true ? 1 : 0)
-    this.ktpkelurahanFc.setValue(this.ktpkelurahanFc.value === true ? 1 : 0)
-    this.ktpkodeposFc.setValue(this.ktpkodeposFc.value === true ? 1 : 0)
-    this.ktpstatustempatFc.setValue(this.ktpstatustempatFc.value === true ? 1 : 0)
-    this.ktplamatinggalFc.setValue(this.ktplamatinggalFc.value === true ? 1 : 0)
+    this.namagadisibukandungFc.setValue(1)
+    this.ktpjalanFc.setValue(1)
+    this.ktpprovinsiFc.setValue(1)
+    this.ktpkotaFc.setValue(1)
+    this.ktpkecamatanFc.setValue(1)
+    this.ktpkelurahanFc.setValue(1)
+    this.ktpkodeposFc.setValue(1)
+    this.ktpstatustempatFc.setValue(1)
+    this.ktplamatinggalFc.setValue(1)
     this.luasrumahFc.setValue(this.luasrumahFc.value === true ? 1 : 0)
     this.jenisatapFc.setValue(this.jenisatapFc.value === true ? 1 : 0)
     this.jenisdindingFc.setValue(this.jenisdindingFc.value === true ? 1 : 0)
@@ -166,10 +196,10 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.nomorpasanganFc.setValue(this.nomorpasanganFc.value === true ? 1 : 0)
     this.pekerjaanpasanganFc.setValue(this.pekerjaanpasanganFc.value === true ? 1 : 0)
     this.nomorhandphonepasanganFc.setValue(this.nomorhandphonepasanganFc.value === true ? 1 : 0)
-    this.memilikinpwpFc.setValue(this.memilikinpwpFc.value === true ? 1 : 0)
-    this.nomornpwpFc.setValue(this.nomornpwpFc.value === true ? 1 : 0)
-    this.pekerjaanusahaFc.setValue(this.pekerjaanusahaFc.value === true ? 1 : 0)
-    this.jenisumkmFc.setValue(this.jenisumkmFc.value === true ? 1 : 0)
+    this.memilikinpwpFc.setValue(1)
+    this.nomornpwpFc.setValue(1)
+    this.pekerjaanusahaFc.setValue(1)
+    this.jenisumkmFc.setValue(1)
     this.namaperusahaanFc.setValue(this.namaperusahaanFc.value === true ? 1 : 0)
     this.lamabekerjaFc.setValue(this.lamabekerjaFc.value === true ? 1 : 0)
     this.penghasilFc.setValue(this.penghasilFc.value === true ? 1 : 0)
@@ -178,21 +208,21 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.kecamatanpekerjaanFc.setValue(this.kecamatanpekerjaanFc.value === true ? 1 : 0)
     this.kelurahanpekerjaanFc.setValue(this.kelurahanpekerjaanFc.value === true ? 1 : 0)
     this.kodepospekerjaanFc.setValue(this.kodepospekerjaanFc.value === true ? 1 : 0)
-    this.domisilijalanFc.setValue(this.domisilijalanFc.value === true ? 1 : 0)
-    this.domisiliprovinsiFc.setValue(this.domisiliprovinsiFc.value === true ? 1 : 0)
-    this.domisilikotaFc.setValue(this.domisilikotaFc.value === true ? 1 : 0)
-    this.domisilikecamatanFc.setValue(this.domisilikecamatanFc.value === true ? 1 : 0)
-    this.domisilikelurahanFc.setValue(this.domisilikelurahanFc.value === true ? 1 : 0)
-    this.domisilikodeposFc.setValue(this.domisilikodeposFc.value === true ? 1 : 0)
-    this.domisilistatustempatFc.setValue(this.domisilistatustempatFc.value === true ? 1 : 0)
-    this.domisililamatinggalFc.setValue(this.domisililamatinggalFc.value === true ? 1 : 0)
+    this.domisilijalanFc.setValue(1)
+    this.domisiliprovinsiFc.setValue(1)
+    this.domisilikotaFc.setValue(1)
+    this.domisilikecamatanFc.setValue(1)
+    this.domisilikelurahanFc.setValue(1)
+    this.domisilikodeposFc.setValue(1)
+    this.domisilistatustempatFc.setValue(1)
+    this.domisililamatinggalFc.setValue(1)
     this.namakontakdaruratFc.setValue(this.namakontakdaruratFc.value === true ? 1 : 0)
     this.nomorhandphonedaruratFc.setValue(this.nomorhandphonedaruratFc.value === true ? 1 : 0)
     this.hubungandaruratFc.setValue(this.hubungandaruratFc.value === true ? 1 : 0)
     this.namapenjaminFc.setValue(this.namapenjaminFc.value === true ? 1 : 0)
     this.nomorpenjaminFc.setValue(this.nomorpenjaminFc.value === true ? 1 : 0)
     this.hubunganpenjaminFc.setValue(this.hubunganpenjaminFc.value === true ? 1 : 0)
-    this.dokumenktpFc.setValue(this.dokumenktpFc.value === true ? 1 : 0)
+    this.dokumenktpFc.setValue(1)
     this.dokumensimFc.setValue(this.dokumensimFc.value === true ? 1 : 0)
     this.dokumenkkFc.setValue(this.dokumenkkFc.value === true ? 1 : 0)
     this.dokumensuratkerjaFc.setValue(this.dokumensuratkerjaFc.value === true ? 1 : 0)
@@ -200,7 +230,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.dokumenaktanikahFc.setValue(this.dokumenaktanikahFc.value === true ? 1 : 0)
     this.dokumenbpkbFc.setValue(this.dokumenbpkbFc.value === true ? 1 : 0)
     this.dokumenlainnyaFc.setValue(this.dokumenlainnyaFc.value === true ? 1 : 0)
-    this.alamtsesuaiktpFc.setValue(this.alamtsesuaiktpFc.value === true ? 1 : 0)
+    this.alamtsesuaiktpFc.setValue(1)
     this.jalanpekerjaanFc.setValue(this.jalanpekerjaanFc.value === true ? 1 : 0)
     this.formgrouppostdata = this.fb.group({
       "no_identitas": [this.nomoridentitasFc.value, [Validators.required]],
@@ -230,7 +260,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "alamat_domisili_provinsi": [this.domisiliprovinsiFc.value, [Validators.required]],
       "alamat_domisili_status_tempat_tinggal": [this.domisilistatustempatFc.value, [Validators.required]],
       "alamat_domisili_lama_tempat_tinggal": [this.domisililamatinggalFc.value, [Validators.required]],
-      "alamat_domisili_kode_pos":[this.domisilikodeposFc.value, [Validators.required]],
+      "alamat_domisili_kode_pos": [this.domisilikodeposFc.value, [Validators.required]],
       "memiliki_npwp": [this.memilikinpwpFc.value, [Validators.required]],
       "nomer_npwp": [this.nomornpwpFc.value, [Validators.required]],
       "pekerja_usaha": [this.pekerjaanusahaFc.value, [Validators.required]],
@@ -243,7 +273,7 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "alamat_kantor_kecamatan": [this.kecamatanpekerjaanFc.value, [Validators.required]],
       "alamat_kantor_kota": [this.kotapekerjaanFc.value, [Validators.required]],
       "alamat_kantor_provinsi": [this.provinsipekerjaanFc.value, [Validators.required]],
-      "alamat_kantor_kode_pos":[this.kodepospekerjaanFc.value, [Validators.required]],
+      "alamat_kantor_kode_pos": [this.kodepospekerjaanFc.value, [Validators.required]],
       "nama_pasangan": [this.namapasanganFc.value, [Validators.required]],
       "no_identitas_pasangan": [this.nomorpasanganFc.value, [Validators.required]],
       "pekerjaan_pasangan": [this.pekerjaanpasanganFc.value, [Validators.required]],
@@ -273,7 +303,10 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "survey_kepemilikan_asset": [this.kepemilikanasetFc.value, [Validators.required]],
       "survey_pendapatan_luar_usaha": [this.pendapatanluarFc.value, [Validators.required]],
       "survey_perkembangan_asset": [this.perkembanganasetFc.value, [Validators.required]],
-      "survey_perkembangan_usaha": [this.perkembanganusahaFc.value, [Validators.required]]
+      "survey_perkembangan_usaha": [this.perkembanganusahaFc.value, [Validators.required]],
+      "nama_kontak_darurat":  [this.namakontakdaruratFc.value, [Validators.required]],
+      "nomor_ponsel_darurat" : [this.nomorhandphonedaruratFc.value, [Validators.required]],
+      "hubungan_kontak_darurat" : [this.hubungandaruratFc.value, [Validators.required]],
     });
     if (this.formgrouppostdata.status === "VALID") {
       this.contentSvc.postMemberconfig(this.formgrouppostdata.value).subscribe(
@@ -309,25 +342,9 @@ export class TemplateDataAnggotaComponent implements OnInit {
           this.statubutton = false
           this.trigerconditionform('disable')
           this.pushdataform(
-            result.data[0].no_identitas,
-            result.data[0].member_handphone,
             result.data[0].email,
-            result.data[0].nama_lengkap,
-            result.data[0].tempat_lahir,
-            result.data[0].tanggal_lahir,
             result.data[0].usia,
-            result.data[0].jenis_kelamin,
-            result.data[0].status_perkawinan,
             result.data[0].pendidikan_terakhir,
-            result.data[0].nama_gadis_ibu,
-            result.data[0].alamat_ktp_jalan,
-            result.data[0].alamat_ktp_provinsi,
-            result.data[0].alamat_ktp_kota,
-            result.data[0].alamat_ktp_kecamatan,
-            result.data[0].alamat_ktp_kelurahan,
-            result.data[0].alamat_ktp_kode_pos,
-            result.data[0].alamat_ktp_status_tempat_tinggal,
-            result.data[0].alamat_ktp_lama_tinggal,
             result.data[0].survey_luas_rumah,
             result.data[0].survey_jenis_atap,
             result.data[0].survey_jenis_dinding,
@@ -347,10 +364,6 @@ export class TemplateDataAnggotaComponent implements OnInit {
             result.data[0].no_identitas_pasangan,
             result.data[0].pekerjaan_pasangan,
             result.data[0].no_hp_pasangan,
-            result.data[0].memiliki_npwp,
-            result.data[0].nomer_npwp,
-            result.data[0].pekerja_usaha,
-            result.data[0].jenis_umkm,
             result.data[0].nama_perusahaan,
             result.data[0].lama_bekerja,
             result.data[0].penghasilan_omset,
@@ -359,21 +372,12 @@ export class TemplateDataAnggotaComponent implements OnInit {
             result.data[0].alamat_kantor_kecamatan,
             result.data[0].alamat_kantor_kelurahan,
             result.data[0].alamat_kantor_kode_pos,
-            result.data[0].alamat_domisili_jalan,
-            result.data[0].alamat_domisili_provinsi,
-            result.data[0].alamat_domisili_kota,
-            result.data[0].alamat_domisili_kecamatan,
-            result.data[0].alamat_domisili_kelurahan,
-            result.data[0].alamat_domisili_kode_pos,
-            result.data[0].alamat_domisili_status_tempat_tinggal,
-            result.data[0].alamat_domisili_lama_tempat_tinggal,
-            0,
-            0,
-            0,
+            result.data[0].nama_kontak_darurat,
+            result.data[0].nomor_ponsel_darurat,
+            result.data[0].hubungan_kontak_darurat,
             result.data[0].nama_penjamin,
             result.data[0].no_hp_penjamin,
             result.data[0].hubungan_penjamin,
-            result.data[0].dokumen_ktp,
             result.data[0].dokumen_sim,
             result.data[0].dokumen_kk,
             result.data[0].dokumen_keterangan_kerja,
@@ -381,7 +385,6 @@ export class TemplateDataAnggotaComponent implements OnInit {
             result.data[0].dokumen_akta_nikah,
             result.data[0].dokumen_bpkb,
             result.data[0].dokumen_lainnya,
-            result.data[0].domisili_sesuai_ktp,
             result.data[0].alamat_kantor_jalan
           )
         } else {
@@ -394,25 +397,9 @@ export class TemplateDataAnggotaComponent implements OnInit {
   }
 
   pushdataform(
-    nomoridentitas: any,
-    nomorhandphone: any,
     email: any,
-    namalengkap: any,
-    tempatlahir: any,
-    tanggallahir: any,
     usia: any,
-    jeniskelamin: any,
-    statuspernikahan: any,
-    pendidikanterakhir: any,
-    namagadisibukandung: any,
-    ktpjalan: any,
-    ktpprovinsi: any,
-    ktpkota: any,
-    ktpkecamatan: any,
-    ktpkelurahan: any,
-    ktpkodepos: any,
-    ktpstatustempat: any,
-    ktplamatinggal: any,
+    pendidikanterakhir:any,
     luasrumah: any,
     jenisatap: any,
     jenisdinding: any,
@@ -432,10 +419,6 @@ export class TemplateDataAnggotaComponent implements OnInit {
     nomorpasangan: any,
     pekerjaanpasangan: any,
     nomorhandphonepasangan: any,
-    memilikinpwp: any,
-    nomornpwp: any,
-    pekerjaanusaha: any,
-    jenisumkm: any,
     namaperusahaan: any,
     lamabekerja: any,
     penghasil: any,
@@ -444,21 +427,12 @@ export class TemplateDataAnggotaComponent implements OnInit {
     kecamatanpekerjaan: any,
     kelurahanpekerjaan: any,
     kodepospekerjaan: any,
-    domisilijalan: any,
-    domisiliprovinsi: any,
-    domisilikota: any,
-    domisilikecamatan: any,
-    domisilikelurahan: any,
-    domisilikodepos: any,
-    domisilistatustempat: any,
-    domisililamatinggal: any,
     namakontakdarurat: any,
     nomorhandphonedarurat: any,
     hubungandarurat: any,
     namapenjamin: any,
     nomorpenjamin: any,
     hubunganpenjamin: any,
-    dokumenktp: any,
     dokumensim: any,
     dokumenkk: any,
     dokumensuratkerja: any,
@@ -466,28 +440,11 @@ export class TemplateDataAnggotaComponent implements OnInit {
     dokumenaktanikah: any,
     dokumenbpkb: any,
     dokumenlainnya: any,
-    alamtsesuaiktp: any,
     jalanpekerjaan: any
   ) {
-    this.nomoridentitasFc.setValue(nomoridentitas === 1 ? true : false)
-    this.nomorhandphoneFc.setValue(nomorhandphone === 1 ? true : false)
     this.emailFc.setValue(email === 1 ? true : false)
-    this.namalengkapFc.setValue(namalengkap === 1 ? true : false)
-    this.tempatlahirFc.setValue(tempatlahir === 1 ? true : false)
-    this.tanggallahirFc.setValue(tanggallahir === 1 ? true : false)
     this.usiaFc.setValue(usia === 1 ? true : false)
-    this.jeniskelaminFc.setValue(jeniskelamin === 1 ? true : false)
-    this.statuspernikahanFc.setValue(statuspernikahan === 1 ? true : false)
     this.pendidikanterakhirFc.setValue(pendidikanterakhir === 1 ? true : false)
-    this.namagadisibukandungFc.setValue(namagadisibukandung === 1 ? true : false)
-    this.ktpjalanFc.setValue(ktpjalan === 1 ? true : false)
-    this.ktpprovinsiFc.setValue(ktpprovinsi === 1 ? true : false)
-    this.ktpkotaFc.setValue(ktpkota === 1 ? true : false)
-    this.ktpkecamatanFc.setValue(ktpkecamatan === 1 ? true : false)
-    this.ktpkelurahanFc.setValue(ktpkelurahan === 1 ? true : false)
-    this.ktpkodeposFc.setValue(ktpkodepos === 1 ? true : false)
-    this.ktpstatustempatFc.setValue(ktpstatustempat === 1 ? true : false)
-    this.ktplamatinggalFc.setValue(ktplamatinggal === 1 ? true : false)
     this.luasrumahFc.setValue(luasrumah === 1 ? true : false)
     this.jenisatapFc.setValue(jenisatap === 1 ? true : false)
     this.jenisdindingFc.setValue(jenisdinding === 1 ? true : false)
@@ -507,10 +464,6 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.nomorpasanganFc.setValue(nomorpasangan === 1 ? true : false)
     this.pekerjaanpasanganFc.setValue(pekerjaanpasangan === 1 ? true : false)
     this.nomorhandphonepasanganFc.setValue(nomorhandphonepasangan === 1 ? true : false)
-    this.memilikinpwpFc.setValue(memilikinpwp === 1 ? true : false)
-    this.nomornpwpFc.setValue(nomornpwp === 1 ? true : false)
-    this.pekerjaanusahaFc.setValue(pekerjaanusaha === 1 ? true : false)
-    this.jenisumkmFc.setValue(jenisumkm === 1 ? true : false)
     this.namaperusahaanFc.setValue(namaperusahaan === 1 ? true : false)
     this.lamabekerjaFc.setValue(lamabekerja === 1 ? true : false)
     this.penghasilFc.setValue(penghasil === 1 ? true : false)
@@ -519,21 +472,12 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.kecamatanpekerjaanFc.setValue(kecamatanpekerjaan === 1 ? true : false)
     this.kelurahanpekerjaanFc.setValue(kelurahanpekerjaan === 1 ? true : false)
     this.kodepospekerjaanFc.setValue(kodepospekerjaan === 1 ? true : false)
-    this.domisilijalanFc.setValue(domisilijalan === 1 ? true : false)
-    this.domisiliprovinsiFc.setValue(domisiliprovinsi === 1 ? true : false)
-    this.domisilikotaFc.setValue(domisilikota === 1 ? true : false)
-    this.domisilikecamatanFc.setValue(domisilikecamatan === 1 ? true : false)
-    this.domisilikelurahanFc.setValue(domisilikelurahan === 1 ? true : false)
-    this.domisilikodeposFc.setValue(domisilikodepos === 1 ? true : false)
-    this.domisilistatustempatFc.setValue(domisilistatustempat === 1 ? true : false)
-    this.domisililamatinggalFc.setValue(domisililamatinggal === 1 ? true : false)
     this.namakontakdaruratFc.setValue(namakontakdarurat === 1 ? true : false)
     this.nomorhandphonedaruratFc.setValue(nomorhandphonedarurat === 1 ? true : false)
     this.hubungandaruratFc.setValue(hubungandarurat === 1 ? true : false)
     this.namapenjaminFc.setValue(namapenjamin === 1 ? true : false)
     this.nomorpenjaminFc.setValue(nomorpenjamin === 1 ? true : false)
     this.hubunganpenjaminFc.setValue(hubunganpenjamin === 1 ? true : false)
-    this.dokumenktpFc.setValue(dokumenktp === 1 ? true : false)
     this.dokumensimFc.setValue(dokumensim === 1 ? true : false)
     this.dokumenkkFc.setValue(dokumenkk === 1 ? true : false)
     this.dokumensuratkerjaFc.setValue(dokumensuratkerja === 1 ? true : false)
@@ -541,30 +485,13 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.dokumenaktanikahFc.setValue(dokumenaktanikah === 1 ? true : false)
     this.dokumenbpkbFc.setValue(dokumenbpkb === 1 ? true : false)
     this.dokumenlainnyaFc.setValue(dokumenlainnya === 1 ? true : false)
-    this.alamtsesuaiktpFc.setValue(alamtsesuaiktp === 1 ? true : false)
     this.jalanpekerjaanFc.setValue(jalanpekerjaan === 1 ? true : false)
   }
   trigerconditionform(type: any) {
     if (type === 'disable') {
-      this.nomoridentitasFc.disable()
-      this.nomorhandphoneFc.disable()
       this.emailFc.disable()
-      this.namalengkapFc.disable()
-      this.tempatlahirFc.disable()
-      this.tanggallahirFc.disable()
       this.usiaFc.disable()
-      this.jeniskelaminFc.disable()
-      this.statuspernikahanFc.disable()
       this.pendidikanterakhirFc.disable()
-      this.namagadisibukandungFc.disable()
-      this.ktpjalanFc.disable()
-      this.ktpprovinsiFc.disable()
-      this.ktpkotaFc.disable()
-      this.ktpkecamatanFc.disable()
-      this.ktpkelurahanFc.disable()
-      this.ktpkodeposFc.disable()
-      this.ktpstatustempatFc.disable()
-      this.ktplamatinggalFc.disable()
       this.luasrumahFc.disable()
       this.jenisatapFc.disable()
       this.jenisdindingFc.disable()
@@ -584,10 +511,6 @@ export class TemplateDataAnggotaComponent implements OnInit {
       this.nomorpasanganFc.disable()
       this.pekerjaanpasanganFc.disable()
       this.nomorhandphonepasanganFc.disable()
-      this.memilikinpwpFc.disable()
-      this.nomornpwpFc.disable()
-      this.pekerjaanusahaFc.disable()
-      this.jenisumkmFc.disable()
       this.namaperusahaanFc.disable()
       this.lamabekerjaFc.disable()
       this.penghasilFc.disable()
@@ -596,21 +519,12 @@ export class TemplateDataAnggotaComponent implements OnInit {
       this.kecamatanpekerjaanFc.disable()
       this.kelurahanpekerjaanFc.disable()
       this.kodepospekerjaanFc.disable()
-      this.domisilijalanFc.disable()
-      this.domisiliprovinsiFc.disable()
-      this.domisilikotaFc.disable()
-      this.domisilikecamatanFc.disable()
-      this.domisilikelurahanFc.disable()
-      this.domisilikodeposFc.disable()
-      this.domisilistatustempatFc.disable()
-      this.domisililamatinggalFc.disable()
       this.namakontakdaruratFc.disable()
       this.nomorhandphonedaruratFc.disable()
       this.hubungandaruratFc.disable()
       this.namapenjaminFc.disable()
       this.nomorpenjaminFc.disable()
       this.hubunganpenjaminFc.disable()
-      this.dokumenktpFc.disable()
       this.dokumensimFc.disable()
       this.dokumenkkFc.disable()
       this.dokumensuratkerjaFc.disable()
@@ -618,28 +532,11 @@ export class TemplateDataAnggotaComponent implements OnInit {
       this.dokumenaktanikahFc.disable()
       this.dokumenbpkbFc.disable()
       this.dokumenlainnyaFc.disable()
-      this.alamtsesuaiktpFc.disable()
       this.jalanpekerjaanFc.disable()
     } else {
-      this.nomoridentitasFc.enable()
-      this.nomorhandphoneFc.enable()
       this.emailFc.enable()
-      this.namalengkapFc.enable()
-      this.tempatlahirFc.enable()
-      this.tanggallahirFc.enable()
       this.usiaFc.enable()
-      this.jeniskelaminFc.enable()
-      this.statuspernikahanFc.enable()
       this.pendidikanterakhirFc.enable()
-      this.namagadisibukandungFc.enable()
-      this.ktpjalanFc.enable()
-      this.ktpprovinsiFc.enable()
-      this.ktpkotaFc.enable()
-      this.ktpkecamatanFc.enable()
-      this.ktpkelurahanFc.enable()
-      this.ktpkodeposFc.enable()
-      this.ktpstatustempatFc.enable()
-      this.ktplamatinggalFc.enable()
       this.luasrumahFc.enable()
       this.jenisatapFc.enable()
       this.jenisdindingFc.enable()
@@ -659,10 +556,6 @@ export class TemplateDataAnggotaComponent implements OnInit {
       this.nomorpasanganFc.enable()
       this.pekerjaanpasanganFc.enable()
       this.nomorhandphonepasanganFc.enable()
-      this.memilikinpwpFc.enable()
-      this.nomornpwpFc.enable()
-      this.pekerjaanusahaFc.enable()
-      this.jenisumkmFc.enable()
       this.namaperusahaanFc.enable()
       this.lamabekerjaFc.enable()
       this.penghasilFc.enable()
@@ -671,21 +564,12 @@ export class TemplateDataAnggotaComponent implements OnInit {
       this.kecamatanpekerjaanFc.enable()
       this.kelurahanpekerjaanFc.enable()
       this.kodepospekerjaanFc.enable()
-      this.domisilijalanFc.enable()
-      this.domisiliprovinsiFc.enable()
-      this.domisilikotaFc.enable()
-      this.domisilikecamatanFc.enable()
-      this.domisilikelurahanFc.enable()
-      this.domisilikodeposFc.enable()
-      this.domisilistatustempatFc.enable()
-      this.domisililamatinggalFc.enable()
       this.namakontakdaruratFc.enable()
       this.nomorhandphonedaruratFc.enable()
       this.hubungandaruratFc.enable()
       this.namapenjaminFc.enable()
       this.nomorpenjaminFc.enable()
       this.hubunganpenjaminFc.enable()
-      this.dokumenktpFc.enable()
       this.dokumensimFc.enable()
       this.dokumenkkFc.enable()
       this.dokumensuratkerjaFc.enable()
@@ -693,7 +577,6 @@ export class TemplateDataAnggotaComponent implements OnInit {
       this.dokumenaktanikahFc.enable()
       this.dokumenbpkbFc.enable()
       this.dokumenlainnyaFc.enable()
-      this.alamtsesuaiktpFc.enable()
       this.jalanpekerjaanFc.enable()
     }
   }

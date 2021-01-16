@@ -20,6 +20,9 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {
   }
+  signin(){
+    this.router.navigate(['/login']);
+  }
   forgotpassword(userinput) {
     this.loadingshow = true
     if (userinput === "") {
