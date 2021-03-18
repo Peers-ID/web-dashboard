@@ -136,6 +136,60 @@
                         </div>
                         <div class="col-12 mt-2">
                             <div class="row">
+                                <div class="col-6">Asuransi</div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-control" [formControl]="optionasuransiFc"
+                                                (change)="changetypeselect('asuransi')">
+                                                <option [defaultSelected]=true hidden value="">Pilih</option>
+                                                <option value="tidak">Tidak ada</option>
+                                                <option value="Fix">Fix Amount</option>
+                                                <option value="Persen">Persentase %</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input FormatNumber *ngIf="optionasuransiFc.value === 'Fix'" type="text"
+                                                class="w-100 form-control input-sufix" [formControl]="asuransiFc" style="font-family: 'SegoeUI'">
+                                            <input maxlength="5" *ngIf="optionasuransiFc.value === 'Persen'" type="text"
+                                                class="w-100 form-control input-prefix" [formControl]="asuransiFc"
+                                                style="font-family: 'SegoeUI'">
+                                            <div class="sufix" *ngIf="optionasuransiFc.value === 'Fix'">Rp</div>
+                                            <div class="prefix" *ngIf="optionasuransiFc.value === 'Persen'">%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-6">Dana JPK</div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-control" [formControl]="optionjpkFc"
+                                                (change)="changetypeselect('jpk')">
+                                                <option [defaultSelected]=true hidden value="">Pilih</option>
+                                                <option value="tidak">Tidak ada</option>
+                                                <option value="Fix">Fix Amount</option>
+                                                <option value="Persen">Persentase %</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input FormatNumber *ngIf="optionjpkFc.value === 'Fix'" type="text"
+                                                class="w-100 form-control input-sufix" [formControl]="jpkFc" style="font-family: 'SegoeUI'">
+                                            <input maxlength="5" *ngIf="optionjpkFc.value === 'Persen'" type="text"
+                                                class="w-100 form-control input-prefix" [formControl]="jpkFc"
+                                                style="font-family: 'SegoeUI'">
+                                            <div class="sufix" *ngIf="optionjpkFc.value === 'Fix'">Rp</div>
+                                            <div class="prefix" *ngIf="optionjpkFc.value === 'Persen'">%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
                                 <div class="col-6">Simpanan Pokok</div>
                                 <div class="col-6">
                                     <div class="row">
