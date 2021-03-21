@@ -13,15 +13,15 @@ export class UtilService {
   }
 
   formatNumber(num: number): any {
-    return num ? num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') : '-';
+    return num ? num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') : '0';
   }
 
   formatPercentage(num: number): any {
     if (num.toString().length === 4){
-      return num ? num.toString().replace(/(\d)(?=(\d\d)+(?!\d))/g, '$1,') : '-';
+      return num ? num.toString().replace(/(\d)(?=(\d\d)+(?!\d))/g, '$1,') : '0';
     }else{
         if (num !== 100){
-          return num ? num.toString().replace(/(\d)(?=(\d\d)+(?!\d))/g, '$1,') : '-';
+          return num ? num.toString().replace(/(\d)(?=(\d\d)+(?!\d))/g, '$1,') : '0';
         }else{
           return num;
         }

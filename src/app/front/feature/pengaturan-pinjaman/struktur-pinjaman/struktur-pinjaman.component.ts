@@ -192,6 +192,7 @@ export class StrukturPinjamanComponent implements OnInit {
 
   pushdataform(nama: any, tenor: any, optiontenor: any, bunga: any, optionbunga: any, biayaadmin: any, provisi: any,asuransi: any,jpk: any, optionprovisi: any,optionasuransi: any,optionjpk: any, simpananpokok: any,
     optionsimpananpokok: any, simpananwajib: any, dendaketerlambatan: any, dendapelunasanawal: any, typedendaketerlambatan: any, typepelunasandipercepat: any) {
+
     this.namaprodukFc.setValue(nama)
     this.tenorFc.setValue(tenor)
     this.optiontenorFc.setValue(optiontenor)
@@ -284,13 +285,15 @@ export class StrukturPinjamanComponent implements OnInit {
     this.postdata(type)
   }
   postdata(type: string) {
-    this.loadingshow = false;
+    this.loadingshow = true;
+
     let statusprovisi: any;
     let statusasuransi: any;
     let statusjpk: any;
     let statuspokok: any;
     let statusketerlambatan: any;
     let statuspelunasan: any;
+
     if (this.optionbiayaprovisiFc.value !== null && this.optionbiayaprovisiFc.value !== '' && this.optionbiayaprovisiFc.value === 'tidak') {
       statusprovisi = 'valid'
     } else {
@@ -300,6 +303,7 @@ export class StrukturPinjamanComponent implements OnInit {
         statusprovisi = 'invalid'
       }
     }
+    
     if (this.optionasuransiFc.value !== null && this.optionasuransiFc.value !== '' && this.optionasuransiFc.value === 'tidak') {
       statusasuransi = 'valid'
     } else {
@@ -309,6 +313,7 @@ export class StrukturPinjamanComponent implements OnInit {
         statusasuransi = 'invalid'
       }
     }
+
     if (this.optionjpkFc.value !== null && this.optionjpkFc.value !== '' && this.optionjpkFc.value === 'tidak') {
       statusjpk = 'valid'
     } else {
@@ -318,6 +323,7 @@ export class StrukturPinjamanComponent implements OnInit {
         statusjpk = 'invalid'
       }
     }
+
     if (this.optionsimpananpokokFc.value !== null && this.optionsimpananpokokFc.value !== '' && this.optionsimpananpokokFc.value === 'tidak') {
       statuspokok = 'valid'
     } else {
@@ -327,6 +333,7 @@ export class StrukturPinjamanComponent implements OnInit {
         statuspokok = 'invalid'
       }
     }
+
     if (this.typedendaketerlambatanFc.value !== null && this.typedendaketerlambatanFc.value !== '' && this.typedendaketerlambatanFc.value === 'tidak' && type === 'create') {
       statusketerlambatan = 'valid'
     } else {
@@ -342,6 +349,7 @@ export class StrukturPinjamanComponent implements OnInit {
         }
       }
     }
+
     if (this.typepelunasanawalFc.value !== null && this.typepelunasanawalFc.value !== '' && this.typepelunasanawalFc.value === 'tidak' && type === 'create') {
       statuspelunasan = 'valid'
     } else {
@@ -353,18 +361,25 @@ export class StrukturPinjamanComponent implements OnInit {
         statuspelunasan = 'invalid'
       }
     }
+
     if (this.dendaketerlambatanFc.value.includes('.') && this.typedendaketerlambatanFc.value !== 'Persen')
       this.dendaketerlambatanFc.setValue(this.dendaketerlambatanFc.value.toString().replace(/\./g, ''))
+
     if (this.dendapelunasanawalFc.value.includes('.') && this.typepelunasanawalFc.value !== 'Persen')
       this.dendapelunasanawalFc.setValue(this.dendapelunasanawalFc.value.toString().replace(/\./g, ''))
+
     if (this.provisiFc.value.includes('.') && this.optionbiayaprovisiFc.value !== 'Persen')
       this.provisiFc.setValue(this.provisiFc.value.toString().replace(/\./g, ''))
+
     if (this.asuransiFc.value.includes('.') && this.optionasuransiFc.value !== 'Persen')
       this.asuransiFc.setValue(this.asuransiFc.value.toString().replace(/\./g, ''))
+
     if (this.jpkFc.value.includes('.') && this.optionjpkFc.value !== 'Persen')
       this.jpkFc.setValue(this.jpkFc.value.toString().replace(/\./g, ''))
+
     if (this.simpananpokokFc.value.includes('.'))
       this.simpananpokokFc.setValue(this.simpananpokokFc.value.toString().replace(/\./g, ''))
+
     this.formgrouppostdata = this.fb.group({
       "nama_produk": [this.namaprodukFc.value, [Validators.required]],
       "tenor": [this.tenorFc.value, [Validators.required]],
@@ -386,8 +401,10 @@ export class StrukturPinjamanComponent implements OnInit {
       "pelunasan_dipercepat": [this.dendapelunasanawalFc.value === '' ? 0 : this.dendapelunasanawalFc.value],
       "type_pelunasan_dipercepat": [this.typepelunasanawalFc.value, [Validators.required]]
     });
+    
     if (this.formgrouppostdata.status === "VALID" && statusprovisi === 'valid' && statusasuransi === 'valid' && statusjpk === 'valid'
       && statuspokok === 'valid' && statusketerlambatan === 'valid' && statuspelunasan === 'valid') {
+
       switch (type) {
         case 'create':
           this.contentSvc.postProduct(this.formgrouppostdata.value).subscribe(
@@ -405,8 +422,8 @@ export class StrukturPinjamanComponent implements OnInit {
                 this.loadingshow = false;
                 this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
-                  type: 'danger',
-                  head: 'Danger',
+                  type: 'warning',
+                  head: 'Warning',
                   body: result.message
                 });
                 this.getdata();
@@ -431,8 +448,8 @@ export class StrukturPinjamanComponent implements OnInit {
                 this.loadingshow = false;
                 this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
-                  type: 'danger',
-                  head: 'Danger',
+                  type: 'warning',
+                  head: 'Warning',
                   body: result.message
                 });
                 this.getdata();
@@ -460,8 +477,8 @@ export class StrukturPinjamanComponent implements OnInit {
                 this.loadingshow = false;
                 this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
-                  type: 'danger',
-                  head: 'Danger',
+                  type: 'warning',
+                  head: 'Warning',
                   body: result.message
                 });
                 this.getdata();
@@ -489,8 +506,8 @@ export class StrukturPinjamanComponent implements OnInit {
                 this.loadingshow = false;
                 this.strukturmodalcreate.hide();
                 this.notifSvc.addNotification({
-                  type: 'danger',
-                  head: 'Danger',
+                  type: 'warning',
+                  head: 'Warning',
                   body: result.message
                 });
                 this.getdata();
@@ -503,8 +520,8 @@ export class StrukturPinjamanComponent implements OnInit {
       setTimeout(() => {
         this.loadingshow = false;
         this.notifSvc.addNotification({
-          type: 'danger',
-          head: 'Danger',
+          type: 'warning',
+          head: 'Warning',
           body: 'Pastikan semua form sudah terisi dengan benar'
         });
       }, 500);

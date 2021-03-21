@@ -57,6 +57,7 @@
                                 <div class="col-6">Nama Produk</div>
                                 <div class="col-6">
                                     <input type="text" class="w-100 form-control" [formControl]="namaprodukFc">
+                                    <span class="text-danger" *ngIf="namaprodukFc.value == ''">Nama Produk tidak boleh kosong.</span>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +76,9 @@
                                                 <option value="minggu">Minggu</option>
                                                 <option value="bulan">Bulan</option>
                                             </select>
+                                        </div>
+                                        <div class="col-12" *ngIf="tenorFc.value == ''">
+                                            <span class="text-danger">Tenor tidak boleh kosong.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -98,6 +102,9 @@
                                                 <option value="bulan">Bulan</option>
                                             </select>
                                         </div>
+                                        <div class="col-12" *ngIf="bungaFc.value == ''">
+                                            <span class="text-danger">Bunga tidak boleh kosong.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -108,6 +115,7 @@
                                 <div class="col-6">
                                     <input FormatNumber type="text" class="w-100 form-control input-sufix" [formControl]="biayaadminFc" style="font-family: 'SegoeUI'">
                                     <div class="sufix">Rp</div>
+                                    <span class="text-danger" *ngIf="biayaadminFc.value == ''">Biaya Admin tidak boleh kosong.</span>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +137,12 @@
                                             <input  maxlength="5" *ngIf="optionbiayaprovisiFc.value === 'Persen'" type="text" class="w-100 form-control input-prefix" [formControl]="provisiFc"  style="font-family: 'SegoeUI'">
                                             <div class="sufix" *ngIf="optionbiayaprovisiFc.value === 'Fix'">Rp</div>
                                             <div class="prefix" *ngIf="optionbiayaprovisiFc.value === 'Persen'">%</div>
+                                        </div>
+                                        <div class="col-12" *ngIf="optionbiayaprovisiFc.value == ''">
+                                            <span class="text-danger">Pilih Biaya Provisi.</span>
+                                        </div>
+                                        <div class="col-12" *ngIf="provisiFc.value == '' && optionbiayaprovisiFc.value != '' && optionbiayaprovisiFc.value != 'tidak'">
+                                            <span class="text-danger">Biaya Provisi tidak boleh kosong.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -157,6 +171,12 @@
                                             <div class="sufix" *ngIf="optionasuransiFc.value === 'Fix'">Rp</div>
                                             <div class="prefix" *ngIf="optionasuransiFc.value === 'Persen'">%</div>
                                         </div>
+                                        <div class="col-12" *ngIf="optionasuransiFc.value == ''">
+                                            <span class="text-danger">Pilih Asuransi.</span>
+                                        </div>
+                                        <div class="col-12" *ngIf="asuransiFc.value == '' && optionasuransiFc.value != '' && optionasuransiFc.value != 'tidak'">
+                                            <span class="text-danger">Asuransi tidak boleh kosong.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -184,6 +204,12 @@
                                             <div class="sufix" *ngIf="optionjpkFc.value === 'Fix'">Rp</div>
                                             <div class="prefix" *ngIf="optionjpkFc.value === 'Persen'">%</div>
                                         </div>
+                                        <div class="col-12" *ngIf="optionjpkFc.value == ''">
+                                            <span class="text-danger">Pilih Dana JPK.</span>
+                                        </div>
+                                        <div class="col-12" *ngIf="jpkFc.value == '' && optionjpkFc.value != '' && optionjpkFc.value != 'tidak'">
+                                            <span class="text-danger">Dana JPK tidak boleh kosong.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -207,6 +233,12 @@
                                             <div class="sufix" *ngIf="optionsimpananpokokFc.value === 'Fix'">Rp</div>
                                             <div class="prefix" *ngIf="optionsimpananpokokFc.value === 'Persen'">%</div>
                                         </div>
+                                        <div class="col-12" *ngIf="optionsimpananpokokFc.value == ''">
+                                            <span class="text-danger">Pilih Simpanan Pokok.</span>
+                                        </div>
+                                        <div class="col-12" *ngIf="simpananpokokFc.value == '' && optionsimpananpokokFc.value != '' && optionsimpananpokokFc.value != 'tidak'">
+                                            <span class="text-danger">Simpanan Pokok tidak boleh kosong.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -218,6 +250,7 @@
                                     <input FormatNumber type="text" class="w-100 form-control input-sufix"
                                         [formControl]="simpananwajibFc" style="font-family: 'SegoeUI'">
                                     <div class="sufix">Rp</div>
+                                    <span class="text-danger"*ngIf="simpananwajibFc.value == ''">Simpanan Wajib tidak boleh kosong.</span>
                                 </div>
                             </div>
                         </div>
@@ -231,6 +264,7 @@
                                             <div class="sufix" *ngIf="typedendaketerlambatanFc.value === 'Fix'">Rp</div>
                                             <input maxlength="5" type="text" *ngIf="typedendaketerlambatanFc.value === 'Persen'" class="w-100 form-control" [formControl]="dendaketerlambatanFc" [class.input-sufix]="typedendaketerlambatanFc.value === 'Fix'" [class.input-prefix]="typedendaketerlambatanFc.value === 'Persen'" style="font-family: 'SegoeUI'">
                                             <div class="prefix" *ngIf="typedendaketerlambatanFc.value === 'Persen'">%</div>
+                                            <span class="text-danger" *ngIf="dendaketerlambatanFc.value == ''">Denda Keterlambatan tidak boleh kosong.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -244,6 +278,8 @@
                                         <div class="sufix" *ngIf="typepelunasanawalFc.value === 'Fix'">Rp</div>
                                     <input maxlength="5"  *ngIf="typepelunasanawalFc.value === 'Persen'" type="text" class="w-100 form-control" [formControl]="dendapelunasanawalFc" [class.input-sufix]="typepelunasanawalFc.value === 'Fix'" [class.input-prefix]="typepelunasanawalFc.value === 'Persen'" style="font-family: 'SegoeUI'">
                                         <div class="prefix" *ngIf="typepelunasanawalFc.value === 'Persen'">%</div>
+
+                                    <span class="text-danger" *ngIf="dendapelunasanawalFc.value == ''">Denda Pelunasan Awal tidak boleh kosong.</span>
                                 </div>
                             </div>
                         </div>
