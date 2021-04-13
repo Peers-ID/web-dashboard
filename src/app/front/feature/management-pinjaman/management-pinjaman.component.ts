@@ -8,12 +8,15 @@ import * as CryptoJS from 'crypto-js';
 import { ComponentLoaderFactory, idLocale } from 'ngx-bootstrap';
 import { ignoreElements } from 'rxjs/operators';
 import { UtilService } from "@app/core/util.service";
+import { environment } from '@env/environment';
+
 @Component({
   selector: 'app-management-pinjaman',
   templateUrl: './management-pinjaman.component.html',
   styleUrls: ['./management-pinjaman.component.scss']
 })
 export class ManagementPinjamanComponent implements OnInit {
+  baseUrl:any = environment.apiUrl;
   pinjamanshow: boolean = false;
   listdatapinjaman = []
   datapinjamanshow: boolean = false;
@@ -90,14 +93,14 @@ export class ManagementPinjamanComponent implements OnInit {
       result => {
         if (result.status !== 500) {
           this.dataloandetailmember = result.data.member
-          if (result.data.member.dokumen_ktp) this.imageKtp = 'http://api.peers.id/files/' +  result.data.member.dokumen_ktp
-          if (result.data.member.dokumen_kk) this.imageKk = 'http://api.peers.id/files/' +  result.data.member.dokumen_kk
-          if (result.data.member.dokumen_sim) this.imageSIM = 'http://api.peers.id/files/' +  result.data.member.dokumen_sim
-          if (result.data.member.dokumen_keterangan_kerja) this.imageSuratkerja = 'http://api.peers.id/files/' +  result.data.member.dokumen_keterangan_kerja
-          if (result.data.member.dokumen_slip_gaji) this.imageSlipgaji = 'http://api.peers.id/files/' +  result.data.member.dokumen_slip_gaji
-          if (result.data.member.dokumen_akta_nikah) this.imageAktanikah = 'http://api.peers.id/files/' +  result.data.member.dokumen_akta_nikah
-          if (result.data.member.dokumen_bpkb) this.imageBPKB = 'http://api.peers.id/files/' +  result.data.member.dokumen_bpkb
-          if (result.data.member.dokumen_lainnya) this.imageDokumenlainnya = 'http://api.peers.id/files/' +  result.data.member.dokumen_lainnya
+          if (result.data.member.dokumen_ktp) this.imageKtp = this.baseUrl+'/files/' +  result.data.member.dokumen_ktp
+          if (result.data.member.dokumen_kk) this.imageKk = this.baseUrl+'/files/' +  result.data.member.dokumen_kk
+          if (result.data.member.dokumen_sim) this.imageSIM = this.baseUrl+'/files/' +  result.data.member.dokumen_sim
+          if (result.data.member.dokumen_keterangan_kerja) this.imageSuratkerja = this.baseUrl+'/files/' +  result.data.member.dokumen_keterangan_kerja
+          if (result.data.member.dokumen_slip_gaji) this.imageSlipgaji = this.baseUrl+'/files/' +  result.data.member.dokumen_slip_gaji
+          if (result.data.member.dokumen_akta_nikah) this.imageAktanikah = this.baseUrl+'/files/' +  result.data.member.dokumen_akta_nikah
+          if (result.data.member.dokumen_bpkb) this.imageBPKB = this.baseUrl+'/files/' +  result.data.member.dokumen_bpkb
+          if (result.data.member.dokumen_lainnya) this.imageDokumenlainnya = this.baseUrl+'/files/' +  result.data.member.dokumen_lainnya
           this.dataloandetailloan = result.data.loan
           this.dataloandetailproduk = result.data.produk
           this.datapinjamanshow = true

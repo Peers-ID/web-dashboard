@@ -147,6 +147,34 @@ export class ContentService {
     const body = JSON.stringify(data);
     return this.api.postData(url, body);
   }
+  getRembug(){
+    const url = 'rembug/view';
+    return this.api.getData(url);
+  }
+  postRembug(data : any) : Observable<any>{
+    const url = 'rembug/add';
+    const body = JSON.stringify(data);
+    return this.api.postData(url,body);
+  }
+  updateRembug(data : any) : Observable<any>{
+    const url = 'rembug/edit';
+    const body = JSON.stringify(data);
+    return this.api.updateData(url,body);
+  }
+  getKelompok(id_rembuk : any){
+    const url = `kelompok/view/${id_rembuk}`;
+    return this.api.getData(url);
+  }
+  postKelompok(data : any) : Observable<any>{
+    const url = 'kelompok/add';
+    const body = JSON.stringify(data);
+    return this.api.postData(url,body);
+  }
+  updateKelompok(data : any) : Observable<any>{
+    const url = 'kelompok/edit';
+    const body = JSON.stringify(data);
+    return this.api.updateData(url,body);
+  }
   getListKoperasi(): Observable<any> {
     const url = 'koperasi';
     return this.api.getData(url);

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NotificationService, ContentService, ApiService } from '@app/core';
 import { FormBuilder, FormGroup, FormControl, Form, Validators } from "@angular/forms";
 import * as $ from "jquery";
+import { environment } from '@env/environment';
 @Component({
   selector: 'app-list-koperai',
   templateUrl: './list-koperai.component.html',
@@ -9,6 +10,7 @@ import * as $ from "jquery";
 })
 export class ListKoperaiComponent implements OnInit {
   fileimage: any;
+  baseUrl: any;
   file: File;
   form: FormGroup;
   koperasishow: boolean = false;
@@ -95,6 +97,7 @@ export class ListKoperaiComponent implements OnInit {
     this.nomorhandphoneFc = new FormControl();
     this.emailFc = new FormControl();
     this.loadingshow = false;
+    this.baseUrl = environment.apiUrl;
   }
 
   ngOnInit() {
@@ -421,7 +424,7 @@ export class ListKoperaiComponent implements OnInit {
   preview(){
     this.previewimage.show()
     this.listkoperasimodal.hide();
-    this.previewfoto = 'http://api.peers.id/files/'+this.fotoktp
+    this.previewfoto = this.baseUrl+"/"+this.fotoktp
     console.log(this.previewfoto);
     
   }

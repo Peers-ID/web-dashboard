@@ -6,11 +6,12 @@ import { FrontComponent } from "./front.component";
 import { HeaderComponent } from "./feature/header/header.Component";
 import { FooterComponent } from "./feature/footer/footer.Component";
 import { SidebarComponent } from "./feature/sidebar/sidebar.Component";
-import { AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard} from '@app/guard';
+import { AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard, AuthManajemenRembugGuard} from '@app/guard';
 import { LoginComponent } from "./feature/login/login.component";
 import { ForgotPasswordComponent } from './feature/forgot-password/forgot-password.component';
 import { ManagementAkunComponent } from './feature/management-akun/management-akun.component';
 import { ManagementPinjamanComponent } from './feature/management-pinjaman/management-pinjaman.component';
+import { ManagementRembugComponent } from './feature/management-rembug/management-rembug.component';
 import { GantiPasswordComponent } from "./feature/ganti-password/ganti-password.component";
 import { KinerjaKoperasiComponent } from "./feature/kinerja-koperasi/kinerja-koperasi.component";
 import { SharedModule } from "./shared/components/shared.module";
@@ -54,6 +55,7 @@ export function highchartsFactory() {
     FooterComponent,
     SidebarComponent,
     ManagementAkunComponent,
+    ManagementRembugComponent,
     ManagementPinjamanComponent,
     GantiPasswordComponent,
     KinerjaKoperasiComponent,
@@ -75,7 +77,7 @@ export function highchartsFactory() {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
     },
-    CurrencyPipe,DecimalPipe,AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard
+    CurrencyPipe,DecimalPipe,AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenRembugGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard
   ]
 })
 export class FrontModule { }

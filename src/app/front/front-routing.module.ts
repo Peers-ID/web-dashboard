@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard} from '@app/guard';
+import { AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard, AuthManajemenRembugGuard} from '@app/guard';
 import { FrontComponent } from "./front.component";
 import { LoginComponent } from "./feature/login/login.component";
 import { ForgotPasswordComponent } from './feature/forgot-password/forgot-password.component';
@@ -17,6 +17,7 @@ import { SimpananDetailByidComponent } from "./feature/management-anggota/simpan
 import { ParameterPinjamanComponent } from "./feature/pengaturan-pinjaman/parameter-pinjaman/parameter-pinjaman.component";
 import { StrukturPinjamanComponent } from "./feature/pengaturan-pinjaman/struktur-pinjaman/struktur-pinjaman.component";
 import { TemplateDataAnggotaComponent } from "./feature/pengaturan-pinjaman/template-data-anggota/template-data-anggota.component";
+import { ManagementRembugComponent } from './feature/management-rembug/management-rembug.component';
 const routes: Routes = [
   {
     path: "",
@@ -70,6 +71,11 @@ const routes: Routes = [
         path: "management-pinjaman",
         component: ManagementPinjamanComponent,
         canActivate: [AuthManajemenPinjamanGuard],
+      },
+      {
+        path: "management-rembug",
+        component: ManagementRembugComponent,
+        canActivate: [AuthManajemenRembugGuard],
       },
       {
         path: "management-anggota-pinjaman",

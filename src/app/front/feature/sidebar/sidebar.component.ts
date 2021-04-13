@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
   trigeraccount:string;
   menupengaturan:boolean;
   menumanajemenanggota:boolean;
+  menumanajemenrembug:boolean;
   menumanajemenpinjaman:boolean;
   menumanajemenakun:boolean;
   constructor(
@@ -27,13 +28,20 @@ export class SidebarComponent implements OnInit {
       this.active = window.location.pathname.split('/')[2];
     }    
     let parselocalstorage = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('currentUser'), 'secret').toString(CryptoJS.enc.Utf8))        
-    this.trigeraccount = parselocalstorage.role 
+    this.trigeraccount = parselocalstorage.role
     if (this.trigeraccount === 'Admin Peers'){
       this.menupengaturan = false;
       this.menumanajemenanggota = false;
       this.menumanajemenpinjaman = false;
       this.menumanajemenakun = false;
+      this.menumanajemenrembug = false;
     }else{
+
+      if(this.trigeraccount !== 'Super Admin'){
+        this.menumanajemenrembug = true;
+
+      }
+
       if (parselocalstorage.access === 'all' || parselocalstorage.access.mn_pengaturan_pinjaman === 1){
         this.menupengaturan = true;
       }else{

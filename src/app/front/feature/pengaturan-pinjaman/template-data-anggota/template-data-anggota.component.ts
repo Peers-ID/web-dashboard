@@ -20,6 +20,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
   statuspernikahanFc: FormControl = new FormControl(true);
   pendidikanterakhirFc: FormControl = new FormControl();
   namagadisibukandungFc: FormControl = new FormControl(true);
+  rembugFc: FormControl = new FormControl();
+  kelompokFc: FormControl = new FormControl();
   ktpjalanFc: FormControl = new FormControl(true);
   ktpprovinsiFc: FormControl = new FormControl(true);
   ktpkotaFc: FormControl = new FormControl(true);
@@ -100,6 +102,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.jeniskelaminFc.disable()
     this.statuspernikahanFc.disable()
     this.namagadisibukandungFc.disable()
+    this.rembugFc.disable()
+    this.kelompokFc.disable()
     this.ktpjalanFc.disable()
     this.ktpprovinsiFc.disable()
     this.ktpkotaFc.disable()
@@ -169,6 +173,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
     this.statuspernikahanFc.setValue(1)
     this.pendidikanterakhirFc.setValue(this.pendidikanterakhirFc.value === true ? 1 : 0)
     this.namagadisibukandungFc.setValue(1)
+    this.rembugFc.setValue(this.rembugFc.value == true ? 1 : 0)
+    this.kelompokFc.setValue(this.kelompokFc.value == true ? 1 : 0)
     this.ktpjalanFc.setValue(1)
     this.ktpprovinsiFc.setValue(1)
     this.ktpkotaFc.setValue(1)
@@ -242,6 +248,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
       "tempat_lahir": [this.tempatlahirFc.value, [Validators.required]],
       "jenis_kelamin": [this.jeniskelaminFc.value, [Validators.required]],
       "nama_gadis_ibu": [this.namagadisibukandungFc.value, [Validators.required]],
+      "rembug": [this.rembugFc.value, [Validators.required]],
+      "kelompok": [this.kelompokFc.value, [Validators.required]],
       "status_perkawinan": [this.statuspernikahanFc.value, [Validators.required]],
       "pendidikan_terakhir": [this.pendidikanterakhirFc.value, [Validators.required]],
       "alamat_ktp_jalan": [this.ktpjalanFc.value, [Validators.required]],
@@ -326,8 +334,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
       setTimeout(() => {
         this.loadingshow = false;
         this.notifSvc.addNotification({
-          type: 'danger',
-          head: 'Danger',
+          type: 'warning',
+          head: 'Warning',
           body: 'Pastikan semua form sudah terisi dengan benar'
         });
       }, 500);
@@ -344,6 +352,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
           this.pushdataform(
             result.data[0].email,
             result.data[0].usia,
+            result.data[0].kelompok,
+            result.data[0].rembug,
             result.data[0].pendidikan_terakhir,
             result.data[0].survey_luas_rumah,
             result.data[0].survey_jenis_atap,
@@ -399,6 +409,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
   pushdataform(
     email: any,
     usia: any,
+    kelompok: any,
+    rembug: any,
     pendidikanterakhir:any,
     luasrumah: any,
     jenisatap: any,
@@ -444,6 +456,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
   ) {
     this.emailFc.setValue(email === 1 ? true : false)
     this.usiaFc.setValue(usia === 1 ? true : false)
+    this.kelompokFc.setValue(kelompok === 1 ? true : false)
+    this.rembugFc.setValue(rembug === 1 ? true : false)
     this.pendidikanterakhirFc.setValue(pendidikanterakhir === 1 ? true : false)
     this.luasrumahFc.setValue(luasrumah === 1 ? true : false)
     this.jenisatapFc.setValue(jenisatap === 1 ? true : false)
@@ -491,6 +505,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
     if (type === 'disable') {
       this.emailFc.disable()
       this.usiaFc.disable()
+      this.rembugFc.disable()
+      this.kelompokFc.disable()
       this.pendidikanterakhirFc.disable()
       this.luasrumahFc.disable()
       this.jenisatapFc.disable()
@@ -536,6 +552,8 @@ export class TemplateDataAnggotaComponent implements OnInit {
     } else {
       this.emailFc.enable()
       this.usiaFc.enable()
+      this.rembugFc.enable()
+      this.kelompokFc.enable()
       this.pendidikanterakhirFc.enable()
       this.luasrumahFc.enable()
       this.jenisatapFc.enable()

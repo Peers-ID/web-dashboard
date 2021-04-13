@@ -9,12 +9,15 @@ import { ComponentLoaderFactory, idLocale } from 'ngx-bootstrap';
 import { element } from 'protractor';
 import { ignoreElements } from 'rxjs/operators';
 import { UtilService } from "@app/core/util.service";
+import { environment } from '@env/environment';
+
 @Component({
   selector: 'app-pinjaman',
   templateUrl: './pinjaman.component.html',
   styleUrls: ['./pinjaman.component.scss']
 })
 export class PinjamanComponent implements OnInit {
+  baseUrl: any = environment.apiUrl;
   listangsuransebagain: any;
   loadingshow:boolean = false;
   listperhitunganpelunasandipercepat: any;
@@ -145,14 +148,14 @@ export class PinjamanComponent implements OnInit {
         if (result.status !== 500) {
           this.datapinjamananggotashow = true
           this.dataloandetailmember = result.data.member
-          if (result.data.member.dokumen_ktp) this.imageKtp = 'http://api.peers.id/files/' +  result.data.member.dokumen_ktp
-          if (result.data.member.dokumen_kk) this.imageKk = 'http://api.peers.id/files/' +  result.data.member.dokumen_kk
-          if (result.data.member.dokumen_sim) this.imageSIM = 'http://api.peers.id/files/' +  result.data.member.dokumen_sim
-          if (result.data.member.dokumen_keterangan_kerja) this.imageSuratkerja = 'http://api.peers.id/files/' +  result.data.member.dokumen_keterangan_kerja
-          if (result.data.member.dokumen_slip_gaji) this.imageSlipgaji = 'http://api.peers.id/files/' +  result.data.member.dokumen_slip_gaji
-          if (result.data.member.dokumen_akta_nikah) this.imageAktanikah = 'http://api.peers.id/files/' +  result.data.member.dokumen_akta_nikah
-          if (result.data.member.dokumen_bpkb) this.imageBPKB = 'http://api.peers.id/files/' +  result.data.member.dokumen_bpkb
-          if (result.data.member.dokumen_lainnya) this.imageDokumenlainnya = 'http://api.peers.id/files/' +  result.data.member.dokumen_lainnya
+          if (result.data.member.dokumen_ktp) this.imageKtp = this.baseUrl+'/files/' +  result.data.member.dokumen_ktp
+          if (result.data.member.dokumen_kk) this.imageKk = this.baseUrl+'/files/' +  result.data.member.dokumen_kk
+          if (result.data.member.dokumen_sim) this.imageSIM = this.baseUrl+'/files/' +  result.data.member.dokumen_sim
+          if (result.data.member.dokumen_keterangan_kerja) this.imageSuratkerja = this.baseUrl+'/files/' +  result.data.member.dokumen_keterangan_kerja
+          if (result.data.member.dokumen_slip_gaji) this.imageSlipgaji = this.baseUrl+'/files/' +  result.data.member.dokumen_slip_gaji
+          if (result.data.member.dokumen_akta_nikah) this.imageAktanikah = this.baseUrl+'/files/' +  result.data.member.dokumen_akta_nikah
+          if (result.data.member.dokumen_bpkb) this.imageBPKB = this.baseUrl+'/files/' +  result.data.member.dokumen_bpkb
+          if (result.data.member.dokumen_lainnya) this.imageDokumenlainnya = this.baseUrl+'/files/' +  result.data.member.dokumen_lainnya
           this.listdataprodukanggota = result.data.loan
 
         }else{
@@ -170,7 +173,7 @@ export class PinjamanComponent implements OnInit {
           this.datapinjamananggotashowdetail = true
           this.detailloan = result.data.loan
           this.detailtenor = result.data.product
-          if (result.data.loan.member_photo_url) this.imageBuktiPencairan = 'http://api.peers.id/files/' + result.data.loan.member_photo_url
+          if (result.data.loan.member_photo_url) this.imageBuktiPencairan = this.baseUrl+'/files/' + result.data.loan.member_photo_url
           if (/^\d+$/.test(result.data.loan.bunga_pinjaman)) this.checkbungavalue = true
           else this.checkbungavalue = true
           this.listpembayaranangsuran = result.data.collection

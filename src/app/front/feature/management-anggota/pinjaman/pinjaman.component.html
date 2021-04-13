@@ -20,7 +20,7 @@
                                         <th class="text-center">Nama Anggota</th>
                                     </tr>
                                     <tr *ngFor="let item of listdatapinjamananggota; let i = index">
-                                        <td>{{i + 1}}.</td>
+                                         <td>{{i + 1}}.</td>
                                         <td class="text-center" (click)="detailmember(item.member_id)"
                                             style="cursor: pointer;">{{item.nama_lengkap}}</td>
                                     </tr>
@@ -192,6 +192,27 @@
                                                         <div class="col-6 "
                                                             style="font-size: 13px; border: 0.3px solid #c2c2c2;min-height: 29px; display: flex;align-items:center;place-content: center;">
                                                             {{dataloandetailmember.nama_gadis_ibu}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-6" style="font-size: 13px;">Rembug:</div>
+                                                        <div class="col-6 "
+                                                            style="font-size: 13px; border: 0.3px solid #c2c2c2;min-height: 29px; display: flex;align-items:center;place-content: center;">
+                                                            {{dataloandetailmember.rembug}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <div class="row">
+                                                <div class="col-4 mb-2">
+                                                    <div class="row">
+                                                        <div class="col-6" style="font-size: 13px;">Kelompok:
+                                                        </div>
+                                                        <div class="col-6 "
+                                                            style="font-size: 13px; border: 0.3px solid #c2c2c2;min-height: 29px; display: flex;align-items:center;place-content: center;">
+                                                            {{dataloandetailmember.kelompok}}</div>
                                                     </div>
                                                 </div>
                                             </div>

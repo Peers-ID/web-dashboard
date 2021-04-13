@@ -57,6 +57,14 @@
                     <span *ngIf="active === 'management-akun'"><img height="14px" class="mr-2 mb-1" src="assets/icon-white/akun.png"></span>
                     <span>Manajemen Akun</span></a>
             </li>
+            <li class="treeview" *ngIf="menumanajemenrembug">
+                <a
+                    [class.nav-select]="active === 'management-rembug'" [class.!nav-select]="active !== 'management-rembug'"
+                    (click)="goTo('management-rembug')">
+                    <span *ngIf="active !== 'management-rembug'"><img height="14px" class="mr-2 mb-1" src="assets/images/akun.png"></span>
+                    <span *ngIf="active === 'management-rembug'"><img height="14px" class="mr-2 mb-1" src="assets/icon-white/akun.png"></span>
+                    <span>Manajemen Rembug</span></a>
+            </li>
             <li class="treeview "  *ngIf="menumanajemenpinjaman">
                 <a
                     [class.nav-select]="active === 'management-pinjaman'" [class.!nav-select]="active !== 'management-pinjaman'"
