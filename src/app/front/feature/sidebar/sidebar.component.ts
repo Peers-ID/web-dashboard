@@ -29,6 +29,7 @@ export class SidebarComponent implements OnInit {
     }    
     let parselocalstorage = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('currentUser'), 'secret').toString(CryptoJS.enc.Utf8))        
     this.trigeraccount = parselocalstorage.role
+
     if (this.trigeraccount === 'Admin Peers'){
       this.menupengaturan = false;
       this.menumanajemenanggota = false;
@@ -37,9 +38,10 @@ export class SidebarComponent implements OnInit {
       this.menumanajemenrembug = false;
     }else{
 
-      if(this.trigeraccount !== 'Super Admin'){
+      if (parselocalstorage.access === 'all' || parselocalstorage.access.mn_management_rembug === 1){
         this.menumanajemenrembug = true;
-
+      }else{
+        this.menumanajemenrembug = false;
       }
 
       if (parselocalstorage.access === 'all' || parselocalstorage.access.mn_pengaturan_pinjaman === 1){

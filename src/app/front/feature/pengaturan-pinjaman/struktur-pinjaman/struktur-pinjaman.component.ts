@@ -20,6 +20,7 @@ export class StrukturPinjamanComponent implements OnInit {
   bungaFc: FormControl = new FormControl();
   optionbungaFc: FormControl = new FormControl();
   biayaadminFc: FormControl = new FormControl();
+  optionbiayaadminFc: FormControl = new FormControl();
   optionbiayaprovisiFc: FormControl = new FormControl();
   optionasuransiFc: FormControl = new FormControl();
   optionjpkFc: FormControl = new FormControl();
@@ -130,6 +131,14 @@ export class StrukturPinjamanComponent implements OnInit {
           this.provisiFc.setValue('')
         }
         break;
+      case 'biayaadmin':
+        this.biayaadminFc.setValue('')
+        if (this.optionbiayaadminFc.value !== '' && this.optionbiayaadminFc.value !== 'tidak') this.biayaadminFc.enable()
+        else {
+          this.biayaadminFc.disable()
+          this.biayaadminFc.setValue('')
+        }
+        break;
       case 'asuransi':
         this.asuransiFc.setValue('')
         if (this.optionasuransiFc.value !== '' && this.optionasuransiFc.value !== 'tidak') this.asuransiFc.enable()
@@ -162,7 +171,6 @@ export class StrukturPinjamanComponent implements OnInit {
     this.contentSvc.getProductbyId(id).subscribe(
       result => {
         if (result) {
-          console.log(result)
           this.produkshowcreate = true
           this.namaprodukFc.setValue(result.data[0].nama_produk)
           if (result.data[0].denda_keterlambatan !== '' && result.data[0].denda_keterlambatan !== 0) {
@@ -181,7 +189,7 @@ export class StrukturPinjamanComponent implements OnInit {
           }
           setTimeout(() => {
             this.pushdataform(result.data[0].nama_produk, result.data[0].tenor, result.data[0].satuan_tenor,
-              result.data[0].bunga, result.data[0].tenor_bunga, result.data[0].admin, result.data[0].provisi,result.data[0].asuransi,result.data[0].dana_jpk, result.data[0].type_provisi,result.data[0].type_asuransi,result.data[0].type_dana_jpk,
+              result.data[0].bunga, result.data[0].tenor_bunga, result.data[0].admin, result.data[0].provisi,result.data[0].asuransi,result.data[0].dana_jpk,result.data[0].type_admin, result.data[0].type_provisi,result.data[0].type_asuransi,result.data[0].type_dana_jpk,
               result.data[0].simpanan_pokok, result.data[0].type_simpanan_pokok, result.data[0].simpanan_wajib, result.data[0].denda_keterlambatan,
               result.data[0].pelunasan_dipercepat, result.data[0].type_denda_keterlambatan, result.data[0].type_pelunasan_dipercepat)
           }, 100);
@@ -190,7 +198,7 @@ export class StrukturPinjamanComponent implements OnInit {
     )
   }
 
-  pushdataform(nama: any, tenor: any, optiontenor: any, bunga: any, optionbunga: any, biayaadmin: any, provisi: any,asuransi: any,jpk: any, optionprovisi: any,optionasuransi: any,optionjpk: any, simpananpokok: any,
+  pushdataform(nama: any, tenor: any, optiontenor: any, bunga: any, optionbunga: any, biayaadmin: any, provisi: any,asuransi: any,jpk: any,optionbiayaadmin: any, optionprovisi: any,optionasuransi: any,optionjpk: any, simpananpokok: any,
     optionsimpananpokok: any, simpananwajib: any, dendaketerlambatan: any, dendapelunasanawal: any, typedendaketerlambatan: any, typepelunasandipercepat: any) {
 
     this.namaprodukFc.setValue(nama)
@@ -205,6 +213,9 @@ export class StrukturPinjamanComponent implements OnInit {
     
     if (optionprovisi === 'Persen') this.provisiFc.setValue(provisi == 0 ? '' : provisi)
     else this.provisiFc.setValue(this.utilSvc.formatNumber(provisi) == 0 ? '' : this.utilSvc.formatNumber(provisi))
+    
+    if (optionbiayaadmin === 'Persen') this.biayaadminFc.setValue(biayaadmin == 0 ? '' : biayaadmin)
+    else this.biayaadminFc.setValue(this.utilSvc.formatNumber(biayaadmin) == 0 ? '' : this.utilSvc.formatNumber(biayaadmin))
 
     if (optionasuransi === 'Persen') this.asuransiFc.setValue(asuransi == 0 ? '' : asuransi)
     else this.asuransiFc.setValue(this.utilSvc.formatNumber(asuransi) == 0 ? '' : this.utilSvc.formatNumber(asuransi))
@@ -213,6 +224,7 @@ export class StrukturPinjamanComponent implements OnInit {
     else this.jpkFc.setValue(this.utilSvc.formatNumber(jpk) == 0 ? '' : this.utilSvc.formatNumber(jpk))
     
     this.simpananpokokFc.setValue(this.utilSvc.formatNumber(simpananpokok) == 0 ? '' : this.utilSvc.formatNumber(simpananpokok))    
+    this.optionbiayaadminFc.setValue(optionbiayaadmin)
     this.optionbiayaprovisiFc.setValue(optionprovisi)
     this.optionsimpananpokokFc.setValue(optionsimpananpokok)
     this.simpananwajibFc.setValue(this.utilSvc.formatNumber(simpananwajib))
@@ -231,6 +243,12 @@ export class StrukturPinjamanComponent implements OnInit {
 
     this.typedendaketerlambatanFc.setValue(typedendaketerlambatan)
     this.typepelunasanawalFc.setValue(typepelunasandipercepat)
+
+    if (this.optionbiayaadminFc.value !== '' && this.optionbiayaadminFc.value !== 'tidak') this.biayaadminFc.enable()
+    else {
+      this.biayaadminFc.disable()
+      this.biayaadminFc.setValue('')
+    }
 
     if (this.optionbiayaprovisiFc.value !== '' && this.optionbiayaprovisiFc.value !== 'tidak') this.provisiFc.enable()
     else {
@@ -264,6 +282,7 @@ export class StrukturPinjamanComponent implements OnInit {
     this.optionbungaFc.setValue('')
     this.biayaadminFc.setValue('')
     this.provisiFc.setValue('')
+    this.optionbiayaadminFc.setValue('')
     this.optionbiayaprovisiFc.setValue('')
     this.asuransiFc.setValue('')
     this.optionasuransiFc.setValue('')
@@ -287,12 +306,23 @@ export class StrukturPinjamanComponent implements OnInit {
   postdata(type: string) {
     this.loadingshow = true;
 
+    let statusadmin: any;
     let statusprovisi: any;
     let statusasuransi: any;
     let statusjpk: any;
     let statuspokok: any;
     let statusketerlambatan: any;
     let statuspelunasan: any;
+
+    if (this.optionbiayaadminFc.value !== null && this.optionbiayaadminFc.value !== '' && this.optionbiayaadminFc.value === 'tidak') {
+      statusadmin = 'valid'
+    } else {
+      if (this.biayaadminFc.value !== null && this.biayaadminFc.value !== '') {
+        statusadmin = 'valid'
+      } else {
+        statusadmin = 'invalid'
+      }
+    }
 
     if (this.optionbiayaprovisiFc.value !== null && this.optionbiayaprovisiFc.value !== '' && this.optionbiayaprovisiFc.value === 'tidak') {
       statusprovisi = 'valid'
@@ -368,6 +398,9 @@ export class StrukturPinjamanComponent implements OnInit {
     if (this.dendapelunasanawalFc.value.includes('.') && this.typepelunasanawalFc.value !== 'Persen')
       this.dendapelunasanawalFc.setValue(this.dendapelunasanawalFc.value.toString().replace(/\./g, ''))
 
+    if (this.biayaadminFc.value.includes('.') && this.optionbiayaadminFc.value !== 'Persen')
+      this.biayaadminFc.setValue(this.biayaadminFc.value.toString().replace(/\./g, ''))
+
     if (this.provisiFc.value.includes('.') && this.optionbiayaprovisiFc.value !== 'Persen')
       this.provisiFc.setValue(this.provisiFc.value.toString().replace(/\./g, ''))
 
@@ -386,7 +419,8 @@ export class StrukturPinjamanComponent implements OnInit {
       "satuan_tenor": [this.optiontenorFc.value, [Validators.required]],
       "bunga": [this.bungaFc.value, [Validators.required]],
       "tenor_bunga": [this.optionbungaFc.value, [Validators.required]],
-      "admin": [this.utilSvc.formatnonNumber(this.biayaadminFc.value), [Validators.required]],
+      "admin": [this.biayaadminFc.value === '' ? 0 : this.biayaadminFc.value],
+      "type_admin": [this.optionbiayaadminFc.value, [Validators.required]],
       "provisi": [this.provisiFc.value === '' ? 0 : this.provisiFc.value],
       "type_provisi": [this.optionbiayaprovisiFc.value, [Validators.required]],
       "asuransi": [this.asuransiFc.value === '' ? 0 : this.asuransiFc.value],
@@ -402,7 +436,7 @@ export class StrukturPinjamanComponent implements OnInit {
       "type_pelunasan_dipercepat": [this.typepelunasanawalFc.value, [Validators.required]]
     });
     
-    if (this.formgrouppostdata.status === "VALID" && statusprovisi === 'valid' && statusasuransi === 'valid' && statusjpk === 'valid'
+    if (this.formgrouppostdata.status === "VALID" && statusadmin === 'valid' && statusprovisi === 'valid' && statusasuransi === 'valid' && statusjpk === 'valid'
       && statuspokok === 'valid' && statusketerlambatan === 'valid' && statuspelunasan === 'valid') {
 
       switch (type) {

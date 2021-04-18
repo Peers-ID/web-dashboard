@@ -17,8 +17,12 @@ export class AuthManajemenRembugGuard implements CanActivate {
     return new Observable<boolean>(observer => {
       if (this.authService.isSignedIn()) {
         let parselocalstorage = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('currentUser'), 'secret').toString(CryptoJS.enc.Utf8))        
-        if (parselocalstorage.role !== 'Admin Peers' && parselocalstorage.role !== 'Super Admin'){
-            observer.next(true);
+        if (parselocalstorage.role !== 'Admin Peers'){
+          if( parselocalstorage.access.mn_management_rembug === 1 || parselocalstorage.access === 'all')observer.next(true);
+            else {
+                observer.next(false); 
+                this.router.navigate(['kinerja-koperasi'])
+            }
         }else{
           observer.next(false);
           this.router.navigate(['kinerja-koperasi'])

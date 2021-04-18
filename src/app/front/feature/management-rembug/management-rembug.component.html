@@ -12,8 +12,8 @@
                     </div>
                     <div class="col-12 mt-4">
                         <div class="row" *ngIf="rembugShow">
-                            <div class="col-12" *ngIf="listDataRembug.length > 0">
-                                <table style="width: 100%; text-align: center;">
+                            <div class="col-12">
+                                <table style="width: 100%; text-align: center;" *ngIf="listDataRembug.length > 0">
                                     <tr style="background-color: #f3f7fd; font-size: 14px; color: #707070">
                                         <th>No</th>
                                         <th>Nama Ketua</th>
@@ -25,11 +25,22 @@
                                         </td>
                                         <td>{{item.nama_rembug}}</td>
                                     </tr>
+                                    <tr *ngIf=" listDataRembug.length === 0">
+                                       <td colspan="3">Tidak ada Data!</td>
+                                    </tr>
+                                </table>
+                                <table style="width: 100%; text-align: center;" *ngIf="listDataRembug.length === 0">
+                                    <tr style="background-color: #f3f7fd; font-size: 14px; color: #707070">
+                                        <th>No</th>
+                                        <th>Nama Ketua</th>
+                                        <th>Nama Rembug</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Tidak ada data!</td>
+                                    </tr>
                                 </table>
                             </div>
-                            <div class="col-12 text-center" *ngIf=" listDataRembug.length === 0">
-                                No data...
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -78,7 +89,7 @@
                                     <button class="btn btn-primary ml-2" (click)="tambahKelompok()">Tambah Kelompok</button>
                                 </div>
                                 <div class="col-5 mt-2">
-                                    <table style="width: 100%; text-align: center;">
+                                    <table style="width: 100%; text-align: center;" *ngIf="listDataKelompok.length > 0">
                                         <tr style="background-color: #f3f7fd; font-size: 14px">
                                             <th style="color: #707070; font-weight: bold;">No</th>
                                             <th class="text-center" style="color: #707070; font-weight: bold;">Nama Ketua</th>
@@ -88,6 +99,16 @@
                                             <td>{{i + 1}}.</td>
                                             <td>{{item.nama_ketua}}</td>
                                             <td>{{item.nama_kelompok}}</td>
+                                        </tr>
+                                    </table>
+                                    <table style="width: 100%; text-align: center;" *ngIf="listDataKelompok.length == 0">
+                                        <tr style="background-color: #f3f7fd; font-size: 14px">
+                                            <th style="color: #707070; font-weight: bold;">No</th>
+                                            <th class="text-center" style="color: #707070; font-weight: bold;">Nama Ketua</th>
+                                            <th class="text-center" style="color: #707070; font-weight: bold;">Nama Kelompok</th>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">Tidak ada data!</td>
                                         </tr>
                                     </table>
                                 </div>

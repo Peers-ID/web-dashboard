@@ -113,9 +113,28 @@
                             <div class="row">
                                 <div class="col-6">Biaya Admin</div>
                                 <div class="col-6">
-                                    <input FormatNumber type="text" class="w-100 form-control input-sufix" [formControl]="biayaadminFc" style="font-family: 'SegoeUI'">
-                                    <div class="sufix">Rp</div>
-                                    <span class="text-danger" *ngIf="biayaadminFc.value == ''">Biaya Admin tidak boleh kosong.</span>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-control" [formControl]="optionbiayaadminFc" (change)="changetypeselect('biayaadmin')">
+                                                <option [defaultSelected]=true hidden value="">Pilih</option>
+                                                <option value="tidak">Tidak ada</option>
+                                                <option value="Fix">Fix Amount</option>
+                                                <option value="Persen">Persentase %</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <input FormatNumber *ngIf="optionbiayaadminFc.value === 'Fix'" type="text" class="w-100 form-control input-sufix" [formControl]="biayaadminFc" style="font-family: 'SegoeUI'">
+                                            <input  maxlength="5" *ngIf="optionbiayaadminFc.value === 'Persen'" type="text" class="w-100 form-control input-prefix" [formControl]="biayaadminFc"  style="font-family: 'SegoeUI'">
+                                            <div class="sufix" *ngIf="optionbiayaadminFc.value === 'Fix'">Rp</div>
+                                            <div class="prefix" *ngIf="optionbiayaadminFc.value === 'Persen'">%</div>
+                                        </div>
+                                        <div class="col-12" *ngIf="optionbiayaadminFc.value == ''">
+                                            <span class="text-danger">Pilih Biaya Provisi.</span>
+                                        </div>
+                                        <div class="col-12" *ngIf="biayaadminFc.value == '' && optionbiayaadminFc.value != '' && optionbiayaadminFc.value != 'tidak'">
+                                            <span class="text-danger">Biaya Admin tidak boleh kosong.</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
