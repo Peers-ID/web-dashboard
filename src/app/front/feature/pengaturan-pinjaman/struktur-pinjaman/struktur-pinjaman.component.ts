@@ -398,7 +398,7 @@ export class StrukturPinjamanComponent implements OnInit {
     if (this.dendapelunasanawalFc.value.includes('.') && this.typepelunasanawalFc.value !== 'Persen')
       this.dendapelunasanawalFc.setValue(this.dendapelunasanawalFc.value.toString().replace(/\./g, ''))
 
-    if (this.biayaadminFc.value.includes('.') && this.optionbiayaadminFc.value !== 'Persen')
+    if ((typeof this.biayaadminFc.value == "string" && this.biayaadminFc.value.indexOf('.') > -1) && this.optionbiayaadminFc.value !== 'Persen')
       this.biayaadminFc.setValue(this.biayaadminFc.value.toString().replace(/\./g, ''))
 
     if (this.provisiFc.value.includes('.') && this.optionbiayaprovisiFc.value !== 'Persen')
