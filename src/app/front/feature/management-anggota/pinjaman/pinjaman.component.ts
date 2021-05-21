@@ -18,6 +18,9 @@ import { environment } from '@env/environment';
 })
 export class PinjamanComponent implements OnInit {
   baseUrl: any = environment.apiUrl;
+  searchFc: FormControl = new FormControl()
+  listDataSearch = []
+  dataSearchShow: boolean = false;
   listangsuransebagain: any;
   loadingshow:boolean = false;
   listperhitunganpelunasandipercepat: any;
@@ -142,11 +145,13 @@ export class PinjamanComponent implements OnInit {
   navtabclick(data) {
     this.trigerclick = data
   }
+
   loadata(id: any) {
     this.contentSvc.getLoadbyId(id).subscribe(
       result => {
         if (result.status !== 500) {
           this.datapinjamananggotashow = true
+          this.dataSearchShow = false
           this.dataloandetailmember = result.data.member
           if (result.data.member.dokumen_ktp) this.imageKtp = this.baseUrl+'/files/' +  result.data.member.dokumen_ktp
           if (result.data.member.dokumen_kk) this.imageKk = this.baseUrl+'/files/' +  result.data.member.dokumen_kk
@@ -164,6 +169,13 @@ export class PinjamanComponent implements OnInit {
       }
     )
   }
+
+  search(){
+      this.listDataSearch = []
+      this.listDataSearch = this.listdatapinjamananggota.filter( anggota => anggota.nama_lengkap.toLowerCase().includes(this.searchFc.value.toLowerCase()))
+      this.dataSearchShow = true
+  }
+
   statusproduk(id:any){    
     this.anggotapinjamanmodal.hide()
     this.detailanggotapinjaman.show()

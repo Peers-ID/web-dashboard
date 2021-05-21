@@ -17,6 +17,9 @@ import { environment } from '@env/environment';
 })
 export class ManagementPinjamanComponent implements OnInit {
   baseUrl:any = environment.apiUrl;
+  searchFc: FormControl = new FormControl()
+  listDataSearch = []
+  dataSearchShow: boolean = false;
   pinjamanshow: boolean = false;
   listdatapinjaman = []
   datapinjamanshow: boolean = false;
@@ -103,6 +106,7 @@ export class ManagementPinjamanComponent implements OnInit {
           if (result.data.member.dokumen_lainnya) this.imageDokumenlainnya = this.baseUrl+'/files/' +  result.data.member.dokumen_lainnya
           this.dataloandetailloan = result.data.loan
           this.dataloandetailproduk = result.data.produk
+          this.dataSearchShow = false
           this.datapinjamanshow = true
           this.idstatuspinjaman = result.data.loan.id_status
           this.idloanpinjaman = result.data.loan.id
@@ -204,5 +208,10 @@ export class ManagementPinjamanComponent implements OnInit {
   handleBrokenImage(data: any): void {
     const imgElement: HTMLElement = data.target;
     imgElement.setAttribute('src', '');
+  }
+  search(){
+      this.listDataSearch = []
+      this.listDataSearch = this.listdatapinjaman.filter( pinjaman => pinjaman.nama_member.toLowerCase().includes(this.searchFc.value.toLowerCase()))
+      this.dataSearchShow = true
   }
 }

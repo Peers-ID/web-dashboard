@@ -17,6 +17,9 @@ import { Router } from "@angular/router";
 })
 export class SimpananComponent implements OnInit {
   listdatasimpanananggota = [];
+  searchFc: FormControl = new FormControl()
+  listDataSearch = []
+  dataSearchShow: boolean = false;
   anggotasimpananshow:boolean = false;
   constructor(
     private contentSvc: ContentService,
@@ -47,5 +50,11 @@ export class SimpananComponent implements OnInit {
   }
   detailmember(id,nama){
     this.router.navigate(['/management-anggota-simpanan',id,nama]);
+  }
+
+  search(){
+      this.listDataSearch = []
+      this.listDataSearch = this.listdatasimpanananggota.filter( anggota => anggota.nama_lengkap.toLowerCase().includes(this.searchFc.value.toLowerCase()))
+      this.dataSearchShow = true
   }
 }

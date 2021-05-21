@@ -7,7 +7,14 @@
                     <div class="col-12 mt-4">
                         <div class="row">
                             <div class="col-3">
-                                <input type="text" class="form-control w-100" placeholder="search...">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <input type="text" class="form-control" placeholder="Cari" [formControl]="searchFc">
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-primary" (click)="search()">Cari</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -19,14 +26,14 @@
                                         <th>No</th>
                                         <th class="text-center">Nama Anggota</th>
                                     </tr>
-                                    <tr *ngFor="let item of listdatapinjamananggota; let i = index">
+                                    <tr *ngFor="let item of dataSearchShow ? listDataSearch : listdatapinjamananggota ; let i = index">
                                          <td>{{i + 1}}.</td>
                                         <td class="text-center" (click)="detailmember(item.member_id)"
                                             style="cursor: pointer;">{{item.nama_lengkap}}</td>
                                     </tr>
                                 </table>
                             </div>
-                            <div class="col-12 text-center" *ngIf="listdatapinjamananggota.length === 0">
+                            <div class="col-12 text-center" *ngIf="listdatapinjamananggota.length === 0 || (dataSearchShow && listDataSearch.length === 0)">
                                 No data...
                             </div>
                         </div>
