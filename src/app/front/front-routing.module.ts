@@ -18,6 +18,8 @@ import { ParameterPinjamanComponent } from "./feature/pengaturan-pinjaman/parame
 import { StrukturPinjamanComponent } from "./feature/pengaturan-pinjaman/struktur-pinjaman/struktur-pinjaman.component";
 import { TemplateDataAnggotaComponent } from "./feature/pengaturan-pinjaman/template-data-anggota/template-data-anggota.component";
 import { ManagementRembugComponent } from './feature/management-rembug/management-rembug.component';
+import { LampiranComponent } from './feature/management-laporan/lampiran/lampiran.component';
+import { AuthManajemenLaporanGuard } from '@app/guard/auth-manajemen-lampiran.guard';
 const routes: Routes = [
   {
     path: "",
@@ -76,6 +78,11 @@ const routes: Routes = [
         path: "management-rembug",
         component: ManagementRembugComponent,
         canActivate: [AuthManajemenRembugGuard],
+      },
+      {
+        path: "management-laporan-lampiran",
+        component: LampiranComponent,
+        canActivate: [AuthManajemenLaporanGuard],
       },
       {
         path: "management-anggota-pinjaman",

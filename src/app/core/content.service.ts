@@ -179,6 +179,11 @@ export class ContentService {
     const url = 'koperasi';
     return this.api.getData(url);
   }
+  getListReportLampiran(data: any): Observable<any> {
+    const url = 'report/lampiran';
+    const body = JSON.stringify(data)
+    return this.api.postData(url,body);
+  }
   getLoanStatus(): Observable<any> {
     const url = 'master/loan/status';
     return this.api.getData(url);

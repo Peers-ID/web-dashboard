@@ -1,0 +1,124 @@
+<app-modalloading *ngIf="loadingshow"></app-modalloading>
+<div class="col-md-12 mt-2">
+    <div class="card r-0 b-0">
+        <div class="card-body" >
+            <div class="col-12">
+                <div class="row justify-content-between">
+                    <div class="col-12 mt-4">
+                        <div class="row">
+                            <div class="col-7 d-flex justify-content-between">
+                                <input type="date" class="form-control" [formControl]="fromDateFc">
+                                <div class="mx-4"> - </div>
+                                <input type="date" class="form-control" [formControl]="toDateFc">
+                            </div>
+                            <div class="col-5">
+                                <button class="btn btn-primary" (click)="search()">Cari</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4" *ngIf="lampiranshow">
+                        <div class="row">
+                            <div class="col-12" *ngIf="listdatalampiran.length > 0">
+                                <table style="width: 100%; text-align: center;">
+                                    <tr style="background-color: #f3f7fd; font-size: 14px; color: #707070">
+                                        <th rowspan="2">Minggu</th>
+                                        <th class="text-center" colspan="3">Simpanan Wajib</th>
+                                        <th class="text-center" colspan="3">Simpanan Sukarela</th>
+                                        <th class="text-center" colspan="3">Dana JPK</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Simpan</td>
+                                        <td>Tarik</td>
+                                        <td>Jumlah</td>
+
+                                        <td>Simpan</td>
+                                        <td>Tarik</td>
+                                        <td>Jumlah</td>
+
+                                        <td>Simpan</td>
+                                        <td>Tarik</td>
+                                        <td>Jumlah</td>
+                                    </tr>
+                                    <tr *ngFor="let item of dataSearchShow ? listDataSearch : listdatalampiran ; let i = index">
+                                        <td>Ke {{i + 1}}</td>
+
+                                        <td>{{utilSvc.formatNumber(item.simpanan_wajib_simpan)}}</td>
+                                        <td>{{utilSvc.formatNumber(item.simpanan_wajib_tarik)}}</td>
+                                        <td>{{utilSvc.formatNumber(item.simpanan_wajib_jumlah)}}</td>
+                                        
+                                        <td>{{utilSvc.formatNumber(item.simpanan_sukarela_simpan)}}</td>
+                                        <td>{{utilSvc.formatNumber(item.simpanan_sukarela_tarik)}}</td>
+                                        <td>{{utilSvc.formatNumber(item.simpanan_sukarela_jumlah)}}</td>
+                                        
+                                        <td>{{utilSvc.formatNumber(item.dana_jpk_simpan)}}</td>
+                                        <td>{{utilSvc.formatNumber(item.dana_jpk_tarik)}}</td>
+                                        <td>{{utilSvc.formatNumber(item.dana_jpk_jumlah)}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-12 text-center" *ngIf="listdatalampiran.length === 0 || (dataSearchShow && listDataSearch.length === 0)">
+                            <table style="width: 100%; text-align: center;">
+                                <tr style="background-color: #f3f7fd; font-size: 14px; color: #707070">
+                                    <th rowspan="2">Minggu</th>
+                                    <th class="text-center" colspan="3">Simpanan Wajib</th>
+                                    <th class="text-center" colspan="3">Simpanan Sukarela</th>
+                                    <th class="text-center" colspan="3">Dana JPK</th>
+                                </tr>
+                                <tr>
+                                    <td>Simpan</td>
+                                    <td>Tarik</td>
+                                    <td>Jumlah</td>
+                            
+                                    <td>Simpan</td>
+                                    <td>Tarik</td>
+                                    <td>Jumlah</td>
+                            
+                                    <td>Simpan</td>
+                                    <td>Tarik</td>
+                                    <td>Jumlah</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10"> Tidak ada data! </td>
+                                </tr>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!lampiranshow" class="col-12 mt-4">
+                        <table style="width: 100%; text-align: center;">
+                            <tr style="background-color: #f3f7fd; font-size: 14px; color: #707070">
+                                <th rowspan="2">Minggu</th>
+                                <th class="text-center" colspan="3">Simpanan Wajib</th>
+                                <th class="text-center" colspan="3">Simpanan Sukarela</th>
+                                <th class="text-center" colspan="3">Dana JPK</th>
+                            </tr>
+                            <tr>
+                                <td>Simpan</td>
+                                <td>Tarik</td>
+                                <td>Jumlah</td>
+                        
+                                <td>Simpan</td>
+                                <td>Tarik</td>
+                                <td>Jumlah</td>
+                        
+                                <td>Simpan</td>
+                                <td>Tarik</td>
+                                <td>Jumlah</td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"> Pilih tanggal dan cari terlebih dahulu! </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body load-container" *ngIf="!lampiranshow">
+            <div class="col-12 text-center">
+                Load Data ...
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-notification></app-notification>

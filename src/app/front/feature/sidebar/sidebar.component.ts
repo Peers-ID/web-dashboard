@@ -14,6 +14,7 @@ export class SidebarComponent implements OnInit {
   menupengaturan:boolean;
   menumanajemenanggota:boolean;
   menumanajemenrembug:boolean;
+  menumanajemenlaporan:boolean;
   menumanajemenpinjaman:boolean;
   menumanajemenakun:boolean;
   constructor(
@@ -36,12 +37,19 @@ export class SidebarComponent implements OnInit {
       this.menumanajemenpinjaman = false;
       this.menumanajemenakun = false;
       this.menumanajemenrembug = false;
+      this.menumanajemenlaporan = false;
     }else{
 
       if (parselocalstorage.access === 'all' || parselocalstorage.access.mn_management_rembug === 1){
         this.menumanajemenrembug = true;
       }else{
         this.menumanajemenrembug = false;
+      }
+
+      if (parselocalstorage.access === 'all' || parselocalstorage.access.mn_management_laporan === 1){
+        this.menumanajemenlaporan = true;
+      }else{
+        this.menumanajemenlaporan = false;
       }
 
       if (parselocalstorage.access === 'all' || parselocalstorage.access.mn_pengaturan_pinjaman === 1){

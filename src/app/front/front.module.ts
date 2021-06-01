@@ -29,6 +29,8 @@ import { SimpananDetailComponent } from './feature/management-anggota/simpanan/s
 import { SimpananDetailByidComponent } from './feature/management-anggota/simpanan/simpanan-detail-byid.component';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { LampiranComponent } from './feature/management-laporan/lampiran/lampiran.component';
+import { AuthManajemenLaporanGuard } from '@app/guard/auth-manajemen-lampiran.guard';
 declare var require: any;
 
 export function highchartsFactory() {
@@ -45,6 +47,7 @@ export function highchartsFactory() {
     StrukturPinjamanComponent,
     TemplateDataAnggotaComponent,
     PinjamanComponent,
+    LampiranComponent,
     SimpananComponent,
     ListKoperaiComponent,
     PendaftaranKoperasiComponent,
@@ -77,7 +80,7 @@ export function highchartsFactory() {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
     },
-    CurrencyPipe,DecimalPipe,AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenRembugGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard
+    CurrencyPipe,DecimalPipe,AuthGuard,AuthVerifiedGuard,AuthVerifiedGuestGuard,AuthPengaturanParameterGuard,AuthManajemenAkunGuard,AuthManajemenRembugGuard,AuthManajemenLaporanGuard,AuthManajemenPinjamanGuard,AuthManajemenAnggotaGuard
   ]
 })
 export class FrontModule { }

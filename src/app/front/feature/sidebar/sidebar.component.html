@@ -65,6 +65,16 @@
                     <span *ngIf="active === 'management-rembug'"><img height="14px" class="mr-2 mb-1" src="assets/icon-white/akun.png"></span>
                     <span>Manajemen Rembug</span></a>
             </li>
+            <li class="header" *ngIf="menumanajemenlaporan">
+                <span><img height="14px" class="mr-2 mb-1" src="assets/images/anggota.png"></span>
+                <strong>Manajemen Laporan</strong>
+            </li>
+            <li class="treeview " *ngIf="menumanajemenlaporan">
+                <a [class.nav-select]="active === 'management-laporan-lampiran'"
+                    [class.!nav-select]="active !== 'management-laporan-lampiran'" (click)="goTo('management-laporan-lampiran')">
+                    <span><img class="ml-4 mr-2" src="assets/images/active.png"></span>
+                    <span>Lampiran</span></a>
+            </li>
             <li class="treeview "  *ngIf="menumanajemenpinjaman">
                 <a
                     [class.nav-select]="active === 'management-pinjaman'" [class.!nav-select]="active !== 'management-pinjaman'"

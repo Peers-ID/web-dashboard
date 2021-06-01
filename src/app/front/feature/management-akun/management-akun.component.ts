@@ -25,6 +25,7 @@ export class ManagementAkunComponent implements OnInit {
   manajementakunFc: FormControl = new FormControl(true)
   manajementpinjamanFc: FormControl = new FormControl(true)
   manajementanggotaFc: FormControl = new FormControl(true)
+  manajementlaporanFc: FormControl = new FormControl(true)
   manajementrembugFc: FormControl = new FormControl(true)
   persetujuanFc: FormControl = new FormControl(true)
   pencarianFc: FormControl = new FormControl(true)
@@ -123,6 +124,7 @@ export class ManagementAkunComponent implements OnInit {
     this.pengaturanpinjamanFc.setValue(true)
     this.manajementpinjamanFc.setValue(true)
     this.manajementanggotaFc.setValue(true)
+    this.manajementlaporanFc.setValue(true)
     this.manajementrembugFc.setValue(true)
     this.anguranFc.setValue(true)
     this.penagihanFc.setValue(true)
@@ -135,7 +137,7 @@ export class ManagementAkunComponent implements OnInit {
   pushdataform(nama: any, no: any, email: any, tanggallahir: any, optionfunsional: any, approve_max_1jt: any, approve_max_3jt: any, approve_max_5jt: any
     , approve_max_10jt: any, approve_more_10jt: any, disburse_max_5jt: any, disburse_max_10jt: any, disburse_more_10jt: any, repayment: any,
     collection: any, mn_kinerja_koperasi: any, mn_pengaturan_pinjaman: any, mn_tambah_ao: any, mn_tambah_admin: any,
-    mn_tambah_super_admin: any, mn_management_pinjaman: any, mn_management_anggota: any,mn_management_rembug: any) {
+    mn_tambah_super_admin: any, mn_management_pinjaman: any, mn_management_anggota: any,mn_management_rembug: any,mn_management_laporan: any) {
     this.datashow = true
     this.namaakuninputFc.setValue(nama)
     this.nohpakunFc.setValue(no)
@@ -192,6 +194,7 @@ export class ManagementAkunComponent implements OnInit {
     this.manajementpinjamanFc.setValue(mn_management_pinjaman === 1 ? true : false)
     this.manajementanggotaFc.setValue(mn_management_anggota === 1 ? true : false)
     this.manajementrembugFc.setValue(mn_management_rembug === 1 ? true : false)
+    this.manajementlaporanFc.setValue(mn_management_laporan === 1 ? true : false)
     if (mn_tambah_ao === 0 && mn_tambah_super_admin === 0 && mn_tambah_admin === 0) {
       this.manajementakunFc.setValue(false)
     } else {
@@ -219,7 +222,7 @@ export class ManagementAkunComponent implements OnInit {
           result.data.users.role, result.data.roles.approve_max_1jt, result.data.roles.approve_max_3jt, result.data.roles.approve_max_5jt, result.data.roles.approve_max_10jt,
           result.data.roles.approve_more_10jt, result.data.roles.disburse_max_5jt, result.data.roles.disburse_max_10jt, result.data.roles.disburse_more_10jt,
           result.data.roles.repayment, result.data.roles.collection, result.data.roles.mn_kinerja_koperasi, result.data.roles.mn_pengaturan_pinjaman,
-          result.data.roles.mn_tambah_ao, result.data.roles.mn_tambah_admin, result.data.roles.mn_tambah_super_admin, result.data.roles.mn_management_pinjaman, result.data.roles.mn_management_anggota,result.data.roles.mn_management_rembug)
+          result.data.roles.mn_tambah_ao, result.data.roles.mn_tambah_admin, result.data.roles.mn_tambah_super_admin, result.data.roles.mn_management_pinjaman, result.data.roles.mn_management_anggota,result.data.roles.mn_management_rembug,result.data.roles.mn_management_laporan)
       }
     )
   }
@@ -253,6 +256,7 @@ export class ManagementAkunComponent implements OnInit {
       this.manajementpinjamanFc.setValue(true)
       this.manajementanggotaFc.setValue(true)
       this.manajementrembugFc.setValue(true)
+      this.manajementlaporanFc.setValue(true)
     }
   }
   postdata(type: string) {
@@ -403,7 +407,8 @@ export class ManagementAkunComponent implements OnInit {
       "mn_tambah_super_admin": [this.menusuperadmin.value, [Validators.required]],
       "mn_management_pinjaman": [this.manajementpinjamanFc.value, [Validators.required]],
       "mn_management_anggota": [this.manajementanggotaFc.value, [Validators.required]],
-      "mn_management_rembug": [this.manajementrembugFc.value, [Validators.required]]
+      "mn_management_rembug": [this.manajementrembugFc.value, [Validators.required]],
+      "mn_management_laporan": [this.manajementlaporanFc.value, [Validators.required]]
     });  
     if (this.optionfungsionalFc.value === 'AO/CMO/Sales'){
       if (this.persetujuanFc.value === true && this.pencarianFc.value === false){
@@ -445,6 +450,7 @@ export class ManagementAkunComponent implements OnInit {
       this.manajementpinjamanFc.setValue(this.manajementpinjamanFc.value === true ? 1 : 0)
       this.manajementanggotaFc.setValue(this.manajementanggotaFc.value === true ? 1 : 0)
       this.manajementrembugFc.setValue(this.manajementrembugFc.value === true ? 1 : 0)
+      this.manajementlaporanFc.setValue(this.manajementlaporanFc.value === true ? 1 : 0)
       this.anguranFc.setValue(this.anguranFc.value === true ? 1 : 0)
       this.penagihanFc.setValue(this.penagihanFc.value === true ? 1 : 0)
       switch (type) {
